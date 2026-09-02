@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "L’ANAK Gifting Platform"
+description = "A premium bilingual Kuwaiti gifting platform centered on thoughtful gestures, curated partner gifts, emotion-led discovery, and recipient choice."
+version = "1.0.0"
+id = "artifacts/l-anak"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25321
+
+[services.development]
+run = "pnpm --filter @workspace/l-anak run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/l-anak", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/l-anak/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25321"
+BASE_PATH = "/"

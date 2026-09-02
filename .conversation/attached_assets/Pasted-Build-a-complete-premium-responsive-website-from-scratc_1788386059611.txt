@@ -1,0 +1,588 @@
+Build a complete premium responsive website from scratch for a Kuwaiti gifting startup called:
+
+لأنّك. | L’ANAK
+
+I want this to feel like a real premium startup and luxury lifestyle platform — NOT a generic e-commerce template.
+
+Do not copy a Shopify-style layout.
+
+==================================================
+1. THE BRAND IDEA
+==================================================
+
+L’ANAK is a Kuwaiti gifting platform built around one idea:
+
+You do not need an occasion to give someone something.
+Sometimes, the person themselves is the reason.
+
+Core Arabic brand message:
+
+"مو لازم يكون فيه سبب،
+أحيانًا أنت السبب."
+
+Followed by:
+
+"لأنّك أنت."
+
+L’ANAK is NOT:
+- a flower shop
+- a coffee shop
+- a food delivery app
+- a coupon website
+
+It is one destination for gifting.
+
+Users can gift:
+Coffee
+Flowers
+Desserts
+Food
+Beauty
+Experiences
+Gift vouchers
+and other curated gifts.
+
+The platform can feature local Kuwaiti brands.
+
+For voucher-based gifting, the sender does NOT need to choose the exact product.
+
+Example:
+If I want to gift someone coffee, I select a coffee shop available on the platform, choose a voucher amount, add a message, and send it.
+
+The recipient can then choose what they personally want from that brand.
+
+This philosophy should influence the entire UX:
+
+"I choose the gesture.
+You choose what you love."
+
+==================================================
+2. BRAND IDENTITY — DO NOT CHANGE
+==================================================
+
+Use ONLY this primary palette:
+
+Espresso Brown
+#49372D
+
+Butter Yellow
+#E8D59E
+
+Warm Cream
+#FAF7F0
+
+Do not introduce:
+pink,
+burgundy,
+green,
+bright yellow,
+black,
+purple,
+blue,
+gradients,
+or random accent colors.
+
+The visual personality is:
+
+عفوي · صادق · راقٍ
+Spontaneous · Sincere · Refined
+
+The overall aesthetic should feel:
+
+Kuwaiti
+Warm
+Editorial
+Sophisticated
+Minimal
+Emotional
+Contemporary
+Premium
+
+==================================================
+3. TYPOGRAPHY
+==================================================
+
+Typography is extremely important.
+
+Do NOT use a generic or traditional-looking Arabic font.
+
+Use a sophisticated contemporary Arabic typography system.
+
+Preferred:
+IBM Plex Sans Arabic for Arabic UI/body text.
+
+For larger Arabic display headings, use a refined modern Arabic display treatment with lighter weights and generous spacing.
+
+For English:
+Instrument Serif for editorial/display headings.
+Manrope for UI, navigation, buttons and supporting text.
+
+Do not make all typography bold.
+
+Use contrast between:
+large editorial headlines,
+light Arabic typography,
+small uppercase English labels,
+and clean UI typography.
+
+The L’ANAK logo is already designed separately.
+Do NOT recreate or modify the logo.
+
+==================================================
+4. BILINGUAL SYSTEM
+==================================================
+
+The entire website must support:
+
+العربية | English
+
+Create a working AR / EN language switcher.
+
+Arabic:
+RTL layout.
+
+English:
+LTR layout.
+
+Do NOT show every sentence in both languages at the same time.
+
+The selected language should control the interface.
+
+The brand name L’ANAK can remain unchanged.
+
+==================================================
+5. DESKTOP NAVIGATION
+==================================================
+
+Do NOT use a hamburger menu on desktop.
+
+Create an elegant full navigation bar.
+
+Navigation:
+
+HOME
+SHOP
+GIFT CARDS
+HOW IT WORKS
+ABOUT
+
+Keep:
+L’ANAK logo centered.
+
+Include minimal utility icons:
+Search
+Favorites
+Account
+Gift Bag
+
+Include:
+AR | EN
+
+On mobile, use an elegant hamburger menu.
+
+The navigation should integrate naturally with the hero.
+
+==================================================
+6. HERO SECTION
+==================================================
+
+The hero should use:
+
+Espresso Brown #49372D
+
+as its dominant background.
+
+I want the first screen to feel like a luxury campaign.
+
+Do NOT make it look like an online store immediately.
+
+Use this Arabic copy:
+
+"مو لازم يكون فيه سبب،
+أحيانًا أنت السبب."
+
+Then create an emotional visual pause and reveal:
+
+"لأنّك أنت."
+
+Add a very small editorial label:
+
+L’ANAK — KUWAIT 2026
+
+Primary CTA:
+
+"اكتشف الهدايا"
+
+Do not use multiple large generic buttons.
+
+Use one refined CTA with a subtle arrow.
+
+Create a subtle entrance animation:
+
+1. مو لازم يكون فيه سبب،
+2. أحيانًا أنت السبب.
+3. pause
+4. لأنّك أنت.
+5. CTA
+
+No typing animation.
+No cursor.
+No bouncing.
+No glow.
+
+==================================================
+7. HERO ART DIRECTION
+==================================================
+
+Do NOT use:
+a coffee cup as the main visual,
+a large flower bouquet,
+random product photos,
+generic AI gift collages.
+
+The hero visual should communicate:
+
+THE ACT OF GIVING.
+
+Use an editorial scene centered around premium L’ANAK packaging.
+
+Show a carefully composed gifting scene with:
+
+- one premium L’ANAK shopping bag
+- two or three different gift boxes
+- a minimal gift card/envelope
+- sophisticated wrapping materials
+
+Do not overload the composition.
+
+IMPORTANT PACKAGING RULE:
+
+L’ANAK packaging has a deliberate contrast system.
+
+If the gift box is plain/minimal:
+the ribbon should carry repeated subtle L’ANAK branding.
+
+Example:
+Cream box
++
+Espresso ribbon printed repeatedly with:
+L’ANAK · L’ANAK · L’ANAK
+
+If the box itself has visible L’ANAK branding:
+use a clean plain ribbon.
+
+Never make both the box AND ribbon heavily branded.
+
+The result should feel intentional and luxurious.
+
+Apply the same principle to shopping bags:
+
+Minimal bag
++
+one sophisticated L’ANAK logo.
+
+Do not cover the packaging in logos.
+
+The custom packaging designs will be refined later, so create a tasteful visual system that can be updated easily.
+
+==================================================
+8. FIRST SECTION AFTER HERO
+==================================================
+
+Do NOT use the previous layout with three random large photos for:
+coffee / flowers / dessert.
+
+Create a much more refined transition from the hero.
+
+Headline:
+
+"أهدي على ذوقه."
+
+Supporting copy:
+
+"اختار الفكرة، وخله يختار اللي يحبه."
+
+Then introduce gifting categories:
+
+COFFEE
+FLOWERS
+SWEETS
+DINING
+BEAUTY
+EXPERIENCES
+
+Arabic equivalents should appear when Arabic mode is selected.
+
+Do not make these look like cheap icon cards.
+
+Use a refined horizontal editorial layout.
+
+Each category should have its own art-directed visual language.
+
+==================================================
+9. SHOP EXPERIENCE
+==================================================
+
+Create a dedicated SHOP page.
+
+Allow browsing by category:
+
+Coffee
+Flowers
+Desserts
+Dining
+Beauty
+Experiences
+
+Also provide:
+
+"All Gifts"
+
+Design this like a curated lifestyle platform rather than a crowded marketplace.
+
+Use generous whitespace.
+
+Product/brand cards should feel premium and editorial.
+
+==================================================
+10. COFFEE CATEGORY
+==================================================
+
+This is very important:
+
+L’ANAK DOES NOT SELL ITS OWN COFFEE.
+
+Do NOT create L’ANAK branded coffee cups.
+
+The Coffee category represents coffee shops available through the platform.
+
+Show partner coffee shop cards.
+
+For the prototype, use fictional / placeholder brand names unless real partnerships are explicitly provided later.
+
+When the user selects a coffee shop:
+
+Show:
+
+"أهده قهوته، وخله يختارها."
+
+Then allow the sender to select a voucher amount:
+
+5 KD
+10 KD
+15 KD
+20 KD
+Custom
+
+Then:
+
+Add recipient
+Add personal message
+Choose delivery time
+Send gift
+
+The recipient chooses their own order from the selected coffee brand.
+
+==================================================
+11. L’ANAK GIFT CARD
+==================================================
+
+Create a dedicated:
+
+GIFT CARDS
+
+page.
+
+But do NOT finalize the physical card design yet.
+
+For now use an elegant placeholder based on:
+
+Cream
+Espresso
+Butter Yellow
+
+The gift card should feel like a premium L’ANAK product.
+
+Allow amounts:
+
+5 KD
+10 KD
+20 KD
+25 KD
+50 KD
+Custom
+
+Allow:
+
+Recipient name
+Sender name
+Personal message
+Delivery date
+Delivery method
+
+==================================================
+12. EMOTION-BASED DISCOVERY
+==================================================
+
+Create a unique discovery section:
+
+"شنو ودّك تقول؟"
+
+Options:
+
+لأنك على بالي
+لأنك تستاهل
+لأنك سند
+لأنك فرحة
+لأنك موجود
+لأنك أنت
+
+Clicking an emotion should dynamically update recommended gifting ideas.
+
+This is an important part of the L’ANAK identity.
+
+Users should be able to shop by FEELING,
+not only by product category.
+
+==================================================
+13. HOW IT WORKS
+==================================================
+
+Create a beautiful minimal section:
+
+01
+اختار
+
+Choose a category, brand or experience.
+
+02
+أهدِ
+
+Choose the value and write your message.
+
+03
+خلّه يختار
+
+The recipient chooses what they personally love.
+
+Keep this section extremely clean.
+
+==================================================
+14. INTERACTIONS
+==================================================
+
+Implement at least these functional interactions:
+
+- AR / EN language switching
+- RTL / LTR switching
+- Category selection
+- Favorites
+- Gift bag/cart
+- Voucher amount selection
+- Custom voucher amount
+- Emotion selection
+- Gift recommendations updating based on emotion
+- Add to Gift feedback
+- Mobile navigation
+- Smooth section transitions
+
+Every visible interactive element should work.
+
+==================================================
+15. RESPONSIVE DESIGN
+==================================================
+
+Build dedicated responsive behavior for:
+
+Desktop
+Tablet
+Mobile
+
+Do not simply stack the desktop layout on mobile.
+
+Mobile should feel intentionally designed.
+
+==================================================
+16. DESIGN RULES
+==================================================
+
+Use:
+
+Large editorial typography
+Intentional negative space
+Asymmetric layouts where appropriate
+Thin borders
+Minimal shadows
+Sophisticated image cropping
+Subtle animations
+Cream editorial sections
+Espresso hero moments
+Butter Yellow details
+
+Avoid excessive rounded cards.
+
+Not every piece of information needs to be inside a box.
+
+Avoid:
+generic dashboards,
+Shopify layouts,
+food delivery app UI,
+coupon website UI,
+excessive icons,
+large shadows,
+gradients,
+glowing effects,
+AI-looking stock imagery.
+
+==================================================
+17. FOOTER
+==================================================
+
+Create an elegant footer using Espresso Brown.
+
+Include:
+
+L’ANAK
+HOME
+SHOP
+GIFT CARDS
+HOW IT WORKS
+ABOUT
+CONTACT
+INSTAGRAM
+PRIVACY
+TERMS
+
+End with:
+
+"مو لازم مناسبة.
+لأنّك كفاية."
+
+and:
+
+MADE IN KUWAIT · 2026
+
+==================================================
+FINAL OBJECTIVE
+==================================================
+
+The website should make users feel that L’ANAK is introducing a NEW WAY OF GIFTING.
+
+The focus is not:
+"What product do I buy?"
+
+The focus is:
+"Who am I thinking about?"
+
+The experience should feel emotional first,
+commercial second.
+
+Build the website architecture and initial visual experience now.
+
+Keep components modular because I will provide custom L’ANAK:
+packaging,
+gift boxes,
+voucher designs,
+and visual assets later.
+
+Do not finalize those assets without my instruction.
