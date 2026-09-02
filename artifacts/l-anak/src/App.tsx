@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
-import { ArrowDown, ArrowUpRight, Check, ChevronDown, Coffee, Gift, Heart, MapPin, Menu, Minus, Plus, RotateCcw, Search, Send, ShoppingBag, X } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Check, ChevronDown, Coffee, Gift, Heart, MapPin, Menu, Minus, Plus, RotateCcw, Search, Send, ShoppingBag, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -25,34 +25,24 @@ const products: Product[] = [
 const copy = {
   en: {
     nav: ['Shop', 'Gift cards', 'How it works', 'About'],
-    heroKicker: 'A new way to give in Kuwait',
-    hero: 'Give the feeling.\\nLet them choose the thing.',
-    heroBody: 'The most thoughtful gifts start with knowing how someone feels. Choose a gesture, send it their way, and let them pick what makes them feel seen.',
-    start: 'Start with a feeling',
-    browse: 'Browse all gifts',
     strip: 'For the friend who needs a lift  /  for your favourite person  /  for no reason at all',
     discoveryKicker: 'Not sure what to send?',
-    discoveryTitle: 'Start with how\\nyou want them to feel.',
+    discoveryTitle: 'Start with how\nyou want them to feel.',
     discoveryBody: 'No endless scrolling. No guessing their size. Just a feeling, translated into a little room of possibilities.',
     explore: 'Explore the feelings',
   },
   ar: {
     nav: ['المتجر', 'بطاقات الهدايا', 'كيف تعمل', 'عن لَـنَك'],
-    heroKicker: 'طريقة جديدة للهدايا في الكويت',
-    hero: 'أهدِ الشعور.\\nوخليهم يختارون اللي يحبونه.',
-    heroBody: 'أجمل الهدايا تبدأ من إحساسنا بالشخص. اختار الإحساس، أرسله لهم، وخليهم يختارون الشيء اللي يحسسهم إنك تعرفهم.',
-    start: 'ابدأ من شعور',
-    browse: 'تصفح كل الهدايا',
     strip: 'للشخص اللي يحتاج دفعة  /  للشخص المفضل  /  بدون سبب',
     discoveryKicker: 'محتار شنو ترسل؟',
-    discoveryTitle: 'ابدأ من الشعور\\nاللي تبيه يوصل.',
+    discoveryTitle: 'ابدأ من الشعور\nاللي تبيه يوصل.',
     discoveryBody: 'بدون تصفح طويل. بدون تخمين المقاس. إحساس واحد، يتحول إلى خيارات تشبههم.',
     explore: 'اكتشف المشاعر',
   },
 };
 
 function App() {
-  const [lang, setLang] = useState<Lang>('en');
+  const [lang, setLang] = useState<Lang>('ar');
   const [bag, setBag] = useState<Product[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -94,30 +84,96 @@ function App() {
 
 function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, setBagOpen, isAr }: { children: ReactNode; lang: Lang; setLang: (lang: Lang) => void; menuOpen: boolean; setMenuOpen: (open: boolean) => void; bagCount: number; setBagOpen: (open: boolean) => void; isAr: boolean }) {
   const [location] = useLocation();
+  const isHome = location === '/';
   const nav = copy[lang].nav;
   const links = ['/shop', '/gift-cards', '/how-it-works', '/about'];
+  
   return (
-    <div className="min-h-[100dvh] bg-[#FAF7F0] text-[#49372D]">
+    <div className="min-h-[100dvh] flex flex-col bg-[#FAF7F0] text-[#49372D]">
       <div className="border-b border-[#49372D]/20 bg-[#E8D59E] px-5 py-2 text-center text-[10px] font-bold uppercase tracking-[.22em] text-[#49372D]" data-testid="text-announcement">
         {isAr ? 'التوصيل داخل الكويت — من قلبنا لقلبهم' : 'Kuwait-wide delivery — from our heart to theirs'}
       </div>
-      <header className="relative z-40 mx-auto flex max-w-[1440px] items-center justify-between px-5 py-5 md:px-10">
-        <Link href="/" className="group flex items-baseline gap-2" data-testid="link-logo">
-          <span className="font-display text-[35px] leading-none tracking-[-.06em]">L’ANAK</span>
-          <span className="hidden text-[9px] font-bold uppercase tracking-[.18em] opacity-60 sm:inline">gifts with feeling</span>
-        </Link>
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
-          {nav.map((item, index) => <Link key={item} href={links[index]} className={`line-draw text-[12px] font-semibold ${location === links[index] ? 'opacity-100' : 'opacity-65'}`} data-testid={`link-nav-${links[index].slice(1)}`}>{item}</Link>)}
-        </nav>
-        <div className="flex items-center gap-3">
-          <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="pressable hidden border-b border-[#49372D] pb-1 text-[11px] font-bold md:block" data-testid="button-language-toggle">{lang === 'en' ? 'العربية' : 'English'}</button>
-          <button onClick={() => setBagOpen(true)} className="pressable relative flex items-center gap-2 text-[12px] font-bold" data-testid="button-open-bag"><ShoppingBag size={17} strokeWidth={1.5} /><span className="hidden sm:inline">{isAr ? 'شنطتي' : 'Gift bag'}</span>{bagCount > 0 && <b className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#49372D] px-1 text-[9px] text-[#FAF7F0]" data-testid="text-bag-count">{bagCount}</b>}</button>
-          <button onClick={() => setMenuOpen(!menuOpen)} className="ml-2 md:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} data-testid="button-mobile-menu">{menuOpen ? <X size={21} /> : <Menu size={21} />}</button>
+      <header className={`relative z-40 w-full border-b ${isHome ? 'border-[#FAF7F0]/15 bg-[#49372D] text-[#FAF7F0]' : 'border-[#49372D]/15 bg-[#FAF7F0] text-[#49372D]'}`}>
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 md:px-10 md:py-5">
+          <Link href="/" className="group flex items-baseline gap-2" data-testid="link-logo">
+            <span className="font-display text-[35px] leading-none tracking-[-.06em]">L’ANAK</span>
+            <span className="hidden text-[9px] font-bold uppercase tracking-[.18em] opacity-60 sm:inline">gifts with feeling</span>
+          </Link>
+          <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
+            {nav.map((item, index) => <Link key={item} href={links[index]} className={`line-draw text-[12px] font-semibold ${location === links[index] ? 'opacity-100' : 'opacity-65'}`} data-testid={`link-nav-${links[index].slice(1)}`}>{item}</Link>)}
+          </nav>
+          <div className="flex items-center gap-3">
+            <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="pressable hidden border-b border-current pb-1 text-[11px] font-bold md:block" data-testid="button-language-toggle">{lang === 'en' ? 'العربية' : 'English'}</button>
+            <button onClick={() => setBagOpen(true)} className="pressable relative flex items-center gap-2 text-[12px] font-bold" data-testid="button-open-bag">
+              <ShoppingBag size={17} strokeWidth={1.5} />
+              <span className="hidden sm:inline">{isAr ? 'شنطتي' : 'Gift bag'}</span>
+              {bagCount > 0 && <b className={`flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[9px] ${isHome ? 'bg-[#FAF7F0] text-[#49372D]' : 'bg-[#49372D] text-[#FAF7F0]'}`} data-testid="text-bag-count">{bagCount}</b>}
+            </button>
+            <button onClick={() => setMenuOpen(!menuOpen)} className="ml-2 md:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} data-testid="button-mobile-menu">{menuOpen ? <X size={21} /> : <Menu size={21} />}</button>
+          </div>
         </div>
-        {menuOpen && <div className="absolute left-0 right-0 top-full border-b border-[#49372D]/20 bg-[#FAF7F0] px-5 pb-7 pt-3 md:hidden" data-testid="menu-mobile"><div className="flex flex-col gap-5">{nav.map((item, index) => <Link key={item} href={links[index]} onClick={() => setMenuOpen(false)} className="font-display text-3xl" data-testid={`link-mobile-${links[index].slice(1)}`}>{item}</Link>)}<button onClick={() => { setLang(lang === 'en' ? 'ar' : 'en'); setMenuOpen(false); }} className="w-fit border-b border-[#49372D] pb-1 text-left text-sm font-bold" data-testid="button-mobile-language">{lang === 'en' ? 'العربية' : 'English'}</button></div></div>}
+        {menuOpen && (
+          <div className={`absolute left-0 right-0 top-full border-b px-5 pb-7 pt-3 md:hidden ${isHome ? 'border-[#FAF7F0]/15 bg-[#49372D] text-[#FAF7F0]' : 'border-[#49372D]/20 bg-[#FAF7F0] text-[#49372D]'}`} data-testid="menu-mobile">
+            <div className="flex flex-col gap-5">
+              {nav.map((item, index) => <Link key={item} href={links[index]} onClick={() => setMenuOpen(false)} className="font-display text-3xl" data-testid={`link-mobile-${links[index].slice(1)}`}>{item}</Link>)}
+              <button onClick={() => { setLang(lang === 'en' ? 'ar' : 'en'); setMenuOpen(false); }} className="w-fit border-b border-current pb-1 text-left text-sm font-bold" data-testid="button-mobile-language">{lang === 'en' ? 'العربية' : 'English'}</button>
+            </div>
+          </div>
+        )}
       </header>
-      {children}
+      <div className="flex-1 w-full">
+        {children}
+      </div>
       <Footer lang={lang} />
+    </div>
+  );
+}
+
+function HeroVisual() {
+  return (
+    <div className="relative aspect-square md:aspect-[4/5] w-full max-w-[500px] overflow-hidden bg-[#E8D59E] flex items-center justify-center">
+      {/* Bag */}
+      <div className="absolute top-[12%] left-[12%] w-[45%] h-[60%] bg-[#FAF7F0] border border-[#49372D]/20 shadow-[0_8px_24px_rgba(73,55,45,0.12)] flex flex-col items-center justify-center rotate-[-4deg]">
+        {/* Handles */}
+        <div className="absolute -top-[12%] w-[35%] h-[12%] border-t-[1.5px] border-x-[1.5px] border-[#49372D] rounded-t-full" />
+        <span className="font-display text-3xl md:text-5xl text-[#49372D] tracking-[-.05em]">L’ANAK</span>
+        <span className="mt-2 text-[5px] uppercase tracking-[.2em] text-[#49372D]/60">minimal bag</span>
+      </div>
+
+      {/* Gift Box 1 (Plain box, branded ribbon) */}
+      <div className="absolute bottom-[18%] right-[8%] w-[42%] h-[32%] bg-[#49372D] shadow-[0_12px_32px_rgba(73,55,45,0.2)] rotate-[5deg] flex items-center justify-center">
+        {/* Ribbon Vertical */}
+        <div className="absolute left-[25%] w-[12%] h-full bg-[#FAF7F0] flex flex-col items-center justify-around overflow-hidden">
+          <span className="text-[4px] font-bold text-[#49372D] -rotate-90">L’ANAK</span>
+          <span className="text-[4px] font-bold text-[#49372D] -rotate-90">L’ANAK</span>
+        </div>
+        {/* Ribbon Horizontal */}
+        <div className="absolute top-[40%] w-full h-[14%] bg-[#FAF7F0] flex items-center justify-around overflow-hidden">
+          <span className="text-[4px] font-bold text-[#49372D]">L’ANAK</span>
+          <span className="text-[4px] font-bold text-[#49372D]">L’ANAK</span>
+        </div>
+      </div>
+
+      {/* Gift Box 2 (Branded box, plain ribbon) */}
+      <div className="absolute top-[48%] right-[22%] w-[32%] h-[26%] bg-[#FAF7F0] border border-[#49372D]/15 shadow-[0_8px_20px_rgba(73,55,45,0.1)] rotate-[-6deg] flex flex-col items-center justify-center">
+        {/* Ribbon */}
+        <div className="absolute left-[50%] -translate-x-1/2 w-[8%] h-full bg-[#49372D]" />
+        <div className="absolute top-[50%] -translate-y-1/2 w-full h-[10%] bg-[#49372D]" />
+        
+        <span className="relative z-10 font-display text-xl text-[#49372D] bg-[#FAF7F0] px-2 py-1 leading-none tracking-[-.05em]">L’ANAK</span>
+      </div>
+
+      {/* Envelope / Card */}
+      <div className="absolute bottom-[22%] left-[16%] w-[28%] h-[20%] bg-[#FAF7F0] shadow-[0_4px_12px_rgba(73,55,45,0.08)] rotate-[14deg] flex items-center justify-center">
+        <div className="absolute inset-0 border-[0.5px] border-[#49372D]/10 m-1" />
+        {/* Flap outline */}
+        <div className="absolute top-0 left-0 w-full h-full border-t-[0.5px] border-[#49372D]/20" style={{ clipPath: 'polygon(0 0, 50% 50%, 100% 0)' }} />
+      </div>
+      
+      {/* Small wrapping piece */}
+      <div className="absolute top-[28%] right-[8%] w-[16%] h-[22%] bg-black/5 border border-[#49372D]/10 rotate-[24deg]" />
+
+      <span className="absolute bottom-4 left-4 text-[7px] font-bold uppercase tracking-[.2em] text-[#49372D]/50">L’ANAK / Editorial Setup</span>
     </div>
   );
 }
@@ -125,35 +181,43 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
 function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t: typeof copy.en; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
   const isAr = lang === 'ar';
   return (
-    <main>
-      <section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 pb-20 pt-10 md:grid-cols-[1.05fr_.95fr] md:gap-16 md:px-10 md:pb-32 md:pt-20">
-        <div className="flex flex-col justify-between">
-          <div className="reveal">
-            <p className="mb-8 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[.22em] opacity-60"><span className="h-px w-8 bg-[#49372D]" />{t.heroKicker}</p>
-            <h1 className={`max-w-[760px] whitespace-pre-line font-display text-[clamp(3.7rem,9vw,9rem)] leading-[.85] tracking-[-.055em] ${isAr ? 'font-arabic leading-[1.04]' : ''}`} data-testid="text-hero-title">{t.hero}</h1>
-          </div>
-          <div className="mt-12 max-w-[440px] reveal reveal-delay-2">
-            <p className={`mb-8 text-[15px] leading-7 opacity-75 ${isAr ? 'font-arabic' : ''}`} data-testid="text-hero-body">{t.heroBody}</p>
-            <div className="flex flex-wrap items-center gap-5">
-              <Link href="/shop" className="pressable inline-flex items-center gap-3 bg-[#49372D] px-6 py-4 text-[12px] font-bold text-[#FAF7F0]" data-testid="link-start-feeling">{t.start}<ArrowUpRight size={16} strokeWidth={1.6} /></Link>
-              <Link href="/shop" className="line-draw text-[12px] font-bold" data-testid="link-browse-gifts">{t.browse}</Link>
+    <main className="w-full">
+      <section className="bg-[#49372D] text-[#FAF7F0] px-5 pb-20 pt-10 md:px-10 md:pb-32 md:pt-16">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-14 md:grid-cols-[1.1fr_.9fr] md:gap-16">
+          <div className="flex flex-col justify-center">
+            <div className={`font-display text-[clamp(2.5rem,6.5vw,7.5rem)] leading-[1.08] tracking-[-.02em] md:leading-[1.05] ${isAr ? 'font-arabic font-medium' : ''}`}>
+              <div className="reveal-text-1">{isAr ? 'مو لازم يكون فيه سبب،' : 'There doesn’t have to be a reason,'}</div>
+              <div className="reveal-text-2 mt-2 md:mt-4">{isAr ? 'أحيانًا أنت السبب.' : 'sometimes you are the reason.'}</div>
+              <div className="reveal-text-3 mt-10 md:mt-14 text-[#E8D59E]">{isAr ? 'لأنّك أنت.' : 'Because it’s you.'}</div>
+            </div>
+            
+            <div className="reveal-cta mt-16 md:mt-24">
+              <Link href="/shop" className="group flex w-fit items-center gap-4 text-[#FAF7F0] hover:text-[#E8D59E] transition-colors">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-current">
+                  {isAr ? (
+                    <ArrowLeft size={20} className="transition-transform duration-300 group-hover:-translate-x-1" />
+                  ) : (
+                    <ArrowRight size={20} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  )}
+                </span>
+                <div>
+                  <span className={`block text-lg font-bold ${isAr ? 'font-arabic' : 'font-display text-2xl tracking-[-.02em]'}`}>{isAr ? 'اكتشف الهدايا' : 'Discover the gifts'}</span>
+                  <span className="mt-1 block text-[9px] font-bold uppercase tracking-[.22em] opacity-60">L’ANAK — KUWAIT 2026</span>
+                </div>
+              </Link>
             </div>
           </div>
-        </div>
-        <div className="relative min-h-[480px] overflow-hidden bg-[#E8D59E] reveal reveal-delay-1 md:min-h-[620px]" data-testid="visual-hero-placeholder">
-          <div className="absolute inset-7 border border-[#49372D]/30 md:inset-12" />
-          <div className="absolute left-1/2 top-1/2 flex w-[72%] -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center">
-            <div className="mb-7 h-24 w-20 rotate-[-8deg] border border-[#49372D] bg-[#FAF7F0] md:h-36 md:w-28"><div className="mx-auto mt-5 h-px w-10 bg-[#49372D]" /><div className="mt-3 font-display text-2xl">L’</div><div className="mt-7 text-[7px] uppercase tracking-[.2em]">for someone</div></div>
-            <p className="font-display text-4xl leading-[.92] md:text-6xl">A feeling,<br /><i>wrapped.</i></p>
-            <span className="mt-8 border border-[#49372D] px-3 py-2 text-[9px] font-bold uppercase tracking-[.18em]">visual placeholder</span>
+
+          <div className="flex items-center justify-center reveal-cta">
+            <HeroVisual />
           </div>
-          <span className="absolute bottom-7 left-7 writing-vertical text-[9px] font-bold uppercase tracking-[.22em] md:bottom-12 md:left-12">A small gesture, beautifully open</span>
-          <span className="absolute right-7 top-7 text-[11px] font-bold md:right-12 md:top-12">KWT / 001</span>
         </div>
       </section>
-      <div className="overflow-hidden border-y border-[#49372D]/20 bg-[#49372D] py-4 text-[#FAF7F0]">
+
+      <div className="overflow-hidden border-b border-[#FAF7F0]/15 bg-[#49372D] py-4 text-[#FAF7F0]">
         <div className="marquee flex w-max items-center whitespace-nowrap text-[11px] font-bold uppercase tracking-[.18em]"><span className="px-6">{t.strip}</span><span className="px-6 text-[#E8D59E]">/</span><span className="px-6">{t.strip}</span><span className="px-6 text-[#E8D59E]">/</span><span className="px-6">{t.strip}</span></div>
       </div>
+
       <section className="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-36">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[.8fr_1.2fr]">
           <div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.22em] opacity-60">{t.discoveryKicker}</p><h2 className={`whitespace-pre-line font-display text-5xl leading-[.9] tracking-[-.04em] md:text-7xl ${isAr ? 'font-arabic leading-[1.08]' : ''}`} data-testid="text-discovery-title">{t.discoveryTitle}</h2></div>

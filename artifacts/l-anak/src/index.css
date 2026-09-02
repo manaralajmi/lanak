@@ -143,20 +143,19 @@
   .text-balance { text-wrap: balance; }
 }
 
-.reveal { animation: reveal .8s cubic-bezier(.22,.8,.24,1) both; }
-.reveal-delay-1 { animation-delay: .1s; }
-.reveal-delay-2 { animation-delay: .2s; }
-.reveal-delay-3 { animation-delay: .3s; }
-.reveal-delay-4 { animation-delay: .4s; }
-@keyframes reveal {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
-}
 .marquee { animation: marquee 24s linear infinite; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 .line-draw { position: relative; }
-.line-draw::after { content: ''; position: absolute; left: 0; bottom: -5px; height: 1px; width: 100%; background: #49372D; transform: scaleX(0); transform-origin: right; transition: transform .35s ease; }
+.line-draw::after { content: ''; position: absolute; left: 0; bottom: -5px; height: 1px; width: 100%; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .35s ease; }
 .line-draw:hover::after { transform: scaleX(1); transform-origin: left; }
+.reveal-text-1 { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) both; }
+.reveal-text-2 { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 0.5s both; }
+.reveal-text-3 { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 1.8s both; }
+.reveal-cta { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 2.5s both; }
+@keyframes revealText {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .pressable { transition: transform .25s ease, background-color .25s ease, color .25s ease; }
 .pressable:hover { transform: translateY(-2px); }
 .pressable:active { transform: translateY(0); }
