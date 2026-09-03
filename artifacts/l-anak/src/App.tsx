@@ -204,6 +204,8 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
         </div>
       </section>
 
+      <EmotionalTransition />
+
       <GiftingCategories lang={lang} />
 
       <section className="bg-[#49372D] px-5 py-20 text-[#FAF7F0] md:px-10 md:py-32">
@@ -220,6 +222,16 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
       </section>
       <Newsletter lang={lang} />
     </main>
+  );
+}
+
+function EmotionalTransition() {
+  return (
+    <section className="emotional-transition" dir="rtl" aria-label="رسالة لأنّك">
+      <p className="emotional-phrase emotional-phrase--one">لأنّك تستاهل.</p>
+      <p className="emotional-phrase emotional-phrase--two">لأنّك على بالي.</p>
+      <p className="emotional-phrase emotional-phrase--three">لأنّك أنت.</p>
+    </section>
   );
 }
 

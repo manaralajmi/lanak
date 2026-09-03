@@ -144,6 +144,62 @@
   .text-balance { text-wrap: balance; }
 }
 
+.emotional-transition {
+  position: relative;
+  display: grid;
+  min-height: clamp(15rem, 26vw, 23rem);
+  place-items: center;
+  overflow: hidden;
+  padding: 4.5rem 1.25rem;
+  background: #49372D;
+}
+.emotional-phrase {
+  position: absolute;
+  margin: 0;
+  color: #F5F0E8;
+  font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif;
+  font-size: clamp(1.75rem, 3vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.45;
+  opacity: 0;
+  text-align: center;
+  transform: translateY(.65rem);
+  will-change: opacity, transform;
+}
+.emotional-phrase--one { animation: emotionalPhraseOne 9s ease-in-out infinite; }
+.emotional-phrase--two { animation: emotionalPhraseTwo 9s ease-in-out infinite; }
+.emotional-phrase--three {
+  color: #CBB98B;
+  animation: emotionalPhraseThree 9s ease-in-out infinite;
+}
+@keyframes emotionalPhraseOne {
+  0% { opacity: 0; transform: translateY(.65rem); }
+  7%, 25% { opacity: 1; transform: translateY(0); }
+  32%, 100% { opacity: 0; transform: translateY(-.35rem); }
+}
+@keyframes emotionalPhraseTwo {
+  0%, 33% { opacity: 0; transform: translateY(.65rem); }
+  40%, 58% { opacity: 1; transform: translateY(0); }
+  65%, 100% { opacity: 0; transform: translateY(-.35rem); }
+}
+@keyframes emotionalPhraseThree {
+  0%, 66% { opacity: 0; transform: translateY(.65rem); }
+  73%, 92% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-.35rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .emotional-phrase {
+    display: none;
+    animation: none;
+  }
+  .emotional-phrase--three {
+    position: static;
+    display: block;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .category-editorial-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
