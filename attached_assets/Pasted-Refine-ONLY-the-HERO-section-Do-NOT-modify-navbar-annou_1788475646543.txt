@@ -1,0 +1,147 @@
+Refine ONLY the HERO section.
+
+Do NOT modify:
+- navbar
+- announcement bar
+- category section
+- any section below the hero
+
+We are working section by section.
+
+--------------------------------------------------
+HERO IMAGE
+--------------------------------------------------
+
+Replace the current "PACKAGING VISUAL ASSET" placeholder with the approved L’ANAK hero image asset.
+
+The hero image is the image showing two people exchanging a L’ANAK gift box.
+
+Use it as the main hero campaign visual.
+
+Do NOT generate a replacement image.
+
+Do NOT crop the gift box or hands awkwardly.
+
+Keep the image editorial and spacious.
+
+Make the image slightly larger than the current placeholder and allow it to feel more visually important.
+
+Avoid a heavy border around the image.
+
+Use either:
+- no border
+or
+- an extremely subtle 1px tonal border only if necessary.
+
+No rounded corners.
+
+--------------------------------------------------
+HERO COPY
+--------------------------------------------------
+
+Use this exact Arabic copy:
+
+"مو لازم يكون فيه سبب،
+أحيانًا ممكن تكون أنت السبب."
+
+Then reveal:
+
+"لأنّك أنت."
+
+Do not rewrite these lines.
+
+Use Warm Ivory #F5F0E8 for the main headline.
+
+Use Muted Champagne #CBB98B for:
+
+"لأنّك أنت."
+
+--------------------------------------------------
+TYPOGRAPHY
+--------------------------------------------------
+
+The hero should feel more editorial and luxurious.
+
+Use a refined Arabic display font that is different from the navigation font.
+
+Do NOT use a heavy or bulky Arabic font.
+
+Prefer:
+- elegant
+- light to regular weight
+- high readability
+- slightly fashion/editorial feel
+
+Make the headline large, but not oversized.
+
+The line breaks should feel intentional.
+
+Keep generous line-height and breathing space.
+
+"Lأنّك أنت." should be smaller than the main headline but still visually important.
+
+--------------------------------------------------
+CTA
+--------------------------------------------------
+
+Use one CTA only:
+
+"اكتشف الهدايا"
+
+Do NOT use a large rounded button.
+
+Use an editorial text-link style with:
+- subtle underline
+- small arrow
+- refined hover animation
+
+On hover:
+- text becomes Muted Champagne #CBB98B
+- underline extends smoothly
+- arrow shifts slightly
+
+--------------------------------------------------
+SPACING
+--------------------------------------------------
+
+Increase breathing room in the hero.
+
+The image and text should not feel cramped.
+
+Maintain a balanced split layout:
+image on the left
+copy on the right
+
+Do not add extra decorative text, labels, or badges.
+
+--------------------------------------------------
+ANIMATION
+--------------------------------------------------
+
+Use subtle entrance animation only:
+
+1. image fades in softly
+2. first hero line appears
+3. second line appears
+4. short pause
+5. "لأنّك أنت." appears
+6. CTA appears
+
+No typing effect.
+No bounce.
+No glow.
+No dramatic motion.
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do not touch any other section.
+
+This task is ONLY:
+- replace the hero image placeholder
+- refine hero typography
+- refine hero spacing
+- keep the exact approved copy
+- refine CTA
+- subtle entrance animation
