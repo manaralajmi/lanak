@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Coffee, Gift, Heart, MapPin, Menu, Minus, Plus, RotateCcw, Search, Send, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -169,7 +169,6 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
             </div>
             
             <div className="hero-cta mt-16 md:mt-20">
-              <span className="mb-5 block text-[8px] font-semibold uppercase tracking-[.24em] opacity-55">L’ANAK — KUWAIT 2026</span>
               <Link href="/shop" className="group inline-flex w-fit items-center gap-4 border-b border-[#FAF7F0]/30 pb-2 text-[#FAF7F0] transition-colors hover:border-[#E8D59E] hover:text-[#E8D59E]">
                 <span className={`${isAr ? 'font-arabic text-[16px] font-medium' : 'text-[11px] font-bold uppercase tracking-[.15em]'}`}>
                   {isAr ? copy.ar.heroCta : copy.en.heroCta}
@@ -189,7 +188,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
         </div>
       </section>
 
-      <EditorialMarquee lang={lang} onPhraseClick={(phrase) => setToast(isAr ? `${phrase} — بنختار لك هدايا على هالإحساس` : `${phrase} — gift ideas for this feeling are coming`)} />
+      <EmotionalTransition />
 
       <GiftingCategories lang={lang} />
 
@@ -210,50 +209,13 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
   );
 }
 
-function EditorialMarquee({ lang, onPhraseClick }: { lang: Lang; onPhraseClick: (phrase: string) => void }) {
-  const isAr = lang === 'ar';
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const lineOne = isAr
-    ? ['لأنّك على بالي', 'لأنّك تستاهل', 'لأنّك فرحة', 'لأنّك سند', 'لأنّك موجود', 'لأنّك أنت']
-    : ['THINKING OF YOU', 'YOU DESERVE IT', 'YOU MAKE ME SMILE', 'YOU’RE ALWAYS THERE', 'I AM HERE FOR YOU', 'BECAUSE IT’S YOU'];
-  const lineTwo = isAr
-    ? ['مو عيد ميلاد', 'مو تخرج', 'مو ذكرى', 'مو مناسبة', 'بس لأنّك']
-    : ['NOT A BIRTHDAY', 'NOT A GRADUATION', 'NOT AN ANNIVERSARY', 'NO OCCASION NEEDED', 'JUST BECAUSE'];
-  useEffect(() => {
-    const highlightedPhrases = marqueeRef.current?.querySelectorAll('.marquee-phrase--highlight');
-    if (!highlightedPhrases?.length) return;
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.target.classList.toggle('is-centered', entry.isIntersecting)),
-      { rootMargin: '0px -49% 0px -49%', threshold: 0 },
-    );
-    highlightedPhrases.forEach((phrase) => observer.observe(phrase));
-    return () => observer.disconnect();
-  }, [lang]);
-  const renderLine = (phrases: string[], line: 'one' | 'two') => (
-    <div className={`marquee-line marquee-line--${line}`} dir={line === 'one' ? 'rtl' : 'ltr'}>
-      <div className="marquee-track">
-        {[...phrases, ...phrases, ...phrases].map((phrase, index) => {
-          const isHighlight = phrase === 'لأنّك أنت' || phrase === 'BECAUSE IT’S YOU';
-          return (
-            <button
-              key={`${line}-${index}`}
-              type="button"
-              onClick={() => onPhraseClick(phrase)}
-              className={`marquee-phrase ${isHighlight ? 'marquee-phrase--highlight' : ''}`}
-            >
-              {phrase} <span className="marquee-dot">·</span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
-  );
+function EmotionalTransition() {
   return (
-    <div ref={marqueeRef} className="editorial-marquee border-b border-[#FAF7F0]/15 bg-[#49372D] py-4 text-[#FAF7F0]" aria-label={isAr ? 'مشاعر لأنّك' : 'L’ANAK feelings'}>
-      {renderLine(lineOne, 'one')}
-      <div className="marquee-divider" aria-hidden="true" />
-      {renderLine(lineTwo, 'two')}
-    </div>
+    <section className="emotional-transition border-b border-[#FAF7F0]/10 bg-[#49372D]" dir="rtl" aria-label="رسالة لأنّك">
+      <p className="emotional-phrase emotional-phrase--one">لأنّك على بالي.</p>
+      <p className="emotional-phrase emotional-phrase--two">لأنّك تستاهل.</p>
+      <p className="emotional-phrase emotional-phrase--three">لأنّك أنت.</p>
+    </section>
   );
 }
 

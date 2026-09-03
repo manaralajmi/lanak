@@ -1,0 +1,125 @@
+Refine ONLY the HERO section and the transition immediately below it.
+
+Do NOT modify:
+- category section
+- featured gifts
+- about section
+- newsletter
+- footer
+- any section below the hero transition
+
+We are now working section by section.
+
+--------------------------------------------------
+HERO
+--------------------------------------------------
+
+Keep:
+- Espresso Brown #49372D background
+- current split layout
+- current navigation
+- current announcement bar
+- current Arabic typography direction
+
+Use this exact Arabic copy:
+
+"مو لازم يكون فيه سبب،
+أحيانًا ممكن تكون أنت السبب."
+
+Then reveal:
+
+"لأنّك أنت."
+
+Keep "لأنّك أنت." in Butter Yellow #E8D59E.
+
+Use one CTA only:
+
+"اكتشف الهدايا"
+
+Keep the hero spacious and calm.
+
+The hero image area should remain on the left and will later use the approved L’ANAK hero image asset.
+
+Do not add new decorations.
+
+Do not add extra labels or text.
+
+--------------------------------------------------
+REMOVE CURRENT MARQUEE
+--------------------------------------------------
+
+Remove the current two-line moving marquee / ticker completely.
+
+It currently feels too busy and repetitive.
+
+Replace it with ONE minimal emotional transition strip.
+
+Background:
+Espresso Brown #49372D
+
+Centered text.
+
+Display these phrases one at a time:
+
+"لأنّك على بالي."
+"لأنّك تستاهل."
+"لأنّك أنت."
+
+Animation:
+
+Phrase 1:
+fade in slowly
+stay briefly
+fade out
+
+Phrase 2:
+fade in slowly
+stay briefly
+fade out
+
+Phrase 3:
+fade in slowly
+stay briefly
+
+Use Cream #FAF7F0 for the first two phrases.
+
+Use Butter Yellow #E8D59E for:
+"لأنّك أنت."
+
+No movement across the screen.
+No marquee.
+No horizontal scrolling.
+No typing effect.
+No bouncing.
+No glow.
+No icons.
+
+The transition should feel cinematic, quiet and editorial.
+
+Use generous vertical space.
+
+The entire transition should feel like a pause between the hero and the next section.
+
+Respect prefers-reduced-motion:
+if reduced motion is enabled, show only:
+
+"لأنّك أنت."
+
+statically.
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do not redesign any other section.
+
+Do not add new components.
+
+Do not change the category layout yet.
+
+Do not modify content below this transition.
+
+This task is ONLY:
+1. Hero refinement
+2. Remove marquee
+3. Add minimal emotional transition
