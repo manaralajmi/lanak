@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useMemo, useState } from 'react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
-import { ArrowDown, ArrowUpRight, Check, ChevronDown, Coffee, Gift, Heart, MapPin, Menu, Minus, Plus, RotateCcw, Search, Send, ShoppingBag, X, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Check, ChevronDown, Coffee, Gift, Heart, MapPin, Menu, Minus, Plus, RotateCcw, Search, Send, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -24,7 +24,7 @@ const products: Product[] = [
 
 const copy = {
   en: {
-    nav: ['Shop', 'Gift cards', 'How it works', 'About'],
+    nav: ['Home', 'Shop', 'Gift cards', 'How it works', 'About'],
     strip: 'For the friend who needs a lift  /  for your favourite person  /  for no reason at all',
     discoveryKicker: 'Not sure what to send?',
     discoveryTitle: 'Start with how\nyou want them to feel.',
@@ -32,7 +32,7 @@ const copy = {
     explore: 'Explore the feelings',
   },
   ar: {
-    nav: ['المتجر', 'بطاقات الهدايا', 'كيف تعمل', 'عن لَـنَك'],
+    nav: ['الرئيسية', 'المتجر', 'بطاقات الهدايا', 'كيف تعمل', 'عن لأنّك'],
     strip: 'للشخص اللي يحتاج دفعة  /  للشخص المفضل  /  بدون سبب',
     discoveryKicker: 'محتار شنو ترسل؟',
     discoveryTitle: 'ابدأ من الشعور\nاللي تبيه يوصل.',
@@ -61,7 +61,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-          <SiteShell lang={lang} setLang={setLang} menuOpen={menuOpen} setMenuOpen={setMenuOpen} bagCount={bag.length} setBagOpen={setBagOpen} isAr={isAr}>
+          <SiteShell lang={lang} setLang={setLang} menuOpen={menuOpen} setMenuOpen={setMenuOpen} bagCount={bag.length} setBagOpen={setBagOpen} setToast={setToast} isAr={isAr}>
             <RoutedErrorBoundary>
               <Switch>
                 <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
@@ -82,31 +82,36 @@ function App() {
   );
 }
 
-function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, setBagOpen, isAr }: { children: ReactNode; lang: Lang; setLang: (lang: Lang) => void; menuOpen: boolean; setMenuOpen: (open: boolean) => void; bagCount: number; setBagOpen: (open: boolean) => void; isAr: boolean }) {
+function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, setBagOpen, setToast, isAr }: { children: ReactNode; lang: Lang; setLang: (lang: Lang) => void; menuOpen: boolean; setMenuOpen: (open: boolean) => void; bagCount: number; setBagOpen: (open: boolean) => void; setToast: (message: string) => void; isAr: boolean }) {
   const [location] = useLocation();
   const isHome = location === '/';
   const nav = copy[lang].nav;
-  const links = ['/shop', '/gift-cards', '/how-it-works', '/about'];
+  const links = ['/', '/shop', '/gift-cards', '/how-it-works', '/about'];
   
   return (
     <div className="min-h-[100dvh] flex flex-col bg-[#FAF7F0] text-[#49372D]">
-      <div className="border-b border-[#49372D]/20 bg-[#E8D59E] px-5 py-2 text-center text-[10px] font-bold uppercase tracking-[.22em] text-[#49372D]" data-testid="text-announcement">
-        {isAr ? 'التوصيل داخل الكويت — من قلبنا لقلبهم' : 'Kuwait-wide delivery — from our heart to theirs'}
+      <div className="border-b border-[#49372D]/15 bg-[#E8D59E] px-5 py-[7px] text-center text-[9px] font-semibold tracking-[.18em] text-[#49372D]" data-testid="text-announcement">
+        {isAr ? 'التوصيل لجميع مناطق الكويت' : 'Delivery across all areas of Kuwait'}
       </div>
       <header className={`relative z-40 w-full border-b ${isHome ? 'border-[#FAF7F0]/15 bg-[#49372D] text-[#FAF7F0]' : 'border-[#49372D]/15 bg-[#FAF7F0] text-[#49372D]'}`}>
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 md:px-10 md:py-5">
-          <Link href="/" className="group flex items-baseline gap-2" data-testid="link-logo">
-            <span className="font-display text-[35px] leading-none tracking-[-.06em]">L’ANAK</span>
-            <span className="hidden text-[9px] font-bold uppercase tracking-[.18em] opacity-60 sm:inline">gifts with feeling</span>
-          </Link>
-          <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
-            {nav.map((item, index) => <Link key={item} href={links[index]} className={`line-draw text-[12px] font-semibold ${location === links[index] ? 'opacity-100' : 'opacity-65'}`} data-testid={`link-nav-${links[index].slice(1)}`}>{item}</Link>)}
+        <div className="mx-auto grid max-w-[1440px] grid-cols-[1fr_auto] items-center gap-5 px-5 py-4 md:grid-cols-[1fr_auto_1fr] md:px-10 md:py-5">
+          <nav className="hidden items-center gap-[clamp(1.15rem,2vw,2.25rem)] md:flex" aria-label="Main navigation">
+            {nav.map((item, index) => <Link key={item} href={links[index]} className={`line-draw whitespace-nowrap text-[10px] font-semibold uppercase tracking-[.1em] transition-opacity ${location === links[index] ? 'opacity-100' : 'opacity-58 hover:opacity-100'}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
           </nav>
-          <div className="flex items-center gap-3">
-            <button onClick={() => setLang(lang === 'en' ? 'ar' : 'en')} className="pressable hidden border-b border-current pb-1 text-[11px] font-bold md:block" data-testid="button-language-toggle">{lang === 'en' ? 'العربية' : 'English'}</button>
-            <button onClick={() => setBagOpen(true)} className="pressable relative flex items-center gap-2 text-[12px] font-bold" data-testid="button-open-bag">
+          <Link href="/" className="logo-placeholder group order-first flex h-10 w-[116px] items-center justify-center justify-self-start md:order-none md:h-11 md:w-[132px] md:justify-self-center" aria-label="Official L’ANAK logo placeholder" data-testid="link-logo">
+            <span className="text-center text-[7px] font-semibold uppercase leading-[1.35] tracking-[.2em] opacity-65">Official logo<br />placeholder</span>
+          </Link>
+          <div className="flex items-center justify-end gap-3 md:gap-4">
+            <div className="hidden items-center gap-1 text-[10px] font-semibold tracking-[.12em] md:flex" dir="ltr" aria-label="Language selector" data-testid="button-language-toggle">
+              <button onClick={() => setLang('ar')} className={`transition-opacity ${lang === 'ar' ? 'opacity-100' : 'opacity-45 hover:opacity-100'}`}>AR</button>
+              <span className="opacity-35">|</span>
+              <button onClick={() => setLang('en')} className={`transition-opacity ${lang === 'en' ? 'opacity-100' : 'opacity-45 hover:opacity-100'}`}>EN</button>
+            </div>
+            <Link href="/shop" className="pressable hidden md:block" aria-label={isAr ? 'بحث' : 'Search'} data-testid="link-header-search"><Search size={16} strokeWidth={1.35} /></Link>
+            <button onClick={() => setToast(isAr ? 'المفضلة محفوظة لك' : 'Your favorites are saved')} className="pressable hidden md:block" aria-label={isAr ? 'المفضلة' : 'Favorites'} data-testid="button-header-favorites"><Heart size={16} strokeWidth={1.35} /></button>
+            <button onClick={() => setToast(isAr ? 'الحساب قريباً' : 'Account access coming soon')} className="pressable hidden md:block" aria-label={isAr ? 'الحساب' : 'Account'} data-testid="button-header-account"><User size={16} strokeWidth={1.35} /></button>
+            <button onClick={() => setBagOpen(true)} className="pressable relative flex items-center text-[12px] font-bold" aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'} data-testid="button-open-bag">
               <ShoppingBag size={17} strokeWidth={1.5} />
-              <span className="hidden sm:inline">{isAr ? 'شنطتي' : 'Gift bag'}</span>
               {bagCount > 0 && <b className={`flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[9px] ${isHome ? 'bg-[#FAF7F0] text-[#49372D]' : 'bg-[#49372D] text-[#FAF7F0]'}`} data-testid="text-bag-count">{bagCount}</b>}
             </button>
             <button onClick={() => setMenuOpen(!menuOpen)} className="ml-2 md:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} data-testid="button-mobile-menu">{menuOpen ? <X size={21} /> : <Menu size={21} />}</button>
@@ -116,7 +121,11 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
           <div className={`absolute left-0 right-0 top-full border-b px-5 pb-7 pt-3 md:hidden ${isHome ? 'border-[#FAF7F0]/15 bg-[#49372D] text-[#FAF7F0]' : 'border-[#49372D]/20 bg-[#FAF7F0] text-[#49372D]'}`} data-testid="menu-mobile">
             <div className="flex flex-col gap-5">
               {nav.map((item, index) => <Link key={item} href={links[index]} onClick={() => setMenuOpen(false)} className="font-display text-3xl" data-testid={`link-mobile-${links[index].slice(1)}`}>{item}</Link>)}
-              <button onClick={() => { setLang(lang === 'en' ? 'ar' : 'en'); setMenuOpen(false); }} className="w-fit border-b border-current pb-1 text-left text-sm font-bold" data-testid="button-mobile-language">{lang === 'en' ? 'العربية' : 'English'}</button>
+              <div className="flex w-fit items-center gap-2 text-xs font-semibold tracking-[.14em]" dir="ltr" data-testid="button-mobile-language">
+                <button onClick={() => { setLang('ar'); setMenuOpen(false); }} className={lang === 'ar' ? 'opacity-100' : 'opacity-45'}>AR</button>
+                <span className="opacity-35">|</span>
+                <button onClick={() => { setLang('en'); setMenuOpen(false); }} className={lang === 'en' ? 'opacity-100' : 'opacity-45'}>EN</button>
+              </div>
             </div>
           </div>
         )}
@@ -182,33 +191,29 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t:
   const isAr = lang === 'ar';
   return (
     <main className="w-full">
-      <section className="bg-[#49372D] text-[#FAF7F0] px-5 pb-20 pt-10 md:px-10 md:pb-32 md:pt-16">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-14 md:grid-cols-[1.1fr_.9fr] md:gap-16">
-          <div className="flex flex-col justify-center">
-            <div className={`font-display text-[clamp(2.5rem,6.5vw,7.5rem)] leading-[1.08] tracking-[-.02em] md:leading-[1.05] ${isAr ? 'font-arabic font-medium' : ''}`}>
+      <section className="bg-[#49372D] px-5 pb-20 pt-12 text-[#FAF7F0] md:px-10 md:pb-32 md:pt-20">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-16 md:grid-cols-[1.02fr_.98fr] md:items-center md:gap-[clamp(4rem,7vw,8rem)]">
+          <div className="flex min-w-0 flex-col justify-center md:px-[clamp(0rem,2vw,2rem)]">
+            <div className={`text-balance ${isAr ? 'font-arabic text-[clamp(2.75rem,4.25vw,5rem)] font-normal leading-[1.32] tracking-[-.02em]' : 'font-display text-[clamp(3rem,5.6vw,6.8rem)] leading-[.98] tracking-[-.025em]'}`}>
               <div className="reveal-text-1">{isAr ? 'مو لازم يكون فيه سبب،' : 'There doesn’t have to be a reason,'}</div>
-              <div className="reveal-text-2 mt-2 md:mt-4">{isAr ? 'أحيانًا أنت السبب.' : 'sometimes you are the reason.'}</div>
-              <div className="reveal-text-3 mt-10 md:mt-14 text-[#E8D59E]">{isAr ? 'لأنّك أنت.' : 'Because it’s you.'}</div>
+              <div className="reveal-text-2 mt-1 md:mt-3">{isAr ? 'أحيانًا أنت السبب.' : 'sometimes you are the reason.'}</div>
+              <div className={`reveal-text-3 mt-14 text-[#E8D59E] md:mt-20 ${isAr ? 'text-[.68em] font-light leading-[1.45] tracking-normal' : 'text-[.72em] italic'}`}>{isAr ? 'لأنّك أنت.' : 'Because it’s you.'}</div>
             </div>
             
-            <div className="reveal-cta mt-16 md:mt-24">
-              <Link href="/shop" className="group flex w-fit items-center gap-4 text-[#FAF7F0] hover:text-[#E8D59E] transition-colors">
-                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-current">
-                  {isAr ? (
-                    <ArrowLeft size={20} className="transition-transform duration-300 group-hover:-translate-x-1" />
-                  ) : (
-                    <ArrowRight size={20} className="transition-transform duration-300 group-hover:translate-x-1" />
-                  )}
-                </span>
-                <div>
-                  <span className={`block text-lg font-bold ${isAr ? 'font-arabic' : 'font-display text-2xl tracking-[-.02em]'}`}>{isAr ? 'اكتشف الهدايا' : 'Discover the gifts'}</span>
-                  <span className="mt-1 block text-[9px] font-bold uppercase tracking-[.22em] opacity-60">L’ANAK — KUWAIT 2026</span>
-                </div>
+            <div className="reveal-cta mt-16 md:mt-20">
+              <span className="mb-5 block text-[8px] font-semibold uppercase tracking-[.24em] opacity-55">L’ANAK — KUWAIT 2026</span>
+              <Link href="/shop" className="group inline-flex w-fit items-center gap-3 border-b border-[#FAF7F0]/45 pb-2 text-[#FAF7F0] transition-colors hover:border-[#E8D59E] hover:text-[#E8D59E]">
+                <span className={`${isAr ? 'font-arabic text-[15px] font-medium' : 'text-[12px] font-semibold uppercase tracking-[.12em]'}`}>{isAr ? 'اكتشف الهدايا' : 'Discover the gifts'}</span>
+                {isAr ? (
+                  <ArrowLeft size={15} strokeWidth={1.4} className="transition-transform duration-300 group-hover:-translate-x-1" />
+                ) : (
+                  <ArrowRight size={15} strokeWidth={1.4} className="transition-transform duration-300 group-hover:translate-x-1" />
+                )}
               </Link>
             </div>
           </div>
 
-          <div className="flex items-center justify-center reveal-cta">
+          <div className="flex items-center justify-center">
             <HeroVisual />
           </div>
         </div>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @plugin "@tailwindcss/typography";
@@ -148,6 +148,14 @@
 .line-draw { position: relative; }
 .line-draw::after { content: ''; position: absolute; left: 0; bottom: -5px; height: 1px; width: 100%; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform .35s ease; }
 .line-draw:hover::after { transform: scaleX(1); transform-origin: left; }
+.logo-placeholder {
+  border: 1px solid currentColor;
+  border-color: color-mix(in srgb, currentColor 32%, transparent);
+  transition: border-color .3s ease, opacity .3s ease;
+}
+.logo-placeholder:hover {
+  border-color: color-mix(in srgb, currentColor 62%, transparent);
+}
 .reveal-text-1 { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) both; }
 .reveal-text-2 { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 0.5s both; }
 .reveal-text-3 { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 1.8s both; }
