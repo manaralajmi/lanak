@@ -160,39 +160,44 @@
   flex: 0 0 auto;
   border: 0;
   background: transparent;
-  color: rgba(250, 247, 240, .62);
+  color: rgba(250, 247, 240, .5);
   cursor: pointer;
-  padding: .3rem 1.5rem;
+  padding: .5rem 0;
   font-family: 'IBM Plex Sans Arabic', 'Manrope', sans-serif;
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 400;
   letter-spacing: .12em;
   line-height: 1.5;
-  transition: color .35s ease, letter-spacing .35s ease, opacity .35s ease;
+  transition: color .4s ease, letter-spacing .4s ease, opacity .4s ease;
 }
 .marquee-line--two .marquee-phrase {
   font-family: 'Manrope', 'IBM Plex Sans Arabic', sans-serif;
-  font-size: 8px;
-  letter-spacing: .18em;
+  font-size: 10px;
+  letter-spacing: .15em;
 }
 .marquee-phrase:hover,
 .marquee-phrase:focus-visible {
   color: #E8D59E;
-  letter-spacing: .16em;
   outline: none;
 }
 .marquee-phrase--highlight.is-centered {
   color: #E8D59E;
-  letter-spacing: .18em;
+  opacity: 1;
 }
-.marquee-line--two .marquee-phrase:hover,
-.marquee-line--two .marquee-phrase:focus-visible {
-  letter-spacing: .21em;
+.marquee-dot {
+  opacity: 0.3;
+  margin: 0 1.5rem;
+  display: inline-block;
+  pointer-events: none;
+  font-size: 14px;
+}
+.editorial-marquee:hover .marquee-track {
+  animation-duration: 80s;
 }
 .marquee-divider {
   height: 1px;
-  margin: .2rem 0;
-  background: rgba(250, 247, 240, .12);
+  margin: 0;
+  background: rgba(250, 247, 240, .1);
 }
 @keyframes marquee-rtl { to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
@@ -216,13 +221,13 @@
 .logo-placeholder:hover {
   border-color: color-mix(in srgb, currentColor 62%, transparent);
 }
-.reveal-text-1 { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) both; }
-.reveal-text-2 { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 0.5s both; }
-.reveal-text-3 { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 1.8s both; }
-.reveal-cta { animation: revealText 0.9s cubic-bezier(0.22, 0.8, 0.24, 1) 2.5s both; }
-@keyframes revealText {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
+.hero-reveal-1 { animation: revealTextSmooth 1.2s cubic-bezier(0.25, 1, 0.5, 1) both; }
+.hero-reveal-2 { animation: revealTextSmooth 1.2s cubic-bezier(0.25, 1, 0.5, 1) 0.6s both; }
+.hero-reveal-3 { animation: revealTextSmooth 1.2s cubic-bezier(0.25, 1, 0.5, 1) 1.6s both; }
+.hero-cta { animation: revealTextSmooth 1.2s cubic-bezier(0.25, 1, 0.5, 1) 2.2s both; }
+@keyframes revealTextSmooth {
+  0% { opacity: 0; transform: translateY(20px); filter: blur(4px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 .pressable { transition: transform .25s ease, background-color .25s ease, color .25s ease; }
 .pressable:hover { transform: translateY(-2px); }

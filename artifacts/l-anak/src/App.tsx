@@ -25,17 +25,19 @@ const products: Product[] = [
 const copy = {
   en: {
     nav: ['Home', 'Shop', 'Gift cards', 'How it works', 'About'],
-    discoveryKicker: 'Not sure what to send?',
-    discoveryTitle: 'Start with how\nyou want them to feel.',
-    discoveryBody: 'No endless scrolling. No guessing their size. Just a feeling, translated into a little room of possibilities.',
-    explore: 'Explore the feelings',
+    announcement: 'DELIVERING ACROSS KUWAIT',
+    heroLine1: 'There doesn’t have to be a reason,',
+    heroLine2: 'sometimes you are the reason.',
+    heroPayoff: 'Because it’s you.',
+    heroCta: 'Discover Gifts',
   },
   ar: {
     nav: ['الرئيسية', 'المتجر', 'بطاقات الهدايا', 'كيف تعمل', 'عن لأنّك'],
-    discoveryKicker: 'محتار شنو ترسل؟',
-    discoveryTitle: 'ابدأ من الشعور\nاللي تبيه يوصل.',
-    discoveryBody: 'بدون تصفح طويل. بدون تخمين المقاس. إحساس واحد، يتحول إلى خيارات تشبههم.',
-    explore: 'اكتشف المشاعر',
+    announcement: 'التوصيل لجميع مناطق الكويت',
+    heroLine1: 'مو لازم يكون فيه سبب،',
+    heroLine2: 'أحيانًا ممكن تكون أنت السبب.',
+    heroPayoff: 'لأنّك أنت.',
+    heroCta: 'اكتشف الهدايا',
   },
 };
 
@@ -64,6 +66,12 @@ function App() {
               <Switch>
                  <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} setToast={setToast} /></Route>
                 <Route path="/shop"><Shop lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
+                <Route path="/coffee"><CategoryPlaceholder lang={lang} title="COFFEE" titleAr="قهوة" /></Route>
+                <Route path="/sweets"><CategoryPlaceholder lang={lang} title="SWEETS" titleAr="حلو" /></Route>
+                <Route path="/restaurants"><CategoryPlaceholder lang={lang} title="RESTAURANTS" titleAr="مطاعم" /></Route>
+                <Route path="/flowers"><CategoryPlaceholder lang={lang} title="FLOWERS" titleAr="ورد" /></Route>
+                <Route path="/self-care"><CategoryPlaceholder lang={lang} title="SELF-CARE" titleAr="عناية" /></Route>
+                <Route path="/gifts"><CategoryPlaceholder lang={lang} title="GIFTS" titleAr="هدايا" /></Route>
                 <Route path="/gift-cards"><GiftCards lang={lang} setToast={setToast} /></Route>
                 <Route path="/how-it-works"><HowItWorks lang={lang} /></Route>
                 <Route path="/about"><About lang={lang} /></Route>
@@ -89,7 +97,7 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
   return (
     <div className="min-h-[100dvh] flex flex-col bg-[#FAF7F0] text-[#49372D]">
       <div className="border-b border-[#49372D]/15 bg-[#E8D59E] px-5 py-[7px] text-center text-[9px] font-semibold tracking-[.18em] text-[#49372D]" data-testid="text-announcement">
-        {isAr ? 'التوصيل لجميع مناطق الكويت' : 'Delivery across all areas of Kuwait'}
+        {copy[lang].announcement}
       </div>
       <header className={`relative z-40 w-full border-b ${isHome ? 'border-[#FAF7F0]/15 bg-[#49372D] text-[#FAF7F0]' : 'border-[#49372D]/15 bg-[#FAF7F0] text-[#49372D]'}`}>
         <div className="mx-auto grid max-w-[1440px] grid-cols-[1fr_auto] items-center gap-5 px-5 py-4 md:grid-cols-[1fr_auto_1fr] md:px-10 md:py-5">
@@ -97,7 +105,7 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
             {nav.map((item, index) => <Link key={item} href={links[index]} className={`line-draw whitespace-nowrap text-[10px] font-semibold uppercase tracking-[.1em] transition-opacity ${location === links[index] ? 'opacity-100' : 'opacity-58 hover:opacity-100'}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
           </nav>
           <Link href="/" className="logo-placeholder group order-first flex h-10 w-[116px] items-center justify-center justify-self-start md:order-none md:h-11 md:w-[132px] md:justify-self-center" aria-label="Official L’ANAK logo placeholder" data-testid="link-logo">
-            <span className="text-center text-[7px] font-semibold uppercase leading-[1.35] tracking-[.2em] opacity-65">Official logo<br />placeholder</span>
+            <div className="text-center text-[8px] font-bold uppercase tracking-[.15em] opacity-50">L'ANAK<br/>LOGO ASSET</div>
           </Link>
           <div className="flex items-center justify-end gap-3 md:gap-4">
             <div className="hidden items-center gap-1 text-[10px] font-semibold tracking-[.12em] md:flex" dir="ltr" aria-label="Language selector" data-testid="button-language-toggle">
@@ -138,49 +146,9 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
 
 function HeroVisual() {
   return (
-    <div className="relative aspect-square md:aspect-[4/5] w-full max-w-[500px] overflow-hidden bg-[#E8D59E] flex items-center justify-center">
-      {/* Bag */}
-      <div className="absolute top-[12%] left-[12%] w-[45%] h-[60%] bg-[#FAF7F0] border border-[#49372D]/20 shadow-[0_8px_24px_rgba(73,55,45,0.12)] flex flex-col items-center justify-center rotate-[-4deg]">
-        {/* Handles */}
-        <div className="absolute -top-[12%] w-[35%] h-[12%] border-t-[1.5px] border-x-[1.5px] border-[#49372D] rounded-t-full" />
-        <span className="font-display text-3xl md:text-5xl text-[#49372D] tracking-[-.05em]">L’ANAK</span>
-        <span className="mt-2 text-[5px] uppercase tracking-[.2em] text-[#49372D]/60">minimal bag</span>
-      </div>
-
-      {/* Gift Box 1 (Plain box, branded ribbon) */}
-      <div className="absolute bottom-[18%] right-[8%] w-[42%] h-[32%] bg-[#49372D] shadow-[0_12px_32px_rgba(73,55,45,0.2)] rotate-[5deg] flex items-center justify-center">
-        {/* Ribbon Vertical */}
-        <div className="absolute left-[25%] w-[12%] h-full bg-[#FAF7F0] flex flex-col items-center justify-around overflow-hidden">
-          <span className="text-[4px] font-bold text-[#49372D] -rotate-90">L’ANAK</span>
-          <span className="text-[4px] font-bold text-[#49372D] -rotate-90">L’ANAK</span>
-        </div>
-        {/* Ribbon Horizontal */}
-        <div className="absolute top-[40%] w-full h-[14%] bg-[#FAF7F0] flex items-center justify-around overflow-hidden">
-          <span className="text-[4px] font-bold text-[#49372D]">L’ANAK</span>
-          <span className="text-[4px] font-bold text-[#49372D]">L’ANAK</span>
-        </div>
-      </div>
-
-      {/* Gift Box 2 (Branded box, plain ribbon) */}
-      <div className="absolute top-[48%] right-[22%] w-[32%] h-[26%] bg-[#FAF7F0] border border-[#49372D]/15 shadow-[0_8px_20px_rgba(73,55,45,0.1)] rotate-[-6deg] flex flex-col items-center justify-center">
-        {/* Ribbon */}
-        <div className="absolute left-[50%] -translate-x-1/2 w-[8%] h-full bg-[#49372D]" />
-        <div className="absolute top-[50%] -translate-y-1/2 w-full h-[10%] bg-[#49372D]" />
-        
-        <span className="relative z-10 font-display text-xl text-[#49372D] bg-[#FAF7F0] px-2 py-1 leading-none tracking-[-.05em]">L’ANAK</span>
-      </div>
-
-      {/* Envelope / Card */}
-      <div className="absolute bottom-[22%] left-[16%] w-[28%] h-[20%] bg-[#FAF7F0] shadow-[0_4px_12px_rgba(73,55,45,0.08)] rotate-[14deg] flex items-center justify-center">
-        <div className="absolute inset-0 border-[0.5px] border-[#49372D]/10 m-1" />
-        {/* Flap outline */}
-        <div className="absolute top-0 left-0 w-full h-full border-t-[0.5px] border-[#49372D]/20" style={{ clipPath: 'polygon(0 0, 50% 50%, 100% 0)' }} />
-      </div>
-      
-      {/* Small wrapping piece */}
-      <div className="absolute top-[28%] right-[8%] w-[16%] h-[22%] bg-black/5 border border-[#49372D]/10 rotate-[24deg]" />
-
-      <span className="absolute bottom-4 left-4 text-[7px] font-bold uppercase tracking-[.2em] text-[#49372D]/50">L’ANAK / Editorial Setup</span>
+    <div className="relative aspect-[4/5] w-full max-w-[460px] overflow-hidden bg-[#FAF7F0]/5 flex items-center justify-center">
+      <div className="absolute inset-0 border border-[#FAF7F0]/10 m-4"></div>
+      <span className="text-[10px] font-bold uppercase tracking-[.15em] text-[#FAF7F0]/40">PACKAGING VISUAL ASSET</span>
     </div>
   );
 }
@@ -189,23 +157,27 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
   const isAr = lang === 'ar';
   return (
     <main className="w-full">
-      <section className="bg-[#49372D] px-5 pb-20 pt-12 text-[#FAF7F0] md:px-10 md:pb-32 md:pt-20">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-16 md:grid-cols-[1.02fr_.98fr] md:items-center md:gap-[clamp(4rem,7vw,8rem)]">
-          <div className="flex min-w-0 flex-col justify-center md:px-[clamp(0rem,2vw,2rem)]">
-            <div className={`text-balance ${isAr ? 'font-arabic text-[clamp(2.75rem,4.25vw,5rem)] font-normal leading-[1.32] tracking-[-.02em]' : 'font-display text-[clamp(3rem,5.6vw,6.8rem)] leading-[.98] tracking-[-.025em]'}`}>
-              <div className="reveal-text-1">{isAr ? 'مو لازم يكون فيه سبب،' : 'There doesn’t have to be a reason,'}</div>
-              <div className="reveal-text-2 mt-1 md:mt-3">{isAr ? 'أحيانًا أنت السبب.' : 'sometimes you are the reason.'}</div>
-              <div className={`reveal-text-3 mt-14 text-[#E8D59E] md:mt-20 ${isAr ? 'text-[.68em] font-light leading-[1.45] tracking-normal' : 'text-[.72em] italic'}`}>{isAr ? 'لأنّك أنت.' : 'Because it’s you.'}</div>
+      <section className="bg-[#49372D] px-5 pb-20 pt-12 text-[#FAF7F0] md:px-10 md:pb-32 md:pt-20 overflow-hidden">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-16 md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-20">
+          <div className="flex min-w-0 flex-col justify-center">
+            <div className={`text-balance ${isAr ? 'font-arabic text-[clamp(2.75rem,4.5vw,5rem)] font-light leading-[1.3] tracking-normal' : 'font-display text-[clamp(3.5rem,6vw,7rem)] leading-[0.95] tracking-[-.025em]'}`}>
+              <div className="hero-reveal-1">{isAr ? copy.ar.heroLine1 : copy.en.heroLine1}</div>
+              <div className="hero-reveal-2 mt-1 md:mt-3">{isAr ? copy.ar.heroLine2 : copy.en.heroLine2}</div>
+              <div className={`hero-reveal-3 mt-14 text-[#E8D59E] md:mt-24 ${isAr ? 'text-[0.75em] font-medium leading-[1.4] tracking-normal' : 'text-[0.75em] italic leading-[1]'}`}>
+                {isAr ? copy.ar.heroPayoff : copy.en.heroPayoff}
+              </div>
             </div>
             
-            <div className="reveal-cta mt-16 md:mt-20">
+            <div className="hero-cta mt-16 md:mt-20">
               <span className="mb-5 block text-[8px] font-semibold uppercase tracking-[.24em] opacity-55">L’ANAK — KUWAIT 2026</span>
-              <Link href="/shop" className="group inline-flex w-fit items-center gap-3 border-b border-[#FAF7F0]/45 pb-2 text-[#FAF7F0] transition-colors hover:border-[#E8D59E] hover:text-[#E8D59E]">
-                <span className={`${isAr ? 'font-arabic text-[15px] font-medium' : 'text-[12px] font-semibold uppercase tracking-[.12em]'}`}>{isAr ? 'اكتشف الهدايا' : 'Discover the gifts'}</span>
+              <Link href="/shop" className="group inline-flex w-fit items-center gap-4 border-b border-[#FAF7F0]/30 pb-2 text-[#FAF7F0] transition-colors hover:border-[#E8D59E] hover:text-[#E8D59E]">
+                <span className={`${isAr ? 'font-arabic text-[16px] font-medium' : 'text-[11px] font-bold uppercase tracking-[.15em]'}`}>
+                  {isAr ? copy.ar.heroCta : copy.en.heroCta}
+                </span>
                 {isAr ? (
-                  <ArrowLeft size={15} strokeWidth={1.4} className="transition-transform duration-300 group-hover:-translate-x-1" />
+                  <ArrowLeft size={16} strokeWidth={1.5} className="transition-transform duration-500 ease-out group-hover:-translate-x-2" />
                 ) : (
-                  <ArrowRight size={15} strokeWidth={1.4} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-500 ease-out group-hover:translate-x-2" />
                 )}
               </Link>
             </div>
@@ -219,24 +191,19 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
 
       <EditorialMarquee lang={lang} onPhraseClick={(phrase) => setToast(isAr ? `${phrase} — بنختار لك هدايا على هالإحساس` : `${phrase} — gift ideas for this feeling are coming`)} />
 
-      <section className="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-36">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-[.8fr_1.2fr]">
-          <div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.22em] opacity-60">{t.discoveryKicker}</p><h2 className={`whitespace-pre-line font-display text-5xl leading-[.9] tracking-[-.04em] md:text-7xl ${isAr ? 'font-arabic leading-[1.08]' : ''}`} data-testid="text-discovery-title">{t.discoveryTitle}</h2></div>
-          <div className="flex flex-col justify-end md:pb-2"><p className={`max-w-[380px] text-[15px] leading-7 opacity-75 ${isAr ? 'font-arabic' : ''}`}>{t.discoveryBody}</p><Link href="/shop" className="line-draw mt-7 flex w-fit items-center gap-3 text-[12px] font-bold" data-testid="link-explore-feelings">{t.explore}<ArrowDown size={16} /></Link></div>
-        </div>
-        <EmotionRail lang={lang} />
-      </section>
-      <section className="bg-[#49372D] px-5 py-20 text-[#FAF7F0] md:px-10 md:py-28">
+      <GiftingCategories lang={lang} />
+
+      <section className="bg-[#49372D] px-5 py-20 text-[#FAF7F0] md:px-10 md:py-32">
         <div className="mx-auto max-w-[1440px]">
-          <div className="mb-14 flex items-end justify-between gap-5"><div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.22em] text-[#E8D59E]">{isAr ? 'اختيارات لَـنَك' : 'The L’ANAK edit'}</p><h2 className={`font-display text-5xl leading-[.88] tracking-[-.04em] md:text-7xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>{isAr ? 'هدايا فيها معنى.' : 'Gifts that say<br /><i>enough.</i>'}</h2></div><Link href="/shop" className="line-draw hidden pb-1 text-xs font-bold md:block" data-testid="link-view-edit">{isAr ? 'شوف الكل' : 'View the edit'} <ArrowUpRight size={14} className="inline" /></Link></div>
+          <div className="mb-16 flex items-end justify-between gap-5"><div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.22em] text-[#E8D59E]">{isAr ? 'اختيارات لَـنَك' : 'The L’ANAK edit'}</p><h2 className={`font-display text-5xl leading-[.88] tracking-[-.04em] md:text-7xl ${isAr ? 'font-arabic leading-[1.1] font-light' : ''}`}>{isAr ? 'هدايا فيها معنى.' : 'Gifts that say<br /><i>enough.</i>'}</h2></div><Link href="/shop" className="line-draw hidden pb-1 text-xs font-bold md:block" data-testid="link-view-edit">{isAr ? 'شوف الكل' : 'View the edit'} <ArrowUpRight size={14} className="inline" /></Link></div>
           <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-4 md:gap-x-6">
             {products.slice(0, 4).map((product, index) => <ProductTile key={product.id} product={product} dark lang={lang} index={index} addToBag={addToBag} toggleFavorite={toggleFavorite} isFavorite={favorites.includes(product.id)} />)}
           </div>
         </div>
       </section>
       <section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 py-24 md:grid-cols-[1.15fr_.85fr] md:px-10 md:py-36">
-        <div className="border-t border-[#49372D]/30 pt-5"><p className="mb-12 text-[10px] font-bold uppercase tracking-[.22em] opacity-60">{isAr ? 'الأشياء الصغيرة' : 'The little things'}</p><p className={`max-w-[800px] font-display text-5xl leading-[.94] tracking-[-.04em] md:text-8xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>"{isAr ? 'الهدية مو بالشيء، الهدية بالإحساس اللي وراها.' : 'The gift is not the thing. It is the thought that arrives with it.'}"</p></div>
-        <div className="flex flex-col justify-end border-t border-[#49372D]/30 pt-5"><p className={`mb-8 max-w-[330px] text-[15px] leading-7 opacity-75 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'لأن كل شخص تحبه يستحق طريقة خاصة تقول له: أنا شايفك.' : 'Because everyone you love deserves a particular way of hearing: I see you.'}</p><Link href="/how-it-works" className="line-draw flex w-fit items-center gap-3 text-[12px] font-bold" data-testid="link-learn-story">{isAr ? 'اعرف قصتنا' : 'Read our story'}<ArrowUpRight size={16} /></Link></div>
+        <div className="border-t border-[#49372D]/20 pt-8"><p className="mb-12 text-[10px] font-bold uppercase tracking-[.22em] opacity-60">{isAr ? 'الأشياء الصغيرة' : 'The little things'}</p><p className={`max-w-[800px] font-display text-4xl leading-[1.1] tracking-[-.02em] md:text-6xl lg:text-7xl ${isAr ? 'font-arabic leading-[1.2] font-light' : ''}`}>"{isAr ? 'الهدية مو بالشيء، الهدية بالإحساس اللي وراها.' : 'The gift is not the thing. It is the thought that arrives with it.'}"</p></div>
+        <div className="flex flex-col justify-end border-t border-[#49372D]/20 pt-8"><p className={`mb-8 max-w-[330px] text-[15px] leading-relaxed opacity-70 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'لأن كل شخص تحبه يستحق طريقة خاصة تقول له: أنا شايفك.' : 'Because everyone you love deserves a particular way of hearing: I see you.'}</p><Link href="/how-it-works" className="group flex w-fit items-center gap-3 text-[12px] font-bold uppercase tracking-[.1em]">{isAr ? 'اعرف قصتنا' : 'Read our story'}<ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></Link></div>
       </section>
       <Newsletter lang={lang} />
     </main>
@@ -248,7 +215,7 @@ function EditorialMarquee({ lang, onPhraseClick }: { lang: Lang; onPhraseClick: 
   const marqueeRef = useRef<HTMLDivElement>(null);
   const lineOne = isAr
     ? ['لأنّك على بالي', 'لأنّك تستاهل', 'لأنّك فرحة', 'لأنّك سند', 'لأنّك موجود', 'لأنّك أنت']
-    : ['THINKING OF YOU', 'YOU DESERVE IT', 'YOU MAKE ME SMILE', 'YOU’RE ALWAYS THERE', 'BECAUSE IT’S YOU'];
+    : ['THINKING OF YOU', 'YOU DESERVE IT', 'YOU MAKE ME SMILE', 'YOU’RE ALWAYS THERE', 'I AM HERE FOR YOU', 'BECAUSE IT’S YOU'];
   const lineTwo = isAr
     ? ['مو عيد ميلاد', 'مو تخرج', 'مو ذكرى', 'مو مناسبة', 'بس لأنّك']
     : ['NOT A BIRTHDAY', 'NOT A GRADUATION', 'NOT AN ANNIVERSARY', 'NO OCCASION NEEDED', 'JUST BECAUSE'];
@@ -257,7 +224,7 @@ function EditorialMarquee({ lang, onPhraseClick }: { lang: Lang; onPhraseClick: 
     if (!highlightedPhrases?.length) return;
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((entry) => entry.target.classList.toggle('is-centered', entry.isIntersecting)),
-      { rootMargin: '0px -44% 0px -44%', threshold: 0.25 },
+      { rootMargin: '0px -49% 0px -49%', threshold: 0 },
     );
     highlightedPhrases.forEach((phrase) => observer.observe(phrase));
     return () => observer.disconnect();
@@ -265,21 +232,24 @@ function EditorialMarquee({ lang, onPhraseClick }: { lang: Lang; onPhraseClick: 
   const renderLine = (phrases: string[], line: 'one' | 'two') => (
     <div className={`marquee-line marquee-line--${line}`} dir={line === 'one' ? 'rtl' : 'ltr'}>
       <div className="marquee-track">
-        {[...phrases, ...phrases].map((phrase, index) => (
-          <button
-            key={`${line}-${phrase}-${index}`}
-            type="button"
-            onClick={() => onPhraseClick(phrase)}
-            className={`marquee-phrase ${phrase === (isAr ? 'لأنّك أنت' : 'BECAUSE IT’S YOU') ? 'marquee-phrase--highlight' : ''}`}
-          >
-            {phrase}
-          </button>
-        ))}
+        {[...phrases, ...phrases, ...phrases].map((phrase, index) => {
+          const isHighlight = phrase === 'لأنّك أنت' || phrase === 'BECAUSE IT’S YOU';
+          return (
+            <button
+              key={`${line}-${index}`}
+              type="button"
+              onClick={() => onPhraseClick(phrase)}
+              className={`marquee-phrase ${isHighlight ? 'marquee-phrase--highlight' : ''}`}
+            >
+              {phrase} <span className="marquee-dot">·</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
   return (
-    <div ref={marqueeRef} className="editorial-marquee border-b border-[#FAF7F0]/15 bg-[#49372D] py-3 text-[#FAF7F0]" aria-label={isAr ? 'مشاعر لأنّك' : 'L’ANAK feelings'}>
+    <div ref={marqueeRef} className="editorial-marquee border-b border-[#FAF7F0]/15 bg-[#49372D] py-4 text-[#FAF7F0]" aria-label={isAr ? 'مشاعر لأنّك' : 'L’ANAK feelings'}>
       {renderLine(lineOne, 'one')}
       <div className="marquee-divider" aria-hidden="true" />
       {renderLine(lineTwo, 'two')}
@@ -287,9 +257,68 @@ function EditorialMarquee({ lang, onPhraseClick }: { lang: Lang; onPhraseClick: 
   );
 }
 
-function EmotionRail({ lang }: { lang: Lang }) {
-  const feelings = lang === 'ar' ? [{ a: 'أبي أطمن عليه', e: 'I want them to feel held' }, { a: 'خلّنا نحتفل', e: 'Let’s celebrate' }, { a: 'مشتاق لهم', e: 'I miss them' }, { a: 'بس كذا', e: 'Just because' }] : [{ a: 'I want them to feel held', e: 'أبي أطمن عليه' }, { a: 'Let’s celebrate', e: 'خلّنا نحتفل' }, { a: 'I miss them', e: 'مشتاق لهم' }, { a: 'Just because', e: 'بس كذا' }];
-  return <div className="mt-16 grid grid-cols-1 border-t border-[#49372D]/25 md:grid-cols-4" data-testid="list-emotions">{feelings.map((feeling, index) => <Link href={`/shop?feeling=${index}`} key={feeling.a} className="group flex min-h-[155px] flex-col justify-between border-b border-[#49372D]/25 py-5 md:min-h-[240px] md:border-b-0 md:border-r md:px-5 md:first:pl-0 md:last:border-r-0" data-testid={`link-feeling-${index}`}><span className="flex justify-between text-[10px] font-bold uppercase tracking-[.18em] opacity-50"><span>0{index + 1}</span><ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" /></span><span><span className={`block font-display text-3xl leading-[.95] md:text-4xl ${lang === 'ar' ? 'font-arabic leading-[1.1]' : ''}`}>{feeling.a}</span><span className={`mt-2 block text-[11px] opacity-55 ${lang === 'ar' ? 'font-arabic' : ''}`}>{feeling.e}</span></span></Link>)}</div>;
+function GiftingCategories({ lang }: { lang: Lang }) {
+  const isAr = lang === 'ar';
+  
+  const cats = [
+    { id: 'coffee', en: 'COFFEE', ar: 'قهوة', path: '/coffee', classes: 'col-span-1 md:col-span-4 aspect-[3/4]' },
+    { id: 'sweets', en: 'SWEETS', ar: 'حلو', path: '/sweets', classes: 'col-span-1 md:col-span-8 aspect-[4/3] md:aspect-[16/9]' },
+    { id: 'restaurants', en: 'RESTAURANTS', ar: 'مطاعم', path: '/restaurants', classes: 'col-span-1 md:col-span-6 aspect-[4/3] md:aspect-square' },
+    { id: 'flowers', en: 'FLOWERS', ar: 'ورد', path: '/flowers', classes: 'col-span-1 md:col-span-6 aspect-[4/3] md:aspect-square' },
+    { id: 'self-care', en: 'SELF-CARE', ar: 'عناية', path: '/self-care', classes: 'col-span-1 md:col-span-8 aspect-[4/3] md:aspect-[16/9]' },
+    { id: 'gifts', en: 'GIFTS', ar: 'هدايا', path: '/gifts', classes: 'col-span-1 md:col-span-4 aspect-[3/4]' },
+  ];
+
+  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
+
+  return (
+    <section className="bg-[#FAF7F0] px-5 py-24 md:px-10 md:py-36" id="categories">
+      <div className="mx-auto max-w-[1440px]">
+        <div className="mb-16 md:mb-24 max-w-2xl">
+          <h2 className={`text-balance ${isAr ? 'font-arabic text-[clamp(2.5rem,4vw,4rem)] font-light leading-[1.2]' : 'font-display text-[clamp(3.5rem,5.5vw,5.5rem)] leading-[0.9] tracking-tight'}`}>
+            {isAr ? 'منو ودّك تهدي اليوم؟' : 'WHO ARE YOU GIFTING TODAY?'}
+          </h2>
+          <p className={`mt-6 text-[15px] opacity-75 ${isAr ? 'font-arabic' : ''}`}>
+            {isAr ? 'اختار الفكرة، وخله يختار اللي يحبه.' : 'Choose the idea, and let them choose what they love.'}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+          {cats.map((cat) => (
+            <Link key={cat.id} href={cat.path} className={`group flex flex-col gap-4 ${cat.classes}`}>
+              <div className="relative w-full h-full bg-[#E8D59E]/10 overflow-hidden flex items-center justify-center">
+                <div className="absolute inset-0 bg-[#49372D]/5 transition-transform duration-700 ease-out group-hover:scale-105" />
+                <span className="relative z-10 text-[10px] font-bold uppercase tracking-[.15em] text-[#49372D]/40">{cat.en} IMAGE</span>
+              </div>
+              <div className="flex items-center justify-between px-1">
+                <h3 className={`text-xl md:text-2xl ${isAr ? 'font-arabic font-medium' : 'font-display tracking-widest'}`}>{isAr ? cat.ar : cat.en}</h3>
+                <ArrowIcon size={20} strokeWidth={1.2} className={`opacity-0 transition-all duration-500 ease-out ${isAr ? 'translate-x-3 group-hover:translate-x-0' : '-translate-x-3 group-hover:translate-x-0'} group-hover:opacity-100`} />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CategoryPlaceholder({ lang, title, titleAr }: { lang: Lang; title: string; titleAr: string }) {
+  const isAr = lang === 'ar';
+  return (
+    <main className="w-full flex-1 flex items-center justify-center min-h-[60vh] bg-[#FAF7F0] px-5 py-24 text-[#49372D]">
+      <div className="text-center max-w-xl mx-auto">
+        <h1 className={`mb-6 ${isAr ? 'font-arabic text-5xl font-light leading-[1.3]' : 'font-display text-7xl leading-[0.9] tracking-[-.02em]'}`}>
+          {isAr ? titleAr : title}
+        </h1>
+        <p className={`text-sm opacity-60 ${isAr ? 'font-arabic' : ''}`}>
+          {isAr ? 'قريباً...' : 'Category page coming soon...'}
+        </p>
+        <Link href="/" className="mt-12 inline-flex items-center gap-2 border-b border-[#49372D]/40 pb-1 text-xs font-semibold uppercase tracking-[.1em] transition-colors hover:border-[#49372D]">
+          {isAr ? 'العودة للرئيسية' : 'BACK TO HOME'}
+        </Link>
+      </div>
+    </main>
+  );
 }
 
 function ProductTile({ product, dark = false, lang, index, addToBag, toggleFavorite, isFavorite }: { product: Product; dark?: boolean; lang: Lang; index: number; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; isFavorite: boolean }) {

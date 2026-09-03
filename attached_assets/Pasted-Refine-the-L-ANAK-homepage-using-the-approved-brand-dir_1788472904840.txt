@@ -1,0 +1,304 @@
+Refine the L’ANAK homepage using the approved brand direction and the final category structure.
+
+IMPORTANT:
+Do NOT redesign the entire website from scratch.
+Keep the existing premium editorial direction, current brand colors, and overall structure.
+Focus on refining the homepage and preparing it to use the approved category visuals.
+
+BRAND COLORS — DO NOT CHANGE:
+Cream #FAF7F0
+Espresso Brown #49372D
+Butter Yellow #E8D59E
+
+BRAND STYLE:
+Warm
+Editorial
+Premium
+Modern
+Minimal
+Emotion-led
+Contemporary Kuwaiti lifestyle
+
+Avoid:
+- generic e-commerce layouts
+- overly rounded cards
+- heavy shadows
+- gradients
+- overly bold Arabic typography
+- random AI-looking product collages
+- excessive icons
+- clutter
+
+TYPOGRAPHY:
+Arabic:
+IBM Plex Sans Arabic
+Use light / regular / medium weights.
+Do not use bulky or overly heavy Arabic headlines.
+
+English:
+Instrument Serif for large editorial display text.
+Manrope for UI and supporting text.
+
+HEADER / NAVIGATION:
+Keep the current dark Espresso Brown navigation.
+
+Desktop navigation:
+الرئيسية
+المتجر
+بطاقات الهدايا
+كيف تعمل
+عن لأنّك
+
+English mode:
+HOME
+SHOP
+GIFT CARDS
+HOW IT WORKS
+ABOUT
+
+Keep:
+Search
+Favorites
+Account
+Gift Bag
+
+Language switch:
+AR | EN
+
+Arabic mode must be RTL.
+English mode must be LTR.
+
+Use the official L’ANAK logo asset.
+Do NOT recreate or redesign the logo using text.
+
+ANNOUNCEMENT BAR:
+Keep the Butter Yellow announcement bar.
+
+Arabic:
+التوصيل لجميع مناطق الكويت
+
+English:
+DELIVERING ACROSS KUWAIT
+
+--------------------------------------------------
+HERO SECTION
+--------------------------------------------------
+
+Keep the Espresso Brown hero background and the current split editorial composition.
+
+Use this exact Arabic hero copy:
+
+"مو لازم يكون فيه سبب،
+أحيانًا ممكن تكون أنت السبب."
+
+Then after a short visual pause reveal:
+
+"لأنّك أنت."
+
+Do not rewrite these lines.
+
+The final line "لأنّك أنت." should feel like the emotional payoff.
+Use Butter Yellow #E8D59E for subtle emphasis.
+
+Keep one primary CTA:
+
+"اكتشف الهدايا"
+
+English:
+"Discover Gifts"
+
+Do not use a large generic rounded button.
+Use an editorial text CTA with a subtle arrow or underline interaction.
+
+Use subtle reveal animation:
+- first line appears
+- second line appears
+- short pause
+- "لأنّك أنت." appears
+- CTA appears
+
+No typing cursor.
+No bounce.
+No glow.
+No dramatic animation.
+
+Keep the packaging visual area in the hero.
+It will later use the approved L’ANAK packaging image.
+
+--------------------------------------------------
+MOVING BRAND MESSAGE
+--------------------------------------------------
+
+Keep the animated editorial text interaction at the bottom of the hero.
+
+Arabic line 1:
+لأنّك على بالي · لأنّك تستاهل · لأنّك فرحة · لأنّك سند · لأنّك موجود · لأنّك أنت
+
+Arabic line 2:
+مو عيد ميلاد · مو تخرج · مو ذكرى · مو مناسبة · بس لأنّك
+
+Move the two lines slowly in opposite directions.
+
+This must feel like editorial typography, not a news ticker.
+
+Hover:
+- slow the motion
+- hovered phrase becomes Butter Yellow
+
+When "لأنّك أنت" reaches the center:
+subtly emphasize it for a moment.
+
+Respect prefers-reduced-motion.
+
+--------------------------------------------------
+CATEGORY SECTION
+--------------------------------------------------
+
+Immediately after the hero, create the main gifting category section.
+
+Use Cream #FAF7F0 background.
+
+Use this exact Arabic heading:
+
+"منو ودّك تهدي اليوم؟"
+
+Do NOT use:
+"شنو ودّك تهدي اليوم؟"
+
+Supporting copy:
+
+"اختار الفكرة، وخله يختار اللي يحبه."
+
+English:
+
+"WHO ARE YOU GIFTING TODAY?"
+
+Supporting:
+"Choose the idea, and let them choose what they love."
+
+Create six categories:
+
+COFFEE
+SWEETS
+RESTAURANTS
+FLOWERS
+SELF-CARE
+GIFTS
+
+Arabic:
+
+قهوة
+حلو
+مطاعم
+ورد
+عناية
+هدايا
+
+Use the six approved editorial category images that will be uploaded as assets.
+
+IMPORTANT:
+Do not generate replacement imagery.
+Create clean image placeholders / asset slots so the final uploaded images can be inserted directly.
+
+LAYOUT:
+Do NOT use six identical rounded cards.
+
+Use a premium editorial grid with varied but balanced proportions.
+
+Mix portrait and landscape framing.
+
+The section should feel like a curated magazine spread.
+
+Each category includes:
+- image
+- category name
+- subtle discovery arrow
+
+Hover:
+- gentle image zoom
+- category name moves slightly
+- arrow appears or shifts
+
+Do not add large text overlays that cover the photography.
+
+On mobile:
+use a refined vertical or swipeable editorial layout.
+
+--------------------------------------------------
+CATEGORY BEHAVIOR
+--------------------------------------------------
+
+Clicking a category should open its dedicated category page.
+
+For now create routes/placeholders for:
+
+/coffee
+/sweets
+/restaurants
+/flowers
+/self-care
+/gifts
+
+Do not fully build all category pages yet.
+Only prepare the routing and basic page shell.
+
+--------------------------------------------------
+PLATFORM MESSAGE
+--------------------------------------------------
+
+L’ANAK is NOT the producer of all the products shown.
+
+It is a gifting platform featuring selected brands and places.
+
+Do NOT place L’ANAK branding on:
+coffee cups
+restaurant food
+desserts
+beauty products
+flowers
+
+unless the item is specifically L’ANAK packaging, gift card, voucher or platform material.
+
+The philosophy is:
+
+The sender chooses the gesture.
+The recipient chooses what they love.
+
+--------------------------------------------------
+RESPONSIVE DESIGN
+--------------------------------------------------
+
+Refine desktop, tablet and mobile layouts intentionally.
+
+Mobile should not simply stack the desktop design.
+
+Maintain:
+- strong spacing
+- readable Arabic typography
+- editorial composition
+- clear CTA hierarchy
+
+--------------------------------------------------
+IMPORTANT FINAL RULES
+--------------------------------------------------
+
+Do NOT change the approved colors.
+
+Do NOT redesign the official logo.
+
+Do NOT add gradients.
+
+Do NOT add excessive shadows.
+
+Do NOT use generic marketplace styling.
+
+Do NOT create new random product imagery.
+
+Do NOT modify sections below the category section yet.
+
+For this task, refine only:
+1. Header
+2. Hero
+3. Moving brand message
+4. Main category section
+5. Basic category routes/placeholders
