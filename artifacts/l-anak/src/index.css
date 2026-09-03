@@ -176,11 +176,14 @@
   letter-spacing: .18em;
 }
 .marquee-phrase:hover,
-.marquee-phrase:focus-visible,
-.marquee-phrase--highlight {
+.marquee-phrase:focus-visible {
   color: #E8D59E;
   letter-spacing: .16em;
   outline: none;
+}
+.marquee-phrase--highlight.is-centered {
+  color: #E8D59E;
+  letter-spacing: .18em;
 }
 .marquee-line--two .marquee-phrase:hover,
 .marquee-line--two .marquee-phrase:focus-visible {

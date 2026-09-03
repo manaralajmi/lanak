@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useMemo, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Coffee, Gift, Heart, MapPin, Menu, Minus, Plus, RotateCcw, Search, Send, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -245,12 +245,23 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
 
 function EditorialMarquee({ lang, onPhraseClick }: { lang: Lang; onPhraseClick: (phrase: string) => void }) {
   const isAr = lang === 'ar';
+  const marqueeRef = useRef<HTMLDivElement>(null);
   const lineOne = isAr
     ? ['لأنّك على بالي', 'لأنّك تستاهل', 'لأنّك فرحة', 'لأنّك سند', 'لأنّك موجود', 'لأنّك أنت']
     : ['THINKING OF YOU', 'YOU DESERVE IT', 'YOU MAKE ME SMILE', 'YOU’RE ALWAYS THERE', 'BECAUSE IT’S YOU'];
   const lineTwo = isAr
     ? ['مو عيد ميلاد', 'مو تخرج', 'مو ذكرى', 'مو مناسبة', 'بس لأنّك']
     : ['NOT A BIRTHDAY', 'NOT A GRADUATION', 'NOT AN ANNIVERSARY', 'NO OCCASION NEEDED', 'JUST BECAUSE'];
+  useEffect(() => {
+    const highlightedPhrases = marqueeRef.current?.querySelectorAll('.marquee-phrase--highlight');
+    if (!highlightedPhrases?.length) return;
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach((entry) => entry.target.classList.toggle('is-centered', entry.isIntersecting)),
+      { rootMargin: '0px -44% 0px -44%', threshold: 0.25 },
+    );
+    highlightedPhrases.forEach((phrase) => observer.observe(phrase));
+    return () => observer.disconnect();
+  }, [lang]);
   const renderLine = (phrases: string[], line: 'one' | 'two') => (
     <div className={`marquee-line marquee-line--${line}`} dir={line === 'one' ? 'rtl' : 'ltr'}>
       <div className="marquee-track">
@@ -268,7 +279,7 @@ function EditorialMarquee({ lang, onPhraseClick }: { lang: Lang; onPhraseClick: 
     </div>
   );
   return (
-    <div className="editorial-marquee border-b border-[#FAF7F0]/15 bg-[#49372D] py-3 text-[#FAF7F0]" aria-label={isAr ? 'مشاعر لأنّك' : 'L’ANAK feelings'}>
+    <div ref={marqueeRef} className="editorial-marquee border-b border-[#FAF7F0]/15 bg-[#49372D] py-3 text-[#FAF7F0]" aria-label={isAr ? 'مشاعر لأنّك' : 'L’ANAK feelings'}>
       {renderLine(lineOne, 'one')}
       <div className="marquee-divider" aria-hidden="true" />
       {renderLine(lineTwo, 'two')}
