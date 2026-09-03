@@ -1,0 +1,123 @@
+Refine ONLY the current HERO section.
+
+Do NOT redesign the hero from scratch.
+Do NOT modify the navbar.
+Do NOT modify the logo.
+Do NOT modify any section below the hero.
+Keep the current Arabic copy exactly as it is.
+
+There are ONLY TWO changes I want:
+
+1. FIX THE HERO IMAGE TREATMENT
+
+The current hero image is displayed as a separate rectangular image block on the left side.
+
+I do NOT want this.
+
+Remove the visible rectangular image container completely.
+
+Use the uploaded hero image as part of the HERO BACKGROUND itself.
+
+The hero must feel like ONE continuous full-width editorial canvas, not:
+image on the left + text on the right.
+
+Place the photography mainly on the LEFT side of the hero.
+
+Then make the image gradually dissolve into the Espresso Brown hero background as it approaches the center/text area.
+
+IMPORTANT:
+The image should NOT be fully bright or fully visible.
+
+I want the photography to feel subtle, atmospheric and slightly hidden inside the brown background.
+
+Reduce its visual intensity significantly.
+
+Target approximately:
+30–45% visual visibility.
+
+Achieve this using an Espresso Brown overlay and controlled opacity.
+
+The image should still be recognizable and premium, but it should sit BEHIND the design rather than compete with the Arabic headline.
+
+The products should remain sharp enough to recognize.
+Do NOT blur the entire photograph.
+
+Use a very soft horizontal gradient so:
+
+LEFT EDGE:
+the photograph is visible but darkened.
+
+MOVING TOWARD THE CENTER:
+the photograph becomes progressively darker and less visible.
+
+TEXT AREA:
+the photograph completely disappears into the solid Espresso Brown background.
+
+There must be NO:
+- rectangular image boundary
+- frame
+- border
+- rounded corners
+- visible image edge
+- 50/50 split
+- harsh gradient
+- separate image card
+
+The final effect should resemble luxury fragrance/fashion campaign websites where photography softly emerges from a dark background.
+
+The Arabic headline area must remain clean Espresso Brown with strong negative space.
+
+
+2. CHANGE “اكتشف الهدايا” INTO A REAL CTA BUTTON
+
+The current “اكتشف الهدايا” looks like a simple text link with an underline.
+
+Replace it with a clearly visible premium CTA BUTTON.
+
+Button text:
+اكتشف الهدايا
+
+Style:
+- elegant luxury button
+- medium/large size
+- refined padding
+- clearly clickable
+- no excessive rounded pill shape
+- subtle corners or almost-square corners
+- use the L’ANAK accent color
+- strong contrast against Espresso Brown
+- elegant arrow icon inside or beside the button
+
+Make the CTA noticeable immediately without looking like a generic ecommerce button.
+
+HOVER INTERACTION:
+
+On hover:
+- create a smooth elegant color transition
+- slightly change the background and text contrast
+- arrow moves subtly horizontally
+- very subtle lift or movement
+- cursor: pointer
+- transition around 250–350ms
+
+No glow.
+No heavy shadow.
+No bounce animation.
+No exaggerated effects.
+
+The button should feel premium and interactive.
+
+FINAL PRIORITY:
+
+The hierarchy should be:
+
+1. Arabic emotional headline
+2. “لأنّك أنت.”
+3. CTA button
+4. Subtle atmospheric photography in the background
+
+The IMAGE must support the typography, not compete with it.
+
+Keep the overall hero sophisticated, minimal, dark, warm, and editorial.
+
+Do not change anything else.

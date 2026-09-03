@@ -112,12 +112,12 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
         {copy[lang].announcement}
       </div>
       <header className="relative z-40 w-full border-b border-[#F5F0E8]/15 bg-[#49372D] text-[#F5F0E8]">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-[1fr_auto] items-center gap-4 px-5 py-4 md:grid-cols-[1fr_auto_1fr] md:px-10 md:py-5">
+        <div className="relative mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-4 px-5 py-4 md:grid-cols-[1fr_auto_1fr] md:px-10 md:py-5">
           <nav className="hidden items-center gap-[clamp(1.75rem,2.6vw,3rem)] md:flex" aria-label="Main navigation">
             {nav.map((item, index) => <Link key={item} href={links[index]} className={`header-nav-link whitespace-nowrap font-medium ${isAr ? 'font-nav-ar text-[18px] leading-none' : 'text-[15px] tracking-[.04em] lg:text-[16px]'} ${location === links[index] ? 'is-active' : ''}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
           </nav>
-          <Link href="/" className="logo-placeholder group order-first flex h-11 w-[124px] items-center justify-center justify-self-start md:order-none md:h-14 md:w-[154px] md:justify-self-center" aria-label="Official L’ANAK logo placeholder" data-testid="link-logo">
-            <div className="text-center text-[8px] font-bold uppercase tracking-[.15em] opacity-50">L'ANAK<br/>LOGO ASSET</div>
+          <Link href="/" className="absolute left-1/2 top-1/2 flex h-11 w-[124px] -translate-x-1/2 -translate-y-1/2 items-center justify-center md:static md:h-14 md:w-[154px] md:translate-x-0 md:translate-y-0 md:justify-self-center" aria-label="L’ANAK home" data-testid="link-logo">
+            <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="h-full w-full object-contain" />
           </Link>
           <div className="flex items-center justify-end gap-2 md:gap-6 md:pl-4">
             <div className="header-language flex items-center gap-1 text-[9px] font-semibold tracking-[.08em] md:text-[14px] md:tracking-[.08em]" dir="ltr" aria-label="Language selector" data-testid="button-language-toggle">
@@ -162,11 +162,11 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
 
 function HeroVisual() {
   return (
-    <figure className="hero-visual w-full">
+    <figure className="hero-visual pointer-events-none absolute inset-0" aria-hidden="true">
       <img
         src={heroCampaignImage}
-        alt="L’ANAK gift collection arranged in a warm, luxurious setting"
-        className="h-auto w-full object-contain"
+        alt=""
+        className="h-full w-full object-cover object-center"
       />
     </figure>
   );
@@ -176,9 +176,10 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
   const isAr = lang === 'ar';
   return (
     <main className="w-full">
-      <section className="overflow-hidden bg-[#49372D] px-5 pb-20 pt-12 text-[#F5F0E8] md:px-10 md:pb-28 md:pt-16">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-14 md:grid-cols-[.88fr_1.12fr] md:items-center md:gap-16 lg:gap-20">
-          <div className="flex min-w-0 flex-col justify-center">
+      <section className="relative isolate min-h-[760px] overflow-hidden bg-[#49372D] px-5 pb-20 pt-12 text-[#F5F0E8] md:min-h-[680px] md:px-10 md:pb-28 md:pt-16">
+        <HeroVisual />
+        <div className="relative z-10 mx-auto flex min-h-[620px] max-w-[1440px] items-start md:min-h-[536px] md:items-center">
+          <div className="ml-auto flex w-full min-w-0 flex-col justify-center md:w-[52%]">
             <div className={`text-balance ${isAr ? 'font-arabic text-[clamp(2.65rem,4.15vw,4.65rem)] font-light leading-[1.42] tracking-normal' : 'font-display text-[clamp(3.25rem,5vw,6.25rem)] leading-[.98] tracking-[-.025em]'}`}>
               <div className="hero-reveal-1">{isAr ? copy.ar.heroLine1 : copy.en.heroLine1}</div>
               <div className="hero-reveal-2 mt-1 md:mt-2">{isAr ? copy.ar.heroLine2 : copy.en.heroLine2}</div>
@@ -188,21 +189,17 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
             </div>
             
             <div className="hero-cta mt-12 md:mt-14">
-              <Link href="/shop" className="group inline-flex w-fit items-center gap-4 border-b border-[#F5F0E8]/35 pb-2.5 text-[#F5F0E8] transition-colors duration-300 hover:border-[#CBB98B] hover:text-[#CBB98B]">
-                <span className={`${isAr ? 'font-arabic text-[16px] font-medium' : 'text-[11px] font-bold uppercase tracking-[.15em]'}`}>
+              <Link href="/shop" className="group inline-flex w-fit cursor-pointer items-center gap-5 border border-[#CBB98B] bg-[#CBB98B] px-7 py-4 text-[#49372D] transition-[background-color,color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#F5F0E8] hover:text-[#49372D]">
+                <span className={`${isAr ? 'font-arabic text-[17px] font-medium' : 'text-[12px] font-bold uppercase tracking-[.15em]'}`}>
                   {isAr ? copy.ar.heroCta : copy.en.heroCta}
                 </span>
                 {isAr ? (
-                  <ArrowLeft size={16} strokeWidth={1.5} className="transition-transform duration-500 ease-out group-hover:-translate-x-2" />
+                  <ArrowLeft size={17} strokeWidth={1.6} className="transition-transform duration-300 ease-out group-hover:-translate-x-1.5" />
                 ) : (
-                  <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-500 ease-out group-hover:translate-x-2" />
+                  <ArrowRight size={17} strokeWidth={1.6} className="transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
                 )}
               </Link>
             </div>
-          </div>
-
-          <div className="flex items-center justify-center md:justify-end">
-            <HeroVisual />
           </div>
         </div>
       </section>
