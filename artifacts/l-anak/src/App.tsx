@@ -204,8 +204,6 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
         </div>
       </section>
 
-      <EmotionalTransition />
-
       <GiftingCategories lang={lang} />
 
       <section className="bg-[#49372D] px-5 py-20 text-[#FAF7F0] md:px-10 md:py-32">
@@ -225,52 +223,41 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
   );
 }
 
-function EmotionalTransition() {
-  return (
-    <section className="emotional-transition border-b border-[#FAF7F0]/10 bg-[#49372D]" dir="rtl" aria-label="رسالة لأنّك">
-      <p className="emotional-phrase emotional-phrase--one">لأنّك على بالي.</p>
-      <p className="emotional-phrase emotional-phrase--two">لأنّك تستاهل.</p>
-      <p className="emotional-phrase emotional-phrase--three">لأنّك أنت.</p>
-    </section>
-  );
-}
-
 function GiftingCategories({ lang }: { lang: Lang }) {
   const isAr = lang === 'ar';
   
   const cats = [
-    { id: 'coffee', en: 'COFFEE', ar: 'قهوة', path: '/coffee', classes: 'col-span-1 md:col-span-4 aspect-[3/4]' },
-    { id: 'sweets', en: 'SWEETS', ar: 'حلو', path: '/sweets', classes: 'col-span-1 md:col-span-8 aspect-[4/3] md:aspect-[16/9]' },
-    { id: 'restaurants', en: 'RESTAURANTS', ar: 'مطاعم', path: '/restaurants', classes: 'col-span-1 md:col-span-6 aspect-[4/3] md:aspect-square' },
-    { id: 'flowers', en: 'FLOWERS', ar: 'ورد', path: '/flowers', classes: 'col-span-1 md:col-span-6 aspect-[4/3] md:aspect-square' },
-    { id: 'self-care', en: 'SELF-CARE', ar: 'عناية', path: '/self-care', classes: 'col-span-1 md:col-span-8 aspect-[4/3] md:aspect-[16/9]' },
-    { id: 'gifts', en: 'GIFTS', ar: 'هدايا', path: '/gifts', classes: 'col-span-1 md:col-span-4 aspect-[3/4]' },
+    { id: 'coffee', en: 'COFFEE', label: 'COFFEE IMAGE', ar: 'قهوة', path: '/coffee', classes: 'category-editorial--coffee' },
+    { id: 'sweets', en: 'SWEETS', label: 'SWEETS IMAGE', ar: 'حلو', path: '/sweets', classes: 'category-editorial--sweets' },
+    { id: 'restaurants', en: 'DINING', label: 'DINING IMAGE', ar: 'مطاعم', path: '/restaurants', classes: 'category-editorial--dining' },
+    { id: 'flowers', en: 'FLOWERS', label: 'FLOWERS IMAGE', ar: 'ورد', path: '/flowers', classes: 'category-editorial--flowers' },
+    { id: 'self-care', en: 'SELF-CARE', label: 'SELF-CARE IMAGE', ar: 'عناية', path: '/self-care', classes: 'category-editorial--care' },
+    { id: 'gifts', en: 'GIFTS', label: 'GIFTS IMAGE', ar: 'هدايا', path: '/gifts', classes: 'category-editorial--gifts' },
   ];
 
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
   return (
-    <section className="bg-[#FAF7F0] px-5 py-24 md:px-10 md:py-36" id="categories">
+    <section className="bg-[#F5F0E8] px-5 py-24 text-[#49372D] md:px-10 md:py-36" id="categories">
       <div className="mx-auto max-w-[1440px]">
-        <div className="mb-16 md:mb-24 max-w-2xl">
-          <h2 className={`text-balance ${isAr ? 'font-arabic text-[clamp(2.5rem,4vw,4rem)] font-light leading-[1.2]' : 'font-display text-[clamp(3.5rem,5.5vw,5.5rem)] leading-[0.9] tracking-tight'}`}>
+        <div className={`mb-16 max-w-3xl md:mb-24 ${isAr ? 'ml-auto text-right' : ''}`}>
+          <h2 className={`text-balance ${isAr ? 'font-nav-ar text-[clamp(2.5rem,4vw,4.5rem)] font-medium leading-[1.28]' : 'font-display text-[clamp(3.5rem,5.5vw,5.5rem)] leading-[0.9] tracking-tight'}`}>
             {isAr ? 'منو ودّك تهدي اليوم؟' : 'WHO ARE YOU GIFTING TODAY?'}
           </h2>
-          <p className={`mt-6 text-[15px] opacity-75 ${isAr ? 'font-arabic' : ''}`}>
+          <p className={`mt-6 text-[15px] leading-8 opacity-70 md:text-[17px] ${isAr ? 'font-nav-ar font-normal' : ''}`}>
             {isAr ? 'اختار الفكرة، وخله يختار اللي يحبه.' : 'Choose the idea, and let them choose what they love.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+        <div className="category-editorial-grid">
           {cats.map((cat) => (
-            <Link key={cat.id} href={cat.path} className={`group flex flex-col gap-4 ${cat.classes}`}>
-              <div className="relative w-full h-full bg-[#E8D59E]/10 overflow-hidden flex items-center justify-center">
-                <div className="absolute inset-0 bg-[#49372D]/5 transition-transform duration-700 ease-out group-hover:scale-105" />
-                <span className="relative z-10 text-[10px] font-bold uppercase tracking-[.15em] text-[#49372D]/40">{cat.en} IMAGE</span>
+            <Link key={cat.id} href={cat.path} className={`category-editorial group ${cat.classes}`} data-testid={`link-category-${cat.id}`}>
+              <div className="category-editorial-image">
+                <span>{cat.label}</span>
               </div>
-              <div className="flex items-center justify-between px-1">
-                <h3 className={`text-xl md:text-2xl ${isAr ? 'font-arabic font-medium' : 'font-display tracking-widest'}`}>{isAr ? cat.ar : cat.en}</h3>
-                <ArrowIcon size={20} strokeWidth={1.2} className={`opacity-0 transition-all duration-500 ease-out ${isAr ? 'translate-x-3 group-hover:translate-x-0' : '-translate-x-3 group-hover:translate-x-0'} group-hover:opacity-100`} />
+              <div className="category-editorial-title">
+                <h3 className={isAr ? 'font-nav-ar' : 'font-display tracking-[.08em]'}>{isAr ? cat.ar : cat.en}</h3>
+                <ArrowIcon size={19} strokeWidth={1.3} className="category-editorial-arrow" />
               </div>
             </Link>
           ))}

@@ -1,0 +1,258 @@
+Now move to the NEXT section directly below the completed Hero.
+
+Work ONLY on this section.
+
+Do NOT modify:
+- Navbar
+- Hero
+- Logo
+- Any section after this section
+
+We are building the CATEGORY DISCOVERY section for L’ANAK.
+
+IMPORTANT:
+Do NOT add final photography yet.
+For now, use elegant neutral placeholders for the category images.
+We will upload and replace all final images later.
+
+--------------------------------------------------
+SECTION PURPOSE
+--------------------------------------------------
+
+This section should help the customer quickly choose
+what type of gift they want to send.
+
+The experience should feel curated, premium and editorial,
+NOT like a generic ecommerce category grid.
+
+--------------------------------------------------
+SECTION COPY
+--------------------------------------------------
+
+Main Arabic headline:
+
+"منو ودّك تهدي اليوم؟"
+
+Supporting line:
+
+"اختار الفكرة، وخله يختار اللي يحبه."
+
+Keep the wording EXACTLY as written.
+
+--------------------------------------------------
+CATEGORIES
+--------------------------------------------------
+
+Create exactly 6 categories:
+
+قهوة
+حلو
+مطاعم
+ورد
+عناية
+هدايا
+
+Do NOT add extra categories.
+
+Each category will eventually receive its own custom photography,
+so create clear image placeholders that can easily be replaced later.
+
+--------------------------------------------------
+VISUAL DIRECTION
+--------------------------------------------------
+
+Use a refined warm light background for this section.
+
+Use:
+Warm Ivory / Cream
+
+The transition from the dark Espresso Brown hero into this
+lighter section should feel clean, intentional and premium.
+
+Do NOT use a complicated transition animation between sections.
+
+Give the section generous breathing room.
+
+The headline should be large, elegant and visually important,
+but smaller than the main Hero headline.
+
+The supporting sentence should be subtle and refined.
+
+--------------------------------------------------
+CATEGORY LAYOUT
+--------------------------------------------------
+
+I do NOT want six identical ecommerce cards in a rigid grid.
+
+Create a sophisticated editorial / magazine-inspired composition.
+
+Use variation in image proportions and placement,
+while still keeping the overall layout balanced and easy to understand.
+
+The six categories should feel like part of one curated visual story.
+
+Think:
+
+luxury lifestyle editorial
++
+modern gifting platform
++
+clean fashion ecommerce
+
+NOT:
+Amazon
+food delivery app
+coupon website
+generic Shopify template
+
+Use generous negative space between categories.
+
+Avoid excessive containers.
+
+Each category should mainly consist of:
+
+[ IMAGE PLACEHOLDER ]
+
+Category name
+
+Optional minimal arrow
+
+Nothing else.
+
+Do NOT add descriptions under every category.
+Do NOT add prices.
+Do NOT add fake products.
+Do NOT add buttons inside every category.
+
+Keep it visually clean.
+
+--------------------------------------------------
+PLACEHOLDERS
+--------------------------------------------------
+
+Since the final images are NOT being added yet:
+
+Use elegant neutral placeholders in a soft cream/taupe tone.
+
+Inside each placeholder, add a SMALL subtle development label:
+
+COFFEE IMAGE
+SWEETS IMAGE
+DINING IMAGE
+FLOWERS IMAGE
+SELF-CARE IMAGE
+GIFTS IMAGE
+
+These labels are temporary only.
+
+Do NOT generate AI photography.
+Do NOT use random stock images.
+Do NOT use icons as replacements for the final photography.
+
+The layout should already look polished even with placeholders.
+
+--------------------------------------------------
+CATEGORY INTERACTION
+--------------------------------------------------
+
+Each entire category area must be clickable.
+
+On hover:
+
+- slightly scale the image area, approximately 1.02–1.03
+- reveal a very subtle Espresso Brown overlay
+- make the category name slightly more prominent
+- reveal or move a minimal arrow
+- cursor: pointer
+
+Transition:
+300–400ms
+smooth and elegant.
+
+Do NOT:
+- dramatically zoom
+- bounce
+- glow
+- add heavy shadows
+- add large colored overlays
+
+The interaction should feel sophisticated.
+
+--------------------------------------------------
+CLICK BEHAVIOR
+--------------------------------------------------
+
+Each category should be prepared to navigate to its own page:
+
+قهوة → Coffee
+حلو → Sweets
+مطاعم → Dining
+ورد → Flowers
+عناية → Self-Care
+هدايا → Gifts
+
+If those pages already exist, preserve their routes.
+
+If they are not completed yet, keep the category interaction
+ready for those routes without designing those pages now.
+
+--------------------------------------------------
+RESPONSIVE DESIGN
+--------------------------------------------------
+
+Desktop:
+Use the full editorial composition with varied image sizes.
+
+Tablet:
+Simplify the composition while preserving hierarchy.
+
+Mobile:
+Do NOT simply shrink the desktop layout.
+
+Use a clean mobile-friendly arrangement with large,
+comfortable category image areas and clear category names.
+
+Maintain generous spacing.
+
+--------------------------------------------------
+TYPOGRAPHY
+--------------------------------------------------
+
+Use the same premium Arabic typography system
+we established for the updated website.
+
+Do NOT return to the old thin or generic Arabic typography.
+
+The headline should feel editorial and luxurious.
+
+Category names should be clearly readable and slightly prominent.
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do NOT add the old animated scrolling phrases.
+
+Do NOT add:
+"لأنك تستاهل"
+"لأنك سند"
+"لأنك فرحة"
+or any moving text strip above this section.
+
+We removed that direction because it made the homepage feel crowded.
+
+The flow should now be very clean:
+
+NAVBAR
+↓
+HERO
+↓
+"منو ودّك تهدي اليوم؟"
+↓
+CATEGORY DISCOVERY
+
+Nothing unnecessary between them.
+
+Do NOT redesign anything outside this section.
+
+Implement this section now using placeholders only.
