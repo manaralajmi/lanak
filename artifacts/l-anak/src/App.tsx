@@ -189,7 +189,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
             </div>
             
             <div className="hero-cta mt-12 md:mt-14">
-              <Link href="/shop" className="group inline-flex w-fit cursor-pointer items-center gap-5 border border-[#CBB98B] bg-[#CBB98B] px-7 py-4 text-[#49372D] transition-[background-color,color,transform] duration-300 ease-out hover:-translate-y-0.5 hover:bg-[#F5F0E8] hover:text-[#49372D]">
+              <Link href="/shop" className="hero-cta-button group inline-flex w-fit cursor-pointer items-center gap-5 rounded-[3px] border px-7 py-4 text-[#49372D]">
                 <span className={`${isAr ? 'font-arabic text-[17px] font-medium' : 'text-[12px] font-bold uppercase tracking-[.15em]'}`}>
                   {isAr ? copy.ar.heroCta : copy.en.heroCta}
                 </span>

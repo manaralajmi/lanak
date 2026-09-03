@@ -254,33 +254,60 @@
 .hero-reveal-2 { animation: revealTextSmooth 1s cubic-bezier(0.25, 1, 0.5, 1) .28s both; }
 .hero-reveal-3 { animation: revealTextSmooth 1s cubic-bezier(0.25, 1, 0.5, 1) .72s both; }
 .hero-cta { animation: none; }
+.hero-cta-button {
+  border-color: rgba(245, 240, 232, .38);
+  background: rgba(203, 185, 139, .64);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: background-color 280ms ease, border-color 280ms ease, transform 280ms ease;
+}
+.hero-cta-button:hover {
+  border-color: rgba(245, 240, 232, .68);
+  background: rgba(203, 185, 139, .9);
+  transform: translateY(-2px);
+}
+.hero-cta-button:active {
+  background: rgba(190, 170, 120, .82);
+  transform: translateY(0) scale(.98);
+}
 .hero-visual {
   z-index: -1;
-  right: auto;
-  left: 0;
-  width: 66%;
-  opacity: .58;
-  -webkit-mask-image: linear-gradient(to right, #000 0%, #000 42%, rgba(0, 0, 0, .72) 64%, transparent 100%);
-  mask-image: linear-gradient(to right, #000 0%, #000 42%, rgba(0, 0, 0, .72) 64%, transparent 100%);
+  width: 100%;
+  opacity: .56;
   animation: revealHeroVisual 1.25s cubic-bezier(0.25, 1, 0.5, 1) .42s both;
 }
+.hero-visual::before,
 .hero-visual::after {
   position: absolute;
   inset: 0;
-  background: rgba(73, 55, 45, .34);
   content: '';
 }
+.hero-visual::before {
+  z-index: 1;
+  background: linear-gradient(to right, transparent 0%, rgba(73, 55, 45, .08) 30%, rgba(73, 55, 45, .72) 61%, #49372D 83%);
+}
+.hero-visual::after {
+  z-index: 2;
+  background: linear-gradient(to bottom, rgba(73, 55, 45, .08) 0%, transparent 42%, rgba(73, 55, 45, .32) 76%, #49372D 100%);
+}
 .hero-visual img {
+  object-position: left center;
   filter: saturate(.82) contrast(.96);
 }
 @media (max-width: 47.999rem) {
   .hero-visual {
-    top: auto;
     width: 100%;
-    height: 52%;
-    opacity: .55;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .5) 28%, #000 70%, #000 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .5) 28%, #000 70%, #000 100%);
+    height: 100%;
+    opacity: .5;
+  }
+  .hero-visual::before {
+    background: linear-gradient(to bottom, #49372D 0%, rgba(73, 55, 45, .88) 30%, rgba(73, 55, 45, .34) 62%, rgba(73, 55, 45, .12) 100%);
+  }
+  .hero-visual::after {
+    background: linear-gradient(to bottom, transparent 52%, rgba(73, 55, 45, .16) 72%, #49372D 100%);
+  }
+  .hero-visual img {
+    object-position: left center;
   }
 }
 @keyframes revealTextSmooth {

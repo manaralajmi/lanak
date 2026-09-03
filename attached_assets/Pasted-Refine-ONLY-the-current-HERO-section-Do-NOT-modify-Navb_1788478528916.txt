@@ -1,0 +1,154 @@
+Refine ONLY the current HERO section.
+
+Do NOT modify:
+- Navbar
+- Logo
+- Hero copy
+- Any section below the hero
+- Brand colors
+
+I only want TWO visual refinements:
+
+--------------------------------------------------
+1. EXTEND THE HERO IMAGE THROUGH THE FULL HERO
+--------------------------------------------------
+
+The hero background image currently ends too early,
+creating a visible transition into a separate solid brown area below.
+
+I do NOT want that.
+
+Extend the uploaded hero photography vertically so it covers
+the ENTIRE hero section from top to bottom.
+
+The image should continue behind:
+- the main headline
+- "لأنّك أنت."
+- the CTA
+- the lower part of the hero
+
+There should NOT be a separate solid-brown block underneath the image.
+
+The full hero must feel like ONE continuous background composition.
+
+IMPORTANT:
+
+Keep the photograph strongest on the LEFT side.
+
+As the image moves toward the RIGHT side and toward the text,
+gradually blend it into Espresso Brown #49372D.
+
+Also add a subtle vertical darkening toward the bottom if needed,
+so the bottom of the image naturally disappears into the brand background.
+
+Use layered gradients if necessary:
+
+- horizontal Espresso Brown gradient for image → text blending
+- subtle vertical Espresso Brown gradient for image → bottom blending
+
+The photography should remain approximately 30–40% visible overall.
+
+It should feel atmospheric and slightly muted,
+not bright or dominant.
+
+The image should be recognizable,
+but the text must remain the visual priority.
+
+NO:
+- hard image edge
+- visible rectangular boundary
+- separate image container
+- border
+- card
+- rounded corners
+
+The transition must be seamless.
+
+--------------------------------------------------
+2. REDESIGN THE CTA BUTTON
+--------------------------------------------------
+
+The current CTA button is too solid and visually heavy.
+
+Keep the text:
+
+"اكتشف الهدايا"
+
+But redesign the button to feel lighter, more elegant,
+and slightly transparent.
+
+DESIRED STYLE:
+
+Create a premium semi-transparent button.
+
+Use a Muted Champagne tinted background,
+but with approximately 55–70% opacity.
+
+The Espresso Brown hero/background should subtly show through the button.
+
+It should NOT look like a fully opaque yellow rectangle.
+
+Suggested treatment:
+
+background:
+rgba equivalent of Muted Champagne #CBB98B
+at approximately 0.60–0.68 opacity
+
+Add:
+- very subtle 1px champagne/light border
+- optional backdrop-filter: blur(4px–8px)
+- Espresso Brown text
+- elegant arrow
+- comfortable padding
+
+The button should feel soft, premium and integrated
+into the hero photography.
+
+Corners:
+minimal, approximately 2–4px.
+Do NOT make it a pill.
+
+--------------------------------------------------
+BUTTON HOVER
+--------------------------------------------------
+
+Make the hover interaction clearly noticeable.
+
+On hover:
+
+- increase the background opacity slightly
+- transition the button closer to full Muted Champagne
+- move the arrow slightly horizontally
+- very subtly lift the button by 1–2px
+- strengthen the border slightly
+
+Use a smooth transition:
+approximately 250–300ms.
+
+On active/click:
+- slightly reduce scale, approximately 0.98
+- slightly darken the button
+- return smoothly when released
+
+This should make it obvious that the CTA is interactive.
+
+Do NOT use:
+- glow
+- large shadow
+- bouncing
+- dramatic animation
+
+--------------------------------------------------
+FINAL VISUAL GOAL
+--------------------------------------------------
+
+The hero should feel like:
+
+one continuous cinematic image
+→ softly disappearing into Espresso Brown
+→ elegant Arabic typography
+→ subtle translucent CTA
+
+No visible separation between photography and background.
+
+Do not change anything else.
