@@ -7,6 +7,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import '@/index.css';
+import heroCampaignImage from '@/assets/lanak-hero-campaign.png';
 
 const queryClient = new QueryClient();
 
@@ -161,10 +162,13 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
 
 function HeroVisual() {
   return (
-    <div className="relative aspect-[4/5] w-full max-w-[460px] overflow-hidden bg-[#FAF7F0]/5 flex items-center justify-center">
-      <div className="absolute inset-0 border border-[#FAF7F0]/10 m-4"></div>
-      <span className="text-[10px] font-bold uppercase tracking-[.15em] text-[#FAF7F0]/40">PACKAGING VISUAL ASSET</span>
-    </div>
+    <figure className="hero-visual w-full">
+      <img
+        src={heroCampaignImage}
+        alt="L’ANAK gift collection arranged in a warm, luxurious setting"
+        className="h-auto w-full object-contain"
+      />
+    </figure>
   );
 }
 
@@ -172,19 +176,19 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
   const isAr = lang === 'ar';
   return (
     <main className="w-full">
-      <section className="bg-[#49372D] px-5 pb-20 pt-12 text-[#FAF7F0] md:px-10 md:pb-32 md:pt-20 overflow-hidden">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-16 md:grid-cols-[1.05fr_.95fr] md:items-center md:gap-20">
+      <section className="overflow-hidden bg-[#49372D] px-5 pb-20 pt-12 text-[#F5F0E8] md:px-10 md:pb-28 md:pt-16">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-14 md:grid-cols-[.88fr_1.12fr] md:items-center md:gap-16 lg:gap-20">
           <div className="flex min-w-0 flex-col justify-center">
-            <div className={`text-balance ${isAr ? 'font-arabic text-[clamp(2.75rem,4.5vw,5rem)] font-light leading-[1.3] tracking-normal' : 'font-display text-[clamp(3.5rem,6vw,7rem)] leading-[0.95] tracking-[-.025em]'}`}>
+            <div className={`text-balance ${isAr ? 'font-arabic text-[clamp(2.65rem,4.15vw,4.65rem)] font-light leading-[1.42] tracking-normal' : 'font-display text-[clamp(3.25rem,5vw,6.25rem)] leading-[.98] tracking-[-.025em]'}`}>
               <div className="hero-reveal-1">{isAr ? copy.ar.heroLine1 : copy.en.heroLine1}</div>
-              <div className="hero-reveal-2 mt-1 md:mt-3">{isAr ? copy.ar.heroLine2 : copy.en.heroLine2}</div>
-              <div className={`hero-reveal-3 mt-14 text-[#E8D59E] md:mt-24 ${isAr ? 'text-[0.75em] font-medium leading-[1.4] tracking-normal' : 'text-[0.75em] italic leading-[1]'}`}>
+              <div className="hero-reveal-2 mt-1 md:mt-2">{isAr ? copy.ar.heroLine2 : copy.en.heroLine2}</div>
+              <div className={`hero-reveal-3 mt-12 text-[#CBB98B] md:mt-16 ${isAr ? 'text-[0.72em] font-normal leading-[1.5] tracking-normal' : 'text-[0.72em] italic leading-[1]'}`}>
                 {isAr ? copy.ar.heroPayoff : copy.en.heroPayoff}
               </div>
             </div>
             
-            <div className="hero-cta mt-16 md:mt-20">
-              <Link href="/shop" className="group inline-flex w-fit items-center gap-4 border-b border-[#FAF7F0]/30 pb-2 text-[#FAF7F0] transition-colors hover:border-[#E8D59E] hover:text-[#E8D59E]">
+            <div className="hero-cta mt-12 md:mt-14">
+              <Link href="/shop" className="group inline-flex w-fit items-center gap-4 border-b border-[#F5F0E8]/35 pb-2.5 text-[#F5F0E8] transition-colors duration-300 hover:border-[#CBB98B] hover:text-[#CBB98B]">
                 <span className={`${isAr ? 'font-arabic text-[16px] font-medium' : 'text-[11px] font-bold uppercase tracking-[.15em]'}`}>
                   {isAr ? copy.ar.heroCta : copy.en.heroCta}
                 </span>
@@ -197,7 +201,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
             </div>
           </div>
 
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center md:justify-end">
             <HeroVisual />
           </div>
         </div>
