@@ -354,19 +354,18 @@
 .hero-reveal-3 { animation: revealTextSmooth 1s cubic-bezier(0.25, 1, 0.5, 1) .72s both; }
 .hero-cta { animation: none; }
 .hero-cta-button {
-  border-color: rgba(245, 240, 232, .38);
-  background: rgba(203, 185, 139, .64);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  border-color: #CBB98B;
+  background: transparent;
+  color: #CBB98B;
   transition: background-color 280ms ease, border-color 280ms ease, transform 280ms ease;
 }
 .hero-cta-button:hover {
-  border-color: rgba(245, 240, 232, .68);
-  background: rgba(203, 185, 139, .9);
-  transform: translateY(-2px);
+  border-color: #D8C99F;
+  background: rgba(203, 185, 139, .30);
+  transform: translateY(-1px);
 }
 .hero-cta-button:active {
-  background: rgba(190, 170, 120, .82);
+  background: rgba(203, 185, 139, .42);
   transform: translateY(0) scale(.98);
 }
 .hero-visual {

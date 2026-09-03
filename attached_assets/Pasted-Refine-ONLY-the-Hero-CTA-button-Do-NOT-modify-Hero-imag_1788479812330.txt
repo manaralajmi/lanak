@@ -1,0 +1,155 @@
+Refine ONLY the Hero CTA button.
+
+Do NOT modify:
+- Hero image or its opacity
+- Hero background
+- Hero text
+- Rotating phrase animation
+- Navbar
+- Hero height
+- Any section below the Hero
+
+--------------------------------------------------
+1. CHANGE CTA COPY
+--------------------------------------------------
+
+Replace:
+
+"اكتشف الهدايا"
+
+with exactly:
+
+"يلا نهدي"
+
+Keep the minimal arrow as part of the CTA.
+
+--------------------------------------------------
+2. REPOSITION THE CTA
+--------------------------------------------------
+
+The CTA is currently positioned on the right side of the Hero.
+
+Move it to the CENTER of the Hero horizontally.
+
+I want it visually positioned in the open space BETWEEN:
+
+the upper Hero content / "لأنّك أنت."
+
+and
+
+the lower rotating phrase animation
+such as "لأنّك تستاهل."
+
+It should feel like the connecting action between the Hero message
+and the emotional rotating phrase below.
+
+Do NOT place it directly underneath "لأنّك أنت."
+Do NOT place it too close to "لأنّك تستاهل."
+
+Give it generous breathing room above and below.
+
+The final composition should visually feel like:
+
+Upper Hero content
+        ↓
+
+       [ يلا نهدي  ← ]
+
+        ↓
+
+Rotating emotional phrase
+"لأنّك تستاهل."
+
+--------------------------------------------------
+3. BUTTON DEFAULT DESIGN
+--------------------------------------------------
+
+I do NOT want the CTA to have a solid filled background by default.
+
+Default state:
+
+- background: transparent
+- background image/photography behind the button must remain visible
+- border: 1px solid Muted Champagne #CBB98B
+- text: Muted Champagne #CBB98B
+- arrow: Muted Champagne #CBB98B
+
+The button should feel light, elegant and integrated into
+the cinematic Hero rather than sitting on top of it as a solid block.
+
+--------------------------------------------------
+4. CORNERS
+--------------------------------------------------
+
+The current corners feel too sharp.
+
+Use a subtle elegant border-radius:
+
+border-radius: 7px;
+
+Do NOT make it pill-shaped.
+Do NOT make it heavily rounded.
+
+I want slightly softened luxury-style corners.
+
+--------------------------------------------------
+5. HOVER
+--------------------------------------------------
+
+On hover:
+
+background-color: rgba(203, 185, 139, 0.30);
+
+This means Muted Champagne #CBB98B at EXACTLY 30% opacity.
+
+IMPORTANT:
+Only the BACKGROUND FILL should be 30% opacity.
+
+Do NOT reduce the opacity of:
+- text
+- border
+- arrow
+
+The border should remain clearly visible.
+
+The Hero photography/background should STILL be subtly visible
+through the button even while hovering.
+
+Also on hover:
+
+- border becomes slightly more prominent
+- arrow moves very slightly horizontally
+- button may lift approximately 1px
+
+Use a smooth 250–300ms transition.
+
+--------------------------------------------------
+6. ACTIVE STATE
+--------------------------------------------------
+
+On click / active:
+
+- scale to approximately 0.98
+- slightly increase the champagne background opacity
+- smoothly return to normal
+
+No bounce.
+No glow.
+No heavy shadow.
+
+--------------------------------------------------
+FINAL FEEL
+--------------------------------------------------
+
+The CTA should feel:
+
+transparent
+refined
+luxurious
+interactive
+lightweight
+integrated with the Hero photography
+
+NOT like a standard ecommerce button.
+
+Do not change anything else.
