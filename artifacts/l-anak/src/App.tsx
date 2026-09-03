@@ -107,15 +107,15 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
   
   return (
     <div className="min-h-[100dvh] flex flex-col bg-[#FAF7F0] text-[#49372D]">
-      <div className="border-b border-[#49372D]/15 bg-[#E8D59E] px-5 py-[7px] text-center text-[9px] font-semibold tracking-[.18em] text-[#49372D]" data-testid="text-announcement">
+      <div className="border-b border-[#49372D]/15 bg-[#F5F0E8] px-5 py-[7px] text-center text-[9px] font-semibold tracking-[.18em] text-[#49372D]" data-testid="text-announcement">
         {copy[lang].announcement}
       </div>
-      <header className="relative z-40 w-full border-b border-[#FAF7F0]/15 bg-[#49372D] text-[#FAF7F0]">
+      <header className="relative z-40 w-full border-b border-[#F5F0E8]/15 bg-[#49372D] text-[#F5F0E8]">
         <div className="mx-auto grid max-w-[1440px] grid-cols-[1fr_auto] items-center gap-4 px-5 py-4 md:grid-cols-[1fr_auto_1fr] md:px-10 md:py-5">
-          <nav className="hidden items-center gap-[clamp(1.15rem,2vw,2.25rem)] md:flex" aria-label="Main navigation">
-            {nav.map((item, index) => <Link key={item} href={links[index]} className={`header-nav-link whitespace-nowrap text-[10px] font-medium tracking-[.08em] ${isAr ? 'font-arabic' : ''} ${location === links[index] ? 'is-active' : ''}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
+          <nav className="hidden items-center gap-[clamp(1.75rem,2.6vw,3rem)] md:flex" aria-label="Main navigation">
+            {nav.map((item, index) => <Link key={item} href={links[index]} className={`header-nav-link whitespace-nowrap font-medium ${isAr ? 'font-nav-ar text-[18px] leading-none' : 'text-[15px] tracking-[.04em] lg:text-[16px]'} ${location === links[index] ? 'is-active' : ''}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
           </nav>
-          <Link href="/" className="logo-placeholder group order-first flex h-10 w-[116px] items-center justify-center justify-self-start md:order-none md:h-11 md:w-[132px] md:justify-self-center" aria-label="Official L’ANAK logo placeholder" data-testid="link-logo">
+          <Link href="/" className="logo-placeholder group order-first flex h-11 w-[124px] items-center justify-center justify-self-start md:order-none md:h-14 md:w-[154px] md:justify-self-center" aria-label="Official L’ANAK logo placeholder" data-testid="link-logo">
             <div className="text-center text-[8px] font-bold uppercase tracking-[.15em] opacity-50">L'ANAK<br/>LOGO ASSET</div>
           </Link>
           <div className="flex items-center justify-end gap-2 md:gap-4">
@@ -124,17 +124,17 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
               <span className="opacity-35">|</span>
               <button onClick={() => setLang('en')} className={`transition-opacity ${lang === 'en' ? 'opacity-100' : 'opacity-45 hover:opacity-100'}`}>EN</button>
             </div>
-            <Link href="/favorites" className="pressable" aria-label={isAr ? 'المفضلة' : 'Favorites'} data-testid="link-header-favorites"><Heart size={16} strokeWidth={1.35} /></Link>
-            <Link href="/account" className="pressable" aria-label={isAr ? 'الحساب' : 'Account'} data-testid="link-header-account"><User size={16} strokeWidth={1.35} /></Link>
-            <button onClick={() => setBagOpen(true)} className="pressable relative flex items-center text-[12px] font-bold" aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'} data-testid="button-open-bag">
-              <ShoppingBag size={17} strokeWidth={1.5} />
-              {bagCount > 0 && <b className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#FAF7F0] px-1 text-[9px] text-[#49372D]" data-testid="text-bag-count">{bagCount}</b>}
+            <Link href="/favorites" className="header-utility" aria-label={isAr ? 'المفضلة' : 'Favorites'} data-testid="link-header-favorites"><Heart size={18} strokeWidth={1.25} /></Link>
+            <Link href="/account" className="header-utility" aria-label={isAr ? 'الحساب' : 'Account'} data-testid="link-header-account"><User size={18} strokeWidth={1.25} /></Link>
+            <button onClick={() => setBagOpen(true)} className="header-utility relative flex items-center text-[12px] font-bold" aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'} data-testid="button-open-bag">
+              <ShoppingBag size={19} strokeWidth={1.3} />
+              {bagCount > 0 && <b className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#F5F0E8] px-1 text-[9px] text-[#49372D]" data-testid="text-bag-count">{bagCount}</b>}
             </button>
             <button onClick={() => setMenuOpen(!menuOpen)} className="ms-1 md:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} data-testid="button-mobile-menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
           </div>
         </div>
         {menuOpen && (
-          <div className="absolute left-0 right-0 top-full border-b border-[#FAF7F0]/15 bg-[#49372D] px-5 pb-7 pt-3 text-[#FAF7F0] md:hidden" data-testid="menu-mobile">
+          <div className="absolute left-0 right-0 top-full border-b border-[#F5F0E8]/15 bg-[#49372D] px-5 pb-7 pt-3 text-[#F5F0E8] md:hidden" data-testid="menu-mobile">
             <div className="flex flex-col gap-5">
               {nav.map((item, index) => <Link key={item} href={links[index]} onClick={() => setMenuOpen(false)} className={`text-2xl font-light ${isAr ? 'font-arabic' : 'font-display'}`} data-testid={`link-mobile-${links[index].slice(1)}`}>{item}</Link>)}
               <div className="mt-2 flex items-center gap-5 border-t border-current/15 pt-5">

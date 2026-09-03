@@ -1,0 +1,187 @@
+Refine ONLY the website color system and navigation/header styling.
+
+Do NOT modify:
+- Hero layout
+- Hero copy
+- Hero image area
+- Category section
+- Any content section below the header
+
+We are working section by section.
+
+--------------------------------------------------
+UPDATED COLOR SYSTEM
+--------------------------------------------------
+
+Replace the current accent/cream system with:
+
+Espresso Brown:
+#49372D
+
+Warm Ivory:
+#F5F0E8
+
+Muted Champagne:
+#CBB98B
+
+IMPORTANT:
+Muted Champagne is NOT bright yellow and should never look like a vivid butter yellow.
+
+Use Muted Champagne sparingly for:
+- active navigation state
+- hover details
+- subtle underline
+- very small premium accents
+
+Do NOT use it as a large background color.
+
+Use Warm Ivory instead of bright cream/white where appropriate.
+
+Keep Espresso Brown as the main signature brand color.
+
+--------------------------------------------------
+NAVIGATION TYPOGRAPHY
+--------------------------------------------------
+
+The current navigation text is too small and too subtle.
+
+Make the desktop navigation noticeably more readable and visually present.
+
+Arabic navigation:
+Use Alexandria.
+If Alexandria is unavailable, use a refined modern Arabic sans-serif with a similar clean luxury feel.
+
+Desktop size:
+18px minimum
+Prefer approximately 18–19px depending on spacing.
+
+Font weight:
+500
+
+Do NOT use very light weight.
+
+The navigation should feel confident and premium, but not bold or bulky.
+
+Increase the horizontal spacing between each navigation item.
+
+The main navigation should clearly stand out from utility icons.
+
+English navigation:
+Use Manrope Medium.
+Approximately 15–16px.
+
+--------------------------------------------------
+NAVIGATION ITEMS
+--------------------------------------------------
+
+Arabic:
+
+الرئيسية
+أهدِ الآن
+اختياراتنا
+عن لأنّك
+بطاقة هدية
+
+English:
+
+HOME
+GIFT NOW
+OUR PICKS
+ABOUT L’ANAK
+GIFT CARD
+
+Keep Favorites, Account, AR | EN and Gift Bag as utility actions.
+
+--------------------------------------------------
+HOVER INTERACTION
+--------------------------------------------------
+
+The current hover/active state is too subtle.
+
+Make it more obvious that a navigation item is interactive.
+
+On hover:
+
+1. Change the navigation text from Warm Ivory to Muted Champagne #CBB98B.
+
+2. Add a refined underline underneath the label.
+
+3. The underline should animate smoothly from 0% width to 100%.
+
+4. Add a very subtle upward movement:
+translateY(-1px)
+
+5. Use a smooth transition around 180–220ms.
+
+Do NOT use:
+- large background boxes
+- pills
+- glowing effects
+- heavy shadows
+- dramatic animation
+
+The effect should be clearly visible but still premium.
+
+--------------------------------------------------
+ACTIVE PAGE STATE
+--------------------------------------------------
+
+The currently active navigation item should remain clearly identifiable even when the mouse is not hovering.
+
+Use:
+Muted Champagne text
++
+a permanent thin underline.
+
+Make the underline slightly thicker than the hover line, but still elegant.
+
+Example:
+hover underline: 1px
+active underline: 2px
+
+Do not put a border around the navigation label.
+
+--------------------------------------------------
+LOGO
+--------------------------------------------------
+
+Increase the visual presence of the official L’ANAK logo slightly.
+
+Do NOT recreate it using text.
+
+Keep the uploaded logo asset.
+
+Give it more breathing room so it feels like the visual anchor of the navigation.
+
+--------------------------------------------------
+UTILITY ICONS
+--------------------------------------------------
+
+Keep Favorites, Account and Gift Bag minimal.
+
+Increase their size slightly if needed so they visually balance the larger navigation text.
+
+Use thin refined icon strokes.
+
+On hover:
+use Muted Champagne #CBB98B.
+
+Keep AR | EN clearly readable.
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do not redesign the header structure.
+
+Do not change page content.
+
+Do not touch the hero or any section below it.
+
+This task is ONLY:
+- update the approved brand colors
+- improve navigation font
+- enlarge navigation text
+- improve hover interaction
+- improve active page state
+- slightly strengthen logo and utility icon presence

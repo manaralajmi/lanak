@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @plugin "@tailwindcss/typography";
@@ -50,33 +50,33 @@
 }
 
 :root {
-  --background: 40 43% 96%;
+  --background: 36 39% 94%;
   --foreground: 18 24% 23%;
   --border: 35 18% 80%;
-  --card: 40 43% 96%;
+  --card: 36 39% 94%;
   --card-foreground: 18 24% 23%;
   --card-border: 35 18% 80%;
-  --sidebar: 40 43% 96%;
+  --sidebar: 36 39% 94%;
   --sidebar-foreground: 18 24% 23%;
   --sidebar-border: 35 18% 80%;
   --sidebar-primary: 18 24% 23%;
-  --sidebar-primary-foreground: 40 43% 96%;
-  --sidebar-accent: 45 58% 76%;
+  --sidebar-primary-foreground: 36 39% 94%;
+  --sidebar-accent: 43 36% 67%;
   --sidebar-accent-foreground: 18 24% 23%;
   --sidebar-ring: 18 24% 23%;
-  --popover: 40 43% 96%;
+  --popover: 36 39% 94%;
   --popover-foreground: 18 24% 23%;
   --popover-border: 35 18% 80%;
   --primary: 18 24% 23%;
-  --primary-foreground: 40 43% 96%;
-  --secondary: 45 58% 76%;
+  --primary-foreground: 36 39% 94%;
+  --secondary: 43 36% 67%;
   --secondary-foreground: 18 24% 23%;
   --muted: 38 20% 90%;
   --muted-foreground: 18 12% 47%;
-  --accent: 45 58% 76%;
+  --accent: 43 36% 67%;
   --accent-foreground: 18 24% 23%;
   --destructive: 18 24% 23%;
-  --destructive-foreground: 40 43% 96%;
+  --destructive-foreground: 36 39% 94%;
   --input: 35 18% 80%;
   --ring: 18 24% 23%;
   --app-font-sans: 'Manrope', 'IBM Plex Sans Arabic', sans-serif;
@@ -132,12 +132,13 @@
     @apply font-sans antialiased bg-background text-foreground;
     min-width: 320px;
   }
-  ::selection { background: #E8D59E; color: #49372D; }
+  ::selection { background: #CBB98B; color: #49372D; }
 }
 
 @layer utilities {
   .font-display { font-family: var(--app-font-serif); }
   .font-arabic { font-family: 'IBM Plex Sans Arabic', sans-serif; }
+  .font-nav-ar { font-family: 'Alexandria', 'IBM Plex Sans Arabic', sans-serif; }
   .writing-vertical { writing-mode: vertical-rl; }
   .hairline { border-color: rgba(73,55,45,.22); }
   .text-balance { text-wrap: balance; }
@@ -196,8 +197,9 @@
 .line-draw:hover::after { transform: scaleX(1); transform-origin: left; }
 .header-nav-link {
   position: relative;
-  opacity: .6;
-  transition: color .2s ease, opacity .2s ease;
+  color: #F5F0E8;
+  opacity: .9;
+  transition: color .2s ease, opacity .2s ease, transform .2s ease;
 }
 .header-nav-link::after {
   position: absolute;
@@ -205,21 +207,32 @@
   bottom: -.5rem;
   left: 0;
   height: 1px;
-  background: #E8D59E;
+  background: #CBB98B;
   content: '';
   opacity: 0;
-  transform: scaleX(.35);
+  transform: scaleX(0);
+  transform-origin: center;
   transition: opacity .2s ease, transform .2s ease;
 }
 .header-nav-link:hover,
 .header-nav-link.is-active {
-  color: #E8D59E;
+  color: #CBB98B;
   opacity: 1;
+  transform: translateY(-1px);
 }
 .header-nav-link:hover::after,
 .header-nav-link.is-active::after {
   opacity: 1;
   transform: scaleX(1);
+}
+.header-nav-link.is-active::after { height: 2px; }
+.header-utility {
+  color: #F5F0E8;
+  transition: color .2s ease, transform .2s ease;
+}
+.header-utility:hover {
+  color: #CBB98B;
+  transform: translateY(-1px);
 }
 .logo-placeholder {
   border: 1px solid currentColor;
