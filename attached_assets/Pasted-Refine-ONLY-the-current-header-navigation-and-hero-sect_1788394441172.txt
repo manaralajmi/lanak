@@ -1,0 +1,158 @@
+Refine ONLY the current header, navigation and hero section.
+
+Do NOT redesign the page from scratch.
+The current direction is much closer to the desired L’ANAK identity.
+
+KEEP:
+- The Espresso Brown hero background
+- The Butter Yellow accent
+- The Cream typography
+- The current editorial split composition
+- The packaging visual area on the left
+- The overall premium minimal direction
+
+Do NOT modify sections below the hero.
+
+1. ARABIC TYPOGRAPHY
+
+The current Arabic hero font is too heavy and visually bulky.
+
+Make the Arabic typography significantly more refined, elegant and editorial.
+
+Use a lighter contemporary Arabic typeface such as:
+IBM Plex Sans Arabic
+
+Use medium/light weights instead of very bold weights.
+
+The headline should still be large, but it needs more breathing room and a sophisticated luxury feel.
+
+Use this exact hierarchy:
+
+مو لازم يكون فيه سبب،
+أحيانًا أنت السبب.
+
+Then, after more visual breathing space:
+
+لأنّك أنت.
+
+Treat "لأنّك أنت." as the emotional signature/reveal.
+
+Use Butter Yellow #E8D59E for it.
+
+Do not make it as visually heavy as the main headline.
+
+2. LOGO
+
+Do NOT recreate the L’ANAK logo using a font.
+
+The current logo in the navigation is temporary.
+
+Create a clean placeholder area for the official L’ANAK logo, which I will upload separately.
+
+Do not alter the official logo when it is provided.
+
+3. NAVIGATION
+
+Refine the desktop navigation.
+
+Use:
+
+HOME
+SHOP
+GIFT CARDS
+HOW IT WORKS
+ABOUT
+
+When Arabic is selected:
+
+الرئيسية
+المتجر
+بطاقات الهدايا
+كيف تعمل
+عن لأنّك
+
+Keep the official L’ANAK logo as the visual anchor.
+
+Add minimal icons for:
+
+Search
+Favorites
+Account
+Gift Bag
+
+Replace the current text "English" with a refined:
+
+AR | EN
+
+language selector.
+
+Keep navigation thin, elegant and spacious.
+
+No hamburger menu on desktop.
+
+4. ANNOUNCEMENT BAR
+
+Keep the Butter Yellow announcement bar.
+
+Change the Arabic message to:
+
+"التوصيل لجميع مناطق الكويت"
+
+Keep it minimal.
+
+Do not make this area visually dominant.
+
+5. HERO LAYOUT
+
+Keep the current asymmetric editorial layout:
+visual on one side,
+message on the other.
+
+But improve the spacing.
+
+Give the headline more breathing room.
+
+Do not let the Arabic text feel crowded against the edges.
+
+Reduce visual weight rather than reducing impact.
+
+Keep the small editorial signature:
+
+L’ANAK — KUWAIT 2026
+
+6. CTA
+
+Keep only one main CTA:
+
+اكتشف الهدايا
+
+Make it feel editorial rather than like a standard button.
+
+Use a thin underline or subtle arrow interaction.
+
+Do not create a large rectangular button.
+
+7. HERO PACKAGING IMAGE
+
+KEEP the current image area and dimensions for now.
+
+Do not generate a new packaging image.
+
+Treat the current visual as a TEMPORARY placeholder.
+
+A custom L’ANAK hero packaging image will be provided later and should replace this image without changing the hero layout.
+
+8. IMPORTANT
+
+Do not:
+- change the brand colors
+- add gradients
+- add shadows everywhere
+- add random product photography
+- make the Arabic typography bold/heavy
+- redesign the page
+- modify sections below the hero
+
+The goal of this refinement is:
+LESS e-commerce.
+MORE editorial luxury brand.
