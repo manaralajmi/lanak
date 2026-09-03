@@ -118,16 +118,16 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
           <Link href="/" className="logo-placeholder group order-first flex h-11 w-[124px] items-center justify-center justify-self-start md:order-none md:h-14 md:w-[154px] md:justify-self-center" aria-label="Official L’ANAK logo placeholder" data-testid="link-logo">
             <div className="text-center text-[8px] font-bold uppercase tracking-[.15em] opacity-50">L'ANAK<br/>LOGO ASSET</div>
           </Link>
-          <div className="flex items-center justify-end gap-2 md:gap-4">
-            <div className="flex items-center gap-1 text-[9px] font-semibold tracking-[.08em] md:text-[10px] md:tracking-[.12em]" dir="ltr" aria-label="Language selector" data-testid="button-language-toggle">
+          <div className="flex items-center justify-end gap-2 md:gap-6 md:pl-4">
+            <div className="header-language flex items-center gap-1 text-[9px] font-semibold tracking-[.08em] md:text-[14px] md:tracking-[.08em]" dir="ltr" aria-label="Language selector" data-testid="button-language-toggle">
               <button onClick={() => setLang('ar')} className={`transition-opacity ${lang === 'ar' ? 'opacity-100' : 'opacity-45 hover:opacity-100'}`}>AR</button>
               <span className="opacity-35">|</span>
               <button onClick={() => setLang('en')} className={`transition-opacity ${lang === 'en' ? 'opacity-100' : 'opacity-45 hover:opacity-100'}`}>EN</button>
             </div>
-            <Link href="/favorites" className="header-utility" aria-label={isAr ? 'المفضلة' : 'Favorites'} data-testid="link-header-favorites"><Heart size={18} strokeWidth={1.25} /></Link>
-            <Link href="/account" className="header-utility" aria-label={isAr ? 'الحساب' : 'Account'} data-testid="link-header-account"><User size={18} strokeWidth={1.25} /></Link>
+            <Link href="/favorites" className="header-utility" aria-label={isAr ? 'المفضلة' : 'Favorites'} data-testid="link-header-favorites"><Heart size={18} strokeWidth={1.6} /></Link>
+            <Link href="/account" className="header-utility" aria-label={isAr ? 'الحساب' : 'Account'} data-testid="link-header-account"><User size={18} strokeWidth={1.6} /></Link>
             <button onClick={() => setBagOpen(true)} className="header-utility relative flex items-center text-[12px] font-bold" aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'} data-testid="button-open-bag">
-              <ShoppingBag size={19} strokeWidth={1.3} />
+              <ShoppingBag size={19} strokeWidth={1.6} />
               {bagCount > 0 && <b className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#F5F0E8] px-1 text-[9px] text-[#49372D]" data-testid="text-bag-count">{bagCount}</b>}
             </button>
             <button onClick={() => setMenuOpen(!menuOpen)} className="ms-1 md:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} data-testid="button-mobile-menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>

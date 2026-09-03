@@ -234,6 +234,22 @@
   color: #CBB98B;
   transform: translateY(-1px);
 }
+.header-language {
+  color: #F5F0E8;
+}
+.header-language button {
+  transition: color .2s ease, opacity .2s ease;
+}
+.header-language button:hover {
+  color: #CBB98B;
+  opacity: 1;
+}
+@media (min-width: 48rem) {
+  .header-utility svg {
+    width: 21px;
+    height: 21px;
+  }
+}
 .logo-placeholder {
   border: 1px solid currentColor;
   border-color: color-mix(in srgb, currentColor 32%, transparent);
