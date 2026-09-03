@@ -1,0 +1,105 @@
+Modify ONLY the animated text strip at the bottom of the hero.
+
+Do NOT change the hero layout, navigation, image, typography, colors, CTA, or any other section.
+
+I like the current moving-text animation, but I strongly dislike the current copy such as:
+"للشخص اللي يحتاج دفعة"
+"للشخص المفضل"
+"بدون سبب"
+
+Remove all of that copy.
+
+I want this moving element to become a distinctive signature interaction for L’ANAK.
+
+Create TWO very thin editorial marquee lines moving slowly in opposite directions.
+
+ARABIC MODE:
+
+LINE 01:
+لأنّك على بالي  ·  لأنّك تستاهل  ·  لأنّك فرحة  ·  لأنّك سند  ·  لأنّك موجود  ·  لأنّك أنت
+
+LINE 02:
+مو عيد ميلاد  ·  مو تخرج  ·  مو ذكرى  ·  مو مناسبة  ·  بس لأنّك
+
+The two lines should move in opposite directions.
+
+Line 01:
+right-to-left.
+
+Line 02:
+left-to-right.
+
+Do NOT make this look like a news ticker.
+
+It should feel like moving editorial typography in a contemporary fashion/lifestyle website.
+
+STYLE:
+
+Use small refined typography.
+Use Cream #FAF7F0 at reduced opacity for normal phrases.
+
+Use Butter Yellow #E8D59E selectively for emphasis.
+
+Add generous spacing between phrases.
+
+Use a very thin subtle divider between the two moving lines.
+
+No boxes.
+No pills.
+No backgrounds behind individual phrases.
+No icons.
+
+INTERACTION:
+
+When the user hovers over the marquee area:
+slow the movement smoothly.
+
+When hovering over an individual phrase:
+make that phrase transition to Butter Yellow #E8D59E.
+
+The phrase should slightly increase in visual emphasis without dramatically changing size.
+
+Make these emotional phrases clickable because they will later connect to emotion-based gift recommendations.
+
+SPECIAL MOMENT:
+
+Whenever the phrase:
+
+"لأنّك أنت"
+
+passes near the center of the viewport, subtly emphasize it.
+
+It can:
+- become Butter Yellow
+- slightly increase letter/word spacing
+- pause visually for a very short moment
+
+Then continue moving.
+
+Keep this extremely subtle and sophisticated.
+
+Do not use bouncing, glowing, flashing or typing effects.
+
+ENGLISH MODE:
+
+When EN is selected, replace the Arabic content with:
+
+LINE 01:
+THINKING OF YOU · YOU DESERVE IT · YOU MAKE ME SMILE · YOU’RE ALWAYS THERE · BECAUSE IT’S YOU
+
+LINE 02:
+NOT A BIRTHDAY · NOT A GRADUATION · NOT AN ANNIVERSARY · NO OCCASION NEEDED · JUST BECAUSE
+
+Keep the same opposite-direction animation.
+
+IMPORTANT:
+
+Respect prefers-reduced-motion.
+If reduced motion is enabled, show the phrases statically in an elegant wrapping layout.
+
+The purpose of this interaction is not decoration.
+
+It should quietly communicate the L’ANAK philosophy:
+
+We don't gift because of the occasion.
+We gift because of the person.

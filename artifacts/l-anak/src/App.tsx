@@ -25,7 +25,6 @@ const products: Product[] = [
 const copy = {
   en: {
     nav: ['Home', 'Shop', 'Gift cards', 'How it works', 'About'],
-    strip: 'For the friend who needs a lift  /  for your favourite person  /  for no reason at all',
     discoveryKicker: 'Not sure what to send?',
     discoveryTitle: 'Start with how\nyou want them to feel.',
     discoveryBody: 'No endless scrolling. No guessing their size. Just a feeling, translated into a little room of possibilities.',
@@ -33,7 +32,6 @@ const copy = {
   },
   ar: {
     nav: ['الرئيسية', 'المتجر', 'بطاقات الهدايا', 'كيف تعمل', 'عن لأنّك'],
-    strip: 'للشخص اللي يحتاج دفعة  /  للشخص المفضل  /  بدون سبب',
     discoveryKicker: 'محتار شنو ترسل؟',
     discoveryTitle: 'ابدأ من الشعور\nاللي تبيه يوصل.',
     discoveryBody: 'بدون تصفح طويل. بدون تخمين المقاس. إحساس واحد، يتحول إلى خيارات تشبههم.',
@@ -64,7 +62,7 @@ function App() {
           <SiteShell lang={lang} setLang={setLang} menuOpen={menuOpen} setMenuOpen={setMenuOpen} bagCount={bag.length} setBagOpen={setBagOpen} setToast={setToast} isAr={isAr}>
             <RoutedErrorBoundary>
               <Switch>
-                <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
+                 <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} setToast={setToast} /></Route>
                 <Route path="/shop"><Shop lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
                 <Route path="/gift-cards"><GiftCards lang={lang} setToast={setToast} /></Route>
                 <Route path="/how-it-works"><HowItWorks lang={lang} /></Route>
@@ -187,7 +185,7 @@ function HeroVisual() {
   );
 }
 
-function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t: typeof copy.en; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
+function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang: Lang; t: typeof copy.en; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[]; setToast: (message: string) => void }) {
   const isAr = lang === 'ar';
   return (
     <main className="w-full">
@@ -219,9 +217,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t:
         </div>
       </section>
 
-      <div className="overflow-hidden border-b border-[#FAF7F0]/15 bg-[#49372D] py-4 text-[#FAF7F0]">
-        <div className="marquee flex w-max items-center whitespace-nowrap text-[11px] font-bold uppercase tracking-[.18em]"><span className="px-6">{t.strip}</span><span className="px-6 text-[#E8D59E]">/</span><span className="px-6">{t.strip}</span><span className="px-6 text-[#E8D59E]">/</span><span className="px-6">{t.strip}</span></div>
-      </div>
+      <EditorialMarquee lang={lang} onPhraseClick={(phrase) => setToast(isAr ? `${phrase} — بنختار لك هدايا على هالإحساس` : `${phrase} — gift ideas for this feeling are coming`)} />
 
       <section className="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-36">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-[.8fr_1.2fr]">
@@ -244,6 +240,39 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t:
       </section>
       <Newsletter lang={lang} />
     </main>
+  );
+}
+
+function EditorialMarquee({ lang, onPhraseClick }: { lang: Lang; onPhraseClick: (phrase: string) => void }) {
+  const isAr = lang === 'ar';
+  const lineOne = isAr
+    ? ['لأنّك على بالي', 'لأنّك تستاهل', 'لأنّك فرحة', 'لأنّك سند', 'لأنّك موجود', 'لأنّك أنت']
+    : ['THINKING OF YOU', 'YOU DESERVE IT', 'YOU MAKE ME SMILE', 'YOU’RE ALWAYS THERE', 'BECAUSE IT’S YOU'];
+  const lineTwo = isAr
+    ? ['مو عيد ميلاد', 'مو تخرج', 'مو ذكرى', 'مو مناسبة', 'بس لأنّك']
+    : ['NOT A BIRTHDAY', 'NOT A GRADUATION', 'NOT AN ANNIVERSARY', 'NO OCCASION NEEDED', 'JUST BECAUSE'];
+  const renderLine = (phrases: string[], line: 'one' | 'two') => (
+    <div className={`marquee-line marquee-line--${line}`} dir={line === 'one' ? 'rtl' : 'ltr'}>
+      <div className="marquee-track">
+        {[...phrases, ...phrases].map((phrase, index) => (
+          <button
+            key={`${line}-${phrase}-${index}`}
+            type="button"
+            onClick={() => onPhraseClick(phrase)}
+            className={`marquee-phrase ${phrase === (isAr ? 'لأنّك أنت' : 'BECAUSE IT’S YOU') ? 'marquee-phrase--highlight' : ''}`}
+          >
+            {phrase}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+  return (
+    <div className="editorial-marquee border-b border-[#FAF7F0]/15 bg-[#49372D] py-3 text-[#FAF7F0]" aria-label={isAr ? 'مشاعر لأنّك' : 'L’ANAK feelings'}>
+      {renderLine(lineOne, 'one')}
+      <div className="marquee-divider" aria-hidden="true" />
+      {renderLine(lineTwo, 'two')}
+    </div>
   );
 }
 
