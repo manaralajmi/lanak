@@ -1,0 +1,182 @@
+Refine ONLY the website navigation/header.
+
+Do NOT modify:
+- Hero section
+- Hero image
+- Hero copy
+- Category section
+- Animations
+- Any section below the header
+
+We are working section by section.
+
+--------------------------------------------------
+NAVIGATION STRUCTURE
+--------------------------------------------------
+
+Replace the current main navigation with this exact Arabic navigation:
+
+الرئيسية
+أهدِ الآن
+اختياراتنا
+عن لأنّك
+بطاقة هدية
+
+English mode:
+
+HOME
+GIFT NOW
+OUR PICKS
+ABOUT L’ANAK
+GIFT CARD
+
+Keep the navigation simple, premium, and easy to understand.
+
+Do not use:
+SHOP
+DISCOVER
+HOW IT WORKS
+
+--------------------------------------------------
+UTILITY ACTIONS
+--------------------------------------------------
+
+On the opposite side of the navigation, keep these utility actions:
+
+Favorites
+Account
+AR | EN
+Gift Bag
+
+Use elegant minimal icons for:
+
+Favorites = heart
+Account = user/profile
+Gift Bag = shopping/gift bag
+
+Do not add unnecessary labels next to the icons on desktop unless needed for accessibility.
+
+Keep AR | EN clearly visible.
+
+Arabic mode:
+RTL
+
+English mode:
+LTR
+
+--------------------------------------------------
+FAVORITES LOGIC
+--------------------------------------------------
+
+Favorites must be linked to the user account.
+
+Users should see a heart icon on gift items, brands, or places.
+
+If a signed-in user selects the heart:
+save that item to their Favorites / Wishlist.
+
+If a user is NOT signed in and tries to save something:
+show a small elegant login prompt.
+
+Arabic message:
+
+"سجّل دخولك عشان نحفظ اختياراتك لك."
+
+English:
+
+"Sign in to save your favorites."
+
+Do not force login just to browse the website.
+
+--------------------------------------------------
+GIFT BAG LOGIC
+--------------------------------------------------
+
+Favorites and Gift Bag are NOT the same.
+
+Favorites:
+items the user wants to save for later.
+
+Gift Bag:
+items or vouchers the user has started preparing to send as a gift.
+
+Use a subtle item count badge on the Gift Bag icon only when it contains something.
+
+--------------------------------------------------
+NAVIGATION BEHAVIOR
+--------------------------------------------------
+
+Desktop:
+Show the complete navigation.
+Do NOT use a hamburger menu.
+
+Tablet/mobile:
+Use a clean hamburger menu for the main links.
+
+Keep quick access to:
+Favorites
+Account
+Gift Bag
+Language switch
+
+Make the mobile header intentional and uncluttered.
+
+--------------------------------------------------
+VISUAL STYLE
+--------------------------------------------------
+
+Keep the existing Espresso Brown #49372D header.
+
+Use:
+Cream #FAF7F0
+Butter Yellow #E8D59E only for subtle active/hover details.
+
+Use the official uploaded L’ANAK logo asset.
+
+Do NOT recreate the logo using a font.
+Do NOT redesign the logo.
+
+Navigation typography should be refined and relatively light.
+
+Use IBM Plex Sans Arabic for Arabic navigation.
+
+Avoid:
+- bulky Arabic fonts
+- oversized icons
+- large rounded navigation buttons
+- gradients
+- strong shadows
+- excessive dividers
+
+--------------------------------------------------
+INTERACTIONS
+--------------------------------------------------
+
+Hovering a navigation item:
+use a very subtle Butter Yellow underline or text transition.
+
+Active page:
+show a minimal visual indicator.
+
+Keep all animations subtle and fast.
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do not build the full pages yet.
+
+For now, make sure these routes/navigation destinations exist:
+
+Home
+Gift Now
+Our Picks
+About L’ANAK
+Gift Card
+Favorites
+Account
+Gift Bag
+
+Do NOT redesign those pages yet.
+
+This task is ONLY to refine the navigation structure, visual hierarchy, and basic navigation behavior.

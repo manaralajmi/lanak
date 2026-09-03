@@ -24,7 +24,7 @@ const products: Product[] = [
 
 const copy = {
   en: {
-    nav: ['Home', 'Shop', 'Gift cards', 'How it works', 'About'],
+    nav: ['HOME', 'GIFT NOW', 'OUR PICKS', 'ABOUT L’ANAK', 'GIFT CARD'],
     announcement: 'DELIVERING ACROSS KUWAIT',
     heroLine1: 'There doesn’t have to be a reason,',
     heroLine2: 'sometimes you are the reason.',
@@ -32,7 +32,7 @@ const copy = {
     heroCta: 'Discover Gifts',
   },
   ar: {
-    nav: ['الرئيسية', 'المتجر', 'بطاقات الهدايا', 'كيف تعمل', 'عن لأنّك'],
+    nav: ['الرئيسية', 'أهدِ الآن', 'اختياراتنا', 'عن لأنّك', 'بطاقة هدية'],
     announcement: 'التوصيل لجميع مناطق الكويت',
     heroLine1: 'مو لازم يكون فيه سبب،',
     heroLine2: 'أحيانًا ممكن تكون أنت السبب.',
@@ -48,6 +48,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [bagOpen, setBagOpen] = useState(false);
   const [toast, setToast] = useState('');
+  const isSignedIn = false;
   const isAr = lang === 'ar';
   const t = copy[lang];
 
@@ -55,7 +56,13 @@ function App() {
   useEffect(() => { if (!toast) return; const timer = window.setTimeout(() => setToast(''), 2500); return () => window.clearTimeout(timer); }, [toast]);
 
   const addToBag = (product: Product) => { setBag((items) => [...items, product]); setToast(isAr ? 'انضافت للشنطة' : 'Added to your gift bag'); };
-  const toggleFavorite = (id: string) => setFavorites((items) => items.includes(id) ? items.filter((item) => item !== id) : [...items, id]);
+  const toggleFavorite = (id: string) => {
+    if (!isSignedIn) {
+      setToast(isAr ? 'سجّل دخولك عشان نحفظ اختياراتك لك.' : 'Sign in to save your favorites.');
+      return;
+    }
+    setFavorites((items) => items.includes(id) ? items.filter((item) => item !== id) : [...items, id]);
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -66,6 +73,11 @@ function App() {
               <Switch>
                  <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} setToast={setToast} /></Route>
                 <Route path="/shop"><Shop lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
+                <Route path="/gift-now"><Shop lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
+                <Route path="/our-picks"><NavigationPlaceholder lang={lang} title="OUR PICKS" titleAr="اختياراتنا" /></Route>
+                <Route path="/favorites"><NavigationPlaceholder lang={lang} title="FAVORITES" titleAr="المفضلة" /></Route>
+                <Route path="/account"><NavigationPlaceholder lang={lang} title="ACCOUNT" titleAr="الحساب" /></Route>
+                <Route path="/gift-bag"><NavigationPlaceholder lang={lang} title="GIFT BAG" titleAr="شنطة الهدايا" /></Route>
                 <Route path="/coffee"><CategoryPlaceholder lang={lang} title="COFFEE" titleAr="قهوة" /></Route>
                 <Route path="/sweets"><CategoryPlaceholder lang={lang} title="SWEETS" titleAr="حلو" /></Route>
                 <Route path="/restaurants"><CategoryPlaceholder lang={lang} title="RESTAURANTS" titleAr="مطاعم" /></Route>
@@ -90,43 +102,46 @@ function App() {
 
 function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, setBagOpen, setToast, isAr }: { children: ReactNode; lang: Lang; setLang: (lang: Lang) => void; menuOpen: boolean; setMenuOpen: (open: boolean) => void; bagCount: number; setBagOpen: (open: boolean) => void; setToast: (message: string) => void; isAr: boolean }) {
   const [location] = useLocation();
-  const isHome = location === '/';
   const nav = copy[lang].nav;
-  const links = ['/', '/shop', '/gift-cards', '/how-it-works', '/about'];
+  const links = ['/', '/gift-now', '/our-picks', '/about', '/gift-cards'];
   
   return (
     <div className="min-h-[100dvh] flex flex-col bg-[#FAF7F0] text-[#49372D]">
       <div className="border-b border-[#49372D]/15 bg-[#E8D59E] px-5 py-[7px] text-center text-[9px] font-semibold tracking-[.18em] text-[#49372D]" data-testid="text-announcement">
         {copy[lang].announcement}
       </div>
-      <header className={`relative z-40 w-full border-b ${isHome ? 'border-[#FAF7F0]/15 bg-[#49372D] text-[#FAF7F0]' : 'border-[#49372D]/15 bg-[#FAF7F0] text-[#49372D]'}`}>
-        <div className="mx-auto grid max-w-[1440px] grid-cols-[1fr_auto] items-center gap-5 px-5 py-4 md:grid-cols-[1fr_auto_1fr] md:px-10 md:py-5">
+      <header className="relative z-40 w-full border-b border-[#FAF7F0]/15 bg-[#49372D] text-[#FAF7F0]">
+        <div className="mx-auto grid max-w-[1440px] grid-cols-[1fr_auto] items-center gap-4 px-5 py-4 md:grid-cols-[1fr_auto_1fr] md:px-10 md:py-5">
           <nav className="hidden items-center gap-[clamp(1.15rem,2vw,2.25rem)] md:flex" aria-label="Main navigation">
-            {nav.map((item, index) => <Link key={item} href={links[index]} className={`line-draw whitespace-nowrap text-[10px] font-semibold uppercase tracking-[.1em] transition-opacity ${location === links[index] ? 'opacity-100' : 'opacity-58 hover:opacity-100'}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
+            {nav.map((item, index) => <Link key={item} href={links[index]} className={`header-nav-link whitespace-nowrap text-[10px] font-medium tracking-[.08em] ${isAr ? 'font-arabic' : ''} ${location === links[index] ? 'is-active' : ''}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
           </nav>
           <Link href="/" className="logo-placeholder group order-first flex h-10 w-[116px] items-center justify-center justify-self-start md:order-none md:h-11 md:w-[132px] md:justify-self-center" aria-label="Official L’ANAK logo placeholder" data-testid="link-logo">
             <div className="text-center text-[8px] font-bold uppercase tracking-[.15em] opacity-50">L'ANAK<br/>LOGO ASSET</div>
           </Link>
-          <div className="flex items-center justify-end gap-3 md:gap-4">
-            <div className="hidden items-center gap-1 text-[10px] font-semibold tracking-[.12em] md:flex" dir="ltr" aria-label="Language selector" data-testid="button-language-toggle">
+          <div className="flex items-center justify-end gap-2 md:gap-4">
+            <div className="flex items-center gap-1 text-[9px] font-semibold tracking-[.08em] md:text-[10px] md:tracking-[.12em]" dir="ltr" aria-label="Language selector" data-testid="button-language-toggle">
               <button onClick={() => setLang('ar')} className={`transition-opacity ${lang === 'ar' ? 'opacity-100' : 'opacity-45 hover:opacity-100'}`}>AR</button>
               <span className="opacity-35">|</span>
               <button onClick={() => setLang('en')} className={`transition-opacity ${lang === 'en' ? 'opacity-100' : 'opacity-45 hover:opacity-100'}`}>EN</button>
             </div>
-            <Link href="/shop" className="pressable hidden md:block" aria-label={isAr ? 'بحث' : 'Search'} data-testid="link-header-search"><Search size={16} strokeWidth={1.35} /></Link>
-            <button onClick={() => setToast(isAr ? 'المفضلة محفوظة لك' : 'Your favorites are saved')} className="pressable hidden md:block" aria-label={isAr ? 'المفضلة' : 'Favorites'} data-testid="button-header-favorites"><Heart size={16} strokeWidth={1.35} /></button>
-            <button onClick={() => setToast(isAr ? 'الحساب قريباً' : 'Account access coming soon')} className="pressable hidden md:block" aria-label={isAr ? 'الحساب' : 'Account'} data-testid="button-header-account"><User size={16} strokeWidth={1.35} /></button>
+            <Link href="/favorites" className="pressable" aria-label={isAr ? 'المفضلة' : 'Favorites'} data-testid="link-header-favorites"><Heart size={16} strokeWidth={1.35} /></Link>
+            <Link href="/account" className="pressable" aria-label={isAr ? 'الحساب' : 'Account'} data-testid="link-header-account"><User size={16} strokeWidth={1.35} /></Link>
             <button onClick={() => setBagOpen(true)} className="pressable relative flex items-center text-[12px] font-bold" aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'} data-testid="button-open-bag">
               <ShoppingBag size={17} strokeWidth={1.5} />
-              {bagCount > 0 && <b className={`flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[9px] ${isHome ? 'bg-[#FAF7F0] text-[#49372D]' : 'bg-[#49372D] text-[#FAF7F0]'}`} data-testid="text-bag-count">{bagCount}</b>}
+              {bagCount > 0 && <b className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#FAF7F0] px-1 text-[9px] text-[#49372D]" data-testid="text-bag-count">{bagCount}</b>}
             </button>
-            <button onClick={() => setMenuOpen(!menuOpen)} className="ml-2 md:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} data-testid="button-mobile-menu">{menuOpen ? <X size={21} /> : <Menu size={21} />}</button>
+            <button onClick={() => setMenuOpen(!menuOpen)} className="ms-1 md:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} data-testid="button-mobile-menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
           </div>
         </div>
         {menuOpen && (
-          <div className={`absolute left-0 right-0 top-full border-b px-5 pb-7 pt-3 md:hidden ${isHome ? 'border-[#FAF7F0]/15 bg-[#49372D] text-[#FAF7F0]' : 'border-[#49372D]/20 bg-[#FAF7F0] text-[#49372D]'}`} data-testid="menu-mobile">
+          <div className="absolute left-0 right-0 top-full border-b border-[#FAF7F0]/15 bg-[#49372D] px-5 pb-7 pt-3 text-[#FAF7F0] md:hidden" data-testid="menu-mobile">
             <div className="flex flex-col gap-5">
-              {nav.map((item, index) => <Link key={item} href={links[index]} onClick={() => setMenuOpen(false)} className="font-display text-3xl" data-testid={`link-mobile-${links[index].slice(1)}`}>{item}</Link>)}
+              {nav.map((item, index) => <Link key={item} href={links[index]} onClick={() => setMenuOpen(false)} className={`text-2xl font-light ${isAr ? 'font-arabic' : 'font-display'}`} data-testid={`link-mobile-${links[index].slice(1)}`}>{item}</Link>)}
+              <div className="mt-2 flex items-center gap-5 border-t border-current/15 pt-5">
+                <Link href="/favorites" onClick={() => setMenuOpen(false)} aria-label={isAr ? 'المفضلة' : 'Favorites'}><Heart size={18} strokeWidth={1.3} /></Link>
+                <Link href="/account" onClick={() => setMenuOpen(false)} aria-label={isAr ? 'الحساب' : 'Account'}><User size={18} strokeWidth={1.3} /></Link>
+                <button onClick={() => { setMenuOpen(false); setBagOpen(true); }} aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'}><ShoppingBag size={18} strokeWidth={1.3} /></button>
+              </div>
               <div className="flex w-fit items-center gap-2 text-xs font-semibold tracking-[.14em]" dir="ltr" data-testid="button-mobile-language">
                 <button onClick={() => { setLang('ar'); setMenuOpen(false); }} className={lang === 'ar' ? 'opacity-100' : 'opacity-45'}>AR</button>
                 <span className="opacity-35">|</span>
@@ -278,6 +293,18 @@ function CategoryPlaceholder({ lang, title, titleAr }: { lang: Lang; title: stri
         <Link href="/" className="mt-12 inline-flex items-center gap-2 border-b border-[#49372D]/40 pb-1 text-xs font-semibold uppercase tracking-[.1em] transition-colors hover:border-[#49372D]">
           {isAr ? 'العودة للرئيسية' : 'BACK TO HOME'}
         </Link>
+      </div>
+    </main>
+  );
+}
+
+function NavigationPlaceholder({ lang, title, titleAr }: { lang: Lang; title: string; titleAr: string }) {
+  const isAr = lang === 'ar';
+  return (
+    <main className="min-h-[65vh] bg-[#FAF7F0] px-5 py-20 text-[#49372D] md:px-10 md:py-28">
+      <div className="mx-auto max-w-[1440px] border-t border-[#49372D]/20 pt-8">
+        <h1 className={`text-6xl font-light md:text-8xl ${isAr ? 'font-arabic leading-[1.15]' : 'font-display'}`}>{isAr ? titleAr : title}</h1>
+        <p className={`mt-6 text-sm opacity-60 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'قريباً.' : 'Coming soon.'}</p>
       </div>
     </main>
   );
