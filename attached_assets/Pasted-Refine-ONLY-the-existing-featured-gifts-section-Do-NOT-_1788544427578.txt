@@ -1,0 +1,369 @@
+Refine ONLY the existing featured gifts section:
+
+"إذا محتار، إحنا اخترنا لك."
+
+Do NOT modify:
+- Navbar
+- Hero
+- Category Discovery
+- "أنت تهدي، وهو يختار." section
+- Any section after this one
+
+We are refining the visual identity, typography, CTA,
+and the 4 featured gift cards.
+
+Do NOT add final photography yet.
+Keep image placeholders for now.
+
+--------------------------------------------------
+1. CHANGE THE SECTION BACKGROUND
+--------------------------------------------------
+
+The previous section is already Espresso Brown.
+
+I do NOT want another full Espresso Brown section immediately after it.
+
+Change THIS section to a light premium background:
+
+Warm Ivory / Cream
+
+Use a tone consistent with the existing L’ANAK light sections.
+
+The transition should create visual rhythm:
+
+Espresso Brown
+↓
+Warm Ivory / Cream
+
+Primary text:
+Espresso Brown #49372D
+
+Accent:
+Muted Champagne #CBB98B
+
+Do NOT introduce new brand colors.
+
+--------------------------------------------------
+2. FIX THE TYPOGRAPHY
+--------------------------------------------------
+
+The current main heading typography does NOT visually match
+the typography system used in the upper parts of the website.
+
+Use the SAME premium Arabic font family and typography system
+already established in the Hero and Category Discovery section.
+
+Do NOT introduce a new Arabic font.
+
+Keep exactly:
+
+"إذا محتار، إحنا اخترنا لك."
+
+Make it large and editorial,
+but slightly smaller than the main Hero headline.
+
+Use a refined weight — not excessively thin and not overly bold.
+
+The heading must visually feel like it belongs to the same website.
+
+--------------------------------------------------
+3. "اختيارات لأنّك"
+--------------------------------------------------
+
+The current:
+
+"اختيارات لأنّك"
+
+is TOO SMALL.
+
+Increase its size and visual presence.
+
+It should function as an elegant eyebrow / section label,
+not tiny decorative text.
+
+Use Muted Champagne #CBB98B.
+
+Make it clearly readable immediately,
+while still remaining secondary to the main headline.
+
+Give it comfortable spacing above the headline.
+
+--------------------------------------------------
+4. REDESIGN "شوف الكل"
+--------------------------------------------------
+
+The current "شوف الكل" text link feels disconnected from
+the CTA system used elsewhere on the website.
+
+Turn:
+
+"شوف الكل"
+
+into a proper button using the SAME CTA design language as:
+
+"يلا نهدي"
+and
+"يلا نبدأ"
+
+Because this section has a LIGHT background, adapt the colors accordingly.
+
+DEFAULT:
+
+- transparent background
+- 1px Espresso Brown #49372D border
+- Espresso Brown #49372D text
+- minimal arrow
+- border-radius: 7px
+- elegant comfortable padding
+
+HOVER:
+
+Use Muted Champagne #CBB98B at 30% opacity:
+
+background-color: rgba(203, 185, 139, 0.30);
+
+Keep:
+- text fully opaque
+- border clearly visible
+- arrow clearly visible
+
+Also:
+- move arrow slightly horizontally
+- lift button approximately 1px
+- smooth 250–300ms transition
+
+ACTIVE:
+
+scale approximately 0.98
+
+Do NOT use:
+- pill shape
+- glow
+- heavy shadow
+- solid background by default
+
+--------------------------------------------------
+5. FEATURED GIFT CARDS
+--------------------------------------------------
+
+Keep exactly 4 featured cards.
+
+IMPORTANT:
+
+These should NOT feel like traditional ecommerce products.
+
+L’ANAK is selling gifting moments and choices.
+
+Use these exact concepts:
+
+01
+
+"قهوتك علي"
+
+KD 5
+
+Category:
+قهوة
+
+
+02
+
+"دلّعي نفسج اليوم"
+
+KD 20
+
+Category:
+عناية
+
+
+03
+
+"الحلو علي"
+
+KD 10
+
+Category:
+حلو
+
+
+04
+
+"عشا اليوم علي"
+
+KD 25
+
+Category:
+مطاعم
+
+--------------------------------------------------
+6. CARD COPY
+--------------------------------------------------
+
+For now, display only:
+
+- number 01 / 02 / 03 / 04
+- favorite heart
+- image placeholder
+- Arabic gift title
+- category
+- price
+
+Do NOT display English translations underneath the Arabic titles.
+
+The website is currently in Arabic mode,
+so the cards should be Arabic only.
+
+The English copy should appear only when the user switches to EN mode.
+
+--------------------------------------------------
+7. CARD VISUAL STYLE
+--------------------------------------------------
+
+Because the section background is light,
+the cards need subtle definition without becoming generic boxes.
+
+Do NOT use heavy shadows.
+
+Do NOT use highly rounded cards.
+
+Use:
+
+- clean editorial proportions
+- very subtle thin border
+- minimal or near-zero corner radius
+- generous internal spacing
+- strong photography area prepared for images later
+
+The cards should feel like curated gift selections,
+not standard product tiles.
+
+Keep the heart icon.
+
+The heart must remain interactive for Favorites.
+
+--------------------------------------------------
+8. IMAGE PLACEHOLDERS
+--------------------------------------------------
+
+Do NOT add final images yet.
+
+Create elegant placeholders for:
+
+01 — Coffee
+02 — Self-Care
+03 — Sweets
+04 — Dining
+
+We will replace all photography at the final stage.
+
+Do NOT use:
+- AI-generated images
+- stock images
+- icons
+- L’ANAK logo as the product image
+
+Use simple neutral placeholders only.
+
+--------------------------------------------------
+9. CARD HOVER INTERACTION
+--------------------------------------------------
+
+Each full card should be clickable.
+
+On hover:
+
+- image area scales approximately 1.02
+- title becomes slightly more prominent
+- thin border becomes slightly stronger
+- minimal arrow can subtly appear near the title if appropriate
+
+Keep the interaction sophisticated.
+
+No dramatic zoom.
+No bounce.
+No glow.
+No heavy shadow.
+
+Transition:
+approximately 300ms.
+
+--------------------------------------------------
+10. FAVORITES
+--------------------------------------------------
+
+Keep the heart icon in each card.
+
+Default:
+outline heart.
+
+On click:
+heart fills using Muted Champagne #CBB98B.
+
+Use a subtle scale interaction when saved.
+
+Do NOT use a dramatic animation.
+
+This should connect to the user's Favorites functionality.
+
+--------------------------------------------------
+11. SECTION COMPOSITION
+--------------------------------------------------
+
+Maintain the editorial direction of the website.
+
+Suggested hierarchy:
+
+اختيارات لأنّك
+
+إذا محتار، إحنا اخترنا لك.
+
+[ شوف الكل ← ]
+
+then
+
+01        02        03        04
+gift      gift      gift      gift
+
+Give the heading area generous breathing room,
+but do not create excessive empty vertical space.
+
+The section should feel curated and premium.
+
+--------------------------------------------------
+RESPONSIVE
+--------------------------------------------------
+
+Desktop:
+4 cards in one elegant row if space allows.
+
+Tablet:
+2 × 2 layout.
+
+Mobile:
+Use a clean 1-column layout or a refined horizontal swipe experience
+if that better matches the existing architecture.
+
+Do NOT shrink four cards into a cramped mobile row.
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do NOT modify any other section.
+
+Do NOT add photography yet.
+
+Do NOT create new categories.
+
+Do NOT change the established brand colors.
+
+Do NOT change the website's existing Arabic font family.
+
+The final feeling should be:
+
+"إذا محتار، إحنا اخترنا لك."
+
+Not a product catalogue.
+
+It should feel like L’ANAK personally curated
+four gifting ideas for the customer.

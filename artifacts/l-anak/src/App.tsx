@@ -23,6 +23,13 @@ const products: Product[] = [
   { id: 'coffee', name: 'Coffee, on me', ar: 'القهوة علي', note: 'A warm cup from wherever they are.', price: 5, category: 'coffee', mark: '06' },
 ];
 
+const featuredGifts: (Product & { categoryAr: string; categoryEn: string; placeholder: string })[] = [
+  { id: 'featured-coffee', name: 'Coffee is on me', ar: 'قهوتك علي', note: '', price: 5, category: 'coffee', categoryAr: 'قهوة', categoryEn: 'Coffee', placeholder: 'COFFEE IMAGE', mark: '01' },
+  { id: 'featured-care', name: 'Treat yourself today', ar: 'دلّعي نفسج اليوم', note: '', price: 20, category: 'care', categoryAr: 'عناية', categoryEn: 'Self-Care', placeholder: 'SELF-CARE IMAGE', mark: '02' },
+  { id: 'featured-sweets', name: 'Sweets are on me', ar: 'الحلو علي', note: '', price: 10, category: 'sweets', categoryAr: 'حلو', categoryEn: 'Sweets', placeholder: 'SWEETS IMAGE', mark: '03' },
+  { id: 'featured-dining', name: 'Dinner is on me', ar: 'عشا اليوم علي', note: '', price: 25, category: 'dining', categoryAr: 'مطاعم', categoryEn: 'Dining', placeholder: 'DINING IMAGE', mark: '04' },
+];
+
 const copy = {
   en: {
     nav: ['HOME', 'GIFT NOW', 'OUR PICKS', 'ABOUT L’ANAK', 'GIFT CARD'],
@@ -210,11 +217,29 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
 
       <HowLanakWorks lang={lang} />
 
-      <section className="bg-[#49372D] px-5 py-20 text-[#FAF7F0] md:px-10 md:py-32">
+      <section className="featured-gifts bg-[#F5F0E8] px-5 py-20 text-[#49372D] md:px-10 md:py-32" id="featured-gifts">
         <div className="mx-auto max-w-[1440px]">
-          <div className="mb-16 flex items-end justify-between gap-5"><div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.22em] text-[#E8D59E]">{isAr ? 'اختيارات لأنّك' : 'The L’ANAK edit'}</p><h2 className={`font-display text-5xl leading-[.88] tracking-[-.04em] md:text-7xl ${isAr ? 'font-arabic leading-[1.1] font-light' : ''}`}>{isAr ? 'إذا محتار، إحنا اخترنا لك.' : 'Gifts that say<br /><i>enough.</i>'}</h2></div><Link href="/shop" className="line-draw hidden pb-1 text-xs font-bold md:block" data-testid="link-view-edit">{isAr ? 'شوف الكل' : 'View the edit'} <ArrowUpRight size={14} className="inline" /></Link></div>
-          <div className="grid grid-cols-2 gap-x-4 gap-y-12 md:grid-cols-4 md:gap-x-6">
-            {products.slice(0, 4).map((product, index) => <ProductTile key={product.id} product={product} dark lang={lang} index={index} addToBag={addToBag} toggleFavorite={toggleFavorite} isFavorite={favorites.includes(product.id)} />)}
+          <div className="featured-gifts-heading">
+            <div>
+              <p className={`featured-gifts-eyebrow ${isAr ? 'font-nav-ar' : ''}`}>{isAr ? 'اختيارات لأنّك' : 'The L’ANAK edit'}</p>
+              <h2 className={isAr ? 'font-nav-ar' : 'font-display'}>{isAr ? 'إذا محتار، إحنا اخترنا لك.' : 'If you’re unsure, we chose for you.'}</h2>
+            </div>
+            <Link href="/shop" className="featured-gifts-cta group" data-testid="link-view-edit">
+              <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'شوف الكل' : 'View all'}</span>
+              {isAr ? <ArrowLeft size={17} strokeWidth={1.4} /> : <ArrowRight size={17} strokeWidth={1.4} />}
+            </Link>
+          </div>
+          <div className="featured-gifts-grid">
+            {featuredGifts.map((product) => (
+              <FeaturedGiftCard
+                key={product.id}
+                product={product}
+                lang={lang}
+                addToBag={addToBag}
+                toggleFavorite={toggleFavorite}
+                isFavorite={favorites.includes(product.id)}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -397,6 +422,51 @@ function ProductTile({ product, dark = false, lang, index, addToBag, toggleFavor
     </div>
     <div className="flex items-start justify-between gap-3"><div><h3 className={`text-[13px] font-bold ${isAr ? 'font-arabic' : ''}`}>{isAr ? product.ar : product.name}</h3><p className={`mt-1 text-[11px] opacity-55 ${isAr ? 'font-arabic' : ''}`}>{isAr ? product.name : product.note}</p></div><span className="text-[12px] font-bold">{product.price} KD</span></div>
   </div>;
+}
+
+function FeaturedGiftCard({ product, lang, addToBag, toggleFavorite, isFavorite }: {
+  product: Product & { categoryAr: string; categoryEn: string; placeholder: string };
+  lang: Lang;
+  addToBag: (product: Product) => void;
+  toggleFavorite: (id: string) => void;
+  isFavorite: boolean;
+}) {
+  const isAr = lang === 'ar';
+  return (
+    <article
+      className="featured-gift-card group"
+      onClick={() => addToBag(product)}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') addToBag(product);
+      }}
+      role="button"
+      tabIndex={0}
+      data-testid={`card-featured-${product.id}`}
+    >
+      <div className="featured-gift-image">
+        <span className="featured-gift-number">{product.mark}</span>
+        <button
+          onClick={(event) => {
+            event.stopPropagation();
+            toggleFavorite(product.id);
+          }}
+          className={`featured-gift-heart ${isFavorite ? 'is-favorite' : ''}`}
+          aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          data-testid={`button-favorite-${product.id}`}
+        >
+          <Heart size={19} strokeWidth={1.4} fill={isFavorite ? 'currentColor' : 'none'} />
+        </button>
+        <span className="featured-gift-placeholder">{product.placeholder}</span>
+      </div>
+      <div className="featured-gift-copy">
+        <div>
+          <span className={`featured-gift-category ${isAr ? 'font-nav-ar' : ''}`}>{isAr ? product.categoryAr : product.categoryEn}</span>
+          <h3 className={isAr ? 'font-nav-ar' : 'font-display'}>{isAr ? product.ar : product.name}</h3>
+        </div>
+        <span className="featured-gift-price">KD {product.price}</span>
+      </div>
+    </article>
+  );
 }
 
 function Shop({ lang, addToBag, toggleFavorite, favorites }: { lang: Lang; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
