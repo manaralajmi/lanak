@@ -1,0 +1,371 @@
+Redesign ONLY the “عن لأنّك” / About L’ANAK page.
+
+IMPORTANT:
+Do NOT redesign the entire website.
+Do NOT modify:
+- Navbar
+- Hero/homepage
+- “أهدِ الآن”
+- “اختياراتنا”
+- Gift Card page
+- Footer global styling
+- Brand colors
+- Existing logo assets
+
+The goal is to make the About page feel more premium, visual and editorial,
+without making it longer or adding unnecessary text.
+
+The current page relies too heavily on large text-only sections.
+Keep the story SHORT, but introduce luxury editorial photography moments
+so the page feels like a distinctive premium Kuwaiti gifting platform.
+
+────────────────────────
+
+GLOBAL DESIGN CONSISTENCY
+
+The About page MUST follow the exact same visual system already used
+throughout the current L’ANAK website.
+
+Match the existing website for:
+
+- Arabic font family
+- heading typography
+- heading weight
+- body typography
+- font sizing hierarchy
+- line-height
+- letter spacing
+- section spacing
+- margins
+- content width
+- RTL alignment
+- button design
+- hover states
+- animation speed
+- Espresso Brown
+- Cream
+- Muted Champagne accents
+
+Do NOT introduce a new typography style.
+
+Some typography on the current About page feels disconnected
+from the rest of the website.
+
+Use the same visual rhythm established on the homepage.
+
+Large statements should feel elegant and editorial,
+NOT oversized to the point where words are cropped
+or dominate multiple screens.
+
+Maintain generous negative space,
+but avoid huge empty areas with no visual purpose.
+
+────────────────────────
+01 — OPENING / منو إحنا؟
+────────────────────────
+
+Keep the existing opening story.
+
+However, “منو إحنا؟” is currently too small.
+
+Make:
+
+منو إحنا؟
+
+a clear introductory heading,
+using the same heading hierarchy/style used elsewhere on the website.
+
+It should immediately feel intentional and noticeable,
+not like a tiny label.
+
+Then reveal the statement through subtle scroll animation:
+
+مو لازم يكون فيه سبب،
+أحيانًا ممكن تكون أنت السبب.
+
+Then:
+
+لأنّك أنت.
+
+Use Muted Champagne for “لأنّك أنت.”
+
+Animation:
+- subtle fade + upward reveal
+- line-by-line
+- elegant timing
+- no dramatic movement
+- no bouncing
+- respect prefers-reduced-motion
+
+The opening should feel like a luxury campaign introduction.
+
+────────────────────────
+02 — EDITORIAL BRAND IMAGE
+────────────────────────
+
+Immediately after the opening,
+introduce ONE large editorial campaign image area.
+
+This should visually break the text-heavy experience.
+
+The photography direction:
+
+Premium L’ANAK gifting campaign.
+Close-up editorial composition.
+Luxury gift packaging.
+Ribbon.
+Gift card/message card.
+Tissue paper or packaging detail.
+Warm cinematic lighting.
+Cream / Espresso Brown / Muted Champagne palette.
+Minimal composition.
+Strong negative space.
+Fashion/fragrance campaign feeling.
+
+IMPORTANT:
+
+Use the EXISTING L’ANAK logo asset already available in the project
+as part of the packaging/image presentation whenever appropriate.
+
+For example:
+- logo subtly printed on gift bag
+- logo on gift card
+- logo on packaging
+- logo on ribbon/tag
+
+DO NOT recreate the logo.
+DO NOT generate a different L’ANAK logo.
+DO NOT use random typography to imitate the logo.
+
+Use the actual existing logo asset from the website/project.
+
+If no final photography asset exists yet,
+create an elegant IMAGE PLACEHOLDER only
+with a clear internal label such as:
+
+L’ANAK EDITORIAL CAMPAIGN IMAGE
+
+Do not insert generic stock imagery.
+
+Image treatment:
+- wide editorial crop
+- no rounded card
+- no thick border
+- no large shadow
+- optional very subtle parallax/slow image movement on scroll
+- preserve premium minimalism
+
+────────────────────────
+03 — WHY L’ANAK / ليش لأنّك؟
+────────────────────────
+
+Keep the existing meaning and copy from the current About page.
+
+Do NOT add long paragraphs.
+
+Keep the key idea:
+
+لأن الهدية مو دايم تحتاج مناسبة.
+
+The supporting copy should remain concise and easy to read.
+
+Use the same typography scale and spacing rhythm
+as the rest of the L’ANAK website.
+
+Do NOT create another giant text-only screen.
+
+────────────────────────
+04 — FEELINGS VISUAL STRIP
+────────────────────────
+
+Replace the current large empty brown section where these words
+are individually floating across the screen:
+
+محبة.
+امتنان.
+اشتياق.
+تقدير.
+
+Do NOT keep them as isolated text with huge empty spacing.
+
+Instead create a premium editorial visual strip/gallery
+containing FOUR visual moments:
+
+محبة.
+امتنان.
+اشتياق.
+تقدير.
+
+Each visual represents a different detail of gifting.
+
+Examples:
+
+محبة.
+A beautiful L’ANAK gift/card detail.
+
+امتنان.
+Premium wrapping / ribbon / packaging detail.
+
+اشتياق.
+A personal handwritten-style message card moment.
+
+تقدير.
+A finished L’ANAK gift ready to be given.
+
+Use the EXISTING L’ANAK logo asset subtly within relevant visuals.
+
+Desktop:
+four editorial frames in a sophisticated horizontal composition.
+
+Mobile:
+horizontal swipe/scroll or elegant stacked composition.
+
+Interaction:
+
+On hover:
+- image slowly scales around 1.02–1.04
+- subtle dark overlay appears
+- the Arabic feeling word becomes slightly more prominent
+- transition around 300–450ms
+
+No dramatic animation.
+No carousel arrows unless truly necessary.
+No generic cards.
+
+The result should feel like an editorial campaign,
+not an e-commerce product grid.
+
+────────────────────────
+05 — FROM KUWAIT, WITH AFFECTION
+────────────────────────
+
+Keep the current Kuwaiti brand story.
+
+Small introductory line:
+
+من الكويت، بالمودة.
+
+Main statement:
+
+لأنّك براند كويتي، يشبه أهله.
+
+Keep the existing supporting message about Kuwait,
+gifting, affection and giving without needing an occasion.
+
+Keep the reference to the cultural value of gifting
+and “تهادوا تحابوا” respectful and contextual.
+
+Do NOT turn this into a religious advertisement.
+
+Visually pair this section with ONE subtle lifestyle/editorial image.
+
+Photography direction:
+
+A warm human gifting moment.
+Hands passing a beautifully wrapped L’ANAK gift.
+Do not need to show full faces.
+Focus on gesture, hands, packaging and emotion.
+
+Use the actual existing L’ANAK logo asset on the packaging
+if branding is visible.
+
+This image should communicate:
+Kuwaiti warmth + contemporary luxury + human connection.
+
+────────────────────────
+06 — FINAL BRAND MOMENT
+────────────────────────
+
+End the About story with ONE strong visual moment.
+
+Use the existing message:
+
+إحنا ما نوصل هدية وبس.
+نوصل الشعور اللي وراها.
+
+Do NOT stretch this across multiple empty screens.
+
+Place it within or alongside a cinematic L’ANAK campaign image.
+
+Then reveal:
+
+محبة.
+امتنان.
+اشتياق.
+تقدير.
+
+in a subtle secondary treatment.
+
+Finish with the existing CTA:
+
+يلا نهدي
+
+Use EXACTLY the same CTA/button design system
+already established elsewhere on the website.
+
+Do not invent another button style.
+
+The CTA should lead directly to the existing “أهدِ الآن” gifting flow.
+
+────────────────────────
+IMAGE / BRAND RULES
+────────────────────────
+
+The About page should NOT look like a flower shop.
+
+L’ANAK is a gifting PLATFORM.
+
+Visuals should represent different dimensions of gifting:
+- packaging
+- message cards
+- ribbons
+- gifting gestures
+- gift bags
+- subtle lifestyle moments
+- human connection
+
+Avoid showing gift boxes in every single image.
+
+Do not use generic AI-looking gift collages.
+
+Whenever L’ANAK branding appears inside a visual,
+use the EXISTING L’ANAK logo asset from the project.
+
+Maintain L’ANAK packaging philosophy:
+
+Plain/minimal box → branded ribbon
+Branded box → plain ribbon
+
+Never heavily brand both the box and ribbon.
+
+Keep branding subtle and premium.
+
+────────────────────────
+OVERALL EXPERIENCE
+────────────────────────
+
+The About page should feel like:
+
+Luxury editorial campaign
++
+Kuwaiti warmth
++
+modern gifting platform.
+
+It should NOT feel like:
+- a long About Us article
+- a Shopify template
+- a product catalogue
+- a collection of random sections
+- oversized typography experiments
+- endless scrolling text
+
+Use imagery to create rhythm between the text sections.
+
+Keep the page concise.
+
+Text → Visual → Story → Visual → Closing.
+
+Do not add any new sections beyond this structure.
+Do not rewrite the approved brand story unnecessarily.
+Do not change anything outside the About page.

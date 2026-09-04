@@ -593,89 +593,59 @@ function Reveal({ children, delay = 0, className = "", threshold = 0.2 }: { chil
 }
 
 function Section01() {
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    const t1 = setTimeout(() => setStep(1), 300);
-    const t2 = setTimeout(() => setStep(2), 1100);
-    const t3 = setTimeout(() => setStep(3), 1900);
-    const t4 = setTimeout(() => setStep(4), 3000);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
-  }, []);
-
-  const getStyle = (visibleStep: number) => {
-    const isVisible = step >= visibleStep;
-    return `transition-all duration-[1000ms] ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`;
-  };
-
   return (
-    <section className="min-h-[100dvh] flex flex-col justify-center bg-[#FAF7F0] text-[#49372D] px-5 py-24 md:px-10" data-testid="section-about-01">
+    <section className="bg-[#FAF7F0] text-[#49372D] px-5 pt-32 pb-20 md:px-10 md:pt-40 md:pb-28" data-testid="section-about-01">
       <div className="max-w-[1440px] mx-auto w-full flex flex-col items-center text-center">
-        <p className={`text-[11px] font-bold uppercase tracking-widest opacity-60 mb-16 ${getStyle(1)} font-nav-ar`} data-testid="text-about-eyebrow-1">
-          منو إحنا؟
-        </p>
+        <Reveal>
+          <h2 className="font-nav-ar text-[clamp(1.5rem,2.5vw,2rem)] font-medium mb-16 md:mb-24" data-testid="text-about-eyebrow-1">
+            منو إحنا؟
+          </h2>
+        </Reveal>
 
-        <h1 className="font-arabic text-[clamp(1.75rem,4.5vw,4.5rem)] font-light leading-[1.5] tracking-normal max-w-[900px]">
-          <div className="overflow-hidden py-2">
-            <div className={getStyle(1)}>مو لازم يكون فيه سبب،</div>
-          </div>
-          <div className="overflow-hidden py-2">
-            <div className={getStyle(2)}>أحيانًا ممكن تكون</div>
-          </div>
-          <div className="overflow-hidden py-2">
-            <div className={getStyle(3)}>أنت السبب.</div>
-          </div>
+        <h1 className="font-arabic text-[clamp(1.8rem,4vw,3.8rem)] font-light leading-[1.6] tracking-normal max-w-[900px]">
+          <Reveal delay={150}>
+            <div>مو لازم يكون فيه سبب،</div>
+          </Reveal>
+          <Reveal delay={300}>
+            <div>أحيانًا ممكن تكون أنت السبب.</div>
+          </Reveal>
         </h1>
 
-        <div className="mt-20 overflow-hidden py-2">
-          <div className={`font-arabic text-[clamp(2.5rem,6vw,5.5rem)] font-light text-[#CBB98B] ${getStyle(4)}`} data-testid="text-about-payoff-1">
+        <Reveal delay={500}>
+          <div className="font-arabic text-[clamp(2.5rem,5.5vw,5rem)] font-light text-[#CBB98B] mt-16 md:mt-24" data-testid="text-about-payoff-1">
             لأنّك أنت.
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
 }
 
+function AboutPlaceholderImage({ label, showLogo = false, className = "", aspect = "aspect-[4/3]" }: { label: ReactNode, showLogo?: boolean, className?: string, aspect?: string }) {
+  return (
+    <div className={`relative flex items-center justify-center bg-[#DED4C5] overflow-hidden ${aspect} ${className}`}>
+      {showLogo && (
+        <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="absolute w-[20%] opacity-[0.15] object-contain" />
+      )}
+      <span className="relative z-10 text-[9px] font-bold uppercase tracking-[0.2em] text-[#49372D]/40 text-center px-4 leading-[1.6]">
+        {label}
+      </span>
+    </div>
+  );
+}
+
 function Section02() {
   return (
-    <section className="bg-[#49372D] text-[#FAF7F0] px-5 py-32 md:py-48 md:px-10" data-testid="section-about-02">
-      <div className="max-w-[900px] mx-auto">
+    <section className="px-5 md:px-10 pb-20 md:pb-32 bg-[#FAF7F0]" data-testid="section-about-02">
+      <div className="max-w-[1440px] mx-auto">
         <Reveal>
-          <p className="text-[11px] font-bold uppercase tracking-widest opacity-60 mb-12 font-nav-ar text-center md:text-right" data-testid="text-about-eyebrow-2">
-            ليش لأنّك؟
-          </p>
+          <AboutPlaceholderImage
+            label="L’ANAK EDITORIAL CAMPAIGN IMAGE"
+            showLogo
+            aspect="aspect-[4/3] md:aspect-[21/9]"
+            className="w-full"
+          />
         </Reveal>
-
-        <Reveal delay={100}>
-          <h2 className="font-arabic text-[clamp(2rem,4vw,3.8rem)] font-light leading-[1.3] mb-24 text-center md:text-right text-balance" data-testid="text-about-main-2">
-            لأن الهدية مو دايم تحتاج مناسبة.
-          </h2>
-        </Reveal>
-
-        <div className="flex flex-col gap-20 md:gap-32 text-[clamp(1.2rem,2vw,1.8rem)] font-arabic font-light leading-[1.8] opacity-90">
-          <Reveal>
-            <p className="text-center md:text-right max-w-[600px] ml-auto">
-              مو لازم ننطر ميلاد، تخرج، أو يوم معيّن<br/>
-              علشان نقول لشخص: أنت غالي علي.
-            </p>
-          </Reveal>
-
-          <Reveal>
-            <p className="text-center md:text-left max-w-[600px] mr-auto">
-              أحيانًا يكون عندنا شعور بسيط نبي نوصله؛<br/>
-              امتنان، محبة، اشتياق،<br/>
-              أو حتى «كنت أفكر فيك».
-            </p>
-          </Reveal>
-
-          <Reveal>
-            <p className="text-center md:text-right max-w-[600px] ml-auto text-[clamp(1.5rem,3vw,2.5rem)] text-[#CBB98B] mt-10">
-              والهدية؟<br/>
-              مجرد طريقة نوصل فيها هالشعور.
-            </p>
-          </Reveal>
-        </div>
       </div>
     </section>
   );
@@ -683,43 +653,38 @@ function Section02() {
 
 function Section03() {
   return (
-    <section className="bg-[#FAF7F0] text-[#49372D] px-5 py-32 md:py-48 md:px-10" data-testid="section-about-03">
-      <div className="max-w-[1000px] mx-auto flex flex-col items-center text-center">
-        <Reveal>
-          <p className="text-[11px] font-bold uppercase tracking-widest opacity-60 mb-12 font-nav-ar" data-testid="text-about-eyebrow-3">
-            من الكويت، بالمودة.
-          </p>
-        </Reveal>
-
-        <Reveal delay={100}>
-          <h2 className="font-arabic text-[clamp(2.2rem,4.5vw,4.5rem)] font-light leading-[1.35] mb-24 text-balance" data-testid="text-about-main-3">
-            لأنّك براند كويتي،<br/> يشبه أهله.
-          </h2>
-        </Reveal>
-
-        <div className="flex flex-col items-center gap-20 max-w-[700px] text-[clamp(1.2rem,2vw,1.8rem)] font-arabic font-light leading-[1.9] opacity-85">
+    <section className="bg-[#49372D] text-[#FAF7F0] px-5 py-24 md:py-36 md:px-10" data-testid="section-about-03">
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+        <div>
           <Reveal>
-            <p>
-              إحنا شعب نحب نتقرب من بعض بالمودة،<br/>
-              ونفرح بعض بهدية، حتى لو ما كان وراها سبب.
+            <p className="text-[11px] font-bold uppercase tracking-widest opacity-60 mb-8 font-nav-ar" data-testid="text-about-eyebrow-3">
+              ليش لأنّك؟
             </p>
           </Reveal>
+          <Reveal delay={100}>
+            <h2 className="font-arabic text-[clamp(2rem,3.5vw,3.2rem)] font-light leading-[1.3] text-balance" data-testid="text-about-main-3">
+              لأن الهدية مو دايم تحتاج مناسبة.
+            </h2>
+          </Reveal>
+        </div>
 
+        <div className="flex flex-col gap-10 text-[clamp(1.1rem,1.5vw,1.4rem)] font-arabic font-light leading-[1.8] opacity-85 md:mt-16">
           <Reveal>
             <p>
-              وفكرة «لأنّك» مستوحاة من قيمة التهادي والمحبة<br/>
-              اللي حثّنا عليها الرسول ﷺ في معنى «تهادوا تحابوا».
+              مو لازم ننطر ميلاد، تخرج، أو يوم معيّن<br/>
+              علشان نقول لشخص: أنت غالي علي.
             </p>
           </Reveal>
-
-          <Reveal threshold={0.5}>
-            <div className="w-px h-24 bg-[#49372D]/20 my-4" />
+          <Reveal delay={100}>
+            <p>
+              أحيانًا يكون عندنا شعور بسيط نبي نوصله؛<br/>
+              امتنان، محبة، اشتياق،<br/>
+              أو حتى «كنت أفكر فيك».
+            </p>
           </Reveal>
-
-          <Reveal>
-            <p className="text-[clamp(1.4rem,2.5vw,2.2rem)] font-normal text-[#49372D]">
-              مو لأن اليوم مناسبة،<br/>
-              بس لأن في شخص يستاهل يعرف مكانته عندك.
+          <Reveal delay={200}>
+            <p className="text-[clamp(1.3rem,2vw,1.6rem)] text-[#CBB98B] mt-4">
+              والهدية؟ مجرد طريقة نوصل فيها هالشعور.
             </p>
           </Reveal>
         </div>
@@ -729,53 +694,144 @@ function Section03() {
 }
 
 function Section04() {
+  const feelings = [
+    { word: "محبة.", image: "L’ANAK GIFT / CARD DETAIL", logo: true },
+    { word: "امتنان.", image: "PREMIUM WRAPPING DETAIL", logo: false },
+    { word: "اشتياق.", image: "HANDWRITTEN MESSAGE CARD", logo: false },
+    { word: "تقدير.", image: "FINISHED L’ANAK GIFT", logo: true },
+  ];
+
   return (
-    <section className="bg-[#49372D] text-[#FAF7F0] px-5 py-32 md:py-48 md:px-10 flex flex-col items-center text-center" data-testid="section-about-04">
-      <div className="max-w-[1000px] mx-auto w-full">
+    <section className="bg-[#FAF7F0] text-[#49372D] py-24 md:py-36 overflow-hidden" data-testid="section-about-04">
+      <div className="max-w-[1440px] mx-auto px-5 md:px-10">
         <Reveal>
-          <p className="text-[11px] font-bold uppercase tracking-widest opacity-60 mb-12 font-nav-ar" data-testid="text-about-eyebrow-4">
-            في النهاية،
-          </p>
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pb-8 no-scrollbar -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-4">
+            {feelings.map((f, i) => (
+              <div key={i} className="group relative w-[75vw] md:w-auto flex-shrink-0 snap-center cursor-pointer overflow-hidden bg-[#DED4C5] aspect-[3/4]">
+                <div className="absolute inset-0 flex items-center justify-center transition-transform duration-[450ms] ease-out group-hover:scale-[1.04]">
+                  {f.logo && (
+                    <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="absolute w-[25%] opacity-[0.15] object-contain" />
+                  )}
+                  <span className="relative z-10 text-[9px] font-bold uppercase tracking-[0.2em] text-[#49372D]/40 text-center px-4">
+                    {f.image}
+                  </span>
+                </div>
+                <div className="absolute inset-0 bg-[#49372D]/10 transition-colors duration-[450ms] ease-out group-hover:bg-[#49372D]/25 z-20" />
+                <div className="absolute bottom-6 md:bottom-8 left-0 right-0 text-center z-30 transition-transform duration-[450ms] ease-out group-hover:-translate-y-1">
+                  <span className="font-arabic text-[clamp(1.6rem,2.2vw,2rem)] font-light text-[#FAF7F0] opacity-85 group-hover:opacity-100 drop-shadow-sm transition-opacity duration-[450ms]">
+                    {f.word}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </Reveal>
+      </div>
+    </section>
+  );
+}
 
-        <Reveal delay={100}>
-          <h2 className="font-arabic text-[clamp(2rem,4vw,3.8rem)] font-light leading-[1.4] mb-32 text-balance" data-testid="text-about-main-4">
-            إحنا ما نوصل هدية وبس.<br/>
-            نوصل الشعور اللي وراها.
-          </h2>
-        </Reveal>
-
-        <div className="flex flex-col gap-16 md:gap-24 text-[clamp(2rem,4vw,3.5rem)] font-arabic font-light text-[#CBB98B]">
-          <Reveal><div className="opacity-90">محبة.</div></Reveal>
-          <Reveal><div className="opacity-90">امتنان.</div></Reveal>
-          <Reveal><div className="opacity-90">اشتياق.</div></Reveal>
-          <Reveal><div className="opacity-90">تقدير.</div></Reveal>
-        </div>
-
-        <div className="mt-32 md:mt-48 flex flex-col items-center gap-16">
+function Section05() {
+  return (
+    <section className="bg-[#FAF7F0] text-[#49372D] px-5 pb-24 md:pb-40 md:px-10" data-testid="section-about-05">
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-[1.1fr_1fr] gap-16 md:gap-24 items-center">
+        <div className="flex flex-col items-start text-right">
           <Reveal>
-            <p className="font-arabic text-[clamp(1.5rem,3vw,2.5rem)] font-light opacity-90 text-balance">
-              وأحيانًا…<br/>
-              بدون سبب.
+            <p className="text-[11px] font-bold uppercase tracking-widest opacity-60 mb-8 font-nav-ar" data-testid="text-about-eyebrow-5">
+              من الكويت، بالمودة.
             </p>
           </Reveal>
 
-          <Reveal>
-            <div className="font-arabic text-[clamp(3.5rem,7vw,6.5rem)] font-light mt-8 mb-16 text-[#CBB98B]" data-testid="text-about-final-payoff">
-              لأنّك أنت.
-            </div>
+          <Reveal delay={100}>
+            <h2 className="font-arabic text-[clamp(2.2rem,3.5vw,3.8rem)] font-light leading-[1.3] mb-12 text-balance" data-testid="text-about-main-5">
+              لأنّك براند كويتي،<br/> يشبه أهله.
+            </h2>
           </Reveal>
 
+          <div className="flex flex-col gap-8 text-[clamp(1.1rem,1.5vw,1.4rem)] font-arabic font-light leading-[1.9] opacity-85">
+            <Reveal>
+              <p>
+                إحنا شعب نحب نتقرب من بعض بالمودة،<br/>
+                ونفرح بعض بهدية، حتى لو ما كان وراها سبب.
+              </p>
+            </Reveal>
+
+            <Reveal>
+              <p>
+                وفكرة «لأنّك» مستوحاة من قيمة التهادي والمحبة<br/>
+                اللي حثّنا عليها الرسول ﷺ في معنى «تهادوا تحابوا».
+              </p>
+            </Reveal>
+
+            <Reveal>
+              <p className="text-[#CBB98B] font-normal mt-4 text-[clamp(1.2rem,1.8vw,1.5rem)]">
+                مو لأن اليوم مناسبة،<br/>
+                بس لأن في شخص يستاهل يعرف مكانته عندك.
+              </p>
+            </Reveal>
+          </div>
+        </div>
+
+        <div>
           <Reveal>
-            <Link
-              href="/#gift-start"
-              className="group inline-flex items-center gap-5 rounded-[7px] border border-[#CBB98B] px-9 py-5 text-[#CBB98B] transition-all duration-300 hover:bg-[rgba(203,185,139,0.30)] active:scale-[.98]"
-              data-testid="link-about-cta"
-            >
-              <span className="font-arabic text-[18px] font-medium leading-none">يلا نهدي</span>
-              <ArrowLeft size={19} strokeWidth={1.6} className="transition-transform duration-300 ease-out group-hover:-translate-x-1.5" />
-            </Link>
+            <AboutPlaceholderImage
+              label={<>LIFESTYLE / HUMAN CONNECTION<br/>GIFTING MOMENT</>}
+              showLogo
+              aspect="aspect-[4/5]"
+              className="w-full"
+            />
           </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Section06() {
+  return (
+    <section className="bg-[#49372D] text-[#FAF7F0] px-5 py-24 md:py-32 md:px-10" data-testid="section-about-06">
+      <div className="max-w-[1440px] mx-auto">
+        <div className="relative overflow-hidden min-h-[70vh] flex flex-col justify-center items-center text-center p-8 md:p-16 bg-[#3A2C23]">
+
+          <div className="absolute inset-0">
+            <img src={heroCampaignImage} alt="" className="w-full h-full object-cover opacity-25 object-center" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#49372D] via-[#49372D]/20 to-[#49372D]/60" />
+          </div>
+
+          <div className="relative z-10 flex flex-col items-center w-full">
+            <Reveal>
+              <h2 className="font-arabic text-[clamp(2.2rem,4vw,4.2rem)] font-light leading-[1.3] mb-16 md:mb-24 text-balance drop-shadow-md" data-testid="text-about-main-6">
+                إحنا ما نوصل هدية وبس.<br/>
+                نوصل الشعور اللي وراها.
+              </h2>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <div className="flex flex-wrap justify-center gap-6 md:gap-12 text-[clamp(1.4rem,2.5vw,2rem)] font-arabic font-light text-[#CBB98B] opacity-90 drop-shadow-md">
+                <span>محبة.</span>
+                <span className="opacity-40">•</span>
+                <span>امتنان.</span>
+                <span className="opacity-40">•</span>
+                <span>اشتياق.</span>
+                <span className="opacity-40">•</span>
+                <span>تقدير.</span>
+              </div>
+            </Reveal>
+
+            <Reveal delay={400}>
+              <div className="mt-20 md:mt-28">
+                <Link
+                  href="/#gift-start"
+                  className="hero-cta-button group inline-flex items-center gap-5 rounded-[7px] border px-9 py-5"
+                  data-testid="link-about-cta"
+                >
+                  <span className="font-arabic text-[18px] font-medium leading-none drop-shadow-md">يلا نهدي</span>
+                  <ArrowLeft size={19} strokeWidth={1.6} className="transition-transform duration-300 ease-out group-hover:-translate-x-1.5" />
+                </Link>
+              </div>
+            </Reveal>
+          </div>
+
         </div>
       </div>
     </section>
@@ -793,6 +849,8 @@ function About({ lang }: { lang: Lang }) {
       <Section02 />
       <Section03 />
       <Section04 />
+      <Section05 />
+      <Section06 />
     </main>
   );
 }
