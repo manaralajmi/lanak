@@ -1,6 +1,6 @@
-import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
-import { ArrowDown, ArrowUpRight, Check, ChevronDown, Coffee, Gift, Heart, MapPin, Menu, Minus, Plus, RotateCcw, Search, Send, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, Check, Coffee, Gift, Heart, Menu, Plus, Send, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -61,7 +61,6 @@ function App() {
   const [bag, setBag] = useState<Product[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [bagOpen, setBagOpen] = useState(false);
   const [toast, setToast] = useState('');
   const isSignedIn = false;
   const isAr = lang === 'ar';
@@ -83,30 +82,21 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}>
-          <SiteShell lang={lang} setLang={setLang} menuOpen={menuOpen} setMenuOpen={setMenuOpen} bagCount={bag.length} setBagOpen={setBagOpen} setToast={setToast} isAr={isAr}>
+          <SiteShell lang={lang} setLang={setLang} menuOpen={menuOpen} setMenuOpen={setMenuOpen} bagCount={bag.length} isAr={isAr}>
             <RoutedErrorBoundary>
               <Switch>
-                 <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} setToast={setToast} /></Route>
-                <Route path="/shop"><Shop lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
-                <Route path="/gift-now"><Shop lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
-                <Route path="/our-picks"><NavigationPlaceholder lang={lang} title="OUR PICKS" titleAr="اختياراتنا" /></Route>
-                <Route path="/favorites"><NavigationPlaceholder lang={lang} title="FAVORITES" titleAr="المفضلة" /></Route>
-                <Route path="/account"><NavigationPlaceholder lang={lang} title="ACCOUNT" titleAr="الحساب" /></Route>
-                <Route path="/gift-bag"><NavigationPlaceholder lang={lang} title="GIFT BAG" titleAr="شنطة الهدايا" /></Route>
-                <Route path="/coffee"><CategoryPlaceholder lang={lang} title="COFFEE" titleAr="قهوة" /></Route>
-                <Route path="/sweets"><CategoryPlaceholder lang={lang} title="SWEETS" titleAr="حلو" /></Route>
-                <Route path="/restaurants"><CategoryPlaceholder lang={lang} title="RESTAURANTS" titleAr="مطاعم" /></Route>
-                <Route path="/flowers"><CategoryPlaceholder lang={lang} title="FLOWERS" titleAr="ورد" /></Route>
-                <Route path="/self-care"><CategoryPlaceholder lang={lang} title="SELF-CARE" titleAr="عناية" /></Route>
-                <Route path="/gifts"><CategoryPlaceholder lang={lang} title="GIFTS" titleAr="هدايا" /></Route>
-                <Route path="/gift-cards"><GiftCards lang={lang} setToast={setToast} /></Route>
-                <Route path="/how-it-works"><HowItWorks lang={lang} /></Route>
+                <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
+                <Route path="/gift"><GiftJourney lang={lang} /></Route>
+                <Route path="/picks"><Picks lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
                 <Route path="/about"><About lang={lang} /></Route>
+                <Route path="/gift-card"><GiftCards lang={lang} setToast={setToast} /></Route>
+                <Route path="/favorites"><Favorites lang={lang} favorites={favorites} addToBag={addToBag} toggleFavorite={toggleFavorite} /></Route>
+                <Route path="/account"><Account lang={lang} /></Route>
+                <Route path="/bag"><BagPage lang={lang} bag={bag} setBag={setBag} setToast={setToast} /></Route>
                 <Route component={NotFound} />
               </Switch>
             </RoutedErrorBoundary>
           </SiteShell>
-          {bagOpen && <BagDrawer lang={lang} bag={bag} setBag={setBag} setBagOpen={setBagOpen} setToast={setToast} />}
           {toast && <div className="fixed bottom-5 left-1/2 z-50 -translate-x-1/2 border border-[#49372D] bg-[#49372D] px-5 py-3 text-sm text-[#FAF7F0] shadow-md" data-testid="status-toast">{toast}</div>}
         </WouterRouter>
         <Toaster />
@@ -115,10 +105,10 @@ function App() {
   );
 }
 
-function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, setBagOpen, setToast, isAr }: { children: ReactNode; lang: Lang; setLang: (lang: Lang) => void; menuOpen: boolean; setMenuOpen: (open: boolean) => void; bagCount: number; setBagOpen: (open: boolean) => void; setToast: (message: string) => void; isAr: boolean }) {
+function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, isAr }: { children: ReactNode; lang: Lang; setLang: (lang: Lang) => void; menuOpen: boolean; setMenuOpen: (open: boolean) => void; bagCount: number; isAr: boolean }) {
   const [location] = useLocation();
   const nav = copy[lang].nav;
-  const links = ['/', '/gift-now', '/our-picks', '/about', '/gift-cards'];
+  const links = ['/', '/gift', '/picks', '/about', '/gift-card'];
   
   return (
     <div className="min-h-[100dvh] flex flex-col bg-[#FAF7F0] text-[#49372D]">
@@ -128,9 +118,9 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
       <header className="relative z-40 w-full border-b border-[#F5F0E8]/15 bg-[#49372D] text-[#F5F0E8]">
         <div className="relative mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-4 px-5 py-4 md:grid-cols-[1fr_auto_1fr] md:px-10 md:py-5">
           <nav className="hidden items-center gap-[clamp(1.75rem,2.6vw,3rem)] md:flex" aria-label="Main navigation">
-            {nav.map((item, index) => <Link key={item} href={links[index]} className={`header-nav-link whitespace-nowrap font-medium ${isAr ? 'font-nav-ar text-[18px] leading-none' : 'text-[15px] tracking-[.04em] lg:text-[16px]'} ${location === links[index] ? 'is-active' : ''}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
+            {nav.map((item, index) => <Link key={item} href={links[index]} onClick={() => { if (links[index] === '/') window.scrollTo({ top: 0, behavior: 'smooth' }); }} className={`header-nav-link whitespace-nowrap font-medium ${isAr ? 'font-nav-ar text-[18px] leading-none' : 'text-[15px] tracking-[.04em] lg:text-[16px]'} ${location === links[index] ? 'is-active' : ''}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
           </nav>
-          <Link href="/" className="absolute left-1/2 top-1/2 flex h-11 w-[124px] -translate-x-1/2 -translate-y-1/2 items-center justify-center md:static md:h-14 md:w-[154px] md:translate-x-0 md:translate-y-0 md:justify-self-center" aria-label="L’ANAK home" data-testid="link-logo">
+           <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="absolute left-1/2 top-1/2 flex h-11 w-[124px] -translate-x-1/2 -translate-y-1/2 items-center justify-center md:static md:h-14 md:w-[154px] md:translate-x-0 md:translate-y-0 md:justify-self-center" aria-label="L’ANAK home" data-testid="link-logo">
             <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="h-full w-full object-contain" />
           </Link>
           <div className="flex items-center justify-end gap-2 md:gap-6 md:pl-4">
@@ -141,10 +131,10 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
             </div>
             <Link href="/favorites" className="header-utility" aria-label={isAr ? 'المفضلة' : 'Favorites'} data-testid="link-header-favorites"><Heart size={18} strokeWidth={1.6} /></Link>
             <Link href="/account" className="header-utility" aria-label={isAr ? 'الحساب' : 'Account'} data-testid="link-header-account"><User size={18} strokeWidth={1.6} /></Link>
-            <button onClick={() => setBagOpen(true)} className="header-utility relative flex items-center text-[12px] font-bold" aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'} data-testid="button-open-bag">
+            <Link href="/bag" className="header-utility relative flex items-center text-[12px] font-bold" aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'} data-testid="link-header-bag">
               <ShoppingBag size={19} strokeWidth={1.6} />
               {bagCount > 0 && <b className="flex h-4 min-w-4 items-center justify-center rounded-full bg-[#F5F0E8] px-1 text-[9px] text-[#49372D]" data-testid="text-bag-count">{bagCount}</b>}
-            </button>
+            </Link>
             <button onClick={() => setMenuOpen(!menuOpen)} className="ms-1 md:hidden" aria-label={menuOpen ? 'Close menu' : 'Open menu'} data-testid="button-mobile-menu">{menuOpen ? <X size={20} /> : <Menu size={20} />}</button>
           </div>
         </div>
@@ -155,7 +145,7 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, s
               <div className="mt-2 flex items-center gap-5 border-t border-current/15 pt-5">
                 <Link href="/favorites" onClick={() => setMenuOpen(false)} aria-label={isAr ? 'المفضلة' : 'Favorites'}><Heart size={18} strokeWidth={1.3} /></Link>
                 <Link href="/account" onClick={() => setMenuOpen(false)} aria-label={isAr ? 'الحساب' : 'Account'}><User size={18} strokeWidth={1.3} /></Link>
-                <button onClick={() => { setMenuOpen(false); setBagOpen(true); }} aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'}><ShoppingBag size={18} strokeWidth={1.3} /></button>
+                <Link href="/bag" onClick={() => setMenuOpen(false)} aria-label={isAr ? 'شنطة الهدايا' : 'Gift bag'}><ShoppingBag size={18} strokeWidth={1.3} /></Link>
               </div>
               <div className="flex w-fit items-center gap-2 text-xs font-semibold tracking-[.14em]" dir="ltr" data-testid="button-mobile-language">
                 <button onClick={() => { setLang('ar'); setMenuOpen(false); }} className={lang === 'ar' ? 'opacity-100' : 'opacity-45'}>AR</button>
@@ -186,7 +176,7 @@ function HeroVisual() {
   );
 }
 
-function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang: Lang; t: typeof copy.en; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[]; setToast: (message: string) => void }) {
+function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t: typeof copy.en; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
   const isAr = lang === 'ar';
   return (
     <main className="w-full">
@@ -203,7 +193,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
             </div>
             
             <div className="hero-cta absolute -bottom-6 left-1/2 z-20 -translate-x-1/2 md:-bottom-8">
-              <Link href="/shop" className="hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
+              <Link href="/gift" className="hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
                 <span className={`${isAr ? 'font-arabic text-[17px] font-medium' : 'text-[12px] font-bold uppercase tracking-[.15em]'}`}>
                   {isAr ? copy.ar.heroCta : copy.en.heroCta}
                 </span>
@@ -224,14 +214,27 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
 
       <HowLanakWorks lang={lang} />
 
-      <section className="featured-gifts bg-[#F5F0E8] px-5 py-20 text-[#49372D] md:px-10 md:py-32" id="featured-gifts">
+      <CuratedPicks lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} />
+      <section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 py-24 md:grid-cols-[1.15fr_.85fr] md:px-10 md:py-36">
+        <div className="border-t border-[#49372D]/20 pt-8"><p className="mb-12 text-[10px] font-bold uppercase tracking-[.22em] opacity-60">{isAr ? 'فكرة لأنّك' : 'The idea behind L’ANAK'}</p><p className={`max-w-[800px] font-display text-4xl leading-[1.1] tracking-[-.02em] md:text-6xl lg:text-7xl ${isAr ? 'font-arabic leading-[1.2] font-light' : ''}`}>"{isAr ? 'الهدية مو بالشيء، الهدية بالإحساس اللي وراها.' : 'The gift is not the thing. It is the thought that arrives with it.'}"</p></div>
+        <div className="flex flex-col justify-end border-t border-[#49372D]/20 pt-8"><p className={`mb-8 max-w-[330px] text-[15px] leading-relaxed opacity-70 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'لأن بعض الناس ما يحتاجون مناسبة عشان نتذكرهم… وجودهم بروحه سبب.' : 'Some people need no occasion to be remembered… their presence is reason enough.'}</p><Link href="/about" className="group flex w-fit items-center gap-3 text-[12px] font-bold uppercase tracking-[.1em]">{isAr ? 'اعرف قصتنا' : 'Read our story'}<ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></Link></div>
+      </section>
+      <Newsletter lang={lang} />
+    </main>
+  );
+}
+
+function CuratedPicks({ lang, addToBag, toggleFavorite, favorites }: { lang: Lang; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
+  const isAr = lang === 'ar';
+  return (
+    <section className="featured-gifts bg-[#F5F0E8] px-5 py-20 text-[#49372D] md:px-10 md:py-32" id="featured-gifts">
         <div className="mx-auto max-w-[1440px]">
           <div className="featured-gifts-heading">
             <div>
               <p className={`featured-gifts-eyebrow ${isAr ? 'font-nav-ar' : ''}`}>{isAr ? 'اختيارات لأنّك' : 'The L’ANAK edit'}</p>
               <h2 className={isAr ? 'font-nav-ar' : 'font-display'}>{isAr ? 'إذا محتار، إحنا اخترنا لك.' : 'If you’re unsure, we chose for you.'}</h2>
             </div>
-            <Link href="/shop" className="featured-gifts-cta group" data-testid="link-view-edit">
+            <Link href="/picks" className="featured-gifts-cta group" data-testid="link-view-edit">
               <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'شوف الكل' : 'View all'}</span>
               {isAr ? <ArrowLeft size={17} strokeWidth={1.4} /> : <ArrowRight size={17} strokeWidth={1.4} />}
             </Link>
@@ -250,13 +253,15 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
           </div>
         </div>
       </section>
-      <section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 py-24 md:grid-cols-[1.15fr_.85fr] md:px-10 md:py-36">
-        <div className="border-t border-[#49372D]/20 pt-8"><p className="mb-12 text-[10px] font-bold uppercase tracking-[.22em] opacity-60">{isAr ? 'الأشياء الصغيرة' : 'The little things'}</p><p className={`max-w-[800px] font-display text-4xl leading-[1.1] tracking-[-.02em] md:text-6xl lg:text-7xl ${isAr ? 'font-arabic leading-[1.2] font-light' : ''}`}>"{isAr ? 'الهدية مو بالشيء، الهدية بالإحساس اللي وراها.' : 'The gift is not the thing. It is the thought that arrives with it.'}"</p></div>
-        <div className="flex flex-col justify-end border-t border-[#49372D]/20 pt-8"><p className={`mb-8 max-w-[330px] text-[15px] leading-relaxed opacity-70 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'لأن كل شخص تحبه يستحق طريقة خاصة تقول له: أنا شايفك.' : 'Because everyone you love deserves a particular way of hearing: I see you.'}</p><Link href="/how-it-works" className="group flex w-fit items-center gap-3 text-[12px] font-bold uppercase tracking-[.1em]">{isAr ? 'اعرف قصتنا' : 'Read our story'}<ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></Link></div>
-      </section>
-      <Newsletter lang={lang} />
-    </main>
   );
+}
+
+function GiftJourney({ lang }: { lang: Lang }) {
+  return <main><GiftingCategories lang={lang} /><HowLanakWorks lang={lang} /></main>;
+}
+
+function Picks({ lang, addToBag, toggleFavorite, favorites }: { lang: Lang; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
+  return <main><CuratedPicks lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></main>;
 }
 
 function EmotionalTransition() {
@@ -273,12 +278,12 @@ function GiftingCategories({ lang }: { lang: Lang }) {
   const isAr = lang === 'ar';
   
   const cats = [
-    { id: 'coffee', en: 'COFFEE', label: 'COFFEE IMAGE', ar: 'قهوة', path: '/coffee', classes: 'category-editorial--coffee' },
-    { id: 'sweets', en: 'SWEETS', label: 'SWEETS IMAGE', ar: 'حلو', path: '/sweets', classes: 'category-editorial--sweets' },
-    { id: 'restaurants', en: 'DINING', label: 'DINING IMAGE', ar: 'مطاعم', path: '/restaurants', classes: 'category-editorial--dining' },
-    { id: 'flowers', en: 'FLOWERS', label: 'FLOWERS IMAGE', ar: 'ورد', path: '/flowers', classes: 'category-editorial--flowers' },
-    { id: 'self-care', en: 'SELF-CARE', label: 'SELF-CARE IMAGE', ar: 'عناية', path: '/self-care', classes: 'category-editorial--care' },
-    { id: 'gifts', en: 'GIFTS', label: 'GIFTS IMAGE', ar: 'هدايا', path: '/gifts', classes: 'category-editorial--gifts' },
+    { id: 'coffee', en: 'COFFEE', label: 'COFFEE IMAGE', ar: 'قهوة', path: '/gift?category=coffee', classes: 'category-editorial--coffee' },
+    { id: 'sweets', en: 'SWEETS', label: 'SWEETS IMAGE', ar: 'حلو', path: '/gift?category=sweets', classes: 'category-editorial--sweets' },
+    { id: 'restaurants', en: 'DINING', label: 'DINING IMAGE', ar: 'مطاعم', path: '/gift?category=restaurants', classes: 'category-editorial--dining' },
+    { id: 'flowers', en: 'FLOWERS', label: 'FLOWERS IMAGE', ar: 'ورد', path: '/gift?category=flowers', classes: 'category-editorial--flowers' },
+    { id: 'self-care', en: 'SELF-CARE', label: 'SELF-CARE IMAGE', ar: 'عناية', path: '/gift?category=self-care', classes: 'category-editorial--care' },
+    { id: 'gifts', en: 'GIFTS', label: 'GIFTS IMAGE', ar: 'هدايا', path: '/gift?category=gifts', classes: 'category-editorial--gifts' },
   ];
 
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
@@ -374,7 +379,7 @@ function HowLanakWorks({ lang }: { lang: Lang }) {
           ))}
         </div>
 
-        <Link href="/gift-now" className="how-lanak-link hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
+        <Link href="/gift" className="how-lanak-link hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
           <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'يلا نبدأ' : 'Start your gift'}</span>
           {isAr ? (
             <ArrowLeft size={17} strokeWidth={1.4} />
@@ -384,37 +389,6 @@ function HowLanakWorks({ lang }: { lang: Lang }) {
         </Link>
       </div>
     </section>
-  );
-}
-
-function CategoryPlaceholder({ lang, title, titleAr }: { lang: Lang; title: string; titleAr: string }) {
-  const isAr = lang === 'ar';
-  return (
-    <main className="w-full flex-1 flex items-center justify-center min-h-[60vh] bg-[#FAF7F0] px-5 py-24 text-[#49372D]">
-      <div className="text-center max-w-xl mx-auto">
-        <h1 className={`mb-6 ${isAr ? 'font-arabic text-5xl font-light leading-[1.3]' : 'font-display text-7xl leading-[0.9] tracking-[-.02em]'}`}>
-          {isAr ? titleAr : title}
-        </h1>
-        <p className={`text-sm opacity-60 ${isAr ? 'font-arabic' : ''}`}>
-          {isAr ? 'قريباً...' : 'Category page coming soon...'}
-        </p>
-        <Link href="/" className="mt-12 inline-flex items-center gap-2 border-b border-[#49372D]/40 pb-1 text-xs font-semibold uppercase tracking-[.1em] transition-colors hover:border-[#49372D]">
-          {isAr ? 'العودة للرئيسية' : 'BACK TO HOME'}
-        </Link>
-      </div>
-    </main>
-  );
-}
-
-function NavigationPlaceholder({ lang, title, titleAr }: { lang: Lang; title: string; titleAr: string }) {
-  const isAr = lang === 'ar';
-  return (
-    <main className="min-h-[65vh] bg-[#FAF7F0] px-5 py-20 text-[#49372D] md:px-10 md:py-28">
-      <div className="mx-auto max-w-[1440px] border-t border-[#49372D]/20 pt-8">
-        <h1 className={`text-6xl font-light md:text-8xl ${isAr ? 'font-arabic leading-[1.15]' : 'font-display'}`}>{isAr ? titleAr : title}</h1>
-        <p className={`mt-6 text-sm opacity-60 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'قريباً.' : 'Coming soon.'}</p>
-      </div>
-    </main>
   );
 }
 
@@ -480,22 +454,6 @@ function FeaturedGiftCard({ product, lang, addToBag, toggleFavorite, isFavorite 
   );
 }
 
-function Shop({ lang, addToBag, toggleFavorite, favorites }: { lang: Lang; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
-  const isAr = lang === 'ar';
-  const [active, setActive] = useState('all');
-  const [search, setSearch] = useState('');
-  const [feelingIndex, setFeelingIndex] = useState(0);
-  const categories = isAr ? [['all', 'الكل'], ['care', 'أهتم فيك'], ['celebrate', 'نحتفل'], ['coffee', 'قهوة'], ['thanks', 'شكراً']] : [['all', 'All gifts'], ['care', 'Take care'], ['celebrate', 'Celebrate'], ['coffee', 'Coffee'], ['thanks', 'Say thanks']];
-  const filtered = useMemo(() => products.filter((p) => (active === 'all' || p.category === active) && (`${p.name} ${p.note} ${p.ar}`).toLowerCase().includes(search.toLowerCase())), [active, search]);
-  const prompts = isAr ? ['أبي أقول له: أنا معاك', 'أبي أفرحهم', 'أبي أذكرهم فيني', 'أبي أقول شكراً'] : ['I want to say: I’ve got you', 'I want to make their day', 'I want to remind them of me', 'I want to say thank you'];
-  return <main className="mx-auto max-w-[1440px] px-5 pb-28 md:px-10">
-    <section className="border-b border-[#49372D]/25 pb-12 pt-10 md:pb-20 md:pt-20"><p className="mb-5 text-[10px] font-bold uppercase tracking-[.22em] opacity-55">{isAr ? 'اختار الإحساس' : 'Choose the feeling'}</p><div className="flex flex-col justify-between gap-8 md:flex-row md:items-end"><h1 className={`max-w-[750px] font-display text-6xl leading-[.86] tracking-[-.05em] md:text-9xl ${isAr ? 'font-arabic leading-[1.08]' : ''}`} data-testid="text-shop-title">{isAr ? 'خلّ الهدية تبدأ منك.' : 'Let the gift start\\nwith you.'}</h1><div className="flex w-full items-center border-b border-[#49372D] pb-2 md:w-[240px]"><Search size={16} className="mr-3 opacity-55" /><input value={search} onChange={(e) => setSearch(e.target.value)} className="w-full bg-transparent text-sm outline-none placeholder:text-[#49372D]/50" placeholder={isAr ? 'دور على شيء' : 'Search a feeling'} data-testid="input-search-gifts" /></div></div></section>
-    <section className="grid grid-cols-1 gap-8 border-b border-[#49372D]/25 py-8 md:grid-cols-[1fr_2fr] md:py-12"><div><p className="text-[10px] font-bold uppercase tracking-[.22em] opacity-55">{isAr ? 'اقتراح اليوم' : 'A little prompt'}</p><p className={`mt-3 font-display text-3xl leading-none ${isAr ? 'font-arabic leading-[1.2]' : ''}`} data-testid="text-changing-recommendation">{prompts[feelingIndex]}</p><button onClick={() => setFeelingIndex((i) => (i + 1) % prompts.length)} className="line-draw mt-5 flex items-center gap-2 text-[11px] font-bold" data-testid="button-change-recommendation"><RotateCcw size={13} />{isAr ? 'غير الاقتراح' : 'Change the feeling'}</button></div><div className="flex flex-wrap content-start gap-x-6 gap-y-3 md:justify-end">{categories.map(([id, label]) => <button key={id} onClick={() => setActive(id)} className={`border-b pb-1 text-[12px] font-bold transition-opacity ${active === id ? 'border-[#49372D] opacity-100' : 'border-transparent opacity-45 hover:opacity-100'}`} data-testid={`button-category-${id}`}>{label}</button>)}</div></section>
-    {filtered.length ? <section className="grid grid-cols-2 gap-x-4 gap-y-14 py-12 md:grid-cols-3 md:gap-x-8 md:gap-y-20">{filtered.map((product, index) => <ProductTile key={product.id} product={product} lang={lang} index={index} addToBag={addToBag} toggleFavorite={toggleFavorite} isFavorite={favorites.includes(product.id)} />)}</section> : <div className="border-b border-[#49372D]/25 py-28 text-center"><p className="font-display text-5xl">{isAr ? 'ما لقينا هذا الإحساس.' : 'That feeling is hiding.'}</p><button onClick={() => { setSearch(''); setActive('all'); }} className="line-draw mt-6 text-sm font-bold" data-testid="button-reset-shop">{isAr ? 'رجعني لكل الهدايا' : 'Take me back to all gifts'}</button></div>}
-    <section className="grid grid-cols-1 gap-6 border-t border-[#49372D]/25 pt-8 md:grid-cols-2"><Link href="/gift-cards" className="group flex min-h-[250px] flex-col justify-between bg-[#E8D59E] p-7" data-testid="link-shop-gift-card"><span className="flex justify-between text-[10px] font-bold uppercase tracking-[.18em]"><Gift size={18} strokeWidth={1.3} /><ArrowUpRight size={18} /></span><span className={`font-display text-4xl leading-[.9] ${isAr ? 'font-arabic leading-[1.15]' : ''}`}>{isAr ? 'مو عارف شنو يحب؟\\nخله يختار.' : 'Not sure what they want?\\nLet them choose.'}</span></Link><Link href="/gift-cards" className="group flex min-h-[250px] flex-col justify-between border border-[#49372D]/25 p-7" data-testid="link-shop-coffee-card"><span className="flex justify-between text-[10px] font-bold uppercase tracking-[.18em]"><Coffee size={18} strokeWidth={1.3} /><ArrowUpRight size={18} /></span><span className={`font-display text-4xl leading-[.9] ${isAr ? 'font-arabic leading-[1.15]' : ''}`}>{isAr ? 'قهوة؟\\nالقهوة علي.' : 'Coffee?\\nIt’s on me.'}</span></Link></section>
-  </main>;
-}
-
 function GiftCards({ lang, setToast }: { lang: Lang; setToast: (message: string) => void }) {
   const isAr = lang === 'ar';
   const [kind, setKind] = useState<'gift' | 'coffee'>('gift');
@@ -511,15 +469,9 @@ function GiftCards({ lang, setToast }: { lang: Lang; setToast: (message: string)
   </main>;
 }
 
-function HowItWorks({ lang }: { lang: Lang }) {
-  const isAr = lang === 'ar';
-  const steps = isAr ? [{ n: '١', t: 'اختار الإحساس', b: 'فكر في اللي تبيه يوصل، مو اللي تبيه ينشرى.' }, { n: '٢', t: 'أرسلها لهم', b: 'أضف اسمهم ورسالتك. نوصلها خلال لحظات.' }, { n: '٣', t: 'هم يختارون', b: 'يفتحون هديتهم ويختارون الشيء اللي يحبونه.' }] : [{ n: '01', t: 'Choose the feeling', b: 'Think about what you want to say, not what you want to buy.' }, { n: '02', t: 'Send it their way', b: 'Add their name and your note. We deliver it in moments.' }, { n: '03', t: 'They choose', b: 'They open their gift and pick the thing that feels like them.' }];
-  return <main><section className="mx-auto max-w-[1440px] px-5 pb-20 pt-12 md:px-10 md:pb-32 md:pt-20"><p className="mb-6 text-[10px] font-bold uppercase tracking-[.22em] opacity-55">{isAr ? 'طريقة مختلفة للهدايا' : 'A different kind of gifting'}</p><h1 className={`max-w-[1000px] font-display text-7xl leading-[.82] tracking-[-.055em] md:text-[10rem] ${isAr ? 'font-arabic leading-[1.05]' : ''}`} data-testid="text-how-title">{isAr ? 'الإحساس أولاً.\\nدائماً.' : 'The feeling\\ncomes first.'}</h1><div className="mt-16 flex items-center gap-4 text-[11px] font-bold uppercase tracking-[.16em]"><ArrowDown size={16} />{isAr ? 'ثلاث خطوات بسيطة' : 'Three simple steps'}</div></section><section className="border-y border-[#49372D]/20 bg-[#E8D59E]"><div className="mx-auto grid max-w-[1440px] grid-cols-1 md:grid-cols-3">{steps.map((step, index) => <div key={step.n} className={`min-h-[360px] border-b border-[#49372D]/25 p-7 md:border-b-0 md:border-r md:p-10 ${index === steps.length - 1 ? 'md:border-r-0' : ''}`} data-testid={`card-step-${index}`}><span className="font-display text-6xl">{step.n}</span><div className="mt-24"><h2 className={`font-display text-4xl leading-none ${isAr ? 'font-arabic leading-[1.15]' : ''}`}>{step.t}</h2><p className={`mt-4 max-w-[250px] text-sm leading-6 opacity-75 ${isAr ? 'font-arabic' : ''}`}>{step.b}</p></div></div>)}</div></section><section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 py-24 md:grid-cols-[1fr_1fr] md:px-10 md:py-36"><div className="flex min-h-[420px] items-center justify-center border border-[#49372D]/25 bg-[#49372D] text-center text-[#FAF7F0]" data-testid="visual-how-placeholder"><div><div className="mx-auto mb-8 flex h-28 w-24 rotate-[7deg] items-center justify-center border border-[#FAF7F0]/60"><span className="font-display text-4xl">L’</span></div><p className="text-[9px] font-bold uppercase tracking-[.2em] text-[#E8D59E]">packaging visual / arriving soon</p></div></div><div className="flex flex-col justify-center"><p className="mb-5 text-[10px] font-bold uppercase tracking-[.2em] opacity-55">{isAr ? 'ليش لَـنَك؟' : 'Why L’ANAK?'}</p><h2 className={`font-display text-6xl leading-[.87] tracking-[-.04em] md:text-8xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>{isAr ? 'لأنك تعرفهم،\\nحتى لو ما تعرف\\nشنو يبون.' : 'Because you know them,\\neven when you don’t\\nknow what they want.'}</h2><Link href="/shop" className="line-draw mt-10 flex w-fit items-center gap-3 text-xs font-bold" data-testid="link-how-shop">{isAr ? 'ابدأ هدية' : 'Start a gift'}<ArrowUpRight size={16} /></Link></div></section></main>;
-}
-
 function About({ lang }: { lang: Lang }) {
   const isAr = lang === 'ar';
-  return <main><section className="mx-auto max-w-[1440px] px-5 pb-20 pt-12 md:px-10 md:pb-32 md:pt-20"><p className="mb-6 text-[10px] font-bold uppercase tracking-[.22em] opacity-55">{isAr ? 'عن لَـنَك' : 'A note from L’ANAK'}</p><h1 className={`max-w-[1040px] font-display text-7xl leading-[.82] tracking-[-.055em] md:text-[10rem] ${isAr ? 'font-arabic leading-[1.05]' : ''}`} data-testid="text-about-title">{isAr ? 'الهدايا مو\\nأشياء.' : 'Gifting is not\\nabout things.'}</h1></section><section className="border-y border-[#49372D]/20 bg-[#49372D] text-[#FAF7F0]"><div className="mx-auto grid max-w-[1440px] grid-cols-1 md:grid-cols-[.8fr_1.2fr]"><div className="border-b border-[#FAF7F0]/20 p-7 md:border-b-0 md:border-r md:p-12"><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#E8D59E]">KWT / L’ANAK</span><p className="mt-40 text-[10px] uppercase tracking-[.16em] opacity-60">{isAr ? 'من الكويت، بحب' : 'From Kuwait, with feeling'}</p></div><div className="p-7 md:p-16"><p className={`max-w-[750px] font-display text-5xl leading-[.93] tracking-[-.03em] md:text-8xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>"{isAr ? 'نؤمن إن أجمل الهدايا هي اللي تخلي الشخص يحس إنك تعرفه.' : 'We believe the best gifts are the ones that make someone feel known.'}"</p><p className={`mt-14 max-w-[470px] text-sm leading-7 opacity-70 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'لَـنَك بدأت من سؤال بسيط: ليش لازم تعرف شنو يبي الشخص عشان تهديه؟ أحياناً كل اللي يحتاجه هو إحساس صادق، ومساحة يختار فيها بنفسه.' : 'L’ANAK started with a simple question: why do you have to know exactly what someone wants to give them something good? Sometimes all they need is a true feeling, and room to choose for themselves.'}</p></div></div></section><section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 py-24 md:grid-cols-[1fr_1fr] md:px-10 md:py-36"><div><p className="mb-5 text-[10px] font-bold uppercase tracking-[.2em] opacity-55">{isAr ? 'من الكويت' : 'Made for here'}</p><h2 className={`font-display text-6xl leading-[.88] tracking-[-.04em] md:text-8xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>{isAr ? 'كل بيت له\\nطريقته في الحب.' : 'Every home has\\nits own language\\nof love.'}</h2></div><div className="flex items-end"><p className={`max-w-[390px] text-sm leading-7 opacity-75 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'نصمم لحظات تناسبنا: رسالة واتساب، قهوة على الطريق، وهدية توصل بوقتها. أشياء بسيطة، لكن معناها كبير.' : 'We make room for the ways we show up here: a WhatsApp note, coffee on the way, a gift that arrives exactly when it should. Small gestures, big meaning.'}</p></div></section><Newsletter lang={lang} /></main>;
+  return <main><section className="mx-auto max-w-[1440px] px-5 pb-20 pt-12 md:px-10 md:pb-32 md:pt-20"><p className="mb-6 text-[10px] font-bold uppercase tracking-[.22em] opacity-55">{isAr ? 'فكرة لأنّك' : 'The idea behind L’ANAK'}</p><h1 className={`max-w-[1040px] font-display text-7xl leading-[.82] tracking-[-.055em] md:text-[10rem] ${isAr ? 'font-arabic leading-[1.05]' : ''}`} data-testid="text-about-title">{isAr ? 'الهدية مو بالشيء،\\nالهدية بالإحساس اللي وراها.' : 'The gift is not the thing.\\nIt is the feeling behind it.'}</h1></section><section className="border-y border-[#49372D]/20 bg-[#49372D] text-[#FAF7F0]"><div className="mx-auto grid max-w-[1440px] grid-cols-1 md:grid-cols-[.8fr_1.2fr]"><div className="border-b border-[#FAF7F0]/20 p-7 md:border-b-0 md:border-r md:p-12"><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#E8D59E]">KWT / L’ANAK</span><p className="mt-40 text-[10px] uppercase tracking-[.16em] opacity-60">{isAr ? 'من الكويت، بحب' : 'From Kuwait, with feeling'}</p></div><div className="p-7 md:p-16"><p className={`max-w-[750px] font-display text-5xl leading-[.93] tracking-[-.03em] md:text-8xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>"{isAr ? 'لأن بعض الناس ما يحتاجون مناسبة عشان نتذكرهم… وجودهم بروحه سبب.' : 'Some people need no occasion to be remembered… their presence is reason enough.'}"</p><p className={`mt-14 max-w-[470px] text-sm leading-7 opacity-70 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'لأنّك موجودة عشان تخلي الهدية تبدأ بالإحساس، وتوصل للشخص مع مساحة يختار فيها الشيء اللي يحبه بنفسه.' : 'L’ANAK exists to let every gift begin with a feeling, while giving the recipient the freedom to choose what they truly love.'}</p></div></div></section><section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 py-24 md:grid-cols-[1fr_1fr] md:px-10 md:py-36"><div><p className="mb-5 text-[10px] font-bold uppercase tracking-[.2em] opacity-55">{isAr ? 'من الكويت' : 'Made for here'}</p><h2 className={`font-display text-6xl leading-[.88] tracking-[-.04em] md:text-8xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>{isAr ? 'كل بيت له\\nطريقته في الحب.' : 'Every home has\\nits own language\\nof love.'}</h2></div><div className="flex items-end"><p className={`max-w-[390px] text-sm leading-7 opacity-75 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'نصمم لحظات تناسبنا: رسالة واتساب، قهوة على الطريق، وهدية توصل بوقتها. أشياء بسيطة، لكن معناها كبير.' : 'We make room for the ways we show up here: a WhatsApp note, coffee on the way, a gift that arrives exactly when it should. Small gestures, big meaning.'}</p></div></section><Newsletter lang={lang} /></main>;
 }
 
 function Newsletter({ lang }: { lang: Lang }) {
@@ -529,15 +481,79 @@ function Newsletter({ lang }: { lang: Lang }) {
   return <section className="border-t border-[#49372D]/20 bg-[#E8D59E] px-5 py-16 md:px-10 md:py-24"><div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]"><div><p className="text-[10px] font-bold uppercase tracking-[.2em]">{isAr ? 'رسائل تستاهل توصلك' : 'Notes worth receiving'}</p><h2 className={`mt-5 max-w-[550px] font-display text-5xl leading-[.88] tracking-[-.04em] md:text-7xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>{isAr ? 'أشياء جميلة،\\nمرة بالشهر.' : 'Good things,\\nonce a month.'}</h2></div><div className="flex flex-col justify-end"><p className={`mb-6 max-w-[330px] text-sm leading-6 opacity-75 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'أفكار هدايا، كلمات حلوة، وأشياء من الكويت.' : 'Gift ideas, kind words, and good things from Kuwait.'}</p>{joined ? <div className="flex items-center gap-2 border-b border-[#49372D] pb-3 text-sm font-bold" data-testid="status-newsletter-joined"><Check size={16} />{isAr ? 'وصلت!' : 'You’re on the list.'}</div> : <form onSubmit={(e) => { e.preventDefault(); if (email) setJoined(true); }} className="flex max-w-[420px] border-b border-[#49372D] pb-3"><input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required className="w-full bg-transparent text-sm outline-none placeholder:text-[#49372D]/55" placeholder={isAr ? 'إيميلك' : 'Your email'} data-testid="input-newsletter-email" /><button type="submit" className="text-xs font-bold" data-testid="button-newsletter-submit">{isAr ? 'سجلني' : 'Sign me up'} <ArrowUpRight size={14} className="inline" /></button></form>}</div></div></section>;
 }
 
-function BagDrawer({ lang, bag, setBag, setBagOpen, setToast }: { lang: Lang; bag: Product[]; setBag: (items: Product[]) => void; setBagOpen: (open: boolean) => void; setToast: (message: string) => void }) {
+function Favorites({ lang, favorites, addToBag, toggleFavorite }: { lang: Lang; favorites: string[]; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void }) {
+  const isAr = lang === 'ar';
+  const savedProducts = [...featuredGifts, ...products].filter((product) => favorites.includes(product.id));
+  return (
+    <main className="mx-auto min-h-[65vh] max-w-[1440px] px-5 py-16 md:px-10 md:py-24">
+      <div className="border-t border-[#49372D]/20 pt-8">
+        <h1 className={`text-6xl font-light md:text-8xl ${isAr ? 'font-arabic leading-[1.15]' : 'font-display'}`}>{isAr ? 'المفضلة' : 'Favorites'}</h1>
+        {savedProducts.length === 0 ? (
+          <div className="py-24 text-center">
+            <Heart className="mx-auto" size={30} strokeWidth={1.2} />
+            <p className={`mt-6 text-2xl ${isAr ? 'font-arabic' : 'font-display'}`}>{isAr ? 'ما حفظت أي اختيار للحين.' : 'Nothing saved yet.'}</p>
+            <Link href="/picks" className="line-draw mt-8 inline-block text-xs font-bold">{isAr ? 'شوف اختياراتنا' : 'Explore our picks'}</Link>
+          </div>
+        ) : (
+          <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-14 md:grid-cols-3 md:gap-x-8">
+            {savedProducts.map((product, index) => <ProductTile key={product.id} product={product} lang={lang} index={index} addToBag={addToBag} toggleFavorite={toggleFavorite} isFavorite />)}
+          </div>
+        )}
+      </div>
+    </main>
+  );
+}
+
+function Account({ lang }: { lang: Lang }) {
+  const isAr = lang === 'ar';
+  return (
+    <main className="mx-auto min-h-[65vh] max-w-[1440px] px-5 py-16 md:px-10 md:py-24">
+      <div className="border-t border-[#49372D]/20 pt-8">
+        <h1 className={`text-6xl font-light md:text-8xl ${isAr ? 'font-arabic leading-[1.15]' : 'font-display'}`}>{isAr ? 'الحساب' : 'Account'}</h1>
+        <p className={`mt-6 max-w-md text-sm leading-7 opacity-65 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'من هني تقدر تتابع هداياك وتحفظ اختياراتك. تسجيل الدخول بيتوفر قريباً.' : 'This is where you’ll manage gifts and saved picks. Sign-in is coming soon.'}</p>
+      </div>
+    </main>
+  );
+}
+
+function BagPage({ lang, bag, setBag, setToast }: { lang: Lang; bag: Product[]; setBag: (items: Product[]) => void; setToast: (message: string) => void }) {
   const isAr = lang === 'ar';
   const total = bag.reduce((sum, item) => sum + item.price, 0);
-  return <div className="fixed inset-0 z-50 flex justify-end bg-[#49372D]/30" onClick={() => setBagOpen(false)} data-testid="drawer-backdrop"><aside className="h-full w-full max-w-[440px] overflow-y-auto bg-[#FAF7F0] p-6 text-[#49372D] md:p-9" onClick={(e) => e.stopPropagation()} data-testid="drawer-gift-bag"><div className="flex items-center justify-between border-b border-[#49372D]/25 pb-5"><h2 className={`font-display text-4xl ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'شنطتي' : 'Your gift bag'}</h2><button onClick={() => setBagOpen(false)} data-testid="button-close-bag"><X size={21} /></button></div>{bag.length === 0 ? <div className="flex min-h-[60vh] flex-col items-center justify-center text-center"><ShoppingBag size={30} strokeWidth={1.2} /><p className={`mt-6 font-display text-3xl ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'الشنطة فاضية.' : 'It’s quiet in here.'}</p><p className={`mt-3 max-w-[220px] text-xs leading-5 opacity-60 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'اختار إحساس وخله يوصل.' : 'Choose a feeling and let it travel.'}</p><Link href="/shop" onClick={() => setBagOpen(false)} className="line-draw mt-8 text-xs font-bold" data-testid="link-empty-bag-shop">{isAr ? 'تصفح الهدايا' : 'Browse gifts'}</Link></div> : <><div className="divide-y divide-[#49372D]/15">{bag.map((item, index) => <div className="flex gap-4 py-5" key={`${item.id}-${index}`} data-testid={`row-bag-item-${index}`}><div className="flex h-20 w-16 items-center justify-center bg-[#E8D59E]"><span className="font-display text-2xl">L’</span></div><div className="flex flex-1 items-start justify-between"><div><p className="text-sm font-bold">{isAr ? item.ar : item.name}</p><p className="mt-1 text-[11px] opacity-55">{item.price} KD</p></div><button onClick={() => setBag(bag.filter((_, i) => i !== index))} className="text-[11px] underline opacity-60" data-testid={`button-remove-bag-${index}`}>{isAr ? 'حذف' : 'Remove'}</button></div></div>)}</div><div className="mt-10 border-t border-[#49372D]/25 pt-5"><div className="flex justify-between text-sm font-bold"><span>{isAr ? 'المجموع' : 'Total'}</span><span>{total} KD</span></div><button onClick={() => { setToast(isAr ? 'قريباً — بنكمّلها معاك' : 'Almost there — checkout is coming soon'); }} className="mt-5 flex w-full items-center justify-center gap-3 bg-[#49372D] py-4 text-xs font-bold text-[#FAF7F0]" data-testid="button-bag-checkout">{isAr ? 'كمل الهدية' : 'Continue the gift'}<ArrowUpRight size={15} /></button><p className="mt-4 text-center text-[10px] opacity-50">{isAr ? 'الدفع والتوصيل قريباً — هذه تجربة أولى' : 'Checkout and delivery coming soon — this is a first look'}</p></div></>}</aside></div>;
+  return (
+    <main className="mx-auto min-h-[65vh] max-w-[1000px] px-5 py-16 md:px-10 md:py-24">
+      <div className="border-t border-[#49372D]/20 pt-8">
+        <h1 className={`text-6xl font-light md:text-8xl ${isAr ? 'font-arabic leading-[1.15]' : 'font-display'}`}>{isAr ? 'شنطة الهدايا' : 'Gift bag'}</h1>
+        {bag.length === 0 ? (
+          <div className="py-24 text-center">
+            <ShoppingBag className="mx-auto" size={30} strokeWidth={1.2} />
+            <p className={`mt-6 text-2xl ${isAr ? 'font-arabic' : 'font-display'}`}>{isAr ? 'الشنطة فاضية.' : 'It’s quiet in here.'}</p>
+            <Link href="/gift" className="line-draw mt-8 inline-block text-xs font-bold">{isAr ? 'ابدأ هدية' : 'Start a gift'}</Link>
+          </div>
+        ) : (
+          <div className="mt-12">
+            <div className="divide-y divide-[#49372D]/15 border-y border-[#49372D]/20">
+              {bag.map((item, index) => (
+                <div className="flex items-center gap-4 py-5" key={`${item.id}-${index}`}>
+                  <div className="flex h-20 w-16 items-center justify-center bg-[#E8D59E]"><span className="font-display text-2xl">L’</span></div>
+                  <div className="flex flex-1 items-center justify-between gap-4">
+                    <div><p className={`text-sm font-bold ${isAr ? 'font-arabic' : ''}`}>{isAr ? item.ar : item.name}</p><p className="mt-1 text-[11px] opacity-55">{item.price} KD</p></div>
+                    <button onClick={() => setBag(bag.filter((_, itemIndex) => itemIndex !== index))} className="text-[11px] underline opacity-60">{isAr ? 'حذف' : 'Remove'}</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 flex items-center justify-between text-sm font-bold"><span>{isAr ? 'المجموع' : 'Total'}</span><span>{total} KD</span></div>
+            <button onClick={() => setToast(isAr ? 'قريباً — بنكمّلها معاك' : 'Almost there — checkout is coming soon')} className="mt-6 flex w-full items-center justify-center gap-3 bg-[#49372D] py-4 text-xs font-bold text-[#FAF7F0]">{isAr ? 'كمل الهدية' : 'Continue the gift'}<ArrowUpRight size={15} /></button>
+          </div>
+        )}
+      </div>
+    </main>
+  );
 }
 
 function Footer({ lang }: { lang: Lang }) {
   const isAr = lang === 'ar';
-  return <footer className="border-t border-[#49372D]/20 px-5 py-10 md:px-10"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-10 md:flex-row md:items-end"><div><Link href="/" className="font-display text-5xl tracking-[-.05em]" data-testid="link-footer-logo">L’ANAK</Link><p className="mt-3 text-[10px] uppercase tracking-[.16em] opacity-55">{isAr ? 'هدايا فيها شعور' : 'gifts with feeling'}</p></div><div className="grid grid-cols-2 gap-x-12 gap-y-3 text-[11px] font-bold md:grid-cols-3"><Link href="/shop" className="line-draw" data-testid="link-footer-shop">{isAr ? 'المتجر' : 'Shop'}</Link><Link href="/gift-cards" className="line-draw" data-testid="link-footer-cards">{isAr ? 'البطاقات' : 'Gift cards'}</Link><Link href="/how-it-works" className="line-draw" data-testid="link-footer-how">{isAr ? 'كيف تعمل' : 'How it works'}</Link><Link href="/about" className="line-draw" data-testid="link-footer-about">{isAr ? 'عن لَـنَك' : 'About'}</Link><button className="line-draw text-left" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} data-testid="button-back-top">{isAr ? 'فوق' : 'Back to top'} ↑</button><span className="opacity-45">Kuwait City, KWT</span></div></div><div className="mx-auto mt-14 flex max-w-[1440px] justify-between text-[9px] font-bold uppercase tracking-[.16em] opacity-45"><span>© L’ANAK 2025</span><span>{isAr ? 'صُنع بحب' : 'made with feeling'}</span></div></footer>;
+  return <footer className="border-t border-[#49372D]/20 px-5 py-10 md:px-10"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-10 md:flex-row md:items-end"><div><Link href="/" className="font-display text-5xl tracking-[-.05em]" data-testid="link-footer-logo">L’ANAK</Link><p className="mt-3 text-[10px] uppercase tracking-[.16em] opacity-55">{isAr ? 'هدايا فيها شعور' : 'gifts with feeling'}</p></div><div className="grid grid-cols-2 gap-x-12 gap-y-3 text-[11px] font-bold md:grid-cols-3"><Link href="/gift" className="line-draw" data-testid="link-footer-shop">{isAr ? 'أهدِ الآن' : 'Gift now'}</Link><Link href="/gift-card" className="line-draw" data-testid="link-footer-cards">{isAr ? 'بطاقة هدية' : 'Gift card'}</Link><Link href="/picks" className="line-draw" data-testid="link-footer-picks">{isAr ? 'اختياراتنا' : 'Our picks'}</Link><Link href="/about" className="line-draw" data-testid="link-footer-about">{isAr ? 'عن لأنّك' : 'About'}</Link><button className="line-draw text-left" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} data-testid="button-back-top">{isAr ? 'فوق' : 'Back to top'} ↑</button><span className="opacity-45">Kuwait City, KWT</span></div></div><div className="mx-auto mt-14 flex max-w-[1440px] justify-between text-[9px] font-bold uppercase tracking-[.16em] opacity-45"><span>© L’ANAK 2025</span><span>{isAr ? 'صُنع بحب' : 'made with feeling'}</span></div></footer>;
 }
 
 function RoutedErrorBoundary({ children }: { children: ReactNode }) {

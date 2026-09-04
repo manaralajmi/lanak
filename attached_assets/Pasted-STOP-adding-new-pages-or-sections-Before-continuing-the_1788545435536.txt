@@ -1,0 +1,348 @@
+STOP adding new pages or sections.
+
+Before continuing the visual design, clean up and reorganize
+the L’ANAK website architecture based strictly on the existing navbar.
+
+The current project contains too many random / unnecessary pages
+and routes, which makes the user journey confusing.
+
+I want the NAVBAR to become the official information architecture
+of the website.
+
+IMPORTANT:
+Do NOT redesign the sections we already approved.
+Do NOT change their typography, colors, layout or animations.
+
+This task is primarily about:
+- routes
+- navigation
+- page structure
+- removing unnecessary duplicate/random pages
+- connecting existing approved sections correctly
+
+==================================================
+OFFICIAL L’ANAK NAVIGATION
+==================================================
+
+The main navbar must contain ONLY:
+
+1. الرئيسية
+2. أهدِ الآن
+3. اختياراتنا
+4. عن لأنّك
+5. بطاقة هدية
+
+Plus utility navigation:
+
+- Account
+- Favorites
+- Gift Bag
+- AR | EN
+
+Do NOT add any other main navigation items.
+
+==================================================
+1. الرئيسية — HOME
+==================================================
+
+Route:
+
+/
+
+"الرئيسية" must return the user to the homepage
+and scroll to / display the HERO at the top.
+
+The homepage should remain the curated introduction to L’ANAK.
+
+Keep the approved Hero exactly as it currently is.
+
+==================================================
+2. أهدِ الآن — START GIFTING
+==================================================
+
+Route:
+
+/gift
+
+This is the main gifting journey.
+
+The entry point should begin with:
+
+"منو ودّك تهدي اليوم؟"
+
+and:
+
+"اختار الفكرة، وخله يختار اللي يحبه."
+
+Use the approved Category Discovery experience as the beginning
+of this journey.
+
+The six categories remain:
+
+قهوة
+حلو
+مطاعم
+ورد
+عناية
+هدايا
+
+The existing section:
+
+"أنت تهدي، وهو يختار."
+
+belongs to this gifting experience as supporting explanation.
+
+It does NOT need its own navbar page.
+
+Do NOT create a separate "How It Works" navbar item.
+
+==================================================
+3. اختياراتنا — CURATED PICKS
+==================================================
+
+Route:
+
+/picks
+
+This page/route represents L’ANAK curated gift suggestions.
+
+Its main content should use the approved section:
+
+"اختيارات لأنّك"
+
+"إذا محتار، إحنا اخترنا لك."
+
+with the curated gift cards.
+
+This is where users go when they do not know exactly
+what they want to gift.
+
+Keep the current featured gift concepts.
+
+Do NOT create another duplicate product-discovery page.
+
+==================================================
+4. عن لأنّك — ABOUT
+==================================================
+
+Route:
+
+/about
+
+This is the brand story.
+
+Use the approved emotional direction:
+
+"فكرة لأنّك"
+
+"الهدية مو بالشيء،
+الهدية بالإحساس اللي وراها."
+
+and:
+
+"لأن بعض الناس ما يحتاجون مناسبة عشان نتذكرهم…
+وجودهم بروحه سبب."
+
+This route should explain:
+- why L’ANAK exists
+- the philosophy of gifting without needing an occasion
+- the idea behind the brand
+- the meaning of giving someone the freedom to choose
+
+Do NOT create multiple About / Story / Philosophy pages.
+
+Everything about the brand belongs here.
+
+==================================================
+5. بطاقة هدية — GIFT CARD
+==================================================
+
+Route:
+
+/gift-card
+
+This is the dedicated L’ANAK voucher / gift-card experience.
+
+The sender should eventually be able to:
+
+- choose a gift value
+- choose recipient
+- enter sender name
+- write a personal message
+- choose delivery date/method
+
+The recipient can then choose what they love
+according to the L’ANAK gifting experience.
+
+Do NOT create multiple voucher pages.
+
+There should be ONE clear Gift Card destination.
+
+==================================================
+UTILITY ROUTES
+==================================================
+
+Favorites:
+ /favorites
+
+Account:
+ /account
+
+Gift Bag:
+ /bag
+
+Keep these accessible through the existing navbar icons.
+
+Do NOT add them as large Arabic primary navigation links.
+
+==================================================
+HOMEPAGE STRUCTURE
+==================================================
+
+The homepage should act as a curated preview of the whole platform.
+
+Keep the approved homepage flow:
+
+NAVBAR
+
+↓
+
+HERO
+"مو لازم يكون فيه سبب، أحيانًا أنت السبب."
+"لأنّك أنت."
+CTA: "يلا نهدي"
+
+↓
+
+rotating emotional phrases
+
+↓
+
+CATEGORY DISCOVERY PREVIEW
+"منو ودّك تهدي اليوم؟"
+
+↓
+
+HOW IT WORKS
+"أنت تهدي، وهو يختار."
+
+↓
+
+CURATED PICKS PREVIEW
+"إذا محتار، إحنا اخترنا لك."
+
+↓
+
+BRAND STORY PREVIEW
+"الهدية مو بالشيء،
+الهدية بالإحساس اللي وراها."
+
+↓
+
+Footer / final homepage content
+
+These homepage sections can preview the dedicated destinations,
+but they should NOT cause duplicate pages or duplicate content.
+
+==================================================
+CTA CONNECTIONS
+==================================================
+
+Connect CTAs intentionally:
+
+Hero:
+"يلا نهدي"
+→ /gift
+
+Category Discovery:
+category selection
+→ gifting flow for that category
+
+How It Works:
+"يلا نبدأ"
+→ /gift
+
+Curated Picks:
+"شوف الكل"
+→ /picks
+
+Brand Story:
+"اعرف قصتنا"
+→ /about
+
+Navbar:
+"بطاقة هدية"
+→ /gift-card
+
+==================================================
+REMOVE / CLEAN UP
+==================================================
+
+Audit the existing routes/pages.
+
+Remove routes that are:
+
+- random
+- unused
+- duplicate
+- generated automatically
+- old versions of redesigned sections
+- unnecessary standalone pages
+- not connected to the official navigation architecture
+
+IMPORTANT:
+Before deleting reusable components, check whether they are currently
+used by one of the approved routes above.
+
+Preserve approved UI components and reuse them where appropriate.
+
+Do NOT delete the approved homepage sections.
+
+Do NOT create replacement pages unless required by the architecture above.
+
+==================================================
+NAVIGATION BEHAVIOR
+==================================================
+
+Every navbar item must have a clear destination.
+
+No dead links.
+
+No placeholder navigation.
+
+No random routes.
+
+The active navbar item should have the existing elegant active state.
+
+Maintain:
+
+Arabic → RTL
+English → LTR
+
+The AR | EN switch should apply consistently across all official pages.
+
+==================================================
+FINAL ARCHITECTURE
+==================================================
+
+The website should feel intentionally small and easy to understand.
+
+PRIMARY:
+
+/              الرئيسية
+/gift          أهدِ الآن
+/picks         اختياراتنا
+/about         عن لأنّك
+/gift-card     بطاقة هدية
+
+UTILITY:
+
+/favorites
+/account
+/bag
+
+Do NOT expand the architecture beyond this unless I explicitly
+request a new page later.
+
+First reorganize the existing project around this architecture.
+Do not redesign approved visual sections.
