@@ -342,8 +342,8 @@ function HowLanakWorks({ lang }: { lang: Lang }) {
           ))}
         </div>
 
-        <Link href="/gift-now" className="how-lanak-link group">
-          <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'ابدأ هديتك' : 'Start your gift'}</span>
+        <Link href="/gift-now" className="how-lanak-link hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
+          <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'يلا نبدأ' : 'Start your gift'}</span>
           {isAr ? (
             <ArrowLeft size={17} strokeWidth={1.4} />
           ) : (

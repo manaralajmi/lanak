@@ -379,20 +379,12 @@
   transform: translateY(0);
 }
 .how-lanak-link {
-  display: inline-flex;
-  align-items: center;
-  gap: .75rem;
   margin-top: 3.5rem;
-  padding-bottom: .4rem;
-  border-bottom: 1px solid rgba(203, 185, 139, .5);
-  color: #CBB98B;
   font-size: .95rem;
-  transition: border-color 280ms ease, color 280ms ease;
 }
 .how-lanak-link svg { transition: transform 280ms ease; }
 [dir='rtl'] .how-lanak-link:hover svg { transform: translateX(-.3rem); }
 [dir='ltr'] .how-lanak-link:hover svg { transform: translateX(.3rem); }
-.how-lanak-link:hover { border-color: #CBB98B; color: #D8C99F; }
 @media (max-width: 47.999rem) {
   .how-lanak-works { padding: 6rem 1.25rem; }
   .how-lanak-steps {
