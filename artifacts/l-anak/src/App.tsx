@@ -188,7 +188,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
               </div>
             </div>
             
-            <div className="hero-cta absolute bottom-14 left-1/2 z-20 -translate-x-1/2 md:bottom-12">
+            <div className="hero-cta absolute -bottom-6 left-1/2 z-20 -translate-x-1/2 md:-bottom-8">
               <Link href="/shop" className="hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
                 <span className={`${isAr ? 'font-arabic text-[17px] font-medium' : 'text-[12px] font-bold uppercase tracking-[.15em]'}`}>
                   {isAr ? copy.ar.heroCta : copy.en.heroCta}
