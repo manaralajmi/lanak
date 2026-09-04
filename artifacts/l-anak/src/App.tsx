@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useMemo, useState } from 'react';
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import { ArrowDown, ArrowUpRight, Check, ChevronDown, Coffee, Gift, Heart, MapPin, Menu, Minus, Plus, RotateCcw, Search, Send, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -208,6 +208,8 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, setToast }: { lang
 
       <GiftingCategories lang={lang} />
 
+      <HowLanakWorks lang={lang} />
+
       <section className="bg-[#49372D] px-5 py-20 text-[#FAF7F0] md:px-10 md:py-32">
         <div className="mx-auto max-w-[1440px]">
           <div className="mb-16 flex items-end justify-between gap-5"><div><p className="mb-4 text-[10px] font-bold uppercase tracking-[.22em] text-[#E8D59E]">{isAr ? 'اختيارات لَـنَك' : 'The L’ANAK edit'}</p><h2 className={`font-display text-5xl leading-[.88] tracking-[-.04em] md:text-7xl ${isAr ? 'font-arabic leading-[1.1] font-light' : ''}`}>{isAr ? 'هدايا فيها معنى.' : 'Gifts that say<br /><i>enough.</i>'}</h2></div><Link href="/shop" className="line-draw hidden pb-1 text-xs font-bold md:block" data-testid="link-view-edit">{isAr ? 'شوف الكل' : 'View the edit'} <ArrowUpRight size={14} className="inline" /></Link></div>
@@ -274,6 +276,80 @@ function GiftingCategories({ lang }: { lang: Lang }) {
             </Link>
           ))}
         </div>
+      </div>
+    </section>
+  );
+}
+
+function HowLanakWorks({ lang }: { lang: Lang }) {
+  const isAr = lang === 'ar';
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const steps = isAr
+    ? [
+        { number: '01', title: 'اختار', description: 'المكان أو التجربة اللي ودك تهديها.' },
+        { number: '02', title: 'أهدِ', description: 'حدد القيمة، واكتب رسالتك.' },
+        { number: '03', title: 'خلّه يختار', description: 'توصل له هديتك، ويختار اللي يحبه.' },
+      ]
+    : [
+        { number: '01', title: 'Choose', description: 'Pick the place or experience you want to gift.' },
+        { number: '02', title: 'Send', description: 'Set the value and write your message.' },
+        { number: '03', title: 'Let them choose', description: 'Your gift arrives, and they choose what they love.' },
+      ];
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.18 },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`how-lanak-works ${isVisible ? 'is-visible' : ''}`}
+      dir={isAr ? 'rtl' : 'ltr'}
+      aria-labelledby="how-lanak-title"
+    >
+      <div className="mx-auto max-w-[1440px]">
+        <header className="how-lanak-intro">
+          <h2 id="how-lanak-title" className={isAr ? 'font-nav-ar' : 'font-display'}>
+            {isAr ? 'أنت تهدي، وهو يختار.' : 'You gift. They choose.'}
+          </h2>
+          <p className={isAr ? 'font-nav-ar' : ''}>
+            {isAr ? 'اختار المكان والقيمة، واكتب كلمتك… والباقي خله عليه.' : 'Choose the place and value, write your note… and leave the rest to them.'}
+          </p>
+        </header>
+
+        <div className="how-lanak-steps">
+          {steps.map((step, index) => (
+            <article className="how-lanak-step" key={step.number} style={{ '--step-index': index } as React.CSSProperties}>
+              <span className="how-lanak-number" aria-hidden="true">{step.number}</span>
+              <div className="how-lanak-step-copy">
+                <h3 className={isAr ? 'font-nav-ar' : 'font-display'}>{step.title}</h3>
+                <p className={isAr ? 'font-nav-ar' : ''}>{step.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <Link href="/gift-now" className="how-lanak-link group">
+          <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'ابدأ هديتك' : 'Start your gift'}</span>
+          {isAr ? (
+            <ArrowLeft size={17} strokeWidth={1.4} />
+          ) : (
+            <ArrowRight size={17} strokeWidth={1.4} />
+          )}
+        </Link>
       </div>
     </section>
   );

@@ -1,0 +1,295 @@
+Create ONLY the next homepage section directly after the
+Category Discovery section.
+
+Do NOT modify:
+- Navbar
+- Hero
+- Hero animations
+- "يلا نهدي" CTA
+- Category Discovery section
+- Any existing section after this one
+
+This new section explains HOW L’ANAK WORKS.
+
+It should communicate the platform concept immediately,
+without feeling like a tutorial or a generic "How It Works" section.
+
+--------------------------------------------------
+SECTION PURPOSE
+--------------------------------------------------
+
+The core L’ANAK experience is:
+
+The sender chooses the gesture / place and gift value,
+writes a personal message,
+and the recipient chooses what they personally love.
+
+The section should make this idea understandable within seconds.
+
+--------------------------------------------------
+MAIN COPY
+--------------------------------------------------
+
+Main headline:
+
+"أنت تهدي، وهو يختار."
+
+Supporting line:
+
+"اختار المكان والقيمة، واكتب كلمتك… والباقي خله عليه."
+
+Keep the Arabic wording EXACTLY as written.
+
+--------------------------------------------------
+THE THREE STEPS
+--------------------------------------------------
+
+Use exactly these three steps:
+
+01
+
+"اختار"
+
+"المكان أو التجربة اللي ودك تهديها."
+
+
+02
+
+"أهدِ"
+
+"حدد القيمة، واكتب رسالتك."
+
+
+03
+
+"خلّه يختار"
+
+"توصل له هديتك، ويختار اللي يحبه."
+
+--------------------------------------------------
+VISUAL DIRECTION
+--------------------------------------------------
+
+Background:
+Espresso Brown #49372D
+
+Primary text:
+Warm Ivory / Cream
+
+Accent:
+Muted Champagne #CBB98B
+
+This section should feel like a continuation of the premium
+L’ANAK visual identity.
+
+Think:
+
+luxury editorial campaign
+quiet confidence
+premium gifting experience
+fashion lookbook typography
+
+NOT:
+
+generic ecommerce
+three feature cards
+corporate infographic
+app onboarding screen
+
+--------------------------------------------------
+LAYOUT
+--------------------------------------------------
+
+Do NOT place the three steps inside traditional cards.
+
+No white boxes.
+No rounded cards.
+No shadows.
+
+Instead, create one elegant editorial composition.
+
+Place the main headline and supporting sentence at the top
+with generous negative space.
+
+Below them, arrange the three steps horizontally on desktop.
+
+Each step should feel like a typographic composition.
+
+Use the numbers:
+
+01
+02
+03
+
+as LARGE editorial background elements.
+
+The numbers can be oversized and low-opacity,
+approximately 8–15% opacity,
+so they become part of the visual design.
+
+Then layer the step title and description clearly with them.
+
+Example visual hierarchy:
+
+      01
+    اختار
+المكان أو التجربة...
+
+      02
+     أهدِ
+حدد القيمة...
+
+      03
+ خلّه يختار
+توصل له هديتك...
+
+But do NOT make them look like three boxed cards.
+
+--------------------------------------------------
+CONNECT THE JOURNEY
+--------------------------------------------------
+
+Create a very subtle visual connection between 01 → 02 → 03.
+
+This can be:
+
+- a thin champagne line
+OR
+- minimal directional movement
+OR
+- a refined progress line
+
+Keep it extremely subtle.
+
+Do NOT use large arrows.
+
+The user should naturally understand that this is one journey.
+
+--------------------------------------------------
+INTERACTION
+--------------------------------------------------
+
+Add a subtle scroll reveal.
+
+When the section enters the viewport:
+
+First:
+headline + supporting sentence softly appear.
+
+Then:
+01 appears.
+
+Then:
+02 appears.
+
+Then:
+03 appears.
+
+Use a subtle stagger of approximately 100–180ms.
+
+Animation:
+opacity 0 → 1
++
+translateY approximately 15–20px → 0
+
+Duration:
+approximately 500–700ms.
+
+Smooth elegant easing.
+
+No bounce.
+No dramatic movement.
+No spinning.
+No glow.
+
+--------------------------------------------------
+STEP HOVER
+--------------------------------------------------
+
+Desktop only:
+
+When hovering over a step:
+
+- its large number becomes slightly more visible
+- Muted Champagne accent becomes slightly stronger
+- title shifts upward approximately 2px
+- connecting line may subtly respond
+
+Transition approximately 300ms.
+
+Do NOT add a background box on hover.
+
+The interaction should be noticeable but sophisticated.
+
+--------------------------------------------------
+OPTIONAL MICRO CTA
+--------------------------------------------------
+
+At the bottom of the section add ONE minimal text CTA:
+
+"ابدأ هديتك"
+
+with a small elegant arrow.
+
+Do NOT make this a large solid button.
+
+Use a simple text-link treatment with a subtle underline
+or animated arrow on hover.
+
+This CTA should lead into the gifting flow.
+
+--------------------------------------------------
+RESPONSIVE
+--------------------------------------------------
+
+Desktop:
+01 → 02 → 03 horizontally.
+
+Tablet:
+Keep the sequence balanced without overcrowding.
+
+Mobile:
+Stack vertically:
+
+01
+↓
+02
+↓
+03
+
+Use a subtle vertical connecting line.
+
+Keep the oversized numbers,
+but scale them appropriately for mobile.
+
+Maintain generous spacing.
+
+--------------------------------------------------
+IMPORTANT
+--------------------------------------------------
+
+Do NOT add photography to this section.
+
+Do NOT add icons for the three steps.
+
+Do NOT add illustrations.
+
+The typography, numbers, spacing and subtle motion
+should create the visual interest.
+
+Do NOT reuse the old "هدايا فيها معنى" cards.
+
+Do NOT add unnecessary copy.
+
+Do NOT modify any other section.
+
+The final page flow should now feel like:
+
+HERO
+↓
+CATEGORY DISCOVERY
+↓
+HOW L’ANAK WORKS
+"أنت تهدي، وهو يختار."
+
+Build ONLY this section now.
