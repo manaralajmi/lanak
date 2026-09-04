@@ -1,0 +1,320 @@
+Build ONLY the FIRST STEP of the official L’ANAK gifting journey:
+
+Route:
+/gift
+
+Do NOT build the full gifting flow yet.
+
+Do NOT create additional random pages.
+
+Do NOT modify:
+- Homepage
+- Navbar design
+- Hero
+- Existing approved homepage sections
+- /picks
+- /about
+- /gift-card
+
+We are now designing ONLY the first screen of:
+"أهدِ الآن"
+
+==================================================
+PURPOSE
+==================================================
+
+When the user clicks:
+
+"أهدِ الآن"
+
+from the navbar,
+
+take them to:
+
+/gift
+
+This page should feel like the beginning of a guided gifting experience,
+NOT like a product catalogue.
+
+The user should immediately understand:
+
+First, choose what kind of gesture you want to send.
+
+==================================================
+PAGE INTRO
+==================================================
+
+At the top of the page use:
+
+Small eyebrow:
+
+"أهدِ الآن"
+
+Main headline EXACTLY:
+
+"منو ودّك تهدي اليوم؟"
+
+Supporting copy EXACTLY:
+
+"اختار الفكرة، وخله يختار اللي يحبه."
+
+Do not add additional explanatory paragraphs.
+
+==================================================
+NAVBAR
+==================================================
+
+Keep the SAME global navbar already approved.
+
+On this route:
+
+"أهدِ الآن"
+
+must appear as the active navigation item
+using the existing active-state styling.
+
+Do not create a different navbar for this page.
+
+==================================================
+CATEGORY SELECTION
+==================================================
+
+Show exactly these six gifting categories:
+
+01 — قهوة
+02 — حلو
+03 — مطاعم
+04 — ورد
+05 — عناية
+06 — هدايا
+
+For now, do NOT add final photography.
+
+Use refined neutral image placeholders.
+
+We will add the final category photography later.
+
+==================================================
+IMPORTANT UX DIFFERENCE
+==================================================
+
+This is NOT simply a copy of the homepage category section.
+
+On the homepage, categories are discovery/previews.
+
+On /gift, these categories are STEP ONE of an actual gifting journey.
+
+Make this distinction clear through the UX.
+
+Add a subtle progress indicator near the top:
+
+01
+اختار الفكرة
+
+02
+اختار المكان
+
+03
+حدد القيمة
+
+04
+اكتب كلمتك
+
+05
+راجع وأرسل
+
+Step 01 should be visually active.
+
+Steps 02–05 should be visible but understated.
+
+IMPORTANT:
+
+The progress indicator must feel minimal and premium.
+
+Do NOT use:
+- large circles
+- colorful progress bars
+- corporate stepper UI
+- boxed tabs
+
+Use a thin editorial line and refined typography.
+
+==================================================
+CATEGORY DESIGN
+==================================================
+
+Create an elegant selection layout.
+
+Do NOT use generic ecommerce cards.
+
+Each category should have:
+
+- image placeholder
+- category number
+- Arabic category name
+- subtle selection indicator
+
+No descriptions.
+No prices.
+No buttons inside every category.
+
+The entire category area should be clickable.
+
+Use the established L’ANAK visual language:
+
+Warm Ivory / Cream background
+Espresso Brown #49372D text
+Muted Champagne #CBB98B accents
+
+==================================================
+SELECTION INTERACTION
+==================================================
+
+When the user hovers over a category:
+
+- image placeholder scales approximately 1.02
+- subtle Espresso Brown overlay appears
+- category name becomes slightly more prominent
+- border/selection detail becomes visible
+- smooth 300ms transition
+
+When the user CLICKS a category:
+
+Make it visibly selected.
+
+Use:
+
+- Muted Champagne #CBB98B selection border/accent
+- subtle check or minimal selection marker
+- no bright colors
+- no heavy shadow
+
+Only ONE category can be selected at a time.
+
+==================================================
+CONTINUE CTA
+==================================================
+
+At the bottom of the selection area add ONE CTA:
+
+"كمّل"
+
+Initially:
+The CTA should be disabled until a category is selected.
+
+Once the user selects a category:
+Enable the CTA.
+
+Use our established L’ANAK button system.
+
+Because the page background is LIGHT:
+
+DEFAULT ENABLED STATE:
+- transparent background
+- 1px Espresso Brown #49372D border
+- Espresso Brown text
+- minimal arrow
+- border-radius: 7px
+
+HOVER:
+background-color: rgba(73, 55, 45, 0.30);
+
+Only the background fill is 30% opacity.
+
+Keep text, arrow and border fully visible.
+
+ACTIVE:
+scale approximately 0.98.
+
+DISABLED STATE:
+lower visual emphasis,
+no hover interaction,
+cursor should clearly indicate disabled.
+
+==================================================
+CONTINUE BEHAVIOR
+==================================================
+
+Do NOT create six separate random category pages.
+
+When a category is selected and the user clicks:
+
+"كمّل"
+
+advance to STEP 02:
+
+"اختار المكان"
+
+within the SAME guided /gift experience.
+
+Preserve the selected category in state.
+
+Do NOT build Step 02 yet.
+
+For now, create the structure/state so it is ready
+for the next step we design.
+
+==================================================
+BACK / STATE BEHAVIOR
+==================================================
+
+If the user later moves between gifting steps,
+their previous selections should be preserved.
+
+Prepare the gifting flow state for:
+
+selected category
+selected partner
+selected value
+recipient information
+personal message
+
+Do not design those later steps yet.
+
+==================================================
+RESPONSIVE
+==================================================
+
+Desktop:
+Create a sophisticated editorial category selection composition.
+
+Tablet:
+2–3 categories per row depending on available space.
+
+Mobile:
+Large comfortable selectable categories.
+
+Do NOT squeeze all six into tiny cards.
+
+The progress indicator should simplify elegantly on mobile
+without becoming unreadable.
+
+==================================================
+FINAL FEEL
+==================================================
+
+The /gift page should feel like:
+
+"تعال، نمشي معاك بالهدية خطوة خطوة."
+
+But do NOT literally display that sentence.
+
+The experience should be:
+
+simple
+guided
+premium
+warm
+local
+clear
+
+NOT:
+
+a checkout form
+a product catalogue
+a food delivery app
+a coupon website
+
+Build ONLY Step 01 now.
+
+Do not continue to Step 02 until I request it.

@@ -257,7 +257,85 @@ function CuratedPicks({ lang, addToBag, toggleFavorite, favorites }: { lang: Lan
 }
 
 function GiftJourney({ lang }: { lang: Lang }) {
-  return <main><GiftingCategories lang={lang} /><HowLanakWorks lang={lang} /></main>;
+  const isAr = lang === 'ar';
+  const [flowState, setFlowState] = useState({
+    step: 1,
+    selectedCategory: null as string | null,
+    selectedPartner: null as string | null,
+    selectedValue: null as number | null,
+    recipientInformation: { name: '', phone: '', deliveryDate: '', deliveryMethod: '' },
+    personalMessage: '',
+  });
+
+  const steps = isAr
+    ? ['اختار الفكرة', 'اختار المكان', 'حدد القيمة', 'اكتب كلمتك', 'راجع وأرسل']
+    : ['Choose the gesture', 'Choose the place', 'Set the value', 'Write your note', 'Review and send'];
+
+  const categories = [
+    { id: 'coffee', number: '01', en: 'Coffee', ar: 'قهوة' },
+    { id: 'sweets', number: '02', en: 'Sweets', ar: 'حلو' },
+    { id: 'dining', number: '03', en: 'Dining', ar: 'مطاعم' },
+    { id: 'flowers', number: '04', en: 'Flowers', ar: 'ورد' },
+    { id: 'self-care', number: '05', en: 'Self-Care', ar: 'عناية' },
+    { id: 'gifts', number: '06', en: 'Gifts', ar: 'هدايا' },
+  ];
+
+  return (
+    <main className="gift-journey bg-[#F5F0E8] px-5 py-10 text-[#49372D] md:px-10 md:py-16" dir={isAr ? 'rtl' : 'ltr'} data-current-step={flowState.step}>
+      <div className="mx-auto max-w-[1440px]">
+        <ol className="gift-progress" aria-label={isAr ? 'خطوات الهدية' : 'Gift journey steps'}>
+          {steps.map((label, index) => (
+            <li key={label} className={index === 0 ? 'is-active' : ''} aria-current={index === 0 ? 'step' : undefined}>
+              <span>0{index + 1}</span>
+              <b className={isAr ? 'font-nav-ar' : ''}>{label}</b>
+            </li>
+          ))}
+        </ol>
+
+        <header className="gift-journey-intro">
+          <p className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'أهدِ الآن' : 'Gift now'}</p>
+          <h1 className={isAr ? 'font-nav-ar' : 'font-display'}>{isAr ? 'منو ودّك تهدي اليوم؟' : 'Who are you gifting today?'}</h1>
+          <div className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'اختار الفكرة، وخله يختار اللي يحبه.' : 'Choose the gesture, and let them choose what they love.'}</div>
+        </header>
+
+        <div className="gift-category-grid">
+          {categories.map((category) => {
+            const isSelected = flowState.selectedCategory === category.id;
+            return (
+              <button
+                type="button"
+                key={category.id}
+                className={`gift-category-option group ${isSelected ? 'is-selected' : ''}`}
+                onClick={() => setFlowState((current) => ({ ...current, step: 1, selectedCategory: category.id }))}
+                aria-pressed={isSelected}
+              >
+                <span className="gift-category-image">
+                  <span>{category.en} IMAGE</span>
+                </span>
+                <span className="gift-category-meta">
+                  <span className="gift-category-number">{category.number}</span>
+                  <strong className={isAr ? 'font-nav-ar' : 'font-display'}>{isAr ? category.ar : category.en}</strong>
+                  <span className="gift-category-check" aria-hidden="true"><Check size={13} strokeWidth={2} /></span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="gift-journey-action">
+          <button
+            type="button"
+            className="gift-continue group"
+            disabled={!flowState.selectedCategory}
+            onClick={() => setFlowState((current) => ({ ...current, step: 2 }))}
+          >
+            <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'كمّل' : 'Continue'}</span>
+            {isAr ? <ArrowLeft size={17} strokeWidth={1.5} /> : <ArrowRight size={17} strokeWidth={1.5} />}
+          </button>
+        </div>
+      </div>
+    </main>
+  );
 }
 
 function Picks({ lang, addToBag, toggleFavorite, favorites }: { lang: Lang; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
