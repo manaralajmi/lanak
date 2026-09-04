@@ -13,6 +13,13 @@ const queryClient = new QueryClient();
 
 type Lang = 'en' | 'ar';
 type Product = { id: string; name: string; ar: string; note: string; price: number; category: string; mark: string };
+type FeaturedGift = Product & {
+  categoryAr: string;
+  categoryEn: string;
+  image: string;
+  imageAlt: string;
+  imagePosition: string;
+};
 
 const products: Product[] = [
   { id: 'morning', name: 'A softer morning', ar: 'صباح أهدأ', note: 'For the one who needs a little quiet.', price: 18, category: 'care', mark: '01' },
@@ -23,11 +30,11 @@ const products: Product[] = [
   { id: 'coffee', name: 'Coffee, on me', ar: 'القهوة علي', note: 'A warm cup from wherever they are.', price: 5, category: 'coffee', mark: '06' },
 ];
 
-const featuredGifts: (Product & { categoryAr: string; categoryEn: string; placeholder: string })[] = [
-  { id: 'featured-coffee', name: 'Coffee is on me', ar: 'قهوتك علي', note: '', price: 5, category: 'coffee', categoryAr: 'قهوة', categoryEn: 'Coffee', placeholder: 'COFFEE IMAGE', mark: '01' },
-  { id: 'featured-care', name: 'Treat yourself today', ar: 'دلّعي نفسج اليوم', note: '', price: 20, category: 'care', categoryAr: 'عناية', categoryEn: 'Self-Care', placeholder: 'SELF-CARE IMAGE', mark: '02' },
-  { id: 'featured-sweets', name: 'Sweets are on me', ar: 'الحلو علي', note: '', price: 10, category: 'sweets', categoryAr: 'حلو', categoryEn: 'Sweets', placeholder: 'SWEETS IMAGE', mark: '03' },
-  { id: 'featured-dining', name: 'Dinner is on me', ar: 'عشا اليوم علي', note: '', price: 25, category: 'dining', categoryAr: 'مطاعم', categoryEn: 'Dining', placeholder: 'DINING IMAGE', mark: '04' },
+const featuredGifts: FeaturedGift[] = [
+  { id: 'featured-coffee', name: 'Coffee is on me', ar: 'قهوتك علي', note: '', price: 5, category: 'coffee', categoryAr: 'قهوة', categoryEn: 'Coffee', image: heroCampaignImage, imageAlt: 'L’ANAK coffee gift presentation', imagePosition: '32% 74%', mark: '01' },
+  { id: 'featured-care', name: 'Treat yourself today', ar: 'دلّعي نفسج اليوم', note: '', price: 20, category: 'care', categoryAr: 'عناية', categoryEn: 'Self-Care', image: heroCampaignImage, imageAlt: 'L’ANAK self-care gift with fresh flowers', imagePosition: '25% 52%', mark: '02' },
+  { id: 'featured-sweets', name: 'Sweets are on me', ar: 'الحلو علي', note: '', price: 10, category: 'sweets', categoryAr: 'حلو', categoryEn: 'Sweets', image: heroCampaignImage, imageAlt: 'L’ANAK wrapped sweets gift', imagePosition: '53% 74%', mark: '03' },
+  { id: 'featured-dining', name: 'Dinner is on me', ar: 'عشا اليوم علي', note: '', price: 25, category: 'dining', categoryAr: 'مطاعم', categoryEn: 'Dining', image: heroCampaignImage, imageAlt: 'L’ANAK premium dining gift presentation', imagePosition: '82% 56%', mark: '04' },
 ];
 
 const copy = {
@@ -425,7 +432,7 @@ function ProductTile({ product, dark = false, lang, index, addToBag, toggleFavor
 }
 
 function FeaturedGiftCard({ product, lang, addToBag, toggleFavorite, isFavorite }: {
-  product: Product & { categoryAr: string; categoryEn: string; placeholder: string };
+  product: FeaturedGift;
   lang: Lang;
   addToBag: (product: Product) => void;
   toggleFavorite: (id: string) => void;
@@ -444,6 +451,11 @@ function FeaturedGiftCard({ product, lang, addToBag, toggleFavorite, isFavorite 
       data-testid={`card-featured-${product.id}`}
     >
       <div className="featured-gift-image">
+        <img
+          src={product.image}
+          alt={product.imageAlt}
+          style={{ objectPosition: product.imagePosition }}
+        />
         <span className="featured-gift-number">{product.mark}</span>
         <button
           onClick={(event) => {
@@ -456,7 +468,6 @@ function FeaturedGiftCard({ product, lang, addToBag, toggleFavorite, isFavorite 
         >
           <Heart size={19} strokeWidth={1.4} fill={isFavorite ? 'currentColor' : 'none'} />
         </button>
-        <span className="featured-gift-placeholder">{product.placeholder}</span>
       </div>
       <div className="featured-gift-copy">
         <div>
