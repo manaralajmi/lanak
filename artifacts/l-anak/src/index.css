@@ -235,7 +235,7 @@
 .featured-gifts-cta svg { transition: transform 280ms ease; }
 .featured-gifts-cta:hover {
   border-color: #49372D;
-  background: rgba(203, 185, 139, .30);
+  background: rgba(73, 55, 45, .30);
   transform: translateY(-1px);
 }
 [dir='rtl'] .featured-gifts-cta:hover svg { transform: translateX(-.3rem); }
