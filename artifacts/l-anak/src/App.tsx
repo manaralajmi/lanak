@@ -161,7 +161,7 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, i
       observer?.disconnect();
     };
   }, [location]);
-  
+
   return (
     <div className="min-h-[100dvh] flex flex-col bg-[#FAF7F0] text-[#49372D]">
       <div className="border-b border-[#49372D]/15 bg-[#F5F0E8] px-5 py-[7px] text-center text-[9px] font-semibold tracking-[.18em] text-[#49372D]" data-testid="text-announcement">
@@ -564,9 +564,237 @@ function GiftCards({ lang, setToast }: { lang: Lang; setToast: (message: string)
   </main>;
 }
 
+function Reveal({ children, delay = 0, className = "", threshold = 0.2 }: { children: ReactNode, delay?: number, className?: string, threshold?: number }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold, rootMargin: "0px 0px -10% 0px" });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold]);
+
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-[900ms] ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function Section01() {
+  const [step, setStep] = useState(0);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setStep(1), 300);
+    const t2 = setTimeout(() => setStep(2), 1100);
+    const t3 = setTimeout(() => setStep(3), 1900);
+    const t4 = setTimeout(() => setStep(4), 3000);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4); };
+  }, []);
+
+  const getStyle = (visibleStep: number) => {
+    const isVisible = step >= visibleStep;
+    return `transition-all duration-[1000ms] ease-out motion-reduce:transition-none motion-reduce:transform-none motion-reduce:opacity-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`;
+  };
+
+  return (
+    <section className="min-h-[100dvh] flex flex-col justify-center bg-[#FAF7F0] text-[#49372D] px-5 py-24 md:px-10" data-testid="section-about-01">
+      <div className="max-w-[1440px] mx-auto w-full flex flex-col items-center text-center">
+        <p className={`text-[11px] font-bold uppercase tracking-widest opacity-60 mb-16 ${getStyle(1)} font-nav-ar`} data-testid="text-about-eyebrow-1">
+          منو إحنا؟
+        </p>
+
+        <h1 className="font-arabic text-[clamp(1.75rem,4.5vw,4.5rem)] font-light leading-[1.5] tracking-normal max-w-[900px]">
+          <div className="overflow-hidden py-2">
+            <div className={getStyle(1)}>مو لازم يكون فيه سبب،</div>
+          </div>
+          <div className="overflow-hidden py-2">
+            <div className={getStyle(2)}>أحيانًا ممكن تكون</div>
+          </div>
+          <div className="overflow-hidden py-2">
+            <div className={getStyle(3)}>أنت السبب.</div>
+          </div>
+        </h1>
+
+        <div className="mt-20 overflow-hidden py-2">
+          <div className={`font-arabic text-[clamp(2.5rem,6vw,5.5rem)] font-light text-[#CBB98B] ${getStyle(4)}`} data-testid="text-about-payoff-1">
+            لأنّك أنت.
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Section02() {
+  return (
+    <section className="bg-[#49372D] text-[#FAF7F0] px-5 py-32 md:py-48 md:px-10" data-testid="section-about-02">
+      <div className="max-w-[900px] mx-auto">
+        <Reveal>
+          <p className="text-[11px] font-bold uppercase tracking-widest opacity-60 mb-12 font-nav-ar text-center md:text-right" data-testid="text-about-eyebrow-2">
+            ليش لأنّك؟
+          </p>
+        </Reveal>
+
+        <Reveal delay={100}>
+          <h2 className="font-arabic text-[clamp(2rem,4vw,3.8rem)] font-light leading-[1.3] mb-24 text-center md:text-right text-balance" data-testid="text-about-main-2">
+            لأن الهدية مو دايم تحتاج مناسبة.
+          </h2>
+        </Reveal>
+
+        <div className="flex flex-col gap-20 md:gap-32 text-[clamp(1.2rem,2vw,1.8rem)] font-arabic font-light leading-[1.8] opacity-90">
+          <Reveal>
+            <p className="text-center md:text-right max-w-[600px] ml-auto">
+              مو لازم ننطر ميلاد، تخرج، أو يوم معيّن<br/>
+              علشان نقول لشخص: أنت غالي علي.
+            </p>
+          </Reveal>
+
+          <Reveal>
+            <p className="text-center md:text-left max-w-[600px] mr-auto">
+              أحيانًا يكون عندنا شعور بسيط نبي نوصله؛<br/>
+              امتنان، محبة، اشتياق،<br/>
+              أو حتى «كنت أفكر فيك».
+            </p>
+          </Reveal>
+
+          <Reveal>
+            <p className="text-center md:text-right max-w-[600px] ml-auto text-[clamp(1.5rem,3vw,2.5rem)] text-[#CBB98B] mt-10">
+              والهدية؟<br/>
+              مجرد طريقة نوصل فيها هالشعور.
+            </p>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Section03() {
+  return (
+    <section className="bg-[#FAF7F0] text-[#49372D] px-5 py-32 md:py-48 md:px-10" data-testid="section-about-03">
+      <div className="max-w-[1000px] mx-auto flex flex-col items-center text-center">
+        <Reveal>
+          <p className="text-[11px] font-bold uppercase tracking-widest opacity-60 mb-12 font-nav-ar" data-testid="text-about-eyebrow-3">
+            من الكويت، بالمودة.
+          </p>
+        </Reveal>
+
+        <Reveal delay={100}>
+          <h2 className="font-arabic text-[clamp(2.2rem,4.5vw,4.5rem)] font-light leading-[1.35] mb-24 text-balance" data-testid="text-about-main-3">
+            لأنّك براند كويتي،<br/> يشبه أهله.
+          </h2>
+        </Reveal>
+
+        <div className="flex flex-col items-center gap-20 max-w-[700px] text-[clamp(1.2rem,2vw,1.8rem)] font-arabic font-light leading-[1.9] opacity-85">
+          <Reveal>
+            <p>
+              إحنا شعب نحب نتقرب من بعض بالمودة،<br/>
+              ونفرح بعض بهدية، حتى لو ما كان وراها سبب.
+            </p>
+          </Reveal>
+
+          <Reveal>
+            <p>
+              وفكرة «لأنّك» مستوحاة من قيمة التهادي والمحبة<br/>
+              اللي حثّنا عليها الرسول ﷺ في معنى «تهادوا تحابوا».
+            </p>
+          </Reveal>
+
+          <Reveal threshold={0.5}>
+            <div className="w-px h-24 bg-[#49372D]/20 my-4" />
+          </Reveal>
+
+          <Reveal>
+            <p className="text-[clamp(1.4rem,2.5vw,2.2rem)] font-normal text-[#49372D]">
+              مو لأن اليوم مناسبة،<br/>
+              بس لأن في شخص يستاهل يعرف مكانته عندك.
+            </p>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Section04() {
+  return (
+    <section className="bg-[#49372D] text-[#FAF7F0] px-5 py-32 md:py-48 md:px-10 flex flex-col items-center text-center" data-testid="section-about-04">
+      <div className="max-w-[1000px] mx-auto w-full">
+        <Reveal>
+          <p className="text-[11px] font-bold uppercase tracking-widest opacity-60 mb-12 font-nav-ar" data-testid="text-about-eyebrow-4">
+            في النهاية،
+          </p>
+        </Reveal>
+
+        <Reveal delay={100}>
+          <h2 className="font-arabic text-[clamp(2rem,4vw,3.8rem)] font-light leading-[1.4] mb-32 text-balance" data-testid="text-about-main-4">
+            إحنا ما نوصل هدية وبس.<br/>
+            نوصل الشعور اللي وراها.
+          </h2>
+        </Reveal>
+
+        <div className="flex flex-col gap-16 md:gap-24 text-[clamp(2rem,4vw,3.5rem)] font-arabic font-light text-[#CBB98B]">
+          <Reveal><div className="opacity-90">محبة.</div></Reveal>
+          <Reveal><div className="opacity-90">امتنان.</div></Reveal>
+          <Reveal><div className="opacity-90">اشتياق.</div></Reveal>
+          <Reveal><div className="opacity-90">تقدير.</div></Reveal>
+        </div>
+
+        <div className="mt-32 md:mt-48 flex flex-col items-center gap-16">
+          <Reveal>
+            <p className="font-arabic text-[clamp(1.5rem,3vw,2.5rem)] font-light opacity-90 text-balance">
+              وأحيانًا…<br/>
+              بدون سبب.
+            </p>
+          </Reveal>
+
+          <Reveal>
+            <div className="font-arabic text-[clamp(3.5rem,7vw,6.5rem)] font-light mt-8 mb-16 text-[#CBB98B]" data-testid="text-about-final-payoff">
+              لأنّك أنت.
+            </div>
+          </Reveal>
+
+          <Reveal>
+            <Link
+              href="/#gift-start"
+              className="group inline-flex items-center gap-5 rounded-[7px] border border-[#CBB98B] px-9 py-5 text-[#CBB98B] transition-all duration-300 hover:bg-[rgba(203,185,139,0.30)] active:scale-[.98]"
+              data-testid="link-about-cta"
+            >
+              <span className="font-arabic text-[18px] font-medium leading-none">يلا نهدي</span>
+              <ArrowLeft size={19} strokeWidth={1.6} className="transition-transform duration-300 ease-out group-hover:-translate-x-1.5" />
+            </Link>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function About({ lang }: { lang: Lang }) {
-  const isAr = lang === 'ar';
-  return <main><section className="mx-auto max-w-[1440px] px-5 pb-20 pt-12 md:px-10 md:pb-32 md:pt-20"><p className="mb-6 text-[10px] font-bold uppercase tracking-[.22em] opacity-55">{isAr ? 'فكرة لأنّك' : 'The idea behind L’ANAK'}</p><h1 className={`max-w-[1040px] font-display text-7xl leading-[.82] tracking-[-.055em] md:text-[10rem] ${isAr ? 'font-arabic leading-[1.05]' : ''}`} data-testid="text-about-title">{isAr ? 'الهدية مو بالشيء،\\nالهدية بالإحساس اللي وراها.' : 'The gift is not the thing.\\nIt is the feeling behind it.'}</h1></section><section className="border-y border-[#49372D]/20 bg-[#49372D] text-[#FAF7F0]"><div className="mx-auto grid max-w-[1440px] grid-cols-1 md:grid-cols-[.8fr_1.2fr]"><div className="border-b border-[#FAF7F0]/20 p-7 md:border-b-0 md:border-r md:p-12"><span className="text-[10px] font-bold uppercase tracking-[.2em] text-[#E8D59E]">KWT / L’ANAK</span><p className="mt-40 text-[10px] uppercase tracking-[.16em] opacity-60">{isAr ? 'من الكويت، بحب' : 'From Kuwait, with feeling'}</p></div><div className="p-7 md:p-16"><p className={`max-w-[750px] font-display text-5xl leading-[.93] tracking-[-.03em] md:text-8xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>"{isAr ? 'لأن بعض الناس ما يحتاجون مناسبة عشان نتذكرهم… وجودهم بروحه سبب.' : 'Some people need no occasion to be remembered… their presence is reason enough.'}"</p><p className={`mt-14 max-w-[470px] text-sm leading-7 opacity-70 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'لأنّك موجودة عشان تخلي الهدية تبدأ بالإحساس، وتوصل للشخص مع مساحة يختار فيها الشيء اللي يحبه بنفسه.' : 'L’ANAK exists to let every gift begin with a feeling, while giving the recipient the freedom to choose what they truly love.'}</p></div></div></section><section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 py-24 md:grid-cols-[1fr_1fr] md:px-10 md:py-36"><div><p className="mb-5 text-[10px] font-bold uppercase tracking-[.2em] opacity-55">{isAr ? 'من الكويت' : 'Made for here'}</p><h2 className={`font-display text-6xl leading-[.88] tracking-[-.04em] md:text-8xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>{isAr ? 'كل بيت له\\nطريقته في الحب.' : 'Every home has\\nits own language\\nof love.'}</h2></div><div className="flex items-end"><p className={`max-w-[390px] text-sm leading-7 opacity-75 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'نصمم لحظات تناسبنا: رسالة واتساب، قهوة على الطريق، وهدية توصل بوقتها. أشياء بسيطة، لكن معناها كبير.' : 'We make room for the ways we show up here: a WhatsApp note, coffee on the way, a gift that arrives exactly when it should. Small gestures, big meaning.'}</p></div></section><Newsletter lang={lang} /></main>;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <main className="w-full bg-[#FAF7F0]" dir="rtl">
+      <Section01 />
+      <Section02 />
+      <Section03 />
+      <Section04 />
+    </main>
+  );
 }
 
 function Newsletter({ lang }: { lang: Lang }) {

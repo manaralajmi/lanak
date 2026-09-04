@@ -1,0 +1,396 @@
+Redesign ONLY the L’ANAK "/about" page from scratch.
+
+Keep:
+- the existing global Navbar
+- the existing Footer
+- all global brand colors
+- the established L’ANAK typography system
+
+Remove the current About page content.
+
+The current page has too many random oversized statements,
+poor hierarchy, and too many sections stacked together.
+
+The new About page must tell ONE continuous emotional story.
+
+Do NOT add photography yet.
+Do NOT add random extra sections.
+Do NOT add newsletter content.
+Do NOT use generic cards.
+
+The page should feel like a premium Kuwaiti brand manifesto:
+emotional, minimal, cinematic, contemporary and intentional.
+
+==================================================
+SECTION 01 — منو إحنا؟
+==================================================
+
+This is the opening statement of the About page.
+
+Background:
+Warm Cream.
+
+Small eyebrow:
+
+"منو إحنا؟"
+
+Then reveal this statement EXACTLY:
+
+"مو لازم يكون فيه سبب،
+أحيانًا ممكن تكون أنت السبب."
+
+Then underneath reveal:
+
+"لأنّك أنت."
+
+Use Muted Champagne #CBB98B selectively for:
+"لأنّك أنت."
+
+ANIMATION:
+
+This opening needs a memorable but elegant text reveal.
+
+Do NOT show the entire statement immediately.
+
+Reveal the sentence progressively,
+line-by-line or phrase-by-phrase.
+
+Suggested sequence:
+
+1.
+"مو لازم يكون فيه سبب،"
+
+2.
+"أحيانًا ممكن تكون"
+
+3.
+"أنت السبب."
+
+Then pause very briefly.
+
+4.
+Reveal:
+"لأنّك أنت."
+
+Make "أنت" the emotional visual moment.
+
+Animation should feel cinematic and premium,
+not playful.
+
+Use:
+- opacity
+- subtle vertical movement
+- optional refined mask/clip reveal
+- elegant stagger timing
+
+Approximate duration:
+600–900ms per phrase.
+
+No:
+- bouncing
+- spinning
+- typing cursor
+- flashy effects
+- dramatic zoom
+- excessive movement
+
+Give the section generous negative space.
+
+The headline can be large,
+but MUST remain fully inside the viewport.
+
+Arabic letters must NEVER be cropped.
+
+==================================================
+SECTION 02 — ليش لأنّك؟
+==================================================
+
+Background:
+Espresso Brown #49372D.
+
+Small eyebrow:
+
+"ليش لأنّك؟"
+
+Main statement:
+
+"لأن الهدية مو دايم تحتاج مناسبة."
+
+Then tell the story using controlled editorial typography:
+
+"مو لازم ننطر ميلاد، تخرج، أو يوم معيّن
+علشان نقول لشخص: أنت غالي علي."
+
+Then:
+
+"أحيانًا يكون عندنا شعور بسيط نبي نوصله؛
+امتنان، محبة، اشتياق،
+أو حتى «كنت أفكر فيك»."
+
+Finish this section with a stronger statement:
+
+"والهدية؟
+مجرد طريقة نوصل فيها هالشعور."
+
+Do NOT display all paragraphs as one large block.
+
+Create visual hierarchy.
+
+Allow the user to discover the story while scrolling.
+
+Use subtle scroll-triggered reveals.
+
+Keep plenty of breathing room between statements.
+
+==================================================
+SECTION 03 — FROM KUWAIT, WITH AFFECTION
+==================================================
+
+Background:
+Warm Cream.
+
+Small eyebrow:
+
+"من الكويت، بالمودة."
+
+Main statement:
+
+"لأنّك براند كويتي،
+يشبه أهله."
+
+Supporting story:
+
+"إحنا شعب نحب نتقرب من بعض بالمودة،
+ونفرح بعض بهدية، حتى لو ما كان وراها سبب."
+
+Then:
+
+"وفكرة «لأنّك» مستوحاة من قيمة التهادي والمحبة
+اللي حثّنا عليها الرسول ﷺ في معنى «تهادوا تحابوا»."
+
+Then create a visual pause.
+
+Follow it with:
+
+"مو لأن اليوم مناسبة،
+بس لأن في شخص يستاهل يعرف مكانته عندك."
+
+IMPORTANT:
+
+Treat the religious reference respectfully.
+
+Do NOT turn "تهادوا تحابوا" into:
+- a commercial slogan
+- a CTA
+- decorative oversized marketing typography
+- repeated branding
+
+It should appear only as part of the story and meaning
+behind the culture of gifting and affection.
+
+The overall section should communicate that L’ANAK
+comes naturally from Kuwaiti culture and the warmth
+of giving between people.
+
+Do NOT use stereotypical Kuwait visuals.
+
+No flags, skylines, landmarks or generic cultural icons
+are needed at this stage.
+
+Let the copy and design communicate the identity.
+
+==================================================
+SECTION 04 — THE FEELING
+==================================================
+
+Background:
+Espresso Brown #49372D
+or a refined transition from Cream into Espresso Brown.
+
+Small eyebrow:
+
+"في النهاية،"
+
+Main statement:
+
+"إحنا ما نوصل هدية وبس.
+نوصل الشعور اللي وراها."
+
+Then reveal these words with generous spacing:
+
+"محبة."
+"امتنان."
+"اشتياق."
+"تقدير."
+
+Then:
+
+"وأحيانًا…
+بدون سبب."
+
+Finally reveal the brand line:
+
+"لأنّك أنت."
+
+This should feel like the emotional conclusion
+of the entire About story.
+
+==================================================
+FINAL CTA
+==================================================
+
+Under the closing statement add:
+
+"يلا نهدي"
+
+Use the SAME established L’ANAK button system.
+
+On dark background:
+
+Default:
+- transparent background
+- 1px Muted Champagne #CBB98B border
+- Muted Champagne text
+- elegant arrow
+- approximately 7px border radius
+
+Hover:
+fill with rgba(203, 185, 139, 0.30)
+
+Only the background fill should be 30% opacity.
+
+Text, border and arrow remain clearly visible.
+
+Active:
+scale approximately 0.98.
+
+When clicked:
+
+Return to the Homepage and smooth-scroll directly to the
+official gifting section:
+
+"منو ودّك تهدي اليوم؟"
+
+==================================================
+DESIGN RHYTHM
+==================================================
+
+This is extremely important.
+
+Do NOT repeat the current problem where every sentence
+is huge and every section feels stacked on top of another.
+
+Use hierarchy:
+
+EYEBROW
+small
+
+MAIN STATEMENT
+large but controlled
+
+SUPPORTING STORY
+medium/small
+
+EMOTIONAL STATEMENT
+larger
+
+NEGATIVE SPACE
+generous
+
+Each section should have a clear purpose.
+
+The page should visually breathe.
+
+Use a sophisticated editorial grid rather than centering
+every piece of text.
+
+Alternate alignment naturally between sections.
+
+==================================================
+TYPOGRAPHY
+==================================================
+
+Use the SAME Arabic font family already approved
+for the rest of L’ANAK.
+
+Do not introduce another Arabic font.
+
+Headlines should feel elegant and premium.
+
+Avoid excessively bold weights.
+
+Never allow Arabic text to:
+- overflow
+- crop
+- overlap
+- break awkwardly
+- become larger than the usable viewport
+
+Use responsive clamp() sizing where appropriate.
+
+==================================================
+ANIMATION
+==================================================
+
+Animation is important,
+especially in Section 01.
+
+But it must remain refined.
+
+Use:
+- fade
+- mask reveal
+- subtle translateY
+- controlled stagger
+- scroll-triggered reveal
+
+Do NOT use:
+- bounce
+- spin
+- typing cursor
+- glowing text
+- dramatic zoom
+- excessive parallax
+
+The animation should make the viewer want to continue reading,
+not distract from the message.
+
+==================================================
+FINAL STORY
+==================================================
+
+The page should communicate this emotional progression:
+
+منو إحنا؟
+
+↓
+
+مو لازم يكون فيه سبب،
+أحيانًا ممكن تكون أنت السبب.
+
+↓
+
+ليش لأنّك؟
+
+↓
+
+الهدية مو دايم تحتاج مناسبة.
+
+↓
+
+لأنّك براند كويتي يشبه أهله
+وثقافة المودة والتهادي بينهم.
+
+↓
+
+الهدية وسيلة نوصل فيها شعور.
+
+↓
+
+لأنّك أنت.
+
+↓
+
+يلا نهدي
+
+Do NOT add anything beyond this story.
