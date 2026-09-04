@@ -94,7 +94,10 @@ function App() {
     setFavorites((items) => items.includes(id) ? items.filter((item) => item !== id) : [...items, id]);
   };
   const selectGiftCategory = (selectedCategory: string) => {
-    setGiftFlow((current) => ({ ...current, step: 2, selectedCategory }));
+    setGiftFlow((current) => ({ ...current, step: 1, selectedCategory }));
+  };
+  const continueGiftFlow = () => {
+    setGiftFlow((current) => current.selectedCategory ? { ...current, step: 2 } : current);
   };
 
   return (
@@ -104,7 +107,7 @@ function App() {
           <SiteShell lang={lang} setLang={setLang} menuOpen={menuOpen} setMenuOpen={setMenuOpen} bagCount={bag.length} isAr={isAr}>
             <RoutedErrorBoundary>
               <Switch>
-                <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} giftFlow={giftFlow} selectGiftCategory={selectGiftCategory} /></Route>
+                <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} giftFlow={giftFlow} selectGiftCategory={selectGiftCategory} continueGiftFlow={continueGiftFlow} /></Route>
                 <Route path="/gift"><GiftEntryRedirect /></Route>
                 <Route path="/picks"><Picks lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
                 <Route path="/about"><About lang={lang} /></Route>
@@ -232,7 +235,7 @@ function HeroVisual() {
   );
 }
 
-function Home({ lang, t, addToBag, toggleFavorite, favorites, giftFlow, selectGiftCategory }: { lang: Lang; t: typeof copy.en; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[]; giftFlow: GiftFlowState; selectGiftCategory: (category: string) => void }) {
+function Home({ lang, t, addToBag, toggleFavorite, favorites, giftFlow, selectGiftCategory, continueGiftFlow }: { lang: Lang; t: typeof copy.en; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[]; giftFlow: GiftFlowState; selectGiftCategory: (category: string) => void; continueGiftFlow: () => void }) {
   const isAr = lang === 'ar';
   useEffect(() => {
     if (window.location.hash !== '#gift-start') return;
@@ -274,7 +277,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, giftFlow, selectGi
 
       <EmotionalTransition />
 
-      <GiftingCategories lang={lang} selectedCategory={giftFlow.selectedCategory} onSelectCategory={selectGiftCategory} />
+      <GiftingCategories lang={lang} selectedCategory={giftFlow.selectedCategory} onSelectCategory={selectGiftCategory} onContinue={continueGiftFlow} />
 
       <HowLanakWorks lang={lang} />
 
@@ -342,44 +345,68 @@ function EmotionalTransition() {
   );
 }
 
-function GiftingCategories({ lang, selectedCategory, onSelectCategory }: { lang: Lang; selectedCategory: string | null; onSelectCategory: (category: string) => void }) {
+function GiftingCategories({ lang, selectedCategory, onSelectCategory, onContinue }: { lang: Lang; selectedCategory: string | null; onSelectCategory: (category: string) => void; onContinue: () => void }) {
   const isAr = lang === 'ar';
-  
-  const cats = [
-    { id: 'coffee', en: 'COFFEE', label: 'COFFEE IMAGE', ar: 'قهوة', classes: 'category-editorial--coffee' },
-    { id: 'sweets', en: 'SWEETS', label: 'SWEETS IMAGE', ar: 'حلو', classes: 'category-editorial--sweets' },
-    { id: 'restaurants', en: 'DINING', label: 'DINING IMAGE', ar: 'مطاعم', classes: 'category-editorial--dining' },
-    { id: 'flowers', en: 'FLOWERS', label: 'FLOWERS IMAGE', ar: 'ورد', classes: 'category-editorial--flowers' },
-    { id: 'self-care', en: 'SELF-CARE', label: 'SELF-CARE IMAGE', ar: 'عناية', classes: 'category-editorial--care' },
-    { id: 'gifts', en: 'GIFTS', label: 'GIFTS IMAGE', ar: 'هدايا', classes: 'category-editorial--gifts' },
+  const steps = isAr
+    ? ['اختار الفكرة', 'اختار المكان', 'حدد القيمة', 'اكتب كلمتك', 'راجع وأرسل']
+    : ['Choose the gesture', 'Choose the place', 'Set the value', 'Write your note', 'Review and send'];
+  const categories = [
+    { id: 'coffee', number: '01', en: 'Coffee', ar: 'قهوة' },
+    { id: 'sweets', number: '02', en: 'Sweets', ar: 'حلو' },
+    { id: 'restaurants', number: '03', en: 'Dining', ar: 'مطاعم' },
+    { id: 'flowers', number: '04', en: 'Flowers', ar: 'ورد' },
+    { id: 'self-care', number: '05', en: 'Self-Care', ar: 'عناية' },
+    { id: 'gifts', number: '06', en: 'Gifts', ar: 'هدايا' },
   ];
 
-  const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
-
   return (
-    <section className="scroll-mt-8 bg-[#F5F0E8] px-5 py-24 text-[#49372D] md:px-10 md:py-36" id="gift-start">
+    <section className="gift-journey scroll-mt-8 bg-[#F5F0E8] px-5 py-10 text-[#49372D] md:px-10 md:py-16" id="gift-start" dir={isAr ? 'rtl' : 'ltr'}>
       <div className="mx-auto max-w-[1440px]">
-        <div className={`mb-14 max-w-3xl md:mb-[4.5rem] ${isAr ? 'ml-auto text-right' : ''}`}>
-          <h2 className={`text-balance ${isAr ? 'font-nav-ar text-[clamp(2.5rem,4vw,4.5rem)] font-medium leading-[1.28]' : 'font-display text-[clamp(3.5rem,5.5vw,5.5rem)] leading-[0.9] tracking-tight'}`}>
-            {isAr ? 'منو ودّك تهدي اليوم؟' : 'WHO ARE YOU GIFTING TODAY?'}
-          </h2>
-          <p className={`mt-6 text-[15px] leading-8 opacity-70 md:text-[17px] ${isAr ? 'font-nav-ar font-normal' : ''}`}>
-            {isAr ? 'اختار الفكرة، وخله يختار اللي يحبه.' : 'Choose the idea, and let them choose what they love.'}
-          </p>
+        <ol className="gift-progress" aria-label={isAr ? 'خطوات الهدية' : 'Gift journey steps'}>
+          {steps.map((label, index) => (
+            <li key={label} className={index === 0 ? 'is-active' : ''} aria-current={index === 0 ? 'step' : undefined}>
+              <span>0{index + 1}</span>
+              <b className={isAr ? 'font-nav-ar' : ''}>{label}</b>
+            </li>
+          ))}
+        </ol>
+
+        <header className="gift-journey-intro">
+          <p className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'أهدِ الآن' : 'Gift now'}</p>
+          <h2 className={isAr ? 'font-nav-ar' : 'font-display'}>{isAr ? 'منو ودّك تهدي اليوم؟' : 'Who are you gifting today?'}</h2>
+          <div className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'اختار الفكرة، وخله يختار اللي يحبه.' : 'Choose the gesture, and let them choose what they love.'}</div>
+        </header>
+
+        <div className="gift-category-grid">
+          {categories.map((category) => {
+            const isSelected = selectedCategory === category.id;
+            return (
+              <button
+                type="button"
+                key={category.id}
+                className={`gift-category-option group ${isSelected ? 'is-selected' : ''}`}
+                onClick={() => onSelectCategory(category.id)}
+                aria-pressed={isSelected}
+                data-testid={`button-category-${category.id}`}
+              >
+                <span className="gift-category-image">
+                  <span>{category.en} IMAGE</span>
+                </span>
+                <span className="gift-category-meta">
+                  <span className="gift-category-number">{category.number}</span>
+                  <strong className={isAr ? 'font-nav-ar' : 'font-display'}>{isAr ? category.ar : category.en}</strong>
+                  <span className="gift-category-check" aria-hidden="true"><Check size={13} strokeWidth={2} /></span>
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        <div className="category-editorial-grid">
-          {cats.map((cat) => (
-            <button type="button" key={cat.id} onClick={() => onSelectCategory(cat.id)} aria-pressed={selectedCategory === cat.id} className={`category-editorial group text-start ${cat.classes}`} data-testid={`button-category-${cat.id}`}>
-              <div className="category-editorial-image">
-                <span>{cat.label}</span>
-              </div>
-              <div className="category-editorial-title">
-                <h3 className={isAr ? 'font-nav-ar' : 'font-display tracking-[.08em]'}>{isAr ? cat.ar : cat.en}</h3>
-                <ArrowIcon size={19} strokeWidth={1.3} className="category-editorial-arrow" />
-              </div>
-            </button>
-          ))}
+        <div className="gift-journey-action">
+          <button type="button" className="gift-continue group" disabled={!selectedCategory} onClick={onContinue} data-testid="button-gift-continue">
+            <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'كمّل' : 'Continue'}</span>
+            {isAr ? <ArrowLeft size={17} strokeWidth={1.5} /> : <ArrowRight size={17} strokeWidth={1.5} />}
+          </button>
         </div>
       </div>
     </section>

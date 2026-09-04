@@ -400,7 +400,8 @@
   font-size: .75rem;
   font-weight: 600;
 }
-.gift-journey-intro h1 {
+.gift-journey-intro h1,
+.gift-journey-intro h2 {
   font-size: clamp(2.75rem, 5.3vw, 6rem);
   font-weight: 500;
   line-height: 1.16;

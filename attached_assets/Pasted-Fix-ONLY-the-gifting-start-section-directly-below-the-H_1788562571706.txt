@@ -1,0 +1,235 @@
+Fix ONLY the gifting start section directly below the Hero.
+
+IMPORTANT:
+The CURRENT STRUCTURE is correct.
+
+Keep this behavior:
+
+- Navbar "أهدِ الآن" smooth-scrolls directly to the gifting section below the Hero
+- Hero CTA "يلا نهدي" also scrolls to the SAME section
+- There should NOT be a duplicate separate category landing page
+
+DO NOT change this structure.
+
+The problem is ONLY that the previous, better Step 01 DESIGN and interaction were removed.
+
+I want to RESTORE the previous structured Step 01 design and interaction
+inside the Homepage section directly below the Hero.
+
+==================================================
+RESTORE THE PREVIOUS STEP 01 EXPERIENCE
+==================================================
+
+Use the previous /gift Step 01 design as the visual and UX reference.
+
+Restore:
+
+1. Minimal 01–05 progress indicator
+2. Six structured selectable category cards
+3. Clear selected state
+4. "كمّل" CTA
+5. Disabled CTA before selection
+6. Enabled CTA after selection
+
+But place this experience directly BELOW THE HERO on the Homepage.
+
+Do NOT create a duplicate page.
+
+==================================================
+SECTION COPY
+==================================================
+
+Keep exactly:
+
+Small eyebrow:
+"أهدِ الآن"
+
+Main headline:
+"منو ودّك تهدي اليوم؟"
+
+Supporting copy:
+"اختار الفكرة، وخله يختار اللي يحبه."
+
+==================================================
+PROGRESS INDICATOR
+==================================================
+
+Restore the elegant progress indicator:
+
+01 — اختار الفكرة
+02 — اختار المكان
+03 — حدد القيمة
+04 — اكتب كلمتك
+05 — راجع وأرسل
+
+Step 01 must be active.
+
+Steps 02–05 should be visible but understated.
+
+Keep the previous minimal editorial line style.
+
+Do NOT use circles, boxes, or a corporate progress bar.
+
+==================================================
+CATEGORIES
+==================================================
+
+Restore exactly these six selectable categories:
+
+01 — قهوة
+02 — حلو
+03 — مطاعم
+04 — ورد
+05 — عناية
+06 — هدايا
+
+Use the previous structured 3 × 2 layout on desktop.
+
+Do NOT return to the large asymmetric editorial preview layout.
+
+For this section, I want the cleaner structured selection layout
+that was previously used on /gift.
+
+Keep image placeholders for now.
+
+==================================================
+SELECTION INTERACTION
+==================================================
+
+The category cards must be selectable again.
+
+Default:
+- neutral state
+- subtle border
+- no selection marker
+
+Hover:
+- slight image scale
+- subtle visual emphasis
+- smooth 300ms transition
+
+On click:
+- select ONLY ONE category
+- show a clear refined selection state
+- use Muted Champagne #CBB98B accent/border
+- show a minimal selection indicator/check
+- store selected category in gifting state
+
+Do NOT immediately navigate when the category is clicked.
+
+The user must select first, then press:
+
+"كمّل"
+
+==================================================
+"كمّل" BUTTON
+==================================================
+
+Restore the CTA:
+
+"كمّل"
+
+Before a category is selected:
+- disabled
+- lower opacity
+- no hover
+- clear disabled cursor
+
+After a category is selected:
+- enabled
+
+Because the background is LIGHT:
+
+DEFAULT ENABLED:
+- transparent background
+- 1px Espresso Brown #49372D border
+- Espresso Brown text
+- Espresso Brown arrow
+- border-radius: 7px
+
+HOVER:
+background-color: rgba(73, 55, 45, 0.30);
+
+Only the background fill uses 30% opacity.
+
+Keep:
+- text fully opaque
+- border fully visible
+- arrow fully visible
+
+Also:
+- arrow moves slightly
+- button lifts ~1px
+- smooth 250–300ms transition
+
+ACTIVE:
+scale ~0.98
+
+==================================================
+CONTINUE BEHAVIOR
+==================================================
+
+When the user:
+
+1. selects a category
+2. clicks "كمّل"
+
+then continue to:
+
+STEP 02 — "اختار المكان"
+
+Do NOT build Step 02 yet.
+
+Just preserve the selected category and prepare the next-step state.
+
+==================================================
+NAVBAR / HERO SCROLL BEHAVIOR
+==================================================
+
+Keep the current correct behavior:
+
+Navbar:
+"أهدِ الآن"
+→ smooth scroll to this exact section below the Hero
+
+Hero:
+"يلا نهدي"
+→ smooth scroll to this exact same section
+
+Do NOT navigate to a duplicate category page.
+
+==================================================
+HOMEPAGE FLOW
+==================================================
+
+The intended flow is now:
+
+NAVBAR
+↓
+HERO
+↓
+rotating emotional phrases
+↓
+STEP 01 GIFTING SECTION
+"منو ودّك تهدي اليوم؟"
+with progress + selection + "كمّل"
+↓
+remaining homepage sections
+
+This is the ONE official gifting starting point.
+
+==================================================
+IMPORTANT
+==================================================
+
+DO NOT:
+- create another /gift landing page
+- duplicate "منو ودّك تهدي اليوم؟"
+- use the large asymmetric editorial category layout here
+- remove the progress indicator
+- remove selection behavior
+- remove "كمّل"
+- redesign other homepage sections
+
+Restore ONLY the previous structured Step 01 design and interaction
+inside the current below-Hero position.
