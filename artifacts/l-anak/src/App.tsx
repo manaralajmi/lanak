@@ -13,6 +13,14 @@ const queryClient = new QueryClient();
 
 type Lang = 'en' | 'ar';
 type Product = { id: string; name: string; ar: string; note: string; price: number; category: string; mark: string };
+type GiftFlowState = {
+  step: number;
+  selectedCategory: string | null;
+  selectedPartner: string | null;
+  selectedValue: number | null;
+  recipientInformation: { name: string; phone: string; deliveryDate: string; deliveryMethod: string };
+  personalMessage: string;
+};
 type FeaturedGift = Product & {
   categoryAr: string;
   categoryEn: string;
@@ -62,6 +70,14 @@ function App() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
   const [toast, setToast] = useState('');
+  const [giftFlow, setGiftFlow] = useState<GiftFlowState>({
+    step: 1,
+    selectedCategory: null,
+    selectedPartner: null,
+    selectedValue: null,
+    recipientInformation: { name: '', phone: '', deliveryDate: '', deliveryMethod: '' },
+    personalMessage: '',
+  });
   const isSignedIn = false;
   const isAr = lang === 'ar';
   const t = copy[lang];
@@ -77,6 +93,9 @@ function App() {
     }
     setFavorites((items) => items.includes(id) ? items.filter((item) => item !== id) : [...items, id]);
   };
+  const selectGiftCategory = (selectedCategory: string) => {
+    setGiftFlow((current) => ({ ...current, step: 2, selectedCategory }));
+  };
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -85,8 +104,8 @@ function App() {
           <SiteShell lang={lang} setLang={setLang} menuOpen={menuOpen} setMenuOpen={setMenuOpen} bagCount={bag.length} isAr={isAr}>
             <RoutedErrorBoundary>
               <Switch>
-                <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
-                <Route path="/gift"><GiftJourney lang={lang} /></Route>
+                <Route path="/"><Home lang={lang} t={t} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} giftFlow={giftFlow} selectGiftCategory={selectGiftCategory} /></Route>
+                <Route path="/gift"><GiftEntryRedirect /></Route>
                 <Route path="/picks"><Picks lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} /></Route>
                 <Route path="/about"><About lang={lang} /></Route>
                 <Route path="/gift-card"><GiftCards lang={lang} setToast={setToast} /></Route>
@@ -106,9 +125,39 @@ function App() {
 }
 
 function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, isAr }: { children: ReactNode; lang: Lang; setLang: (lang: Lang) => void; menuOpen: boolean; setMenuOpen: (open: boolean) => void; bagCount: number; isAr: boolean }) {
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
+  const [giftStartActive, setGiftStartActive] = useState(false);
   const nav = copy[lang].nav;
-  const links = ['/', '/gift', '/picks', '/about', '/gift-card'];
+  const links = ['/', '/#gift-start', '/picks', '/about', '/gift-card'];
+  const goToGiftStart = () => {
+    if (location !== '/') {
+      navigate('/#gift-start');
+      return;
+    }
+    window.history.replaceState(null, '', '#gift-start');
+    document.getElementById('gift-start')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  useEffect(() => {
+    setGiftStartActive(false);
+    if (location !== '/') return;
+
+    let observer: IntersectionObserver | undefined;
+    const frame = window.requestAnimationFrame(() => {
+      const giftStart = document.getElementById('gift-start');
+      if (!giftStart) return;
+      observer = new IntersectionObserver(
+        ([entry]) => setGiftStartActive(entry.isIntersecting),
+        { rootMargin: '-18% 0px -48% 0px', threshold: 0 },
+      );
+      observer.observe(giftStart);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      observer?.disconnect();
+    };
+  }, [location]);
   
   return (
     <div className="min-h-[100dvh] flex flex-col bg-[#FAF7F0] text-[#49372D]">
@@ -118,7 +167,14 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, i
       <header className="relative z-40 w-full border-b border-[#F5F0E8]/15 bg-[#49372D] text-[#F5F0E8]">
         <div className="relative mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-4 px-5 py-4 md:grid-cols-[1fr_auto_1fr] md:px-10 md:py-5">
           <nav className="hidden items-center gap-[clamp(1.75rem,2.6vw,3rem)] md:flex" aria-label="Main navigation">
-            {nav.map((item, index) => <Link key={item} href={links[index]} onClick={() => { if (links[index] === '/') window.scrollTo({ top: 0, behavior: 'smooth' }); }} className={`header-nav-link whitespace-nowrap font-medium ${isAr ? 'font-nav-ar text-[18px] leading-none' : 'text-[15px] tracking-[.04em] lg:text-[16px]'} ${location === links[index] ? 'is-active' : ''}`} data-testid={`link-nav-${links[index] === '/' ? 'home' : links[index].slice(1)}`}>{item}</Link>)}
+            {nav.map((item, index) => {
+              const isActive = index === 0
+                ? location === '/' && !giftStartActive
+                : index === 1
+                  ? location === '/' && giftStartActive
+                  : location === links[index];
+              return <Link key={item} href={links[index]} onClick={(event) => { if (index === 0) window.scrollTo({ top: 0, behavior: 'smooth' }); if (index === 1) { event.preventDefault(); goToGiftStart(); } }} className={`header-nav-link whitespace-nowrap font-medium ${isAr ? 'font-nav-ar text-[18px] leading-none' : 'text-[15px] tracking-[.04em] lg:text-[16px]'} ${isActive ? 'is-active' : ''}`} data-testid={`link-nav-${index === 0 ? 'home' : index === 1 ? 'gift' : links[index].slice(1)}`}>{item}</Link>;
+            })}
           </nav>
            <Link href="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="absolute left-1/2 top-1/2 flex h-11 w-[124px] -translate-x-1/2 -translate-y-1/2 items-center justify-center md:static md:h-14 md:w-[154px] md:translate-x-0 md:translate-y-0 md:justify-self-center" aria-label="L’ANAK home" data-testid="link-logo">
             <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="h-full w-full object-contain" />
@@ -141,7 +197,7 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, i
         {menuOpen && (
           <div className="absolute left-0 right-0 top-full border-b border-[#F5F0E8]/15 bg-[#49372D] px-5 pb-7 pt-3 text-[#F5F0E8] md:hidden" data-testid="menu-mobile">
             <div className="flex flex-col gap-5">
-              {nav.map((item, index) => <Link key={item} href={links[index]} onClick={() => setMenuOpen(false)} className={`text-2xl font-light ${isAr ? 'font-arabic' : 'font-display'}`} data-testid={`link-mobile-${links[index].slice(1)}`}>{item}</Link>)}
+              {nav.map((item, index) => <Link key={item} href={links[index]} onClick={(event) => { setMenuOpen(false); if (index === 1) { event.preventDefault(); goToGiftStart(); } }} className={`text-2xl font-light ${isAr ? 'font-arabic' : 'font-display'}`} data-testid={`link-mobile-${index === 0 ? 'home' : index === 1 ? 'gift' : links[index].slice(1)}`}>{item}</Link>)}
               <div className="mt-2 flex items-center gap-5 border-t border-current/15 pt-5">
                 <Link href="/favorites" onClick={() => setMenuOpen(false)} aria-label={isAr ? 'المفضلة' : 'Favorites'}><Heart size={18} strokeWidth={1.3} /></Link>
                 <Link href="/account" onClick={() => setMenuOpen(false)} aria-label={isAr ? 'الحساب' : 'Account'}><User size={18} strokeWidth={1.3} /></Link>
@@ -176,8 +232,16 @@ function HeroVisual() {
   );
 }
 
-function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t: typeof copy.en; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
+function Home({ lang, t, addToBag, toggleFavorite, favorites, giftFlow, selectGiftCategory }: { lang: Lang; t: typeof copy.en; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[]; giftFlow: GiftFlowState; selectGiftCategory: (category: string) => void }) {
   const isAr = lang === 'ar';
+  useEffect(() => {
+    if (window.location.hash !== '#gift-start') return;
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById('gift-start')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, []);
+
   return (
     <main className="w-full">
       <section className="relative isolate min-h-[760px] overflow-hidden bg-[#49372D] px-5 pb-20 pt-12 text-[#F5F0E8] md:min-h-[680px] md:px-10 md:pb-28 md:pt-16">
@@ -193,7 +257,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t:
             </div>
             
             <div className="hero-cta absolute -bottom-6 left-1/2 z-20 -translate-x-1/2 md:-bottom-8">
-              <Link href="/gift" className="hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
+              <a href="#gift-start" className="hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
                 <span className={`${isAr ? 'font-arabic text-[17px] font-medium' : 'text-[12px] font-bold uppercase tracking-[.15em]'}`}>
                   {isAr ? copy.ar.heroCta : copy.en.heroCta}
                 </span>
@@ -202,7 +266,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t:
                 ) : (
                   <ArrowRight size={17} strokeWidth={1.6} className="transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
                 )}
-              </Link>
+              </a>
             </div>
           </div>
         </div>
@@ -210,7 +274,7 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites }: { lang: Lang; t:
 
       <EmotionalTransition />
 
-      <GiftingCategories lang={lang} />
+      <GiftingCategories lang={lang} selectedCategory={giftFlow.selectedCategory} onSelectCategory={selectGiftCategory} />
 
       <HowLanakWorks lang={lang} />
 
@@ -256,86 +320,12 @@ function CuratedPicks({ lang, addToBag, toggleFavorite, favorites }: { lang: Lan
   );
 }
 
-function GiftJourney({ lang }: { lang: Lang }) {
-  const isAr = lang === 'ar';
-  const [flowState, setFlowState] = useState({
-    step: 1,
-    selectedCategory: null as string | null,
-    selectedPartner: null as string | null,
-    selectedValue: null as number | null,
-    recipientInformation: { name: '', phone: '', deliveryDate: '', deliveryMethod: '' },
-    personalMessage: '',
-  });
-
-  const steps = isAr
-    ? ['اختار الفكرة', 'اختار المكان', 'حدد القيمة', 'اكتب كلمتك', 'راجع وأرسل']
-    : ['Choose the gesture', 'Choose the place', 'Set the value', 'Write your note', 'Review and send'];
-
-  const categories = [
-    { id: 'coffee', number: '01', en: 'Coffee', ar: 'قهوة' },
-    { id: 'sweets', number: '02', en: 'Sweets', ar: 'حلو' },
-    { id: 'dining', number: '03', en: 'Dining', ar: 'مطاعم' },
-    { id: 'flowers', number: '04', en: 'Flowers', ar: 'ورد' },
-    { id: 'self-care', number: '05', en: 'Self-Care', ar: 'عناية' },
-    { id: 'gifts', number: '06', en: 'Gifts', ar: 'هدايا' },
-  ];
-
-  return (
-    <main className="gift-journey bg-[#F5F0E8] px-5 py-10 text-[#49372D] md:px-10 md:py-16" dir={isAr ? 'rtl' : 'ltr'} data-current-step={flowState.step}>
-      <div className="mx-auto max-w-[1440px]">
-        <ol className="gift-progress" aria-label={isAr ? 'خطوات الهدية' : 'Gift journey steps'}>
-          {steps.map((label, index) => (
-            <li key={label} className={index === 0 ? 'is-active' : ''} aria-current={index === 0 ? 'step' : undefined}>
-              <span>0{index + 1}</span>
-              <b className={isAr ? 'font-nav-ar' : ''}>{label}</b>
-            </li>
-          ))}
-        </ol>
-
-        <header className="gift-journey-intro">
-          <p className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'أهدِ الآن' : 'Gift now'}</p>
-          <h1 className={isAr ? 'font-nav-ar' : 'font-display'}>{isAr ? 'منو ودّك تهدي اليوم؟' : 'Who are you gifting today?'}</h1>
-          <div className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'اختار الفكرة، وخله يختار اللي يحبه.' : 'Choose the gesture, and let them choose what they love.'}</div>
-        </header>
-
-        <div className="gift-category-grid">
-          {categories.map((category) => {
-            const isSelected = flowState.selectedCategory === category.id;
-            return (
-              <button
-                type="button"
-                key={category.id}
-                className={`gift-category-option group ${isSelected ? 'is-selected' : ''}`}
-                onClick={() => setFlowState((current) => ({ ...current, step: 1, selectedCategory: category.id }))}
-                aria-pressed={isSelected}
-              >
-                <span className="gift-category-image">
-                  <span>{category.en} IMAGE</span>
-                </span>
-                <span className="gift-category-meta">
-                  <span className="gift-category-number">{category.number}</span>
-                  <strong className={isAr ? 'font-nav-ar' : 'font-display'}>{isAr ? category.ar : category.en}</strong>
-                  <span className="gift-category-check" aria-hidden="true"><Check size={13} strokeWidth={2} /></span>
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        <div className="gift-journey-action">
-          <button
-            type="button"
-            className="gift-continue group"
-            disabled={!flowState.selectedCategory}
-            onClick={() => setFlowState((current) => ({ ...current, step: 2 }))}
-          >
-            <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'كمّل' : 'Continue'}</span>
-            {isAr ? <ArrowLeft size={17} strokeWidth={1.5} /> : <ArrowRight size={17} strokeWidth={1.5} />}
-          </button>
-        </div>
-      </div>
-    </main>
-  );
+function GiftEntryRedirect() {
+  const [, navigate] = useLocation();
+  useEffect(() => {
+    navigate('/#gift-start', { replace: true });
+  }, [navigate]);
+  return null;
 }
 
 function Picks({ lang, addToBag, toggleFavorite, favorites }: { lang: Lang; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void; favorites: string[] }) {
@@ -352,22 +342,22 @@ function EmotionalTransition() {
   );
 }
 
-function GiftingCategories({ lang }: { lang: Lang }) {
+function GiftingCategories({ lang, selectedCategory, onSelectCategory }: { lang: Lang; selectedCategory: string | null; onSelectCategory: (category: string) => void }) {
   const isAr = lang === 'ar';
   
   const cats = [
-    { id: 'coffee', en: 'COFFEE', label: 'COFFEE IMAGE', ar: 'قهوة', path: '/gift?category=coffee', classes: 'category-editorial--coffee' },
-    { id: 'sweets', en: 'SWEETS', label: 'SWEETS IMAGE', ar: 'حلو', path: '/gift?category=sweets', classes: 'category-editorial--sweets' },
-    { id: 'restaurants', en: 'DINING', label: 'DINING IMAGE', ar: 'مطاعم', path: '/gift?category=restaurants', classes: 'category-editorial--dining' },
-    { id: 'flowers', en: 'FLOWERS', label: 'FLOWERS IMAGE', ar: 'ورد', path: '/gift?category=flowers', classes: 'category-editorial--flowers' },
-    { id: 'self-care', en: 'SELF-CARE', label: 'SELF-CARE IMAGE', ar: 'عناية', path: '/gift?category=self-care', classes: 'category-editorial--care' },
-    { id: 'gifts', en: 'GIFTS', label: 'GIFTS IMAGE', ar: 'هدايا', path: '/gift?category=gifts', classes: 'category-editorial--gifts' },
+    { id: 'coffee', en: 'COFFEE', label: 'COFFEE IMAGE', ar: 'قهوة', classes: 'category-editorial--coffee' },
+    { id: 'sweets', en: 'SWEETS', label: 'SWEETS IMAGE', ar: 'حلو', classes: 'category-editorial--sweets' },
+    { id: 'restaurants', en: 'DINING', label: 'DINING IMAGE', ar: 'مطاعم', classes: 'category-editorial--dining' },
+    { id: 'flowers', en: 'FLOWERS', label: 'FLOWERS IMAGE', ar: 'ورد', classes: 'category-editorial--flowers' },
+    { id: 'self-care', en: 'SELF-CARE', label: 'SELF-CARE IMAGE', ar: 'عناية', classes: 'category-editorial--care' },
+    { id: 'gifts', en: 'GIFTS', label: 'GIFTS IMAGE', ar: 'هدايا', classes: 'category-editorial--gifts' },
   ];
 
   const ArrowIcon = isAr ? ArrowLeft : ArrowRight;
 
   return (
-    <section className="bg-[#F5F0E8] px-5 py-24 text-[#49372D] md:px-10 md:py-36" id="categories">
+    <section className="scroll-mt-8 bg-[#F5F0E8] px-5 py-24 text-[#49372D] md:px-10 md:py-36" id="gift-start">
       <div className="mx-auto max-w-[1440px]">
         <div className={`mb-14 max-w-3xl md:mb-[4.5rem] ${isAr ? 'ml-auto text-right' : ''}`}>
           <h2 className={`text-balance ${isAr ? 'font-nav-ar text-[clamp(2.5rem,4vw,4.5rem)] font-medium leading-[1.28]' : 'font-display text-[clamp(3.5rem,5.5vw,5.5rem)] leading-[0.9] tracking-tight'}`}>
@@ -380,7 +370,7 @@ function GiftingCategories({ lang }: { lang: Lang }) {
 
         <div className="category-editorial-grid">
           {cats.map((cat) => (
-            <Link key={cat.id} href={cat.path} className={`category-editorial group ${cat.classes}`} data-testid={`link-category-${cat.id}`}>
+            <button type="button" key={cat.id} onClick={() => onSelectCategory(cat.id)} aria-pressed={selectedCategory === cat.id} className={`category-editorial group text-start ${cat.classes}`} data-testid={`button-category-${cat.id}`}>
               <div className="category-editorial-image">
                 <span>{cat.label}</span>
               </div>
@@ -388,7 +378,7 @@ function GiftingCategories({ lang }: { lang: Lang }) {
                 <h3 className={isAr ? 'font-nav-ar' : 'font-display tracking-[.08em]'}>{isAr ? cat.ar : cat.en}</h3>
                 <ArrowIcon size={19} strokeWidth={1.3} className="category-editorial-arrow" />
               </div>
-            </Link>
+            </button>
           ))}
         </div>
       </div>
@@ -457,7 +447,7 @@ function HowLanakWorks({ lang }: { lang: Lang }) {
           ))}
         </div>
 
-        <Link href="/gift" className="how-lanak-link hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
+        <Link href="/#gift-start" className="how-lanak-link hero-cta-button group inline-flex w-max cursor-pointer items-center gap-5 rounded-[7px] border px-7 py-4">
           <span className={isAr ? 'font-nav-ar' : ''}>{isAr ? 'يلا نبدأ' : 'Start your gift'}</span>
           {isAr ? (
             <ArrowLeft size={17} strokeWidth={1.4} />
@@ -605,7 +595,7 @@ function BagPage({ lang, bag, setBag, setToast }: { lang: Lang; bag: Product[]; 
           <div className="py-24 text-center">
             <ShoppingBag className="mx-auto" size={30} strokeWidth={1.2} />
             <p className={`mt-6 text-2xl ${isAr ? 'font-arabic' : 'font-display'}`}>{isAr ? 'الشنطة فاضية.' : 'It’s quiet in here.'}</p>
-            <Link href="/gift" className="line-draw mt-8 inline-block text-xs font-bold">{isAr ? 'ابدأ هدية' : 'Start a gift'}</Link>
+            <Link href="/#gift-start" className="line-draw mt-8 inline-block text-xs font-bold">{isAr ? 'ابدأ هدية' : 'Start a gift'}</Link>
           </div>
         ) : (
           <div className="mt-12">
@@ -631,7 +621,7 @@ function BagPage({ lang, bag, setBag, setToast }: { lang: Lang; bag: Product[]; 
 
 function Footer({ lang }: { lang: Lang }) {
   const isAr = lang === 'ar';
-  return <footer className="border-t border-[#49372D]/20 px-5 py-10 md:px-10"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-10 md:flex-row md:items-end"><div><Link href="/" className="font-display text-5xl tracking-[-.05em]" data-testid="link-footer-logo">L’ANAK</Link><p className="mt-3 text-[10px] uppercase tracking-[.16em] opacity-55">{isAr ? 'هدايا فيها شعور' : 'gifts with feeling'}</p></div><div className="grid grid-cols-2 gap-x-12 gap-y-3 text-[11px] font-bold md:grid-cols-3"><Link href="/gift" className="line-draw" data-testid="link-footer-shop">{isAr ? 'أهدِ الآن' : 'Gift now'}</Link><Link href="/gift-card" className="line-draw" data-testid="link-footer-cards">{isAr ? 'بطاقة هدية' : 'Gift card'}</Link><Link href="/picks" className="line-draw" data-testid="link-footer-picks">{isAr ? 'اختياراتنا' : 'Our picks'}</Link><Link href="/about" className="line-draw" data-testid="link-footer-about">{isAr ? 'عن لأنّك' : 'About'}</Link><button className="line-draw text-left" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} data-testid="button-back-top">{isAr ? 'فوق' : 'Back to top'} ↑</button><span className="opacity-45">Kuwait City, KWT</span></div></div><div className="mx-auto mt-14 flex max-w-[1440px] justify-between text-[9px] font-bold uppercase tracking-[.16em] opacity-45"><span>© L’ANAK 2025</span><span>{isAr ? 'صُنع بحب' : 'made with feeling'}</span></div></footer>;
+  return <footer className="border-t border-[#49372D]/20 px-5 py-10 md:px-10"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-10 md:flex-row md:items-end"><div><Link href="/" className="font-display text-5xl tracking-[-.05em]" data-testid="link-footer-logo">L’ANAK</Link><p className="mt-3 text-[10px] uppercase tracking-[.16em] opacity-55">{isAr ? 'هدايا فيها شعور' : 'gifts with feeling'}</p></div><div className="grid grid-cols-2 gap-x-12 gap-y-3 text-[11px] font-bold md:grid-cols-3"><Link href="/#gift-start" className="line-draw" data-testid="link-footer-shop">{isAr ? 'أهدِ الآن' : 'Gift now'}</Link><Link href="/gift-card" className="line-draw" data-testid="link-footer-cards">{isAr ? 'بطاقة هدية' : 'Gift card'}</Link><Link href="/picks" className="line-draw" data-testid="link-footer-picks">{isAr ? 'اختياراتنا' : 'Our picks'}</Link><Link href="/about" className="line-draw" data-testid="link-footer-about">{isAr ? 'عن لأنّك' : 'About'}</Link><button className="line-draw text-left" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} data-testid="button-back-top">{isAr ? 'فوق' : 'Back to top'} ↑</button><span className="opacity-45">Kuwait City, KWT</span></div></div><div className="mx-auto mt-14 flex max-w-[1440px] justify-between text-[9px] font-bold uppercase tracking-[.16em] opacity-45"><span>© L’ANAK 2025</span><span>{isAr ? 'صُنع بحب' : 'made with feeling'}</span></div></footer>;
 }
 
 function RoutedErrorBoundary({ children }: { children: ReactNode }) {

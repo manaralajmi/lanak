@@ -1,0 +1,255 @@
+Simplify the L’ANAK gifting flow.
+
+The current website has TWO versions of:
+
+"منو ودّك تهدي اليوم؟"
+
+One on the Homepage
+and another separate version on /gift.
+
+This is confusing.
+
+I want ONLY ONE category-selection experience.
+
+IMPORTANT:
+Use the existing Homepage section:
+
+"منو ودّك تهدي اليوم؟"
+
+as the official START of the gifting journey.
+
+Do NOT keep a separate duplicate category page.
+
+==================================================
+1. NAVBAR "أهدِ الآن"
+==================================================
+
+Change the navbar item:
+
+"أهدِ الآن"
+
+so it does NOT navigate to a separate /gift category page.
+
+Instead:
+
+When the user clicks "أهدِ الآن",
+smooth-scroll directly to the existing Homepage section:
+
+"منو ودّك تهدي اليوم؟"
+
+Use an anchor/id for this section.
+
+Example:
+
+#gift-start
+
+The scroll should feel smooth and intentional.
+
+==================================================
+2. HERO CTA
+==================================================
+
+The Hero CTA:
+
+"يلا نهدي"
+
+should also smooth-scroll to the SAME section:
+
+"منو ودّك تهدي اليوم؟"
+
+Do NOT open a duplicate page.
+
+Both:
+
+Navbar → أهدِ الآن
+Hero → يلا نهدي
+
+must lead to the SAME exact gifting starting point.
+
+==================================================
+3. REMOVE THE DUPLICATE /gift STEP 01 PAGE
+==================================================
+
+Remove the duplicate Step 01 page that currently contains:
+
+- progress indicator 01–05
+- duplicate "منو ودّك تهدي اليوم؟"
+- duplicate six category cards
+- duplicate "كمّل" button
+
+Do NOT keep this duplicate category experience.
+
+IMPORTANT:
+Do NOT delete reusable gifting logic/state
+that may be useful for later steps.
+
+Only remove the duplicate visual/page experience.
+
+==================================================
+4. HOMEPAGE CATEGORY SECTION BECOMES INTERACTIVE
+==================================================
+
+Use the existing approved Homepage Category Discovery section
+as the REAL Step 01 of the gifting journey.
+
+Keep its current approved editorial design.
+
+Do NOT redesign it.
+
+Categories remain:
+
+01 — قهوة
+02 — حلو
+03 — مطاعم
+04 — ورد
+05 — عناية
+06 — هدايا
+
+The full category area should be clickable.
+
+==================================================
+5. CATEGORY CLICK BEHAVIOR
+==================================================
+
+When the user clicks a category,
+do NOT immediately open a random category page.
+
+Treat the category click as Step 01 selection.
+
+Store the selected category in gifting state.
+
+Example:
+
+User clicks:
+"قهوة"
+
+Store:
+selectedCategory = coffee
+
+Then continue into the next gifting step:
+
+STEP 02
+"اختار المكان"
+
+This next step can open in the same guided gifting flow.
+
+We will design Step 02 separately later.
+
+Do NOT build Step 02 now.
+
+==================================================
+6. NO EXTRA "كمّل" BUTTON IN STEP 01
+==================================================
+
+Because the user is clicking directly on a category,
+the category selection itself can move them forward.
+
+Do NOT add an extra "كمّل" button to the Homepage category section
+unless it is technically necessary.
+
+The experience should feel:
+
+click category
+→ continue naturally
+
+Simple and direct.
+
+==================================================
+7. ACTIVE NAVBAR STATE
+==================================================
+
+When the user scrolls to the:
+
+"منو ودّك تهدي اليوم؟"
+
+section,
+
+the navbar item:
+
+"أهدِ الآن"
+
+may use the existing active-state styling.
+
+When the user returns to the Hero/top of the Homepage:
+
+"الرئيسية"
+
+should become active again.
+
+Use smooth scroll-spy behavior if appropriate.
+
+Do not make it visually distracting.
+
+==================================================
+8. PRESERVE HOMEPAGE STRUCTURE
+==================================================
+
+Do NOT remove the section from the Homepage.
+
+The intended flow is now:
+
+NAVBAR
+↓
+HERO
+↓
+rotating phrases
+↓
+"منو ودّك تهدي اليوم؟"
+THIS IS STEP 01 OF GIFTING
+↓
+remaining homepage content
+
+The user should never need to wonder:
+
+"Is this the preview or the real gifting page?"
+
+There is only ONE starting point.
+
+==================================================
+9. FUTURE GIFTING FLOW
+==================================================
+
+Prepare the gifting state for later steps:
+
+Step 01 — اختار الفكرة
+Step 02 — اختار المكان
+Step 03 — حدد القيمة
+Step 04 — اكتب كلمتك
+Step 05 — راجع وأرسل
+
+But do NOT display the full progress bar on the Homepage category section.
+
+We will introduce later-step guidance only AFTER
+the user chooses a category.
+
+==================================================
+10. CLEAN ROUTING
+==================================================
+
+Audit the current /gift route.
+
+If it exists only for the duplicate Step 01 page,
+remove or repurpose it for later gifting steps.
+
+Do NOT leave a duplicate category landing page accessible.
+
+No dead links.
+No duplicated gifting entry points.
+
+==================================================
+FINAL UX RULE
+==================================================
+
+There should be ONE clear answer to:
+
+"Where do I start gifting?"
+
+Answer:
+
+"منو ودّك تهدي اليوم؟"
+
+The navbar "أهدِ الآن"
+and Hero "يلا نهدي"
+both lead to this exact section.
+
+Do not modify any other approved visual section.
