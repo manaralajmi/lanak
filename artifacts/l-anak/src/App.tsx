@@ -252,7 +252,7 @@ function GiftingCategories({ lang }: { lang: Lang }) {
   return (
     <section className="bg-[#F5F0E8] px-5 py-24 text-[#49372D] md:px-10 md:py-36" id="categories">
       <div className="mx-auto max-w-[1440px]">
-        <div className={`mb-16 max-w-3xl md:mb-24 ${isAr ? 'ml-auto text-right' : ''}`}>
+        <div className={`mb-14 max-w-3xl md:mb-[4.5rem] ${isAr ? 'ml-auto text-right' : ''}`}>
           <h2 className={`text-balance ${isAr ? 'font-nav-ar text-[clamp(2.5rem,4vw,4.5rem)] font-medium leading-[1.28]' : 'font-display text-[clamp(3.5rem,5.5vw,5.5rem)] leading-[0.9] tracking-tight'}`}>
             {isAr ? 'منو ودّك تهدي اليوم؟' : 'WHO ARE YOU GIFTING TODAY?'}
           </h2>

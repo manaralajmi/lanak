@@ -1,0 +1,134 @@
+Refine ONLY the existing Category Discovery section.
+
+Do NOT redesign it from scratch.
+The current editorial direction and varied image proportions are correct.
+
+Do NOT add final images yet.
+Keep all current image placeholders.
+
+Do NOT modify:
+- Hero
+- Navbar
+- Hero animation
+- CTA
+- Any section after this category section
+
+--------------------------------------------------
+KEEP
+--------------------------------------------------
+
+Keep exactly:
+
+"منو ودّك تهدي اليوم؟"
+
+"اختار الفكرة، وخله يختار اللي يحبه."
+
+Keep the 6 existing categories.
+
+Keep the asymmetric editorial / magazine-inspired layout.
+
+Keep the different image proportions.
+
+--------------------------------------------------
+REFINE THE SPACING
+--------------------------------------------------
+
+The current composition is too vertically spread out.
+
+There is too much empty space between:
+- category images
+- category names
+- one category group and the next
+
+Make the entire section more visually connected and intentional.
+
+Reduce excessive vertical gaps by approximately 25–35%.
+
+IMPORTANT:
+Do NOT make the section cramped.
+
+I still want generous luxury whitespace,
+but the whitespace should feel intentional rather than empty.
+
+--------------------------------------------------
+CATEGORY NAME POSITION
+--------------------------------------------------
+
+Each Arabic category name should clearly belong to its image.
+
+Currently some category names feel too far away from their image.
+
+Move each category name closer to its corresponding image.
+
+Use approximately 16–24px spacing between the image and its category name.
+
+The relationship should immediately read as:
+
+IMAGE
+Category name
+
+while preserving the editorial layout.
+
+--------------------------------------------------
+ALIGNMENT
+--------------------------------------------------
+
+Refine the alignment of the six category compositions.
+
+Do NOT turn them into six identical cards.
+
+Maintain asymmetry, but create a stronger invisible grid underneath
+so the composition feels professionally art-directed.
+
+Nothing should feel randomly floating.
+
+--------------------------------------------------
+TYPOGRAPHY
+--------------------------------------------------
+
+Keep the existing typography direction.
+
+Make category labels slightly more refined and consistent in size.
+
+They should be noticeable but should NOT compete with:
+
+"منو ودّك تهدي اليوم؟"
+
+--------------------------------------------------
+IMAGE PLACEHOLDERS
+--------------------------------------------------
+
+Keep the neutral placeholders exactly as placeholders.
+
+Do not add:
+- stock photography
+- AI images
+- icons
+- illustrations
+
+We will replace them with final photography later.
+
+--------------------------------------------------
+FINAL FEEL
+--------------------------------------------------
+
+The section should feel:
+
+editorial
+curated
+luxurious
+spacious
+balanced
+intentional
+
+Think luxury fashion lookbook rather than ecommerce product grid.
+
+The hierarchy should clearly be:
+
+Headline
+↓
+Supporting sentence
+↓
+Curated category composition
+
+Do not change anything else.

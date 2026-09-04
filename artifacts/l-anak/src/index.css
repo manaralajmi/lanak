@@ -203,21 +203,21 @@
 .category-editorial-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 5.5rem 2rem;
+  gap: 3.75rem 2rem;
   align-items: start;
 }
 .category-editorial {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.125rem;
   cursor: pointer;
 }
 .category-editorial--coffee { grid-column: 1 / span 4; }
-.category-editorial--sweets { grid-column: 5 / span 8; margin-top: 4.5rem; }
+.category-editorial--sweets { grid-column: 5 / span 8; margin-top: 3rem; }
 .category-editorial--dining { grid-column: 1 / span 7; }
-.category-editorial--flowers { grid-column: 8 / span 5; margin-top: 7rem; }
-.category-editorial--care { grid-column: 1 / span 8; margin-top: 2rem; }
-.category-editorial--gifts { grid-column: 9 / span 4; margin-top: -3rem; }
+.category-editorial--flowers { grid-column: 8 / span 5; margin-top: 4.75rem; }
+.category-editorial--care { grid-column: 1 / span 8; margin-top: 1.25rem; }
+.category-editorial--gifts { grid-column: 9 / span 4; margin-top: -2rem; }
 .category-editorial-image {
   position: relative;
   display: grid;
@@ -253,8 +253,9 @@
   padding-inline: .25rem;
 }
 .category-editorial-title h3 {
-  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  font-size: clamp(1.3rem, 1.75vw, 1.65rem);
   font-weight: 500;
+  line-height: 1.45;
   transition: color 360ms ease, transform 360ms ease;
 }
 .category-editorial-arrow {
@@ -267,19 +268,19 @@
 .category-editorial:hover .category-editorial-title h3 { color: #32251F; transform: translateY(-1px); }
 .category-editorial:hover .category-editorial-arrow { opacity: 1; transform: translateX(0); }
 @media (max-width: 63.999rem) {
-  .category-editorial-grid { gap: 4rem 1.5rem; }
+  .category-editorial-grid { gap: 2.75rem 1.5rem; }
   .category-editorial--coffee,
   .category-editorial--dining,
   .category-editorial--care { grid-column: 1 / span 6; margin-top: 0; }
   .category-editorial--sweets,
   .category-editorial--flowers,
-  .category-editorial--gifts { grid-column: 7 / span 6; margin-top: 3rem; }
+  .category-editorial--gifts { grid-column: 7 / span 6; margin-top: 2rem; }
   .category-editorial-image { aspect-ratio: 4 / 3 !important; }
 }
 @media (max-width: 47.999rem) {
   .category-editorial-grid {
     grid-template-columns: 1fr;
-    gap: 3.5rem;
+    gap: 2.5rem;
   }
   .category-editorial {
     grid-column: 1 !important;
