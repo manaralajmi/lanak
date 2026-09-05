@@ -1,0 +1,270 @@
+Redesign ONLY the global L’ANAK Footer.
+
+Do NOT modify:
+- Navbar
+- Homepage sections
+- About page sections
+- Gift flow
+- Curated Picks
+- Gift Card page
+- Existing brand colors
+- Existing typography system
+
+The current Footer feels too generic and template-like.
+
+I want a much more distinctive, minimal and premium Footer
+that feels specifically designed for L’ANAK.
+
+IMPORTANT:
+Do NOT add another emotional brand slogan.
+The website already contains enough storytelling.
+
+The Footer should focus on:
+BRAND IDENTITY + NAVIGATION + A KUWAITI SIGNATURE DETAIL.
+
+==================================================
+1. FOOTER BACKGROUND
+==================================================
+
+Use:
+
+Espresso Brown #49372D
+
+Primary text:
+Warm Cream / Ivory
+
+Accent:
+Muted Champagne #CBB98B
+
+Keep the overall design clean, spacious and editorial.
+
+Do NOT use cards inside the Footer.
+
+==================================================
+2. L’ANAK BRAND SIGNATURE
+==================================================
+
+Create a distinctive small authenticity-style seal/stamp
+for the Footer.
+
+This is NOT a new logo.
+
+Use the EXISTING L’ANAK logo/monogram asset
+already available in the project.
+
+Do NOT redraw or recreate the L’ANAK logo.
+
+The seal should feel like a premium origin mark,
+similar to a subtle fashion-house or packaging authenticity stamp.
+
+Inside the seal:
+use the existing L’ANAK monogram/logo.
+
+Around it, use this Arabic phrase:
+
+"من هني، بكل ود."
+
+and include:
+
+"KUWAIT · 2026"
+
+Design it as a thin circular seal.
+
+Use:
+- thin Muted Champagne lines
+- refined small typography
+- generous spacing
+- minimal construction
+
+Do NOT make it look like:
+- a government stamp
+- postal stamp
+- badge
+- medal
+- certification logo
+
+It should feel contemporary and luxurious.
+
+==================================================
+3. SEAL INTERACTION
+==================================================
+
+Add a very subtle interaction.
+
+On hover:
+
+- circular outer text/ring may rotate approximately 8–12 degrees
+- border becomes slightly more visible
+- existing L’ANAK monogram in the center remains stable
+
+Transition:
+approximately 500–700ms
+
+No continuous spinning.
+No bounce.
+No glow.
+
+On mobile:
+no hover dependency.
+
+The seal should remain beautiful and readable without interaction.
+
+==================================================
+4. LARGE BRAND SIGNATURE
+==================================================
+
+Use the existing L’ANAK wordmark/logo as a strong editorial
+brand element within the Footer.
+
+Do NOT type L’ANAK using a random font if the actual wordmark asset exists.
+
+It can appear large but controlled,
+with generous negative space.
+
+Do NOT add another slogan underneath.
+
+The visual should simply communicate:
+
+L’ANAK
+
+and the Kuwait origin seal.
+
+==================================================
+5. FOOTER NAVIGATION
+==================================================
+
+Keep navigation minimal.
+
+Create only THREE groups:
+
+"أهدِ"
+- أهدِ الآن
+- اختياراتنا
+- بطاقة هدية
+
+"لأنّك"
+- عن لأنّك
+- حسابي
+- المفضلة
+
+"مساعدة"
+- الأسئلة الشائعة
+- التوصيل
+- تواصل معنا
+
+IMPORTANT:
+
+Use existing routes where available.
+
+Do NOT create random new pages automatically.
+
+If FAQ, Delivery or Contact routes do not currently exist,
+keep them visually prepared but do not generate large new pages
+as part of this task.
+
+==================================================
+6. LINK INTERACTION
+==================================================
+
+Footer links should be understated by default.
+
+On hover:
+
+- change to Muted Champagne #CBB98B
+- reveal a very thin underline from right to left
+- subtle 250–300ms transition
+
+No boxes around links.
+No large hover backgrounds.
+
+==================================================
+7. SOCIAL / LANGUAGE
+==================================================
+
+Include minimal text links for:
+
+Instagram
+TikTok
+
+Also include:
+
+AR | EN
+
+Keep these small and secondary.
+
+Do NOT add large social media icons.
+
+==================================================
+8. BOTTOM LINE
+==================================================
+
+Add a very thin Muted Champagne divider.
+
+Below it use:
+
+© 2026 L’ANAK
+
+Keep this extremely minimal.
+
+Do NOT add:
+"Kuwait City, KWT"
+
+Do NOT add another descriptive paragraph.
+
+Do NOT repeat:
+- لأنّك أنت
+- بدون سبب
+- نوصل الشعور
+- الهدية مو بالشيء
+
+Those ideas already exist elsewhere in the website.
+
+==================================================
+9. LAYOUT
+==================================================
+
+Desktop:
+
+Create an asymmetric luxury-editorial composition.
+
+One area:
+L’ANAK branding + Kuwait seal.
+
+Opposite area:
+three clean navigation groups.
+
+Bottom:
+copyright + social + language.
+
+Do NOT make everything perfectly centered.
+
+Tablet:
+preserve hierarchy with balanced wrapping.
+
+Mobile:
+stack naturally.
+
+Keep the Kuwait seal prominent enough to remain a distinctive
+brand detail without taking over the Footer.
+
+==================================================
+FINAL FEEL
+==================================================
+
+The Footer should feel like the final signature
+at the bottom of a luxury brand website.
+
+Minimal.
+Distinctive.
+Kuwaiti.
+Contemporary.
+Premium.
+
+The memorable detail should be:
+
+"من هني، بكل ود."
+KUWAIT · 2026
+
+presented as the L’ANAK origin seal.
+
+Do not change anything outside the Footer.

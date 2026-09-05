@@ -218,7 +218,7 @@ function SiteShell({ children, lang, setLang, menuOpen, setMenuOpen, bagCount, i
       <div className="flex-1 w-full">
         {children}
       </div>
-      <Footer lang={lang} />
+      <Footer lang={lang} setLang={setLang} />
     </div>
   );
 }
@@ -931,9 +931,99 @@ function BagPage({ lang, bag, setBag, setToast }: { lang: Lang; bag: Product[]; 
   );
 }
 
-function Footer({ lang }: { lang: Lang }) {
+function Footer({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }) {
   const isAr = lang === 'ar';
-  return <footer className="border-t border-[#49372D]/20 px-5 py-10 md:px-10"><div className="mx-auto flex max-w-[1440px] flex-col justify-between gap-10 md:flex-row md:items-end"><div><Link href="/" className="font-display text-5xl tracking-[-.05em]" data-testid="link-footer-logo">L’ANAK</Link><p className="mt-3 text-[10px] uppercase tracking-[.16em] opacity-55">{isAr ? 'هدايا فيها شعور' : 'gifts with feeling'}</p></div><div className="grid grid-cols-2 gap-x-12 gap-y-3 text-[11px] font-bold md:grid-cols-3"><Link href="/#gift-start" className="line-draw" data-testid="link-footer-shop">{isAr ? 'أهدِ الآن' : 'Gift now'}</Link><Link href="/gift-card" className="line-draw" data-testid="link-footer-cards">{isAr ? 'بطاقة هدية' : 'Gift card'}</Link><Link href="/picks" className="line-draw" data-testid="link-footer-picks">{isAr ? 'اختياراتنا' : 'Our picks'}</Link><Link href="/about" className="line-draw" data-testid="link-footer-about">{isAr ? 'عن لأنّك' : 'About'}</Link><button className="line-draw text-left" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} data-testid="button-back-top">{isAr ? 'فوق' : 'Back to top'} ↑</button><span className="opacity-45">Kuwait City, KWT</span></div></div><div className="mx-auto mt-14 flex max-w-[1440px] justify-between text-[9px] font-bold uppercase tracking-[.16em] opacity-45"><span>© L’ANAK 2025</span><span>{isAr ? 'صُنع بحب' : 'made with feeling'}</span></div></footer>;
+  const groups = [
+    {
+      title: isAr ? 'أهدِ' : 'Gift',
+      links: [
+        { label: isAr ? 'أهدِ الآن' : 'Gift now', href: '/#gift-start', testId: 'link-footer-shop' },
+        { label: isAr ? 'اختياراتنا' : 'Our picks', href: '/picks', testId: 'link-footer-picks' },
+        { label: isAr ? 'بطاقة هدية' : 'Gift card', href: '/gift-card', testId: 'link-footer-cards' },
+      ],
+    },
+    {
+      title: isAr ? 'لأنّك' : 'L’ANAK',
+      links: [
+        { label: isAr ? 'عن لأنّك' : 'About', href: '/about', testId: 'link-footer-about' },
+        { label: isAr ? 'حسابي' : 'My account', href: '/account', testId: 'link-footer-account' },
+        { label: isAr ? 'المفضلة' : 'Favorites', href: '/favorites', testId: 'link-footer-favorites' },
+      ],
+    },
+  ];
+  const helpLinks = isAr
+    ? ['الأسئلة الشائعة', 'التوصيل', 'تواصل معنا']
+    : ['Frequently asked questions', 'Delivery', 'Contact us'];
+
+  return (
+    <footer className="bg-[#49372D] px-5 pb-8 pt-16 text-[#F5F0E8] md:px-10 md:pb-10 md:pt-24" dir={isAr ? 'rtl' : 'ltr'}>
+      <div className="mx-auto max-w-[1440px]">
+        <div className="grid gap-16 md:grid-cols-[1.05fr_0.95fr] md:gap-12 lg:gap-24">
+          <div className="flex flex-col gap-12 sm:flex-row sm:items-end sm:justify-between md:flex-col md:items-start lg:flex-row lg:items-end">
+            <Link href="/" className="font-display text-[clamp(4.75rem,9vw,8.5rem)] leading-[0.72] tracking-[-.07em] text-[#F5F0E8]" data-testid="link-footer-logo">
+              L’ANAK
+            </Link>
+
+            <div className="group relative h-40 w-40 shrink-0 text-[#CBB98B]" aria-label={isAr ? 'ختم لأنّك، من هني بكل ود، الكويت 2026' : 'L’ANAK origin seal, Kuwait 2026'} data-testid="footer-origin-seal">
+              <svg className="absolute inset-0 h-full w-full overflow-visible transition-transform duration-[650ms] ease-out motion-reduce:transition-none group-hover:rotate-[10deg]" viewBox="0 0 160 160" aria-hidden="true">
+                <defs>
+                  <path id="footer-seal-path" d="M 80,80 m -61,0 a 61,61 0 1,1 122,0 a 61,61 0 1,1 -122,0" />
+                </defs>
+                <circle cx="80" cy="80" r="70" fill="none" stroke="currentColor" strokeWidth="0.75" className="opacity-45 transition-opacity duration-[650ms] group-hover:opacity-80" />
+                <circle cx="80" cy="80" r="54" fill="none" stroke="currentColor" strokeWidth="0.5" className="opacity-30" />
+                <text fill="currentColor" fontSize="8.5" letterSpacing="1.45">
+                  <textPath href="#footer-seal-path" startOffset="50%" textAnchor="middle">
+                    من هني، بكل ود. · KUWAIT · 2026
+                  </textPath>
+                </text>
+              </svg>
+              <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="absolute left-1/2 top-1/2 h-16 w-16 -translate-x-1/2 -translate-y-1/2 object-contain" />
+            </div>
+          </div>
+
+          <nav className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3" aria-label={isAr ? 'روابط التذييل' : 'Footer navigation'}>
+            {groups.map((group) => (
+              <div key={group.title}>
+                <h2 className={`mb-6 text-[13px] font-medium text-[#CBB98B] ${isAr ? 'font-nav-ar' : 'uppercase tracking-[.18em]'}`}>{group.title}</h2>
+                <ul className="space-y-4">
+                  {group.links.map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href} className={`footer-link text-[13px] opacity-80 ${isAr ? 'font-arabic' : ''}`} data-testid={item.testId}>{item.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+            <div>
+              <h2 className={`mb-6 text-[13px] font-medium text-[#CBB98B] ${isAr ? 'font-nav-ar' : 'uppercase tracking-[.18em]'}`}>{isAr ? 'مساعدة' : 'Help'}</h2>
+              <ul className="space-y-4">
+                {helpLinks.map((label) => (
+                  <li key={label}>
+                    <span className={`footer-link cursor-default text-[13px] opacity-80 ${isAr ? 'font-arabic' : ''}`} aria-disabled="true">{label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <div className="mt-16 border-t border-[#CBB98B]/35 pt-6 md:mt-20">
+          <div className="flex flex-col-reverse gap-6 text-[10px] font-semibold uppercase tracking-[.14em] sm:flex-row sm:items-center sm:justify-between">
+            <span className="opacity-65">© 2026 L’ANAK</span>
+            <div className="flex flex-wrap items-center gap-x-7 gap-y-3" dir="ltr">
+              <span className="footer-link cursor-default opacity-65" aria-disabled="true">Instagram</span>
+              <span className="footer-link cursor-default opacity-65" aria-disabled="true">TikTok</span>
+              <div className="flex items-center gap-2" aria-label="Language selector" data-testid="footer-language-toggle">
+                <button onClick={() => setLang('ar')} className={`transition-colors duration-300 hover:text-[#CBB98B] ${lang === 'ar' ? 'text-[#CBB98B]' : 'opacity-65'}`}>AR</button>
+                <span className="opacity-30">|</span>
+                <button onClick={() => setLang('en')} className={`transition-colors duration-300 hover:text-[#CBB98B] ${lang === 'en' ? 'text-[#CBB98B]' : 'opacity-65'}`}>EN</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }
 
 function RoutedErrorBoundary({ children }: { children: ReactNode }) {
