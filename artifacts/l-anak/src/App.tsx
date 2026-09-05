@@ -638,7 +638,7 @@ function Section02() {
       <div className="max-w-[1440px] mx-auto">
         <Reveal>
           <AboutPlaceholderImage
-            label="L’ANAK EDITORIAL CAMPAIGN IMAGE"
+            label="L’ANAK EDITORIAL CAMPAIGN"
             showLogo
             aspect="aspect-[4/3] md:aspect-[21/9]"
             className="w-full"

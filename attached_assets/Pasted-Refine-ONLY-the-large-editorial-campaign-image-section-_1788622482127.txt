@@ -1,0 +1,158 @@
+Refine ONLY the large editorial campaign image section
+directly after the first “منو إحنا؟” section on the About page.
+
+Do NOT modify:
+- the first About section
+- Navbar
+- any text section below
+- Footer
+- brand colors
+- typography
+- spacing of other sections
+
+The current placeholder is correct in position,
+but I want to define the FINAL visual direction for this image.
+
+IMPORTANT:
+If the final image asset is not available yet,
+KEEP the placeholder for now.
+
+Do NOT insert random stock photography.
+Do NOT generate generic AI gift imagery.
+
+We will replace the placeholder with the final image later.
+
+==================================================
+VISUAL DIRECTION
+==================================================
+
+This image should feel like a premium L’ANAK brand campaign.
+
+Think:
+
+luxury fragrance campaign
++
+editorial gifting photography
++
+quiet premium packaging
+
+The composition should be minimal and intentional.
+
+Include visual space for:
+
+- one premium L’ANAK gift box
+- one message / gift card
+- elegant ribbon detail
+- one L’ANAK gift bag OR packaging detail
+
+Do NOT overcrowd the image.
+
+Do NOT include:
+- too many gift boxes
+- coffee cup
+- large flower bouquet
+- multiple unrelated products
+- generic gift collage
+
+This image should feel cleaner and more refined than the Hero image.
+
+==================================================
+L’ANAK BRANDING
+==================================================
+
+Use the EXISTING L’ANAK logo asset already available in the project.
+
+Do NOT recreate the logo.
+
+Do NOT type “L’ANAK” using a random font.
+
+The existing logo can appear subtly on:
+
+- the gift box
+- message card
+- ribbon
+- gift bag
+
+Use branding sparingly.
+
+Follow the packaging rule:
+
+Plain/minimal box → branded ribbon
+
+OR
+
+Branded box → plain ribbon
+
+Never heavily brand both at the same time.
+
+==================================================
+COLOR / LIGHTING
+==================================================
+
+Use the established brand palette:
+
+Espresso Brown #49372D
+Warm Cream / Ivory
+Muted Champagne #CBB98B
+
+Photography should have:
+
+- warm cinematic lighting
+- soft natural shadows
+- slightly moody luxury atmosphere
+- strong negative space
+- premium material texture
+
+Avoid bright white ecommerce lighting.
+
+Avoid colorful backgrounds.
+
+==================================================
+IMAGE CONTAINER
+==================================================
+
+Keep the current wide editorial image position.
+
+No card styling.
+
+No rounded corners.
+
+No heavy border.
+
+No large shadow.
+
+Use a wide cinematic crop.
+
+Maintain generous margin around the image
+so it feels editorial rather than edge-to-edge ecommerce.
+
+==================================================
+SUBTLE MOTION
+==================================================
+
+Add only a very subtle image motion on scroll if appropriate:
+
+- extremely slow scale from around 1.00 to 1.02
+OR
+- subtle vertical parallax
+
+Keep it nearly imperceptible.
+
+No dramatic zoom.
+No large parallax.
+No floating effect.
+
+Respect prefers-reduced-motion.
+
+==================================================
+PLACEHOLDER
+==================================================
+
+Until the final photography is added,
+keep the current neutral placeholder.
+
+Label it subtly:
+
+L’ANAK EDITORIAL CAMPAIGN
+
+Do not change any other section.
