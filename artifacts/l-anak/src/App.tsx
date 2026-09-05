@@ -694,21 +694,21 @@ function Section03() {
 
 function Section04() {
   const feelings = [
-    { word: "محبة.", image: "L’ANAK — LOVE", logo: true, aspect: "aspect-[4/5]", offset: "lg:mt-0" },
-    { word: "امتنان.", image: "L’ANAK — GRATITUDE", logo: false, aspect: "aspect-[3/4]", offset: "lg:mt-12" },
-    { word: "اشتياق.", image: "L’ANAK — LONGING", logo: false, aspect: "aspect-[4/5]", offset: "lg:mt-5" },
-    { word: "تقدير.", image: "L’ANAK — APPRECIATION", logo: true, aspect: "aspect-[3/4]", offset: "lg:mt-10" },
+    { word: "محبة.", image: "L’ANAK — LOVE", logo: true },
+    { word: "امتنان.", image: "L’ANAK — GRATITUDE", logo: false },
+    { word: "اشتياق.", image: "L’ANAK — LONGING", logo: false },
+    { word: "تقدير.", image: "L’ANAK — APPRECIATION", logo: true },
   ];
 
   return (
     <section className="overflow-hidden bg-[#FAF7F0] py-20 text-[#49372D] md:py-28" data-testid="section-about-04">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10">
-        <div className="grid grid-cols-1 items-start gap-x-6 gap-y-14 sm:grid-cols-2 sm:gap-y-16 lg:grid-cols-4 lg:gap-x-5 lg:gap-y-0">
-          {feelings.map((feeling, index) => (
-            <Reveal key={feeling.word} delay={index * 120} className={feeling.offset}>
-              <figure className="group">
-                <div className={`relative overflow-hidden bg-[#DED4C5] ${feeling.aspect}`}>
-                  <div className="absolute inset-0 flex items-center justify-center transition-[transform,filter] duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)] motion-reduce:transition-none group-hover:scale-[1.025] group-hover:brightness-[1.02]">
+        <Reveal>
+          <div className="grid grid-cols-1 gap-y-14 sm:grid-cols-2 sm:gap-x-5 sm:gap-y-20 md:gap-x-7 md:gap-y-24">
+            {feelings.map((feeling) => (
+              <figure className="group" key={feeling.word}>
+                <div className="relative aspect-[4/5] overflow-hidden bg-[#DED4C5]">
+                  <div className="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-out motion-reduce:transition-none group-hover:scale-[1.015]">
                     {feeling.logo && (
                       <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="absolute w-[22%] object-contain opacity-[0.12]" />
                     )}
@@ -717,13 +717,13 @@ function Section04() {
                     </span>
                   </div>
                 </div>
-                <figcaption className="mt-5 font-arabic text-[clamp(1.55rem,2vw,1.9rem)] font-light transition-[color,transform] duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)] motion-reduce:transition-none group-hover:-translate-y-1 group-hover:text-[#CBB98B]">
+                <figcaption className="mt-5 text-right font-arabic text-[clamp(1.55rem,2vw,1.9rem)] font-light transition-colors duration-500 ease-out group-hover:text-[#CBB98B]">
                   {feeling.word}
                 </figcaption>
               </figure>
-            </Reveal>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   );

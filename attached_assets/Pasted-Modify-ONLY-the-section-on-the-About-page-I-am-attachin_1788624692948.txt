@@ -1,0 +1,187 @@
+Modify ONLY the “محبة · امتنان · اشتياق · تقدير” section
+on the About page.
+
+I am attaching TWO reference screenshots.
+
+IMPORTANT:
+Rebuild the layout of this section to match the attached
+reference screenshots.
+
+Do NOT interpret this as a new redesign.
+
+I specifically prefer the simple previous 2 × 2 composition
+shown in the references.
+
+Do NOT modify anything outside this section.
+
+==================================================
+MATCH THE REFERENCE LAYOUT
+==================================================
+
+Restore the section as a clean 2 × 2 editorial image layout.
+
+ROW 1:
+Right image → محبة.
+Left image → امتنان.
+
+ROW 2:
+Right image → اشتياق.
+Left image → تقدير.
+
+Each image should be:
+
+- large
+- portrait-oriented
+- rectangular
+- approximately the same dimensions
+- no rounded corners
+- no border
+- no shadow
+
+Match the generous image scale and proportions
+shown in the attached screenshots.
+
+==================================================
+CAPTION POSITION
+==================================================
+
+Place each Arabic feeling directly BELOW its corresponding image:
+
+محبة.
+امتنان.
+اشتياق.
+تقدير.
+
+Match the reference screenshots:
+
+- captions aligned toward the lower-right side of each image
+- elegant spacing between image and caption
+- dark Espresso Brown text
+- existing Arabic font
+- light/refined font weight
+
+Do NOT place the feeling names over the images.
+
+Do NOT center the captions beneath the images.
+
+Do NOT add descriptions.
+
+==================================================
+SPACING
+==================================================
+
+Match the calm spacing shown in the screenshots.
+
+Keep:
+
+- a narrow, intentional gap between the two images in each row
+- generous Cream margin on the outer edges
+- comfortable vertical separation between row 1 and row 2
+
+The layout should feel large and editorial,
+not like small ecommerce cards.
+
+Do NOT stagger the image heights.
+
+Do NOT create an asymmetric collage.
+
+Do NOT alternate image sizes.
+
+Both rows should follow the same visual system.
+
+==================================================
+PLACEHOLDERS
+==================================================
+
+Keep the current neutral image placeholders for now.
+
+Use the placeholder references:
+
+L’ANAK — LOVE
+L’ANAK — GRATITUDE
+L’ANAK — LONGING
+L’ANAK — APPRECIATION
+
+Do NOT insert stock photos.
+Do NOT generate images.
+Do NOT replace the placeholders yet.
+
+The final campaign photography will be added later.
+
+==================================================
+INTERACTION
+==================================================
+
+Keep interaction extremely minimal.
+
+If hover behavior from the latest version was added,
+remove any interaction that changes the composition.
+
+Allowed only:
+
+image scale:
+1.00 → maximum 1.015
+
+caption:
+Espresso Brown → Muted Champagne #CBB98B
+
+transition:
+400–500ms ease
+
+Do NOT:
+- move the caption
+- create overlays
+- darken the image
+- add borders
+- add shadows
+- stagger image positions
+- change image dimensions on hover
+
+==================================================
+RESPONSIVE
+==================================================
+
+Desktop:
+exact 2 × 2 structure shown in the references.
+
+Tablet:
+keep 2 × 2 when enough space is available.
+
+Mobile:
+stack vertically in this order:
+
+محبة
+امتنان
+اشتياق
+تقدير
+
+==================================================
+IMPORTANT
+==================================================
+
+The attached screenshots are the visual reference.
+
+Prioritize matching their:
+
+- image proportions
+- 2 × 2 structure
+- spacing
+- caption placement
+- simplicity
+- editorial feeling
+
+Do NOT redesign this section creatively.
+
+Do NOT change:
+- Navbar
+- Footer
+- campaign image section
+- “منو إحنا؟”
+- “ليش لأنّك؟”
+- Kuwaiti identity section
+- final About section
+- colors
+- global typography
+
+ONLY restore this four-feelings section
+to the layout shown in the attached references.
