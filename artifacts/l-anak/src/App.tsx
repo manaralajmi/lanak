@@ -694,37 +694,36 @@ function Section03() {
 
 function Section04() {
   const feelings = [
-    { word: "محبة.", image: "L’ANAK GIFT / CARD DETAIL", logo: true },
-    { word: "امتنان.", image: "PREMIUM WRAPPING DETAIL", logo: false },
-    { word: "اشتياق.", image: "HANDWRITTEN MESSAGE CARD", logo: false },
-    { word: "تقدير.", image: "FINISHED L’ANAK GIFT", logo: true },
+    { word: "محبة.", image: "L’ANAK — LOVE", logo: true, aspect: "aspect-[4/5]", offset: "lg:mt-0" },
+    { word: "امتنان.", image: "L’ANAK — GRATITUDE", logo: false, aspect: "aspect-[3/4]", offset: "lg:mt-12" },
+    { word: "اشتياق.", image: "L’ANAK — LONGING", logo: false, aspect: "aspect-[4/5]", offset: "lg:mt-5" },
+    { word: "تقدير.", image: "L’ANAK — APPRECIATION", logo: true, aspect: "aspect-[3/4]", offset: "lg:mt-10" },
   ];
 
   return (
-    <section className="bg-[#FAF7F0] text-[#49372D] py-24 md:py-36 overflow-hidden" data-testid="section-about-04">
+    <section className="overflow-hidden bg-[#FAF7F0] py-20 text-[#49372D] md:py-28" data-testid="section-about-04">
       <div className="max-w-[1440px] mx-auto px-5 md:px-10">
-        <Reveal>
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pb-8 no-scrollbar -mx-5 px-5 md:mx-0 md:px-0 md:grid md:grid-cols-4">
-            {feelings.map((f, i) => (
-              <div key={i} className="group relative w-[75vw] md:w-auto flex-shrink-0 snap-center cursor-pointer overflow-hidden bg-[#DED4C5] aspect-[3/4]">
-                <div className="absolute inset-0 flex items-center justify-center transition-transform duration-[450ms] ease-out group-hover:scale-[1.04]">
-                  {f.logo && (
-                    <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="absolute w-[25%] opacity-[0.15] object-contain" />
-                  )}
-                  <span className="relative z-10 text-[9px] font-bold uppercase tracking-[0.2em] text-[#49372D]/40 text-center px-4">
-                    {f.image}
-                  </span>
+        <div className="grid grid-cols-1 items-start gap-x-6 gap-y-14 sm:grid-cols-2 sm:gap-y-16 lg:grid-cols-4 lg:gap-x-5 lg:gap-y-0">
+          {feelings.map((feeling, index) => (
+            <Reveal key={feeling.word} delay={index * 120} className={feeling.offset}>
+              <figure className="group">
+                <div className={`relative overflow-hidden bg-[#DED4C5] ${feeling.aspect}`}>
+                  <div className="absolute inset-0 flex items-center justify-center transition-[transform,filter] duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)] motion-reduce:transition-none group-hover:scale-[1.025] group-hover:brightness-[1.02]">
+                    {feeling.logo && (
+                      <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="absolute w-[22%] object-contain opacity-[0.12]" />
+                    )}
+                    <span className="relative z-10 px-4 text-center text-[9px] font-bold uppercase tracking-[0.2em] text-[#49372D]/40">
+                      {feeling.image}
+                    </span>
+                  </div>
                 </div>
-                <div className="absolute inset-0 bg-[#49372D]/10 transition-colors duration-[450ms] ease-out group-hover:bg-[#49372D]/25 z-20" />
-                <div className="absolute bottom-6 md:bottom-8 left-0 right-0 text-center z-30 transition-transform duration-[450ms] ease-out group-hover:-translate-y-1">
-                  <span className="font-arabic text-[clamp(1.6rem,2.2vw,2rem)] font-light text-[#FAF7F0] opacity-85 group-hover:opacity-100 drop-shadow-sm transition-opacity duration-[450ms]">
-                    {f.word}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+                <figcaption className="mt-5 font-arabic text-[clamp(1.55rem,2vw,1.9rem)] font-light transition-[color,transform] duration-[650ms] ease-[cubic-bezier(.22,1,.36,1)] motion-reduce:transition-none group-hover:-translate-y-1 group-hover:text-[#CBB98B]">
+                  {feeling.word}
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

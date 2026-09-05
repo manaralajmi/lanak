@@ -1,0 +1,315 @@
+Refine ONLY the “محبة · امتنان · اشتياق · تقدير” visual section
+on the L’ANAK About page.
+
+IMPORTANT:
+The current concept and the four feelings are approved.
+
+Do NOT modify:
+- Navbar
+- Footer
+- “منو إحنا؟” section
+- Editorial Campaign image section
+- “ليش لأنّك؟” section
+- Kuwaiti identity section
+- final About section
+- brand colors
+- typography system
+- any existing Arabic copy
+
+Do NOT add new sections.
+
+I only want to improve the visual composition,
+image treatment and subtle interaction of this section.
+
+==================================================
+1. KEEP THE FOUR FEELINGS
+==================================================
+
+Keep exactly:
+
+محبة.
+امتنان.
+اشتياق.
+تقدير.
+
+Do NOT rename them.
+
+Each feeling should have its own visual moment.
+
+The section should feel like four frames
+from one premium L’ANAK editorial campaign.
+
+They should belong to the same visual world,
+but should NOT look like four copies of the same image.
+
+==================================================
+2. IMAGE STORY DIRECTION
+==================================================
+
+Create four distinct image directions:
+
+محبة.
+A warm L’ANAK gifting moment.
+
+Visual direction:
+- premium L’ANAK gift
+- subtle message card
+- warm, intimate composition
+- soft human touch if appropriate
+
+------------------------------
+
+امتنان.
+Focus on the art of giving.
+
+Visual direction:
+- close-up packaging detail
+- ribbon / wrapping texture
+- elegant hands or subtle human detail if appropriate
+- premium craftsmanship feeling
+
+------------------------------
+
+اشتياق.
+Focus on the message behind the gift.
+
+Visual direction:
+- handwritten message / gift card
+- intimate close-up
+- quiet composition
+- emotional negative space
+
+------------------------------
+
+تقدير.
+Focus on the complete gesture.
+
+Visual direction:
+- finished L’ANAK gift presentation
+- elegant packaging
+- composed and confident
+- slightly more complete/wider visual than the others
+
+==================================================
+3. IMPORTANT — IMAGES
+==================================================
+
+If final image assets are NOT already available,
+KEEP PLACEHOLDERS.
+
+Do NOT insert random stock photography.
+
+Do NOT generate generic AI gift images.
+
+Do NOT use unrelated ecommerce product photos.
+
+For now, placeholders can be subtly labeled:
+
+L’ANAK — LOVE
+L’ANAK — GRATITUDE
+L’ANAK — LONGING
+L’ANAK — APPRECIATION
+
+These labels are ONLY placeholder references
+and should disappear when final photography is added.
+
+==================================================
+4. BRANDING IN FUTURE IMAGES
+==================================================
+
+When final photography is later added,
+use the EXISTING L’ANAK logo asset already in the project.
+
+Do NOT recreate the logo.
+Do NOT type L’ANAK using a random font.
+
+Branding should appear naturally and subtly through:
+
+- gift box
+- ribbon
+- message card
+- gift bag
+
+Follow the existing packaging rule:
+
+Plain/minimal box → branded ribbon
+
+OR
+
+Branded box → plain ribbon
+
+Never heavily brand both.
+
+==================================================
+5. EDITORIAL LAYOUT
+==================================================
+
+Do NOT make this look like four ecommerce cards.
+
+Avoid:
+- rounded cards
+- borders around every image
+- large shadows
+- boxed captions
+- equal generic product-grid styling
+
+Use a refined editorial image layout.
+
+On desktop:
+
+Keep four visual moments,
+but create subtle variation in image proportions
+or vertical positioning so the composition feels curated.
+
+For example:
+some frames may sit slightly higher/lower
+or use slightly different editorial crops.
+
+IMPORTANT:
+Keep the composition balanced.
+
+Do not make it chaotic or overly asymmetric.
+
+The four feelings should still be easy to understand.
+
+==================================================
+6. FEELING LABELS
+==================================================
+
+The Arabic feeling name should remain the primary caption.
+
+محبة.
+امتنان.
+اشتياق.
+تقدير.
+
+Use the existing site typography.
+
+Keep labels elegant and relatively minimal.
+
+Do not add explanatory paragraphs beneath each feeling.
+
+The image + single word should communicate the idea.
+
+Use Espresso Brown for primary text
+and Muted Champagne #CBB98B selectively as an accent.
+
+==================================================
+7. HOVER INTERACTION
+==================================================
+
+Add a refined interaction to each visual.
+
+On desktop hover:
+
+Image:
+scale approximately 1.00 → 1.025
+
+Use overflow hidden so the movement stays inside the image frame.
+
+Feeling label:
+slightly shift upward approximately 3–5px
+and/or transition toward Muted Champagne #CBB98B.
+
+Optional:
+very subtle image brightness/contrast refinement.
+
+Transition:
+approximately 500–700ms
+with a smooth premium easing.
+
+Do NOT use:
+- dramatic zoom
+- bouncing
+- floating cards
+- glow
+- rotating
+- dark heavy overlay
+- large text appearing over the image
+
+The hover should feel like luxury editorial photography
+coming slightly to life.
+
+==================================================
+8. SCROLL REVEAL
+==================================================
+
+As the section enters the viewport,
+reveal the four visual moments progressively.
+
+Use:
+
+opacity 0 → 1
+translateY 20–30px → 0
+
+Stagger each item slightly.
+
+Duration:
+approximately 700–900ms.
+
+Animate once only.
+
+Respect prefers-reduced-motion.
+
+==================================================
+9. SPACING
+==================================================
+
+Maintain generous Cream negative space.
+
+Do not make the section unnecessarily tall.
+
+The images should have enough scale
+to create visual impact.
+
+Keep the spacing between the four visuals
+controlled and intentional.
+
+The section should feel like a magazine campaign spread,
+not a product catalogue.
+
+==================================================
+10. RESPONSIVE
+==================================================
+
+Desktop:
+editorial four-frame composition.
+
+Tablet:
+2 × 2 balanced composition.
+
+Mobile:
+stack the four visual moments vertically.
+
+On mobile:
+do not rely on hover.
+
+Keep each feeling clearly associated
+with its image.
+
+==================================================
+FINAL FEEL
+==================================================
+
+This section should visually communicate:
+
+محبة.
+امتنان.
+اشتياق.
+تقدير.
+
+without adding more storytelling text.
+
+It should feel:
+
+premium
+warm
+editorial
+minimal
+emotional
+distinctly L’ANAK
+
+Think luxury campaign photography,
+not ecommerce product cards.
+
+Do not modify anything outside this section.
