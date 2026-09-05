@@ -1,0 +1,255 @@
+Refine ONLY the CURRENT Footer layout and hover interactions.
+
+IMPORTANT:
+The current Footer concept is approved.
+
+KEEP:
+- Espresso Brown background
+- current L’ANAK wordmark
+- current Kuwait circular seal
+- “من هني، بكل ود.”
+- KUWAIT · 2026
+- the same navigation groups
+- bottom social/language row
+- copyright
+- current brand colors
+
+Do NOT redesign the Footer from scratch.
+Do NOT modify anything outside the Footer.
+
+I only want to improve:
+1. layout balance
+2. spacing
+3. hierarchy
+4. link hover visibility
+
+==================================================
+1. IMPROVE THE DESKTOP COMPOSITION
+==================================================
+
+The current Footer feels too horizontally scattered.
+
+There is too much empty space between:
+- the L’ANAK branding area
+- the three navigation columns
+
+Create TWO clear visual zones:
+
+RIGHT SIDE:
+Brand zone
+
+Include:
+- L’ANAK wordmark
+- Kuwait origin seal underneath
+
+Keep these visually connected as one intentional brand composition.
+
+LEFT / CENTER SIDE:
+Navigation zone
+
+Keep the three groups:
+أهدِ
+لأنّك
+مساعدة
+
+Bring these three columns slightly closer together.
+
+They should feel like one organized navigation system,
+not three isolated columns floating across the Footer.
+
+Do NOT distribute everything evenly across the full screen.
+
+Use a controlled editorial grid.
+
+==================================================
+2. REDUCE EXCESS EMPTY SPACE
+==================================================
+
+The current Footer is slightly too tall
+and has a large unused empty area in the middle.
+
+Reduce unnecessary vertical height.
+
+Move the bottom divider/footer bar upward slightly.
+
+Keep premium negative space,
+but make the Footer feel intentional rather than empty.
+
+Do NOT make it compact or crowded.
+
+Target feeling:
+spacious, but composed.
+
+==================================================
+3. BRAND AREA
+==================================================
+
+Keep the current L’ANAK wordmark exactly as it is.
+
+Do not recreate it.
+
+Keep the circular Kuwait seal.
+
+Adjust spacing between the wordmark and seal
+so they visually belong together.
+
+The seal should feel like the small signature/origin mark
+of the L’ANAK wordmark.
+
+Do not make the seal larger than necessary.
+
+==================================================
+4. NAVIGATION TYPOGRAPHY
+==================================================
+
+Make the three navigation headings slightly more prominent:
+
+أهدِ
+لأنّك
+مساعدة
+
+Use Muted Champagne #CBB98B.
+
+Keep body links Warm Cream,
+but increase their default visibility slightly.
+
+They currently feel a little too muted against
+the Espresso Brown background.
+
+Do not make them bold.
+
+Maintain elegant, refined typography.
+
+==================================================
+5. STRONGER LINK HOVER
+==================================================
+
+Make hover interaction noticeably clearer.
+
+For ALL Footer navigation links:
+
+Default:
+Warm Cream / Ivory
+
+Hover:
+Muted Champagne #CBB98B
+
+On hover also:
+
+- move the text approximately 4px toward the right
+  for Arabic RTL links
+- reveal a thin Champagne underline
+  from RIGHT → LEFT
+- increase opacity to 100%
+
+The underline should animate smoothly
+and clearly enough to notice.
+
+Suggested transition:
+250–350ms ease
+
+The underline should NOT span the full column.
+
+It should follow approximately the width of the text.
+
+Do not use:
+- background boxes
+- glow
+- large scale
+- bold font jump
+- bouncing
+
+The interaction should be visible but sophisticated.
+
+==================================================
+6. NAVIGATION HEADING DETAIL
+==================================================
+
+Optional subtle detail:
+
+When hovering over an entire navigation group,
+the small heading can become slightly brighter Champagne.
+
+Keep this extremely subtle.
+
+Do not animate the whole column.
+
+==================================================
+7. SOCIAL + LANGUAGE HOVER
+==================================================
+
+Apply the same stronger interaction to:
+
+INSTAGRAM
+TIKTOK
+AR
+EN
+
+On hover:
+- Champagne text
+- thin animated underline
+- full opacity
+
+Do not add social icons.
+
+==================================================
+8. BOTTOM ROW
+==================================================
+
+Keep the current thin divider.
+
+Keep:
+
+© 2026 L’ANAK
+
+Keep:
+INSTAGRAM · TIKTOK · AR | EN
+
+Maintain the current minimal style.
+
+Align the bottom row precisely with the main Footer grid
+so it visually connects with the content above.
+
+==================================================
+9. RESPONSIVE
+==================================================
+
+Desktop:
+Two-zone editorial layout:
+brand zone + navigation zone.
+
+Tablet:
+Maintain clear grouping without excessive gaps.
+
+Mobile:
+Stack:
+L’ANAK brand
+Kuwait seal
+navigation groups
+social/language
+copyright
+
+Maintain comfortable spacing.
+
+==================================================
+FINAL RESULT
+==================================================
+
+Do NOT introduce any new content.
+
+The Footer should use exactly the current concept,
+but feel:
+
+more balanced
+more intentional
+less scattered
+slightly shorter
+more interactive
+
+The Kuwait seal remains the distinctive signature detail.
+
+Most importantly:
+make Footer link hover states CLEARLY noticeable
+while preserving the premium L’ANAK aesthetic.
+
+Do not modify anything outside the Footer.

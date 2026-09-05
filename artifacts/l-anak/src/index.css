@@ -774,7 +774,7 @@
 .footer-link {
   position: relative;
   display: inline-block;
-  transition: color 280ms ease, opacity 280ms ease;
+  transition: color 300ms ease, opacity 300ms ease, transform 300ms ease;
 }
 
 .footer-link::after {
@@ -787,7 +787,7 @@
   background: #CBB98B;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 280ms ease;
+  transition: transform 300ms ease;
 }
 
 .footer-link:hover {
@@ -797,6 +797,18 @@
 
 .footer-link:hover::after {
   transform: scaleX(1);
+}
+
+.footer-navigation[dir='rtl'] .footer-link:hover {
+  transform: translateX(4px);
+}
+
+.footer-nav-heading {
+  transition: color 300ms ease, filter 300ms ease;
+}
+
+.footer-nav-group:hover .footer-nav-heading {
+  filter: brightness(1.12);
 }
 .header-nav-link {
   position: relative;

@@ -956,15 +956,15 @@ function Footer({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }
     : ['Frequently asked questions', 'Delivery', 'Contact us'];
 
   return (
-    <footer className="bg-[#49372D] px-5 pb-8 pt-16 text-[#F5F0E8] md:px-10 md:pb-10 md:pt-24" dir={isAr ? 'rtl' : 'ltr'}>
+    <footer className="bg-[#49372D] px-5 pb-8 pt-14 text-[#F5F0E8] md:px-10 md:pb-9 md:pt-20" dir={isAr ? 'rtl' : 'ltr'}>
       <div className="mx-auto max-w-[1440px]">
-        <div className="grid gap-16 md:grid-cols-[1.05fr_0.95fr] md:gap-12 lg:gap-24">
-          <div className="flex flex-col gap-12 sm:flex-row sm:items-end sm:justify-between md:flex-col md:items-start lg:flex-row lg:items-end">
+        <div className="grid gap-14 md:grid-cols-[0.8fr_1.2fr] md:items-start md:gap-14 lg:gap-20">
+          <div className="flex flex-col items-start gap-7">
             <Link href="/" className="font-display text-[clamp(4.75rem,9vw,8.5rem)] leading-[0.72] tracking-[-.07em] text-[#F5F0E8]" data-testid="link-footer-logo">
               L’ANAK
             </Link>
 
-            <div className="group relative h-40 w-40 shrink-0 text-[#CBB98B]" aria-label={isAr ? 'ختم لأنّك، من هني بكل ود، الكويت 2026' : 'L’ANAK origin seal, Kuwait 2026'} data-testid="footer-origin-seal">
+            <div className="group relative h-36 w-36 shrink-0 text-[#CBB98B] md:ms-5" aria-label={isAr ? 'ختم لأنّك، من هني بكل ود، الكويت 2026' : 'L’ANAK origin seal, Kuwait 2026'} data-testid="footer-origin-seal">
               <svg className="absolute inset-0 h-full w-full overflow-visible transition-transform duration-[650ms] ease-out motion-reduce:transition-none group-hover:rotate-[10deg]" viewBox="0 0 160 160" aria-hidden="true">
                 <defs>
                   <path id="footer-seal-path" d="M 80,80 m -61,0 a 61,61 0 1,1 122,0 a 61,61 0 1,1 -122,0" />
@@ -981,25 +981,25 @@ function Footer({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }
             </div>
           </div>
 
-          <nav className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3" aria-label={isAr ? 'روابط التذييل' : 'Footer navigation'}>
+          <nav className="footer-navigation grid max-w-[620px] grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 sm:gap-x-10 md:justify-self-end lg:gap-x-14" dir={isAr ? 'rtl' : 'ltr'} aria-label={isAr ? 'روابط التذييل' : 'Footer navigation'}>
             {groups.map((group) => (
-              <div key={group.title}>
-                <h2 className={`mb-6 text-[13px] font-medium text-[#CBB98B] ${isAr ? 'font-nav-ar' : 'uppercase tracking-[.18em]'}`}>{group.title}</h2>
+              <div className="footer-nav-group" key={group.title}>
+                <h2 className={`footer-nav-heading mb-6 text-[14px] font-medium text-[#CBB98B] ${isAr ? 'font-nav-ar' : 'uppercase tracking-[.18em]'}`}>{group.title}</h2>
                 <ul className="space-y-4">
                   {group.links.map((item) => (
                     <li key={item.href}>
-                      <Link href={item.href} className={`footer-link text-[13px] opacity-80 ${isAr ? 'font-arabic' : ''}`} data-testid={item.testId}>{item.label}</Link>
+                      <Link href={item.href} className={`footer-link text-[13px] opacity-90 ${isAr ? 'font-arabic' : ''}`} data-testid={item.testId}>{item.label}</Link>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
-            <div>
-              <h2 className={`mb-6 text-[13px] font-medium text-[#CBB98B] ${isAr ? 'font-nav-ar' : 'uppercase tracking-[.18em]'}`}>{isAr ? 'مساعدة' : 'Help'}</h2>
+            <div className="footer-nav-group">
+              <h2 className={`footer-nav-heading mb-6 text-[14px] font-medium text-[#CBB98B] ${isAr ? 'font-nav-ar' : 'uppercase tracking-[.18em]'}`}>{isAr ? 'مساعدة' : 'Help'}</h2>
               <ul className="space-y-4">
                 {helpLinks.map((label) => (
                   <li key={label}>
-                    <span className={`footer-link cursor-default text-[13px] opacity-80 ${isAr ? 'font-arabic' : ''}`} aria-disabled="true">{label}</span>
+                    <span className={`footer-link cursor-default text-[13px] opacity-90 ${isAr ? 'font-arabic' : ''}`} aria-disabled="true">{label}</span>
                   </li>
                 ))}
               </ul>
@@ -1007,16 +1007,16 @@ function Footer({ lang, setLang }: { lang: Lang; setLang: (lang: Lang) => void }
           </nav>
         </div>
 
-        <div className="mt-16 border-t border-[#CBB98B]/35 pt-6 md:mt-20">
+        <div className="mt-12 border-t border-[#CBB98B]/35 pt-6 md:mt-14">
           <div className="flex flex-col-reverse gap-6 text-[10px] font-semibold uppercase tracking-[.14em] sm:flex-row sm:items-center sm:justify-between">
             <span className="opacity-65">© 2026 L’ANAK</span>
             <div className="flex flex-wrap items-center gap-x-7 gap-y-3" dir="ltr">
               <span className="footer-link cursor-default opacity-65" aria-disabled="true">Instagram</span>
               <span className="footer-link cursor-default opacity-65" aria-disabled="true">TikTok</span>
               <div className="flex items-center gap-2" aria-label="Language selector" data-testid="footer-language-toggle">
-                <button onClick={() => setLang('ar')} className={`transition-colors duration-300 hover:text-[#CBB98B] ${lang === 'ar' ? 'text-[#CBB98B]' : 'opacity-65'}`}>AR</button>
+                <button onClick={() => setLang('ar')} className={`footer-link ${lang === 'ar' ? 'text-[#CBB98B]' : 'opacity-65'}`}>AR</button>
                 <span className="opacity-30">|</span>
-                <button onClick={() => setLang('en')} className={`transition-colors duration-300 hover:text-[#CBB98B] ${lang === 'en' ? 'text-[#CBB98B]' : 'opacity-65'}`}>EN</button>
+                <button onClick={() => setLang('en')} className={`footer-link ${lang === 'en' ? 'text-[#CBB98B]' : 'opacity-65'}`}>EN</button>
               </div>
             </div>
           </div>
