@@ -594,25 +594,23 @@ function Reveal({ children, delay = 0, className = "", threshold = 0.2 }: { chil
 
 function Section01() {
   return (
-    <section className="bg-[#FAF7F0] text-[#49372D] px-5 pt-32 pb-20 md:px-10 md:pt-40 md:pb-28" data-testid="section-about-01">
+    <section className="bg-[#FAF7F0] text-[#49372D] px-5 pt-28 pb-20 md:px-10 md:pt-36 md:pb-28" data-testid="section-about-01">
       <div className="max-w-[1440px] mx-auto w-full flex flex-col items-center text-center">
         <Reveal>
-          <h2 className="font-nav-ar text-[clamp(1.5rem,2.5vw,2rem)] font-medium mb-16 md:mb-24" data-testid="text-about-eyebrow-1">
+          <h2 className="font-nav-ar text-[clamp(1.75rem,2.7vw,2.4rem)] font-medium mb-10 md:mb-14" data-testid="text-about-eyebrow-1">
             منو إحنا؟
           </h2>
         </Reveal>
 
-        <h1 className="font-arabic text-[clamp(1.8rem,4vw,3.8rem)] font-light leading-[1.6] tracking-normal max-w-[900px]">
-          <Reveal delay={150}>
+        <h1 className="font-arabic text-[clamp(2rem,3.7vw,3.5rem)] font-light leading-[1.55] tracking-normal max-w-[900px]">
+          <Reveal delay={180}>
             <div>مو لازم يكون فيه سبب،</div>
-          </Reveal>
-          <Reveal delay={300}>
             <div>أحيانًا ممكن تكون أنت السبب.</div>
           </Reveal>
         </h1>
 
-        <Reveal delay={500}>
-          <div className="font-arabic text-[clamp(2.5rem,5.5vw,5rem)] font-light text-[#CBB98B] mt-16 md:mt-24" data-testid="text-about-payoff-1">
+        <Reveal delay={420}>
+          <div className="font-arabic text-[clamp(2.35rem,4.8vw,4.35rem)] font-light text-[#CBB98B] mt-10 md:mt-14" data-testid="text-about-payoff-1">
             لأنّك أنت.
           </div>
         </Reveal>

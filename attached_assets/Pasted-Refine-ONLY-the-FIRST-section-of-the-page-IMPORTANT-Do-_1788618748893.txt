@@ -1,0 +1,112 @@
+Refine ONLY the FIRST section of the “عن لأنّك” page.
+
+IMPORTANT:
+Do NOT modify:
+- Navbar
+- Any section after the first section
+- Existing brand colors
+- Existing Arabic font family
+- Existing text/copy
+- Editorial campaign image
+- Footer
+
+I only want to improve the visual hierarchy, spacing, and animation of the FIRST section.
+
+CURRENT CONTENT MUST STAY EXACTLY:
+
+منو إحنا؟
+
+مو لازم يكون فيه سبب،
+أحيانًا ممكن تكون أنت السبب.
+
+لأنّك أنت.
+
+DESIGN DIRECTION:
+
+This section should feel like the opening of a luxury editorial brand story — elegant, emotional, minimal, and intentional.
+
+1. “منو إحنا؟”
+Make “منو إحنا؟” noticeably larger and more confident than it is now.
+It should work as the introduction to the page, not as a tiny label.
+
+Keep it elegant — do not make it oversized or heavy.
+Use the same typography system already used across the website.
+
+2. MAIN STATEMENT
+Keep:
+
+مو لازم يكون فيه سبب،
+أحيانًا ممكن تكون أنت السبب.
+
+as the visual focus of the section.
+
+Keep the typography elegant and light.
+Maintain comfortable line-height and strong Arabic readability.
+
+Do NOT make the text extremely large.
+Match the visual rhythm and typography proportions already established on the L’ANAK website.
+
+3. “لأنّك أنت.”
+Keep it in the existing Muted Champagne brand accent.
+
+Give it enough breathing room so it feels like the emotional reveal of the section.
+
+4. FIX THE SPACING
+The current section has too much empty vertical space between:
+“منو إحنا؟”
+and the main statement.
+
+Reduce this excessive gap.
+
+The section should still have premium negative space, but all three parts must visually feel connected as ONE composition.
+
+Do not compress everything together.
+Think luxury editorial spacing — intentional, balanced, calm.
+
+5. SCROLL REVEAL ANIMATION
+
+Create a subtle sequential reveal:
+
+First:
+“منو إحنا؟” fades in + moves upward slightly.
+
+Then:
+“مو لازم يكون فيه سبب،
+أحيانًا ممكن تكون أنت السبب.”
+reveals smoothly after a short delay.
+
+Finally:
+“لأنّك أنت.”
+appears last as the emotional conclusion.
+
+Suggested motion:
+opacity 0 → 1
+translateY 20–30px → 0
+
+Duration:
+700–900ms
+
+Use small staggered delays between the three elements.
+
+The animation should trigger when the section enters the viewport.
+
+Animate once only.
+
+NO:
+- bouncing
+- zooming
+- dramatic movement
+- letter-by-letter animation
+- typewriter effect
+- glow
+- excessive effects
+
+The feeling should be:
+quiet luxury + storytelling + emotion.
+
+6. RESPONSIVE
+Maintain the same hierarchy on tablet and mobile.
+Reduce font sizes proportionally.
+Do not create awkward line breaks in Arabic.
+
+Do not change anything else on the page.
