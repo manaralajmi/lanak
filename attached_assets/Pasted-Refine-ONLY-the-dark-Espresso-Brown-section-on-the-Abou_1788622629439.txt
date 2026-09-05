@@ -1,0 +1,158 @@
+Refine ONLY the dark Espresso Brown “ليش لأنّك؟” section
+on the About page.
+
+Do NOT modify:
+- the section before it
+- the editorial campaign image
+- any section after it
+- navbar
+- footer
+- existing copy
+- brand colors
+- existing typography
+
+IMPORTANT:
+Keep ALL current Arabic copy exactly as it is.
+
+The content is already correct.
+I only want to improve the composition, visual hierarchy,
+spacing and scroll storytelling.
+
+========================================
+1. SECTION INTRO
+========================================
+
+Keep:
+
+ليش لأنّك؟
+
+as the small introductory label,
+but make sure it is clearly visible and intentionally positioned.
+
+Then make:
+
+لأن الهدية مو دايم تحتاج مناسبة.
+
+the main visual statement of the section.
+
+It should be the strongest typography in this section,
+using the same elegant Arabic typography rhythm
+already established across the L’ANAK website.
+
+Do not make it excessively large.
+
+========================================
+2. STORY FLOW
+========================================
+
+Instead of making the paragraphs feel randomly scattered,
+create a deliberate editorial reading path.
+
+The user should naturally read:
+
+ليش لأنّك؟
+
+↓
+
+لأن الهدية مو دايم تحتاج مناسبة.
+
+↓
+
+مو لازم ننطر ميلاد، تخرج، أو يوم معيّن
+علشان نقول لشخص: أنت غالي علي.
+
+↓
+
+أحيانًا يكون عندنا شعور بسيط نبي نوصله:
+امتنان، محبة، اشتياق،
+أو حتى «كنت أفكر فيك».
+
+↓
+
+والهدية؟
+مجرد طريقة نوصل فيها هالشعور.
+
+Keep the layout editorial and spacious.
+
+It does NOT need to be one centered column.
+Use asymmetry carefully,
+but every element must feel visually connected.
+
+Avoid huge empty gaps between related text.
+
+========================================
+3. FINAL STATEMENT
+========================================
+
+Give:
+
+والهدية؟
+مجرد طريقة نوصل فيها هالشعور.
+
+more visual importance.
+
+Use Muted Champagne #CBB98B.
+
+Treat it as the emotional conclusion of this section.
+
+It can be slightly larger than the body copy,
+but smaller than the main headline.
+
+========================================
+4. SCROLL ANIMATION
+========================================
+
+Reveal the story gradually as the user scrolls.
+
+Use subtle:
+opacity 0 → 1
+translateY 20–30px → 0
+
+Each story block should reveal naturally
+after the previous one.
+
+Duration approximately 700–900ms.
+
+Animate once only.
+
+No:
+- typewriter animation
+- bouncing
+- zooming
+- rotating
+- glowing
+- dramatic parallax
+
+The user should feel like they are reading
+a short brand story while scrolling.
+
+========================================
+5. VISUAL STYLE
+========================================
+
+Background:
+Espresso Brown #49372D
+
+Primary text:
+Warm Cream
+
+Emotional conclusion:
+Muted Champagne #CBB98B
+
+Maintain generous editorial negative space,
+but do not make the section unnecessarily tall.
+
+The section should feel:
+warm
+luxurious
+emotional
+Kuwaiti
+minimal
+intentional
+
+Do NOT add images, cards, icons or decorative graphics here.
+
+This is intentionally a typography-led storytelling moment
+between the two visual sections.
+
+Do not change anything else.

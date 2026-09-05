@@ -651,38 +651,39 @@ function Section02() {
 
 function Section03() {
   return (
-    <section className="bg-[#49372D] text-[#FAF7F0] px-5 py-24 md:py-36 md:px-10" data-testid="section-about-03">
-      <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
+    <section className="bg-[#49372D] text-[#FAF7F0] px-5 py-24 md:px-10 md:py-32" data-testid="section-about-03">
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-[1.05fr_0.95fr] gap-14 md:gap-20 lg:gap-28 items-start">
         <div>
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-widest opacity-60 mb-8 font-nav-ar" data-testid="text-about-eyebrow-3">
+            <p className="text-[12px] font-bold tracking-wide opacity-75 mb-6 md:mb-8 font-nav-ar" data-testid="text-about-eyebrow-3">
               ليش لأنّك؟
             </p>
           </Reveal>
-          <Reveal delay={100}>
-            <h2 className="font-arabic text-[clamp(2rem,3.5vw,3.2rem)] font-light leading-[1.3] text-balance" data-testid="text-about-main-3">
+          <Reveal delay={140}>
+            <h2 className="font-arabic text-[clamp(2.15rem,3.6vw,3.4rem)] font-light leading-[1.35] text-balance max-w-[650px]" data-testid="text-about-main-3">
               لأن الهدية مو دايم تحتاج مناسبة.
             </h2>
           </Reveal>
         </div>
 
-        <div className="flex flex-col gap-10 text-[clamp(1.1rem,1.5vw,1.4rem)] font-arabic font-light leading-[1.8] opacity-85 md:mt-16">
-          <Reveal>
+        <div className="flex flex-col gap-8 md:gap-10 text-[clamp(1.1rem,1.5vw,1.4rem)] font-arabic font-light leading-[1.85] md:mt-14">
+          <Reveal delay={280}>
             <p>
               مو لازم ننطر ميلاد، تخرج، أو يوم معيّن<br/>
               علشان نقول لشخص: أنت غالي علي.
             </p>
           </Reveal>
-          <Reveal delay={100}>
+          <Reveal delay={420}>
             <p>
               أحيانًا يكون عندنا شعور بسيط نبي نوصله؛<br/>
               امتنان، محبة، اشتياق،<br/>
               أو حتى «كنت أفكر فيك».
             </p>
           </Reveal>
-          <Reveal delay={200}>
-            <p className="text-[clamp(1.3rem,2vw,1.6rem)] text-[#CBB98B] mt-4">
-              والهدية؟ مجرد طريقة نوصل فيها هالشعور.
+          <Reveal delay={560}>
+            <p className="text-[clamp(1.4rem,2.1vw,1.8rem)] leading-[1.65] text-[#CBB98B] mt-2 md:mt-4">
+              والهدية؟<br/>
+              مجرد طريقة نوصل فيها هالشعور.
             </p>
           </Reveal>
         </div>
