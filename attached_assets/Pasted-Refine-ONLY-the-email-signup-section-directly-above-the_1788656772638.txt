@@ -1,0 +1,297 @@
+Refine ONLY the email signup section directly above the Footer.
+
+Do NOT modify:
+- Footer
+- Navbar
+- any About page section above
+- brand colors
+- global typography
+- any other page or component
+
+The current section is too subtle and unclear.
+
+I want this section to be more visually engaging,
+easier to understand immediately,
+and slightly stronger in typography.
+
+Keep the premium minimal L’ANAK aesthetic,
+but improve clarity and hierarchy.
+
+==================================================
+1. REMOVE CURRENT COPY
+==================================================
+
+Remove:
+
+"خلك قريب."
+
+Remove:
+
+"L’ANAK NOTES — من وقت لوقت"
+
+Remove:
+
+"أنا وياكم"
+
+Remove the current supporting copy.
+
+Do NOT use "L’ANAK NOTES" anywhere in this section.
+
+==================================================
+2. USE THIS EXACT COPY
+==================================================
+
+Main heading:
+
+"توصلك أخبارنا أول بأول."
+
+Supporting text:
+
+"اكتشف جديدنا، اختياراتنا، وكل شيء حصري قبل غيرك."
+
+Email placeholder:
+
+"إيميلك"
+
+Button:
+
+"تم"
+
+Keep the Arabic copy EXACTLY as written.
+
+==================================================
+3. TYPOGRAPHY
+==================================================
+
+The current typography is too small.
+
+Make the main heading noticeably larger
+and more confident.
+
+"توصلك أخبارنا أول بأول."
+
+should immediately communicate the purpose of the section.
+
+Use the existing elegant Arabic font.
+
+Do NOT make it extremely oversized like a Hero headline.
+
+Target approximately:
+48–60px desktop
+38–46px tablet
+30–36px mobile
+
+Use an elegant/light-to-medium weight.
+
+Supporting text should also be larger than the current version
+and easy to read.
+
+Target approximately:
+20–24px desktop
+
+Do NOT make important text tiny or low-opacity.
+
+==================================================
+4. EMAIL FORM — MAKE IT CLEAR
+==================================================
+
+The current underline-only email input is too subtle
+and can be mistaken for decorative text.
+
+Replace it with a CLEAR email input container.
+
+Create one elegant horizontal email signup box.
+
+It should contain:
+
+[ إيميلك                         تم ]
+
+The customer should immediately understand
+that this is an interactive email field.
+
+Use:
+
+- Warm Cream / Ivory fill
+- thin Espresso Brown border
+- clean rectangular shape
+- very subtle corner radius only
+- generous internal padding
+- comfortable height
+
+Do NOT use an exaggerated pill shape.
+
+Do NOT use a heavy shadow.
+
+Do NOT use a generic ecommerce form style.
+
+It should feel like premium stationery.
+
+==================================================
+5. “تم” BUTTON
+==================================================
+
+Make "تم" a clearly recognizable action button
+inside or directly attached to the email box.
+
+Use:
+
+Espresso Brown #49372D background
+Warm Cream text
+
+The button should have enough width and padding
+to clearly look clickable.
+
+On hover:
+
+background → Muted Champagne #CBB98B
+text → Espresso Brown
+
+Add a subtle transition:
+250–350ms ease.
+
+No glow.
+No bounce.
+No dramatic scale.
+
+==================================================
+6. FORM INTERACTION
+==================================================
+
+When the email field receives focus:
+
+- border transitions toward Muted Champagne #CBB98B
+- very subtle focus indication
+- no browser-style heavy outline
+- no glow
+
+When the user clicks "تم" with a valid email:
+
+Do NOT open a popup.
+
+Replace or transition the form area into a subtle confirmation:
+
+"وصلنا إيميلك ✓"
+
+Keep the confirmation elegant and simple.
+
+For invalid email:
+show a small clear Arabic validation message
+directly below the field.
+
+==================================================
+7. SECTION LAYOUT
+==================================================
+
+Improve the composition.
+
+The current section feels too empty
+and the form feels disconnected from the text.
+
+Bring the heading, supporting text,
+and email form visually closer together.
+
+Create ONE clear content composition.
+
+Desktop:
+
+RIGHT:
+Main heading + supporting copy
+
+LEFT / CENTER:
+Email signup box
+
+But reduce the huge empty gap between both sides.
+
+The two areas must feel connected
+as one intentional section.
+
+Use a controlled editorial grid.
+
+==================================================
+8. VISUAL DETAIL
+==================================================
+
+Keep the background Warm Cream.
+
+Use:
+
+Espresso Brown #49372D
+Muted Champagne #CBB98B
+Warm Cream / Ivory
+
+Add one subtle editorial detail if needed,
+such as a thin Champagne line near the heading
+or a very small L’ANAK monogram using the EXISTING asset.
+
+Do NOT add:
+- new slogans
+- stock images
+- illustrations
+- decorative icons
+- cards
+- large graphic elements
+
+The typography and email box should create the visual interest.
+
+==================================================
+9. SECTION HEIGHT
+==================================================
+
+Keep the section spacious,
+but slightly more compact than the current version.
+
+There is currently too much unused empty space.
+
+Increase the size of the actual content
+rather than increasing the section height.
+
+The section should transition naturally
+into the existing Espresso Brown Footer.
+
+DO NOT modify the Footer.
+
+==================================================
+10. RESPONSIVE
+==================================================
+
+Desktop:
+Strong editorial two-part composition.
+
+Mobile:
+
+Stack in this order:
+
+توصلك أخبارنا أول بأول.
+
+اكتشف جديدنا، اختياراتنا، وكل شيء حصري قبل غيرك.
+
+[ إيميلك          تم ]
+
+Make the email box nearly full-width on mobile.
+
+==================================================
+FINAL FEEL
+==================================================
+
+The customer should understand this section instantly:
+
+Enter your email
+→ receive L’ANAK news, new releases and exclusive updates.
+
+The section should feel:
+
+clear
+premium
+inviting
+modern
+easy to use
+distinctly L’ANAK
+
+Most importantly:
+
+- make the Arabic text larger and easier to read
+- make the email field look clearly like an input box
+- make "تم" look clearly clickable
+- reduce unnecessary empty space
+
+Do not modify anything outside this section.

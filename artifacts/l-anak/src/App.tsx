@@ -867,53 +867,46 @@ function Newsletter({ lang }: { lang: Lang }) {
   };
 
   return (
-    <section className="border-t border-[#CBB98B] bg-[#F5F0E8] px-5 py-16 text-[#49372D] md:px-10 md:py-20" data-testid="section-newsletter">
-      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 md:grid-cols-[1.15fr_.85fr] md:items-end md:gap-16 lg:gap-28" dir={isAr ? 'rtl' : 'ltr'}>
+    <section id="newsletter" className="border-t border-[#CBB98B] bg-[#F5F0E8] px-5 py-14 text-[#49372D] md:px-10 md:py-16" data-testid="section-newsletter">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-9 md:grid-cols-[1.08fr_.92fr] md:items-end md:gap-12 lg:gap-16" dir={isAr ? 'rtl' : 'ltr'}>
         <div>
           <Reveal>
-            <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#49372D]/65">
-              L’ANAK NOTES — {isAr ? 'من وقت لوقت' : 'From time to time'}
-            </p>
-          </Reveal>
-          <Reveal delay={140}>
             <div>
-              <h2 className={`mt-5 text-[clamp(2.5rem,4vw,4.25rem)] font-light leading-[1.15] ${isAr ? 'font-arabic' : 'font-display'}`}>
-                {isAr ? 'خلك قريب.' : 'Stay close.'}
+              <div className="mb-6 h-px w-12 bg-[#CBB98B]" aria-hidden="true" />
+              <h2 className={`text-[clamp(2rem,4vw,3.75rem)] font-normal leading-[1.25] ${isAr ? 'font-arabic' : 'font-display'}`}>
+                {isAr ? 'توصلك أخبارنا أول بأول.' : 'Be the first to hear our news.'}
               </h2>
-              <p className={`mt-5 max-w-[430px] whitespace-pre-line text-[16px] font-light leading-[1.8] text-[#49372D]/75 ${isAr ? 'font-arabic' : ''}`}>
-                {isAr ? 'هدايا جديدة، اختيارات محلية،\nوأشياء تستاهل تنهدى.' : 'New gifts, local picks,\nand things worth giving.'}
+              <p className={`mt-5 max-w-[600px] text-[clamp(1.1rem,1.7vw,1.4rem)] font-light leading-[1.75] text-[#49372D] ${isAr ? 'font-arabic' : ''}`}>
+                {isAr ? 'اكتشف جديدنا، اختياراتنا، وكل شيء حصري قبل غيرك.' : 'Discover our latest releases, selections, and every exclusive before anyone else.'}
               </p>
             </div>
           </Reveal>
         </div>
 
-        <Reveal delay={280}>
+        <Reveal delay={180}>
           <div className="md:pb-1">
             {joined ? (
-              <p className={`border-b border-[#CBB98B] pb-4 text-[16px] text-[#49372D] ${isAr ? 'font-arabic' : ''}`} data-testid="status-newsletter-joined">
-                {isAr ? 'وصلت 🤎 بنخليك قريب.' : 'You’re in 🤎 We’ll keep you close.'}
-              </p>
+              <div className={`flex min-h-16 items-center border border-[#CBB98B] bg-[#F5F0E8] px-5 text-[17px] font-medium ${isAr ? 'font-arabic' : ''}`} data-testid="status-newsletter-joined">
+                {isAr ? 'وصلنا إيميلك ✓' : 'We received your email ✓'}
+              </div>
             ) : (
               <form onSubmit={submitEmail} noValidate>
-                <div className="flex items-end gap-5 border-b border-[#49372D]/35 transition-colors duration-300 focus-within:border-[#CBB98B]">
+                <div className="flex min-h-16 items-stretch overflow-hidden rounded-[3px] border border-[#49372D] bg-[#F5F0E8] transition-colors duration-300 ease-out focus-within:border-[#CBB98B]">
                   <input
                     value={email}
                     onChange={(event) => { setEmail(event.target.value); if (error) setError(''); }}
                     type="email"
-                    className={`min-w-0 flex-1 bg-transparent py-4 text-[15px] outline-none placeholder:text-[#49372D]/45 ${isAr ? 'font-arabic' : ''}`}
+                    className={`min-w-0 flex-1 bg-transparent px-5 py-4 text-[16px] outline-none placeholder:text-[#49372D]/55 ${isAr ? 'font-arabic' : ''}`}
                     placeholder={isAr ? 'إيميلك' : 'Your email'}
                     aria-invalid={Boolean(error)}
                     aria-describedby={error ? 'newsletter-error' : undefined}
                     data-testid="input-newsletter-email"
                   />
-                  <button type="submit" className={`group relative mb-4 inline-flex shrink-0 items-center gap-1.5 text-[14px] font-medium transition-colors duration-300 hover:text-[#CBB98B] ${isAr ? 'font-arabic' : ''}`} data-testid="button-newsletter-submit">
-                    <span className="relative after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 group-hover:after:scale-x-100">
-                      {isAr ? 'أنا وياكم' : 'Count me in'}
-                    </span>
-                    <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
+                  <button type="submit" className={`min-w-20 shrink-0 bg-[#49372D] px-6 text-[16px] font-medium text-[#F5F0E8] transition-colors duration-300 ease-out hover:bg-[#CBB98B] hover:text-[#49372D] ${isAr ? 'font-arabic' : ''}`} data-testid="button-newsletter-submit">
+                    {isAr ? 'تم' : 'Done'}
                   </button>
                 </div>
-                {error && <p id="newsletter-error" className={`mt-2 text-[12px] text-[#49372D]/65 ${isAr ? 'font-arabic' : ''}`} data-testid="text-newsletter-error">{error}</p>}
+                {error && <p id="newsletter-error" className={`mt-2 text-[13px] text-[#49372D] ${isAr ? 'font-arabic' : ''}`} data-testid="text-newsletter-error">{error}</p>}
               </form>
             )}
           </div>
