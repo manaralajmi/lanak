@@ -1,0 +1,377 @@
+Refine ONLY the email signup section directly above the Footer.
+
+Do NOT modify:
+- Footer
+- Navbar
+- sections above this email section
+- global colors
+- global typography
+- any other page
+
+The current section structure is good,
+but the EMAIL FORM currently looks too basic and generic.
+
+I want to make the email signup form feel much more premium,
+intentional and visually designed for L’ANAK.
+
+Also update the section copy and hierarchy as specified below.
+
+==================================================
+1. FINAL COPY
+==================================================
+
+Use EXACTLY:
+
+Small section title:
+"انضم لعائلتنا"
+
+Main heading:
+"توصلك أخبارنا أول بأول."
+
+Supporting text:
+"اكتشف جديدنا، اختياراتنا، وكل شيء حصري قبل غيرك."
+
+Email placeholder:
+"إيميلك"
+
+Button:
+"انضم"
+
+Do NOT add any other copy.
+
+==================================================
+2. HEADING COLOR + TYPOGRAPHY
+==================================================
+
+Make:
+
+"توصلك أخبارنا أول بأول."
+
+use the existing L’ANAK Gold / Muted Champagne:
+
+#CBB98B
+
+IMPORTANT:
+Use the SAME Arabic font family and typography language
+already established throughout the website.
+
+Do NOT introduce a new font.
+
+Make the heading large and elegant,
+with a refined light/regular weight.
+
+It should feel visually connected to the About page headings.
+
+"انضم لعائلتنا"
+
+should appear above it as a smaller editorial section title
+in Espresso Brown.
+
+The supporting copy should also use Espresso Brown.
+
+==================================================
+3. REDESIGN THE EMAIL FORM
+==================================================
+
+The current email form looks too flat,
+too long and too generic.
+
+Replace it with a more luxurious,
+compact L’ANAK signup component.
+
+Create ONE refined outer form container.
+
+The container should feel inspired by:
+
+premium invitation cards
++
+luxury stationery
++
+high-end fashion website forms
+
+NOT a generic website input.
+
+==================================================
+4. FORM CONTAINER STYLE
+==================================================
+
+Use:
+
+Background:
+a slightly lighter Warm Ivory than the section background
+
+Border:
+1px solid rgba of Espresso Brown
+with subtle Muted Champagne detailing
+
+Shape:
+clean rectangular form
+with only a VERY subtle corner radius
+
+Do NOT make it a pill.
+
+Add generous internal padding.
+
+Give the form more vertical presence
+so it feels intentional and premium.
+
+Suggested height:
+approximately 72–82px desktop.
+
+Do NOT make it excessively wide.
+
+Target width:
+approximately 500–560px desktop.
+
+The form should have enough visual weight
+to balance the large heading on the right.
+
+==================================================
+5. ADD A SUBTLE INNER DETAIL
+==================================================
+
+Add a small elegant envelope icon
+inside the email field area.
+
+Use a very thin line icon only.
+
+Color:
+Muted Champagne #CBB98B
+
+Keep it subtle.
+
+Then show:
+
+"إيميلك"
+
+with comfortable spacing.
+
+The icon should NOT look like a generic app icon.
+
+==================================================
+6. BUTTON — "انضم"
+==================================================
+
+Do NOT use the current small square-like button.
+
+Create a more intentional button integrated
+into the form container.
+
+Button text:
+
+"انضم"
+
+Use:
+
+Espresso Brown #49372D background
+Warm Cream text
+
+Give the button comfortable horizontal padding.
+
+It should occupy approximately 25–30%
+of the form width.
+
+Keep the button aligned cleanly with the input.
+
+Use only a very subtle radius matching the form.
+
+The button and input should feel like ONE designed component,
+not two unrelated boxes.
+
+==================================================
+7. PREMIUM HOVER
+==================================================
+
+On hover over "انضم":
+
+Background:
+Espresso Brown → Muted Champagne #CBB98B
+
+Text:
+Warm Cream → Espresso Brown
+
+Also add a very subtle internal arrow:
+
+انضم  ↗
+
+The arrow may move approximately 3px on hover.
+
+Transition:
+300–400ms ease.
+
+No glow.
+No bounce.
+No large scale.
+
+==================================================
+8. INPUT INTERACTION
+==================================================
+
+When the user clicks inside the email input:
+
+- outer border subtly transitions toward Muted Champagne
+- envelope icon becomes slightly more visible
+- placeholder remains refined
+- no heavy browser outline
+- no glow
+
+The entire component should feel gently activated.
+
+==================================================
+9. SUBTLE FORM DEPTH
+==================================================
+
+The form currently feels completely flat.
+
+Add VERY subtle visual depth.
+
+Allowed:
+
+- extremely soft shadow
+- slight contrast between the form background
+  and the Cream section background
+- thin Champagne highlight/detail
+
+The shadow must be nearly imperceptible.
+
+Think:
+luxury stationery resting on a surface.
+
+NOT:
+floating SaaS card.
+
+==================================================
+10. SECTION COMPOSITION
+==================================================
+
+Keep the editorial two-side composition,
+but visually connect both sides better.
+
+RIGHT:
+
+انضم لعائلتنا
+
+توصلك أخبارنا أول بأول.
+
+اكتشف جديدنا، اختياراتنا، وكل شيء حصري قبل غيرك.
+
+LEFT:
+
+Premium email signup component.
+
+Vertically align the email form
+approximately with the main heading/supporting copy area.
+
+Reduce unnecessary empty space.
+
+Do NOT make the section taller.
+
+==================================================
+11. MATCH THE WEBSITE ANIMATION LANGUAGE
+==================================================
+
+Use the SAME subtle reveal animation language
+already established throughout the About page.
+
+Reveal sequence:
+
+1. "انضم لعائلتنا"
+2. "توصلك أخبارنا أول بأول."
+3. supporting text
+4. email form
+
+Use:
+
+opacity 0 → 1
+translateY 20–30px → 0
+
+Duration:
+700–900ms
+
+Subtle stagger.
+
+Animate once only.
+
+No:
+- typewriter
+- bounce
+- zoom
+- glow
+- rotation
+
+Respect prefers-reduced-motion.
+
+==================================================
+12. SUCCESS STATE
+==================================================
+
+After a valid email is submitted:
+
+Do NOT show a popup.
+
+Animate the content inside the SAME form container.
+
+Change it elegantly to:
+
+"تم انضمامك ✓"
+
+Keep the outer premium form container visible.
+
+Use Muted Champagne for the check/detail.
+
+This should feel like a polished interaction,
+not a browser confirmation.
+
+==================================================
+13. MOBILE
+==================================================
+
+On mobile:
+
+Stack:
+
+انضم لعائلتنا
+
+توصلك أخبارنا أول بأول.
+
+supporting copy
+
+email form
+
+The form should become nearly full-width.
+
+Keep:
+
+input + انضم
+
+inside one unified container when space allows.
+
+If necessary on very small screens,
+stack the button beneath the input
+inside the same visual component.
+
+==================================================
+FINAL FEEL
+==================================================
+
+The email signup should no longer look like:
+
+a basic input + button.
+
+It should feel like a small premium L’ANAK invitation.
+
+Elegant.
+Clear.
+Interactive.
+Warm.
+Luxurious.
+
+Most importantly:
+
+- keep the existing website typography
+- use Gold for the main heading
+- make the form more visually substantial
+- make "انضم" clearly clickable
+- maintain the same animation language as the rest of the site
+
+Do NOT modify anything outside this email signup section.

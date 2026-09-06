@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
-import { ArrowUpRight, Check, Coffee, Gift, Heart, Menu, Plus, Send, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, Check, Coffee, Gift, Heart, Mail, Menu, Plus, Send, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -871,39 +871,48 @@ function Newsletter({ lang }: { lang: Lang }) {
       <div className="mx-auto grid max-w-[1180px] grid-cols-1 gap-9 md:grid-cols-[1.08fr_.92fr] md:items-end md:gap-12 lg:gap-16" dir={isAr ? 'rtl' : 'ltr'}>
         <div>
           <Reveal>
-            <div>
-              <div className="mb-6 h-px w-12 bg-[#CBB98B]" aria-hidden="true" />
-              <h2 className={`text-[clamp(2rem,4vw,3.75rem)] font-normal leading-[1.25] ${isAr ? 'font-arabic' : 'font-display'}`}>
-                {isAr ? 'توصلك أخبارنا أول بأول.' : 'Be the first to hear our news.'}
-              </h2>
-              <p className={`mt-5 max-w-[600px] text-[clamp(1.1rem,1.7vw,1.4rem)] font-light leading-[1.75] text-[#49372D] ${isAr ? 'font-arabic' : ''}`}>
-                {isAr ? 'اكتشف جديدنا، اختياراتنا، وكل شيء حصري قبل غيرك.' : 'Discover our latest releases, selections, and every exclusive before anyone else.'}
-              </p>
-            </div>
+            <p className={`mb-4 text-[15px] font-medium text-[#49372D] ${isAr ? 'font-arabic' : ''}`}>
+              {isAr ? 'انضم لعائلتنا' : 'Join our family'}
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <h2 className={`text-[clamp(2rem,4vw,3.75rem)] font-normal leading-[1.25] text-[#CBB98B] ${isAr ? 'font-arabic' : 'font-display'}`}>
+              {isAr ? 'توصلك أخبارنا أول بأول.' : 'Be the first to hear our news.'}
+            </h2>
+          </Reveal>
+          <Reveal delay={240}>
+            <p className={`mt-5 max-w-[600px] text-[clamp(1.1rem,1.7vw,1.4rem)] font-light leading-[1.75] text-[#49372D] ${isAr ? 'font-arabic' : ''}`}>
+              {isAr ? 'اكتشف جديدنا، اختياراتنا، وكل شيء حصري قبل غيرك.' : 'Discover our latest releases, selections, and every exclusive before anyone else.'}
+            </p>
           </Reveal>
         </div>
 
-        <Reveal delay={180}>
-          <div className="md:pb-1">
+        <Reveal delay={360}>
+          <div className="w-full max-w-[550px] md:pb-1">
             {joined ? (
-              <div className={`flex min-h-16 items-center border border-[#CBB98B] bg-[#F5F0E8] px-5 text-[17px] font-medium ${isAr ? 'font-arabic' : ''}`} data-testid="status-newsletter-joined">
-                {isAr ? 'وصلنا إيميلك ✓' : 'We received your email ✓'}
+              <div className={`flex min-h-[76px] items-center rounded-[3px] border border-[#49372D]/35 bg-[#FAF7F0] px-6 text-[18px] font-medium shadow-[0_8px_24px_rgba(73,55,45,0.045)] ${isAr ? 'font-arabic' : ''}`} data-testid="status-newsletter-joined">
+                {isAr ? 'تم انضمامك ' : 'You have joined '}
+                <span className="ms-1 text-[#CBB98B]">✓</span>
               </div>
             ) : (
               <form onSubmit={submitEmail} noValidate>
-                <div className="flex min-h-16 items-stretch overflow-hidden rounded-[3px] border border-[#49372D] bg-[#F5F0E8] transition-colors duration-300 ease-out focus-within:border-[#CBB98B]">
-                  <input
-                    value={email}
-                    onChange={(event) => { setEmail(event.target.value); if (error) setError(''); }}
-                    type="email"
-                    className={`min-w-0 flex-1 bg-transparent px-5 py-4 text-[16px] outline-none placeholder:text-[#49372D]/55 ${isAr ? 'font-arabic' : ''}`}
-                    placeholder={isAr ? 'إيميلك' : 'Your email'}
-                    aria-invalid={Boolean(error)}
-                    aria-describedby={error ? 'newsletter-error' : undefined}
-                    data-testid="input-newsletter-email"
-                  />
-                  <button type="submit" className={`min-w-20 shrink-0 bg-[#49372D] px-6 text-[16px] font-medium text-[#F5F0E8] transition-colors duration-300 ease-out hover:bg-[#CBB98B] hover:text-[#49372D] ${isAr ? 'font-arabic' : ''}`} data-testid="button-newsletter-submit">
-                    {isAr ? 'تم' : 'Done'}
+                <div className="group/form flex min-h-[76px] items-stretch overflow-hidden rounded-[3px] border border-[#49372D]/45 bg-[#FAF7F0] shadow-[0_8px_24px_rgba(73,55,45,0.045)] transition-colors duration-300 ease-out focus-within:border-[#CBB98B]">
+                  <label className="flex min-w-0 flex-1 items-center gap-3 px-5">
+                    <Mail size={19} strokeWidth={1.15} className="shrink-0 text-[#CBB98B]/70 transition-colors duration-300 group-focus-within/form:text-[#CBB98B]" aria-hidden="true" />
+                    <input
+                      value={email}
+                      onChange={(event) => { setEmail(event.target.value); if (error) setError(''); }}
+                      type="email"
+                      className={`min-w-0 flex-1 bg-transparent py-4 text-[16px] outline-none placeholder:text-[#49372D]/55 ${isAr ? 'font-arabic' : ''}`}
+                      placeholder={isAr ? 'إيميلك' : 'Your email'}
+                      aria-invalid={Boolean(error)}
+                      aria-describedby={error ? 'newsletter-error' : undefined}
+                      data-testid="input-newsletter-email"
+                    />
+                  </label>
+                  <button type="submit" className={`group/button flex w-[27%] min-w-28 shrink-0 items-center justify-center gap-2 bg-[#49372D] px-5 text-[16px] font-medium text-[#F5F0E8] transition-colors duration-[350ms] ease-out hover:bg-[#CBB98B] hover:text-[#49372D] ${isAr ? 'font-arabic' : ''}`} data-testid="button-newsletter-submit">
+                    {isAr ? 'انضم' : 'Join'}
+                    <span aria-hidden="true" className="text-[13px] transition-transform duration-[350ms] ease-out group-hover/button:translate-x-[3px]">↗</span>
                   </button>
                 </div>
                 {error && <p id="newsletter-error" className={`mt-2 text-[13px] text-[#49372D] ${isAr ? 'font-arabic' : ''}`} data-testid="text-newsletter-error">{error}</p>}
