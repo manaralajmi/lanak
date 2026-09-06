@@ -504,6 +504,12 @@ function FeaturedGiftCard({ product, lang, addToBag, toggleFavorite, isFavorite 
   isFavorite: boolean;
 }) {
   const isAr = lang === 'ar';
+  const placeholderLabel: Record<string, string> = {
+    coffee: 'L’ANAK — COFFEE',
+    care: 'L’ANAK — SELF CARE',
+    sweets: 'L’ANAK — SWEETS',
+    dining: 'L’ANAK — DINING',
+  };
   return (
     <article
       className="featured-gift-card group"
@@ -516,11 +522,9 @@ function FeaturedGiftCard({ product, lang, addToBag, toggleFavorite, isFavorite 
       data-testid={`card-featured-${product.id}`}
     >
       <div className="featured-gift-image">
-        <img
-          src={product.image}
-          alt={product.imageAlt}
-          style={{ objectPosition: product.imagePosition }}
-        />
+        <span className="featured-gift-placeholder-label" aria-hidden="true">
+          {placeholderLabel[product.category]}
+        </span>
         <span className="featured-gift-number">{product.mark}</span>
         <button
           onClick={(event) => {

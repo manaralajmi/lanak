@@ -1,0 +1,134 @@
+Refine ONLY the “اختيارات لأنّك” product cards section.
+
+IMPORTANT:
+Do NOT modify:
+- section heading
+- “شوف الكل” button
+- card text
+- prices
+- categories
+- card sizing
+- favorites icon
+- overall layout
+- any other section on the page
+
+The current problem is ONLY the product images.
+
+Right now the same L’ANAK campaign image is repeated
+across all four cards.
+
+I do NOT want any real image inside these cards yet.
+
+==================================================
+REMOVE CURRENT IMAGES
+==================================================
+
+Remove the current repeated product/campaign image
+from ALL four cards.
+
+Do NOT replace it with:
+- stock photos
+- generated images
+- L’ANAK campaign photography
+- random products
+- repeated placeholder artwork
+
+==================================================
+RESTORE EMPTY IMAGE PLACEHOLDERS
+==================================================
+
+Restore the image area of each card
+to a clean neutral placeholder.
+
+Use a soft warm neutral tone
+that matches the existing L’ANAK palette.
+
+For example:
+Warm Beige / Light Taupe / Ivory Beige.
+
+The placeholder should feel intentionally empty,
+so final imagery can be added later.
+
+Keep the exact same image dimensions
+already used in the current cards.
+
+Do NOT change card proportions.
+
+==================================================
+PLACEHOLDER LABELS
+==================================================
+
+Add only a very subtle internal reference label
+centered inside each image area:
+
+Card 01:
+L’ANAK — COFFEE
+
+Card 02:
+L’ANAK — SELF CARE
+
+Card 03:
+L’ANAK — SWEETS
+
+Card 04:
+L’ANAK — DINING
+
+These labels are temporary development placeholders only.
+
+Style them:
+- very small
+- low contrast
+- Muted Champagne / Taupe
+- refined letter spacing
+
+They should NOT look like customer-facing content.
+
+==================================================
+KEEP CURRENT CARD CONTENT
+==================================================
+
+Keep exactly the current card information below each placeholder:
+
+قهوة
+قهوتك علي
+KD 5
+
+عناية
+دلّعي نفسك اليوم
+KD 20
+
+حلو
+الحلو علي
+KD 10
+
+مطاعم
+عشا اليوم علي
+KD 25
+
+Do NOT rewrite any text.
+
+==================================================
+FAVORITES + NUMBERING
+==================================================
+
+Keep:
+- heart icon
+- 01 / 02 / 03 / 04 numbering
+
+If they currently sit inside the image area,
+keep their positions.
+
+Make sure they remain visible against the neutral placeholder.
+
+==================================================
+FINAL RESULT
+==================================================
+
+The four cards should look exactly like the current design,
+but with EMPTY premium placeholders instead of repeated photos.
+
+I will add the final image for each category later.
+
+Do NOT add any images yourself.
+
+Do not change anything else.
