@@ -282,10 +282,6 @@ function Home({ lang, t, addToBag, toggleFavorite, favorites, giftFlow, selectGi
       <HowLanakWorks lang={lang} />
 
       <CuratedPicks lang={lang} addToBag={addToBag} toggleFavorite={toggleFavorite} favorites={favorites} />
-      <section className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 px-5 py-24 md:grid-cols-[1.15fr_.85fr] md:px-10 md:py-36">
-        <div className="border-t border-[#49372D]/20 pt-8"><p className="mb-12 text-[10px] font-bold uppercase tracking-[.22em] opacity-60">{isAr ? 'فكرة لأنّك' : 'The idea behind L’ANAK'}</p><p className={`max-w-[800px] font-display text-4xl leading-[1.1] tracking-[-.02em] md:text-6xl lg:text-7xl ${isAr ? 'font-arabic leading-[1.2] font-light' : ''}`}>"{isAr ? 'الهدية مو بالشيء، الهدية بالإحساس اللي وراها.' : 'The gift is not the thing. It is the thought that arrives with it.'}"</p></div>
-        <div className="flex flex-col justify-end border-t border-[#49372D]/20 pt-8"><p className={`mb-8 max-w-[330px] text-[15px] leading-relaxed opacity-70 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'لأن بعض الناس ما يحتاجون مناسبة عشان نتذكرهم… وجودهم بروحه سبب.' : 'Some people need no occasion to be remembered… their presence is reason enough.'}</p><Link href="/about" className="group flex w-fit items-center gap-3 text-[12px] font-bold uppercase tracking-[.1em]">{isAr ? 'اعرف قصتنا' : 'Read our story'}<ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" /></Link></div>
-      </section>
       <Newsletter lang={lang} />
     </main>
   );
@@ -857,7 +853,74 @@ function Newsletter({ lang }: { lang: Lang }) {
   const isAr = lang === 'ar';
   const [email, setEmail] = useState('');
   const [joined, setJoined] = useState(false);
-  return <section className="border-t border-[#49372D]/20 bg-[#E8D59E] px-5 py-16 md:px-10 md:py-24"><div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 md:grid-cols-[1fr_1fr]"><div><p className="text-[10px] font-bold uppercase tracking-[.2em]">{isAr ? 'رسائل تستاهل توصلك' : 'Notes worth receiving'}</p><h2 className={`mt-5 max-w-[550px] font-display text-5xl leading-[.88] tracking-[-.04em] md:text-7xl ${isAr ? 'font-arabic leading-[1.1]' : ''}`}>{isAr ? 'أشياء جميلة،\\nمرة بالشهر.' : 'Good things,\\nonce a month.'}</h2></div><div className="flex flex-col justify-end"><p className={`mb-6 max-w-[330px] text-sm leading-6 opacity-75 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'أفكار هدايا، كلمات حلوة، وأشياء من الكويت.' : 'Gift ideas, kind words, and good things from Kuwait.'}</p>{joined ? <div className="flex items-center gap-2 border-b border-[#49372D] pb-3 text-sm font-bold" data-testid="status-newsletter-joined"><Check size={16} />{isAr ? 'وصلت!' : 'You’re on the list.'}</div> : <form onSubmit={(e) => { e.preventDefault(); if (email) setJoined(true); }} className="flex max-w-[420px] border-b border-[#49372D] pb-3"><input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required className="w-full bg-transparent text-sm outline-none placeholder:text-[#49372D]/55" placeholder={isAr ? 'إيميلك' : 'Your email'} data-testid="input-newsletter-email" /><button type="submit" className="text-xs font-bold" data-testid="button-newsletter-submit">{isAr ? 'سجلني' : 'Sign me up'} <ArrowUpRight size={14} className="inline" /></button></form>}</div></div></section>;
+  const [error, setError] = useState('');
+
+  const submitEmail = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+    if (!isValid) {
+      setError(isAr ? 'تأكد إن الإيميل مكتوب صح.' : 'Please enter a valid email.');
+      return;
+    }
+    setError('');
+    setJoined(true);
+  };
+
+  return (
+    <section className="border-t border-[#CBB98B] bg-[#F5F0E8] px-5 py-16 text-[#49372D] md:px-10 md:py-20" data-testid="section-newsletter">
+      <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 md:grid-cols-[1.15fr_.85fr] md:items-end md:gap-16 lg:gap-28" dir={isAr ? 'rtl' : 'ltr'}>
+        <div>
+          <Reveal>
+            <p className="text-[10px] font-bold uppercase tracking-[.2em] text-[#49372D]/65">
+              L’ANAK NOTES — {isAr ? 'من وقت لوقت' : 'From time to time'}
+            </p>
+          </Reveal>
+          <Reveal delay={140}>
+            <div>
+              <h2 className={`mt-5 text-[clamp(2.5rem,4vw,4.25rem)] font-light leading-[1.15] ${isAr ? 'font-arabic' : 'font-display'}`}>
+                {isAr ? 'خلك قريب.' : 'Stay close.'}
+              </h2>
+              <p className={`mt-5 max-w-[430px] whitespace-pre-line text-[16px] font-light leading-[1.8] text-[#49372D]/75 ${isAr ? 'font-arabic' : ''}`}>
+                {isAr ? 'هدايا جديدة، اختيارات محلية،\nوأشياء تستاهل تنهدى.' : 'New gifts, local picks,\nand things worth giving.'}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal delay={280}>
+          <div className="md:pb-1">
+            {joined ? (
+              <p className={`border-b border-[#CBB98B] pb-4 text-[16px] text-[#49372D] ${isAr ? 'font-arabic' : ''}`} data-testid="status-newsletter-joined">
+                {isAr ? 'وصلت 🤎 بنخليك قريب.' : 'You’re in 🤎 We’ll keep you close.'}
+              </p>
+            ) : (
+              <form onSubmit={submitEmail} noValidate>
+                <div className="flex items-end gap-5 border-b border-[#49372D]/35 transition-colors duration-300 focus-within:border-[#CBB98B]">
+                  <input
+                    value={email}
+                    onChange={(event) => { setEmail(event.target.value); if (error) setError(''); }}
+                    type="email"
+                    className={`min-w-0 flex-1 bg-transparent py-4 text-[15px] outline-none placeholder:text-[#49372D]/45 ${isAr ? 'font-arabic' : ''}`}
+                    placeholder={isAr ? 'إيميلك' : 'Your email'}
+                    aria-invalid={Boolean(error)}
+                    aria-describedby={error ? 'newsletter-error' : undefined}
+                    data-testid="input-newsletter-email"
+                  />
+                  <button type="submit" className={`group relative mb-4 inline-flex shrink-0 items-center gap-1.5 text-[14px] font-medium transition-colors duration-300 hover:text-[#CBB98B] ${isAr ? 'font-arabic' : ''}`} data-testid="button-newsletter-submit">
+                    <span className="relative after:absolute after:inset-x-0 after:-bottom-1 after:h-px after:origin-right after:scale-x-0 after:bg-current after:transition-transform after:duration-300 group-hover:after:scale-x-100">
+                      {isAr ? 'أنا وياكم' : 'Count me in'}
+                    </span>
+                    <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">↗</span>
+                  </button>
+                </div>
+                {error && <p id="newsletter-error" className={`mt-2 text-[12px] text-[#49372D]/65 ${isAr ? 'font-arabic' : ''}`} data-testid="text-newsletter-error">{error}</p>}
+              </form>
+            )}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
 }
 
 function Favorites({ lang, favorites, addToBag, toggleFavorite }: { lang: Lang; favorites: string[]; addToBag: (p: Product) => void; toggleFavorite: (id: string) => void }) {

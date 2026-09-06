@@ -1,0 +1,305 @@
+Refine ONLY the two sections directly BEFORE the global Footer.
+
+IMPORTANT:
+Do NOT modify the Footer itself.
+Do NOT modify any About page sections above these two sections.
+Do NOT modify:
+- Navbar
+- brand colors globally
+- typography system
+- existing About content
+- Kuwait seal
+- Footer layout
+- Footer links
+
+This task is ONLY about cleaning up the ending of the About page
+before the Footer.
+
+==================================================
+1. REMOVE THE REPETITIVE “فكرة لأنّك” SECTION
+==================================================
+
+Completely remove the section currently containing:
+
+"فكرة لأنّك"
+
+and the large statement:
+
+"الهدية مو بالشيء،
+الهدية بالإحساس اللي وراها."
+
+including its supporting paragraph and:
+
+"اعرف قصتنا"
+
+Remove this entire section from the page.
+
+Reason:
+This message is already communicated earlier on the About page
+and currently feels repetitive.
+
+Do NOT replace it with another quote or storytelling section.
+
+After removing it,
+make sure there is no unnecessary empty space left behind.
+
+==================================================
+2. REDESIGN THE EMAIL SECTION
+==================================================
+
+Keep the email signup functionality,
+but completely refine its visual presentation and copy.
+
+REMOVE the current yellow/champagne full-background treatment.
+
+The current section feels too visually disconnected
+from the rest of the L’ANAK website.
+
+Use:
+
+Warm Cream / Ivory background
+
+Primary text:
+Espresso Brown #49372D
+
+Accent:
+Muted Champagne #CBB98B
+
+Add a very thin Muted Champagne top divider
+to subtly separate this section from the previous content.
+
+==================================================
+3. NEW COPY
+==================================================
+
+Replace the current newsletter copy with EXACTLY:
+
+Small editorial label:
+
+L’ANAK NOTES — من وقت لوقت
+
+Main heading:
+
+خلك قريب.
+
+Supporting copy:
+
+هدايا جديدة، اختيارات محلية،
+وأشياء تستاهل تنهدى.
+
+Email placeholder:
+
+إيميلك
+
+Submit button / action:
+
+أنا وياكم ↗
+
+Do NOT add another slogan.
+
+Do NOT mention:
+"مرة بالشهر"
+
+Do NOT use:
+"اشترك"
+"Newsletter"
+"النشرة البريدية"
+
+The experience should feel like joining the L’ANAK world,
+not subscribing to a corporate mailing list.
+
+==================================================
+4. LAYOUT
+==================================================
+
+Create a refined editorial composition.
+
+Do NOT put the signup form inside a card.
+
+No rounded container.
+No shadow.
+No boxed newsletter component.
+
+Desktop:
+
+Use an asymmetric two-column composition.
+
+RIGHT SIDE:
+- small L’ANAK NOTES label
+- large "خلك قريب."
+- supporting copy
+
+LEFT SIDE:
+- email input
+- "أنا وياكم ↗" action
+
+Keep both sides visually connected.
+
+The main heading should be confident,
+but NOT oversized like a Hero headline.
+
+Use generous negative space,
+but make this section significantly shorter
+than the previous version.
+
+This is a transition into the Footer,
+not another full Hero section.
+
+==================================================
+5. EMAIL INPUT
+==================================================
+
+Keep the input extremely minimal.
+
+No large input box.
+
+Use:
+"إيميلك"
+
+with a thin underline.
+
+When focused:
+
+- underline transitions to Muted Champagne
+- placeholder/text remains elegant
+- no glow
+- no thick border
+
+Place:
+
+"أنا وياكم ↗"
+
+as the action near the input.
+
+The action should feel editorial,
+almost like a text link,
+rather than a large ecommerce button.
+
+==================================================
+6. INTERACTION
+==================================================
+
+On hover over:
+
+"أنا وياكم ↗"
+
+Use:
+
+- Espresso Brown → Muted Champagne
+- arrow moves approximately 3–4px
+- thin underline reveals smoothly
+
+Transition:
+250–350ms
+
+No large button background.
+No bounce.
+No glow.
+
+==================================================
+7. SUCCESS STATE
+==================================================
+
+After a valid email is submitted,
+show this message:
+
+"وصلت 🤎 بنخليك قريب."
+
+Display it subtly in the same area.
+
+Do NOT use:
+- browser alert
+- popup
+- modal
+- toast covering the screen
+
+Use an elegant inline transition.
+
+If the email is invalid,
+show a small understated Arabic validation message.
+
+==================================================
+8. SUBTLE ENTRANCE
+==================================================
+
+When the section enters the viewport:
+
+- label appears first
+- heading/supporting copy follows
+- email form follows
+
+Use subtle:
+
+opacity 0 → 1
+translateY 15–20px → 0
+
+Duration:
+approximately 600–800ms.
+
+No dramatic animation.
+
+Respect prefers-reduced-motion.
+
+==================================================
+9. TRANSITION INTO FOOTER
+==================================================
+
+This is important.
+
+The section should visually transition naturally into
+the existing Espresso Brown Footer.
+
+Do NOT modify the Footer.
+
+Keep enough bottom spacing before the Footer,
+but do not create a huge empty gap.
+
+The page ending should now feel:
+
+final About content
+↓
+“خلك قريب.” email signup
+↓
+existing Espresso Brown L’ANAK Footer
+
+==================================================
+10. RESPONSIVE
+==================================================
+
+Desktop:
+asymmetric two-column editorial layout.
+
+Tablet:
+maintain two columns when appropriate.
+
+Mobile:
+stack naturally:
+
+L’ANAK NOTES
+خلك قريب.
+supporting copy
+email input
+أنا وياكم ↗
+
+Keep comfortable spacing.
+
+==================================================
+FINAL DIRECTION
+==================================================
+
+The ending of the About page should feel quieter and cleaner.
+
+Remove repetition.
+
+Do NOT add more brand philosophy.
+
+The email section should provide a useful interaction
+while maintaining the premium L’ANAK identity.
+
+Minimal.
+Warm.
+Editorial.
+Functional.
+
+Do NOT modify anything outside these two pre-Footer sections.
+Do NOT modify the existing Footer.
