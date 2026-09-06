@@ -1,0 +1,609 @@
+Redesign ONLY the complete “بطاقة هدية” page for L’ANAK.
+
+IMPORTANT:
+This is a full-page refinement of the Gift Card page ONLY.
+
+Do NOT modify:
+- Navbar
+- Footer
+- Homepage
+- About page
+- “أهدِ الآن” workflow
+- “اختياراتنا”
+- global brand colors
+- global typography
+- existing routes
+- any other page
+
+Use the SAME design language, Arabic typography, spacing,
+hover behavior and subtle animation system already established
+throughout the L’ANAK website.
+
+The page must feel premium, clear, personal and easy to use.
+
+==================================================
+1. USE THIS EXACT COPY
+==================================================
+
+Small Hero label:
+
+"بطاقة لأنّك"
+
+Main Hero heading:
+
+"أنت تهدي، وهو يختار."
+
+Supporting copy:
+
+"اختر قيمة البطاقة، اكتب كلمتك، وخله يختار الهدية اللي تعجبه."
+
+Builder heading:
+
+"جهّز بطاقتك."
+
+Builder supporting line:
+
+"كم خطوة، وتصير جاهزة له."
+
+Steps:
+
+"01 — اختر القيمة"
+
+"02 — لمنو؟"
+
+"03 — كلمتك له"
+
+Preview title:
+
+"كذا بتوصله."
+
+Final CTA:
+
+"أرسل البطاقة"
+
+Delivery note:
+
+"توصل له برسالة نصية، وتكون صالحة لمدة سنة."
+
+Do NOT rewrite, translate or add unnecessary marketing copy.
+
+==================================================
+2. HERO
+==================================================
+
+Redesign the current oversized Hero.
+
+The current heading is much too large.
+
+Create a refined editorial Hero using:
+
+بطاقة لأنّك
+
+↓
+
+أنت تهدي، وهو يختار.
+
+↓
+
+اختر قيمة البطاقة، اكتب كلمتك،
+وخله يختار الهدية اللي تعجبه.
+
+Use the existing Arabic font family from the website.
+
+Do NOT introduce a new font.
+
+Main heading:
+large and confident,
+but significantly smaller than the current version.
+
+It should feel consistent with the About page typography.
+
+Use:
+Espresso Brown #49372D
+
+Use Muted Champagne #CBB98B selectively
+for the small label or subtle details.
+
+Do not make the Hero excessively tall.
+
+==================================================
+3. HERO ANIMATION
+==================================================
+
+Match the SAME animation language already used
+throughout the website.
+
+Reveal in this sequence:
+
+1. بطاقة لأنّك
+2. أنت تهدي، وهو يختار.
+3. supporting copy
+
+Use:
+
+opacity 0 → 1
+translateY 20–30px → 0
+
+Duration:
+700–900ms
+
+Subtle stagger.
+
+Animate once only.
+
+No:
+- typewriter
+- bounce
+- zoom
+- glow
+- rotation
+
+Respect prefers-reduced-motion.
+
+==================================================
+4. GIFT CARD BUILDER INTRO
+==================================================
+
+Start the interactive area with:
+
+"جهّز بطاقتك."
+
+Then:
+
+"كم خطوة، وتصير جاهزة له."
+
+Make this feel like the beginning of the experience,
+not another Hero section.
+
+Use clear hierarchy and generous but controlled spacing.
+
+==================================================
+5. BUILDER LAYOUT
+==================================================
+
+Create a premium two-column Gift Card Builder.
+
+Desktop:
+
+RIGHT:
+customization steps
+
+LEFT:
+live Gift Card preview
+
+Keep both sides visually connected.
+
+Do NOT put everything inside large rounded cards.
+
+Use subtle lines, spacing and typography
+to create structure.
+
+The experience should feel like:
+
+luxury stationery
++
+editorial design
++
+a simple interactive gifting experience
+
+NOT a generic checkout form.
+
+==================================================
+6. STEP 01 — اختر القيمة
+==================================================
+
+Use:
+
+"01 — اختر القيمة"
+
+Keep these value options:
+
+15 KD
+25 KD
+40 KD
+60 KD
+مبلغ آخر
+
+Display them as refined selectable buttons.
+
+Default:
+
+Warm Cream / Ivory
+thin border
+
+Hover:
+
+Muted Champagne #CBB98B border
+
+Selected:
+
+Espresso Brown #49372D background
+Warm Cream text
+
+For:
+
+"مبلغ آخر"
+
+when selected,
+show a clear custom amount input.
+
+Do NOT use pill buttons.
+
+==================================================
+7. STEP 02 — لمنو؟
+==================================================
+
+Use EXACTLY:
+
+"02 — لمنو؟"
+
+Fields:
+
+"اسم الشخص"
+
+"رقم الهاتف"
+
+Make the fields clearly interactive.
+
+Do NOT use only thin underline fields.
+
+Use elegant rectangular input containers with:
+
+- Warm Ivory background
+- thin Espresso/neutral border
+- very subtle corner radius
+- generous padding
+
+Phone field:
+
+integrate:
+
++965
+
+inside the phone input elegantly.
+
+==================================================
+8. STEP 03 — كلمتك له
+==================================================
+
+Use:
+
+"03 — كلمتك له"
+
+Textarea placeholder:
+
+"اكتب له شيء من قلبك..."
+
+Make this a proper visible textarea.
+
+Use the same premium input styling.
+
+Allow enough room for a short message.
+
+Add a subtle:
+
+0 / 120
+
+character counter.
+
+Keep it secondary.
+
+==================================================
+9. LIVE PREVIEW
+==================================================
+
+Above the preview use:
+
+"كذا بتوصله."
+
+This must make it immediately clear
+that the customer is seeing the recipient’s card.
+
+Redesign the current yellow Gift Card preview completely.
+
+Do NOT use the current bright yellow card.
+
+Create a premium L’ANAK digital gift card.
+
+Use ONLY the established palette:
+
+Espresso Brown #49372D
+Warm Cream / Ivory
+Muted Champagne #CBB98B
+
+==================================================
+10. GIFT CARD DESIGN
+==================================================
+
+Create a landscape premium card.
+
+Use the EXISTING L’ANAK logo / monogram asset
+already available in the project.
+
+Do NOT recreate the logo.
+Do NOT type the logo using a random font.
+
+The card may include:
+
+- existing L’ANAK monogram / wordmark
+- "بطاقة هدية"
+- selected value
+- recipient name
+- personal message
+- "KUWAIT · 2026"
+
+Keep the design minimal.
+
+Think:
+luxury invitation card
++
+premium gift certificate
++
+L’ANAK packaging
+
+Avoid:
+- gradients
+- bright yellow
+- heavy shadows
+- excessive rounded corners
+- credit-card appearance
+- clutter
+
+==================================================
+11. LIVE CARD FUNCTIONALITY
+==================================================
+
+The preview MUST update live.
+
+When the customer selects a value:
+update the amount.
+
+When they type the recipient name:
+update the recipient name.
+
+When they write their message:
+update the message.
+
+Before information is entered,
+use these placeholders:
+
+Recipient:
+"لـ شخص يستاهل"
+
+Message:
+"كلمتك تظهر هني."
+
+Use subtle transitions:
+
+opacity 0.6 → 1
+
+approximately 150–250ms.
+
+No dramatic animation.
+
+==================================================
+12. REMOVE CURRENT UNRELATED CONTENT
+==================================================
+
+Remove:
+
+"قهوة على حسابي"
+
+Remove any coffee icon or coffee-specific content
+from this page.
+
+This is a GENERAL L’ANAK Gift Card.
+
+Also replace any:
+
+2025
+
+with:
+
+2026
+
+==================================================
+13. FINAL CTA
+==================================================
+
+Use:
+
+"أرسل البطاقة"
+
+Make this the clear final action.
+
+Use:
+
+Espresso Brown background
+Warm Cream text
+
+On hover:
+
+background → Muted Champagne #CBB98B
+text → Espresso Brown
+
+Use a subtle send/arrow icon
+only if it matches the existing website icon language.
+
+No glow.
+No bounce.
+
+==================================================
+14. DELIVERY NOTE
+==================================================
+
+Directly beneath the final action,
+show:
+
+"توصل له برسالة نصية، وتكون صالحة لمدة سنة."
+
+Keep this small but readable.
+
+Do NOT leave it floating at the bottom
+after a huge empty gap.
+
+Do NOT create a separate large section for it.
+
+==================================================
+15. VALIDATION
+==================================================
+
+Validate:
+
+- gift value
+- recipient name
+- phone number
+- message
+
+Use small inline Arabic validation messages.
+
+No browser alerts.
+No popup error boxes.
+
+==================================================
+16. SUCCESS INTERACTION
+==================================================
+
+After valid submission,
+show an elegant inline success state:
+
+"بطاقتك جاهزة للإرسال ✓"
+
+Do NOT create a popup or modal.
+
+Keep the experience inside the Gift Card Builder.
+
+==================================================
+17. SPACING
+==================================================
+
+The current page has too much unused vertical space.
+
+Reduce unnecessary gaps.
+
+Maintain premium negative space,
+but keep related content visually connected.
+
+Page flow should be:
+
+Hero
+↓
+جهّز بطاقتك
+↓
+Gift Card Builder + Live Preview
+↓
+أرسل البطاقة
+↓
+delivery note
+↓
+existing Footer
+
+==================================================
+18. MICRO-INTERACTIONS
+==================================================
+
+Use the same interaction language as the rest of L’ANAK.
+
+Value option hover:
+Champagne border
+
+Input focus:
+Champagne border
+
+CTA hover:
+Champagne background
+
+Preview changes:
+subtle fade
+
+Section entrance:
+subtle fade + translateY
+
+Do NOT use:
+- glow
+- bouncing
+- dramatic scaling
+- floating effects
+- excessive shadows
+
+==================================================
+19. RESPONSIVE
+==================================================
+
+Desktop:
+
+Hero
+
+then
+
+Builder heading
+
+then two-column:
+customization + live preview
+
+then CTA and delivery note
+
+then existing Footer.
+
+Mobile:
+
+Stack logically:
+
+بطاقة لأنّك
+
+أنت تهدي، وهو يختار.
+
+supporting copy
+
+جهّز بطاقتك.
+
+01 — اختر القيمة
+
+02 — لمنو؟
+
+03 — كلمتك له
+
+كذا بتوصله.
+
+Gift Card preview
+
+أرسل البطاقة
+
+delivery note
+
+Footer
+
+No horizontal scrolling.
+
+==================================================
+20. FINAL DIRECTION
+==================================================
+
+The customer should feel like they are personally
+creating a beautiful L’ANAK gift card for someone.
+
+The page should NOT feel like a checkout form.
+
+It should feel:
+
+premium
+personal
+clear
+warm
+editorial
+interactive
+distinctly L’ANAK
+
+Most importantly:
+
+- match the typography already used on the website
+- match the existing animation language
+- make the process immediately understandable
+- make the live Gift Card preview feel premium
+- keep the experience simple
+
+Do NOT add new sections.
+Do NOT add random images.
+Do NOT change the Navbar.
+Do NOT change the Footer.
+Do NOT modify any other page.

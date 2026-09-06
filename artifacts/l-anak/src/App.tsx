@@ -1,6 +1,6 @@
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
-import { ArrowUpRight, Check, Coffee, Gift, Heart, Mail, Menu, Plus, Send, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, Check, Heart, Mail, Menu, Plus, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
@@ -550,18 +550,253 @@ function FeaturedGiftCard({ product, lang, addToBag, toggleFavorite, isFavorite 
 }
 
 function GiftCards({ lang, setToast }: { lang: Lang; setToast: (message: string) => void }) {
-  const isAr = lang === 'ar';
-  const [kind, setKind] = useState<'gift' | 'coffee'>('gift');
   const [amount, setAmount] = useState('25');
   const [custom, setCustom] = useState('');
+  const [recipient, setRecipient] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
   const [sent, setSent] = useState(false);
+
+  const [errors, setErrors] = useState<{
+    amount?: string;
+    recipient?: string;
+    phone?: string;
+    message?: string;
+  }>({});
+
   const actualAmount = custom || amount;
-  return <main className="mx-auto max-w-[1440px] px-5 pb-28 md:px-10">
-    <section className="grid grid-cols-1 gap-10 border-b border-[#49372D]/25 py-12 md:grid-cols-[1.1fr_.9fr] md:py-20"><div><p className="mb-5 text-[10px] font-bold uppercase tracking-[.22em] opacity-55">{isAr ? 'بطاقات الهدايا' : 'Gift cards, made personal'}</p><h1 className={`max-w-[780px] font-display text-6xl leading-[.85] tracking-[-.05em] md:text-9xl ${isAr ? 'font-arabic leading-[1.08]' : ''}`} data-testid="text-gift-card-title">{isAr ? 'أعطهم\\nمساحة يختارونها.' : 'Give them\\nroom to choose.'}</h1></div><div className="flex flex-col justify-end"><p className={`max-w-[380px] text-[15px] leading-7 opacity-75 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'بطاقة تقول لهم إنك تعرف ذوقهم، حتى لو ما تعرف شنو يختارون اليوم.' : 'A card that says you know their taste, even when you don’t know what they want today.'}</p></div></section>
-    <section className="grid grid-cols-1 gap-12 py-14 md:grid-cols-[.9fr_1.1fr] md:py-20"><div className="flex flex-col gap-3"><button onClick={() => setKind('gift')} className={`flex items-center justify-between border-b pb-5 text-left text-2xl ${kind === 'gift' ? 'border-[#49372D]' : 'border-[#49372D]/20 opacity-45'}`} data-testid="button-gift-card-type"><span className={isAr ? 'font-arabic' : 'font-display'}>{isAr ? 'بطاقة لَـنَك' : 'L’ANAK gift card'}</span><Gift size={22} strokeWidth={1.3} /></button><button onClick={() => setKind('coffee')} className={`flex items-center justify-between border-b pb-5 text-left text-2xl ${kind === 'coffee' ? 'border-[#49372D]' : 'border-[#49372D]/20 opacity-45'}`} data-testid="button-coffee-card-type"><span className={isAr ? 'font-arabic' : 'font-display'}>{isAr ? 'قهوة على حسابي' : 'Coffee voucher'}</span><Coffee size={22} strokeWidth={1.3} /></button><div className="mt-9 border border-[#49372D]/20 bg-[#E8D59E] p-7"><p className="mb-8 text-[10px] font-bold uppercase tracking-[.18em]">{kind === 'gift' ? (isAr ? 'بطاقة لذوقهم' : 'A card for their taste') : (isAr ? 'كوب يستاهلونه' : 'A cup they deserve')}</p><div className="flex items-end justify-between"><span className="font-display text-7xl leading-none">{actualAmount}<small className="ml-2 text-xl">KD</small></span><span className="text-[10px] font-bold uppercase tracking-[.15em]">L’ANAK / 2025</span></div></div></div>
-      <div className="border-t border-[#49372D]/25 pt-5"><p className="mb-8 text-[10px] font-bold uppercase tracking-[.18em] opacity-55">{isAr ? 'اختار القيمة' : 'Choose an amount'}</p><div className="flex flex-wrap gap-2">{['15', '25', '40', '60'].map((value) => <button key={value} onClick={() => { setAmount(value); setCustom(''); }} className={`border px-5 py-3 text-sm font-bold ${amount === value && !custom ? 'bg-[#49372D] text-[#FAF7F0]' : 'border-[#49372D]/25'}`} data-testid={`button-amount-${value}`}>{value} KD</button>)}<label className="flex items-center border border-[#49372D]/25 px-4"><input value={custom} onChange={(e) => setCustom(e.target.value.replace(/[^0-9]/g, ''))} className="w-20 bg-transparent text-sm outline-none" placeholder={isAr ? 'مبلغ آخر' : 'Custom'} inputMode="numeric" data-testid="input-custom-amount" /><span className="text-sm font-bold">KD</span></label></div><div className="mt-12 grid gap-7 sm:grid-cols-2"><label className="text-[10px] font-bold uppercase tracking-[.15em]">{isAr ? 'إلى' : 'Send to'}<input className="mt-3 w-full border-b border-[#49372D]/30 bg-transparent py-3 text-sm outline-none" placeholder={isAr ? 'اسم الشخص' : 'Their name'} data-testid="input-recipient-name" /></label><label className="text-[10px] font-bold uppercase tracking-[.15em]">{isAr ? 'رقمهم' : 'Their number'}<input className="mt-3 w-full border-b border-[#49372D]/30 bg-transparent py-3 text-sm outline-none" placeholder="+965" data-testid="input-recipient-phone" /></label></div><label className="mt-8 block text-[10px] font-bold uppercase tracking-[.15em]">{isAr ? 'رسالة صغيرة' : 'A little note'}<textarea className="mt-3 h-24 w-full resize-none border-b border-[#49372D]/30 bg-transparent py-3 text-sm outline-none" placeholder={isAr ? 'اكتب لهم من قلبك' : 'Write from the heart'} data-testid="textarea-gift-note" /></label><button onClick={() => { setSent(true); setToast(isAr ? 'بطاقتك جاهزة للإرسال' : 'Your card is ready to send'); }} className="pressable mt-10 flex items-center gap-3 bg-[#49372D] px-7 py-4 text-[12px] font-bold text-[#FAF7F0]" data-testid="button-send-gift-card">{sent ? <><Check size={16} />{isAr ? 'جاهز للإرسال' : 'Ready to send'}</> : <>{isAr ? 'أرسل البطاقة' : 'Send this card'}<Send size={16} /></>}</button></div></section>
-    <div className="border-t border-[#49372D]/25 pt-6 text-[11px] opacity-60"><span>{isAr ? 'توصلكم البطاقة فوراً برسالة نصية. صالحة لمدة سنة.' : 'Delivered instantly by text. Valid for one year.'}</span></div>
-  </main>;
+
+  const handleSubmit = () => {
+    const newErrors: { amount?: string; recipient?: string; phone?: string; message?: string } = {};
+    if (!actualAmount || isNaN(Number(actualAmount))) newErrors.amount = "الرجاء تحديد قيمة صحيحة";
+    if (!recipient.trim()) newErrors.recipient = "الرجاء كتابة اسم الشخص";
+
+    if (!phone.trim()) {
+      newErrors.phone = "الرجاء كتابة رقم الهاتف";
+    } else if (!/^\d{8}$/.test(phone.trim())) {
+      newErrors.phone = "الرجاء إدخال 8 أرقام";
+    }
+
+    if (!message.trim()) newErrors.message = "الرجاء كتابة رسالة";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+    setSent(true);
+  };
+
+  return (
+    <main className="w-full bg-[#FAF7F0]" dir="rtl">
+      {/* Hero */}
+      <section className="text-center pt-24 pb-16 px-5" data-testid="gift-card-hero">
+        <Reveal delay={0}>
+          <p className="text-[12px] font-nav-ar text-[#CBB98B] font-bold tracking-widest mb-6">بطاقة لأنّك</p>
+        </Reveal>
+        <Reveal delay={150}>
+          <h1 className="text-[clamp(2.2rem,4vw,3.5rem)] font-arabic font-light text-[#49372D] leading-[1.3] mb-8">
+            أنت تهدي، وهو يختار.
+          </h1>
+        </Reveal>
+        <Reveal delay={300}>
+          <p className="text-[clamp(1rem,1.3vw,1.2rem)] font-arabic font-light text-[#49372D] leading-[1.8] max-w-[500px] mx-auto opacity-85">
+            اختر قيمة البطاقة، اكتب كلمتك،<br className="hidden md:block" />
+            وخله يختار الهدية اللي تعجبه.
+          </p>
+        </Reveal>
+      </section>
+
+      {/* Builder Intro */}
+      <section className="px-5 md:px-10 pb-12" data-testid="gift-card-intro">
+        <div className="max-w-[1440px] mx-auto">
+          <Reveal>
+            <h2 className="text-[clamp(1.5rem,2.2vw,2.2rem)] font-arabic font-light text-[#49372D] mb-3">جهّز بطاقتك.</h2>
+            <p className="text-[1rem] font-arabic font-light text-[#49372D]/70">كم خطوة، وتصير جاهزة له.</p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Builder Layout */}
+      <section className="px-5 md:px-10 pb-24" data-testid="gift-card-builder">
+        <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-16 lg:gap-24 items-start">
+
+          {/* Customization Steps (Right side visually because RTL) */}
+          <div className="flex flex-col gap-16">
+
+            {/* Step 01 */}
+            <Reveal delay={100}>
+              <div className="flex flex-col gap-6">
+                <h3 className="text-[1.1rem] font-nav-ar text-[#49372D] font-medium">01 — اختر القيمة</h3>
+                <div className="flex flex-wrap gap-3">
+                  {['15', '25', '40', '60'].map(val => (
+                    <button
+                      key={val}
+                      onClick={() => { setAmount(val); setCustom(''); setErrors({...errors, amount: ''}) }}
+                      className={`transition-colors duration-300 border px-6 py-3 font-arabic text-[1.1rem] rounded-[2px] ${
+                        amount === val && !custom
+                          ? 'bg-[#49372D] text-[#FAF7F0] border-[#49372D]'
+                          : 'bg-[#FAF7F0] text-[#49372D] border-[#49372D]/20 hover:border-[#CBB98B]'
+                      }`}
+                      data-testid={`button-amount-${val}`}
+                    >
+                      {val} KD
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => { setAmount(''); }}
+                    className={`transition-colors duration-300 border px-6 py-3 font-arabic text-[1.1rem] rounded-[2px] ${
+                      amount === ''
+                        ? 'bg-[#49372D] text-[#FAF7F0] border-[#49372D]'
+                        : 'bg-[#FAF7F0] text-[#49372D] border-[#49372D]/20 hover:border-[#CBB98B]'
+                    }`}
+                    data-testid="button-amount-custom"
+                  >
+                    مبلغ آخر
+                  </button>
+                </div>
+                {amount === '' && (
+                  <div className="flex items-center bg-[#FAF7F0] border border-[#49372D]/20 rounded-[2px] px-5 py-4 transition-colors duration-300 focus-within:border-[#CBB98B]">
+                    <input
+                      type="text"
+                      value={custom}
+                      onChange={(e) => { setCustom(e.target.value.replace(/[^0-9]/g, '')); setErrors({...errors, amount: ''}) }}
+                      placeholder="أدخل القيمة"
+                      className="w-full bg-transparent outline-none font-arabic text-[1.15rem] text-[#49372D] placeholder-[#49372D]/40"
+                      data-testid="input-custom-amount"
+                    />
+                    <span className="font-arabic text-[1.15rem] text-[#49372D]/70 mr-3">KD</span>
+                  </div>
+                )}
+                {errors.amount && <span data-testid="error-amount" className="text-[#963c32] text-[13px] font-arabic mt-[-10px]">{errors.amount}</span>}
+              </div>
+            </Reveal>
+
+            {/* Step 02 */}
+            <Reveal delay={200}>
+              <div className="flex flex-col gap-6">
+                <h3 className="text-[1.1rem] font-nav-ar text-[#49372D] font-medium">02 — لمنو؟</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center bg-[#FAF7F0] border border-[#49372D]/20 rounded-[2px] px-5 py-4 transition-colors duration-300 focus-within:border-[#CBB98B]">
+                      <input
+                        type="text"
+                        value={recipient}
+                        onChange={(e) => { setRecipient(e.target.value); setErrors({...errors, recipient: ''}) }}
+                        placeholder="اسم الشخص"
+                        className="w-full bg-transparent outline-none font-arabic text-[1.15rem] text-[#49372D] placeholder-[#49372D]/40"
+                        data-testid="input-recipient-name"
+                      />
+                    </div>
+                    {errors.recipient && <span data-testid="error-recipient" className="text-[#963c32] text-[13px] font-arabic">{errors.recipient}</span>}
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <div className="flex flex-row-reverse items-center justify-end bg-[#FAF7F0] border border-[#49372D]/20 rounded-[2px] px-5 py-4 transition-colors duration-300 focus-within:border-[#CBB98B]">
+                      <span className="font-arabic text-[1.15rem] text-[#49372D]/70 mr-3" dir="ltr">+965</span>
+                      <input
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => { setPhone(e.target.value.replace(/[^0-9]/g, '')); setErrors({...errors, phone: ''}) }}
+                        placeholder="رقم الهاتف"
+                        className="w-full bg-transparent outline-none font-arabic text-[1.15rem] text-[#49372D] placeholder-[#49372D]/40 text-left"
+                        dir="ltr"
+                        data-testid="input-recipient-phone"
+                      />
+                    </div>
+                    {errors.phone && <span data-testid="error-phone" className="text-[#963c32] text-[13px] font-arabic">{errors.phone}</span>}
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Step 03 */}
+            <Reveal delay={300}>
+              <div className="flex flex-col gap-6">
+                <div className="flex justify-between items-end">
+                  <h3 className="text-[1.1rem] font-nav-ar text-[#49372D] font-medium">03 — كلمتك له</h3>
+                  <span className="text-[13px] font-arabic text-[#49372D]/50">{message.length} / 120</span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="flex bg-[#FAF7F0] border border-[#49372D]/20 rounded-[2px] p-5 transition-colors duration-300 focus-within:border-[#CBB98B]">
+                    <textarea
+                      value={message}
+                      onChange={(e) => { if(e.target.value.length <= 120) { setMessage(e.target.value); setErrors({...errors, message: ''}); } }}
+                      placeholder="اكتب له شيء من قلبك..."
+                      className="w-full h-32 bg-transparent outline-none font-arabic text-[1.15rem] text-[#49372D] placeholder-[#49372D]/40 resize-none leading-[1.7]"
+                      data-testid="textarea-gift-note"
+                    />
+                  </div>
+                  {errors.message && <span data-testid="error-message" className="text-[#963c32] text-[13px] font-arabic">{errors.message}</span>}
+                </div>
+              </div>
+            </Reveal>
+
+          </div>
+
+          {/* Live Preview (Left side visually) */}
+          <div className="lg:sticky lg:top-32 flex flex-col gap-8">
+            <Reveal delay={400}>
+              <h3 className="text-[1.2rem] font-arabic text-[#49372D] font-medium mb-3">كذا بتوصله.</h3>
+
+              <div className="relative aspect-[1.6] w-full max-w-[650px] bg-[#FAF7F0] border border-[#49372D]/15 rounded-[4px] p-8 sm:p-10 flex flex-col justify-between shadow-sm overflow-hidden" data-testid="live-preview-card">
+                <img src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`} alt="" className="absolute -left-12 -bottom-12 w-[80%] max-w-[320px] opacity-[0.03] pointer-events-none" />
+
+                <div className="flex justify-between items-start relative z-10">
+                  <div>
+                    <h4 className="font-nav-ar text-[#49372D] text-[1.2rem] tracking-wide mb-1">بطاقة هدية</h4>
+                    <p className="font-arabic text-[#CBB98B] text-[0.95rem]">L’ANAK</p>
+                  </div>
+                  <div className="text-left" dir="ltr">
+                    <span data-testid="preview-amount" className="font-arabic text-[2.2rem] sm:text-[2.8rem] font-light text-[#49372D] transition-opacity duration-200" style={{ opacity: actualAmount ? 1 : 0.6 }}>
+                      {actualAmount || '0'} <span className="text-[1.3rem] ml-1">KD</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="relative z-10 mt-10 sm:mt-12">
+                  <p data-testid="preview-recipient" className="font-arabic text-[1.5rem] sm:text-[1.8rem] text-[#49372D] mb-4 transition-opacity duration-200" style={{ opacity: recipient ? 1 : 0.6 }}>
+                    {recipient || 'لـ شخص يستاهل'}
+                  </p>
+                  <p data-testid="preview-message" className="font-arabic text-[1.15rem] sm:text-[1.3rem] text-[#49372D]/80 leading-[1.65] max-w-[85%] min-h-[4rem] transition-opacity duration-200 whitespace-pre-wrap" style={{ opacity: message ? 1 : 0.6 }}>
+                    {message || 'كلمتك تظهر هني.'}
+                  </p>
+                </div>
+
+                <div className="relative z-10 flex justify-end mt-6">
+                  <span className="text-[#CBB98B] font-nav-ar text-[0.75rem] tracking-[0.2em]" dir="ltr">KUWAIT · 2026</span>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Final CTA & Note */}
+            <Reveal delay={500}>
+              <div className="mt-4 flex flex-col items-start gap-4">
+                {sent ? (
+                  <div className="flex items-center gap-3 text-[#49372D] font-arabic text-[1.25rem] font-medium py-3" data-testid="status-success-inline">
+                    بطاقتك جاهزة للإرسال <span className="text-[#CBB98B]">✓</span>
+                  </div>
+                ) : (
+                  <button
+                    onClick={handleSubmit}
+                    className="group flex items-center gap-4 bg-[#49372D] hover:bg-[#CBB98B] text-[#FAF7F0] hover:text-[#49372D] px-10 py-4 transition-colors duration-300 rounded-[2px]"
+                    data-testid="button-send-gift-card"
+                  >
+                    <span className="font-arabic text-[1.1rem] font-medium">أرسل البطاقة</span>
+                  </button>
+                )}
+                <p className="text-[0.95rem] font-arabic text-[#49372D]/70 mt-1" data-testid="text-delivery-note">
+                  توصل له برسالة نصية، وتكون صالحة لمدة سنة.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  );
 }
 
 function Reveal({ children, delay = 0, className = "", threshold = 0.2 }: { children: ReactNode, delay?: number, className?: string, threshold?: number }) {
