@@ -1208,7 +1208,17 @@ function BagPage({ lang, bag, setBag, setToast }: { lang: Lang; bag: Product[]; 
         <h1 className={`text-6xl font-light md:text-8xl ${isAr ? 'font-arabic leading-[1.15]' : 'font-display'}`}>{isAr ? 'شنطة الهدايا' : 'Gift bag'}</h1>
         {bag.length === 0 ? (
           <div className="py-24 text-center">
-            <ShoppingBag className="mx-auto" size={30} strokeWidth={1.2} />
+            <div className="relative mx-auto h-[58px] w-[48px]" aria-hidden="true">
+              <svg viewBox="0 0 48 58" className="h-full w-full text-[#49372D]" fill="none">
+                <path d="M8.5 18.5H39.5L42 54H6L8.5 18.5Z" stroke="currentColor" strokeWidth="1.15" strokeLinejoin="round" />
+                <path d="M15 20V14.5C15 9.25 19.03 5 24 5C28.97 5 33 9.25 33 14.5V20" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" />
+              </svg>
+              <img
+                src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`}
+                alt=""
+                className="pointer-events-none absolute left-1/2 top-[34px] h-[13px] w-[13px] -translate-x-1/2 -translate-y-1/2 object-contain"
+              />
+            </div>
             <p className={`mt-6 text-2xl ${isAr ? 'font-arabic' : 'font-display'}`}>{isAr ? 'الشنطة فاضية.' : 'It’s quiet in here.'}</p>
             <Link href="/#gift-start" className="line-draw mt-8 inline-block text-xs font-bold">{isAr ? 'ابدأ هدية' : 'Start a gift'}</Link>
           </div>
