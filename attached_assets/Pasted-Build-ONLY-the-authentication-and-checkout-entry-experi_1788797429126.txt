@@ -1,0 +1,467 @@
+Build ONLY the authentication and checkout-entry experience for the L’ANAK website.
+
+Do NOT redesign:
+- Homepage
+- About
+- Gift Card
+- Curated Picks
+- gifting flow
+- Navbar styling
+- Footer
+- existing product cards
+- global typography
+- global colors
+
+Keep the current L’ANAK visual identity.
+
+==================================================
+GOAL
+==================================================
+
+Users should be able to browse the entire website
+WITHOUT creating an account.
+
+Do NOT force login on website entry.
+
+Authentication should only become important when:
+- the user wants to access their account
+- save personal data
+- continue toward checkout / payment
+
+==================================================
+1. NAVBAR ACCOUNT ENTRY
+==================================================
+
+Keep the existing account/profile icon in the Navbar.
+
+When the user clicks it while logged out,
+open a premium authentication screen or modal.
+
+Main heading:
+
+"هلا فيك في لأنّك"
+
+Supporting copy:
+
+"سجّل دخولك أو أنشئ حسابك وكمل تجربتك معنا."
+
+Primary options:
+
+"تسجيل الدخول"
+
+"إنشاء حساب"
+
+Also include:
+
+"Continue with Google"
+
+"Continue with Apple"
+
+Use the official recognizable Google / Apple icons
+if already supported by the project.
+
+Do NOT use fake social login functionality.
+
+If OAuth is not configured yet,
+build the UI and structure cleanly
+and clearly leave the integration ready for implementation.
+
+==================================================
+2. CREATE ACCOUNT
+==================================================
+
+Create Account should feel simple and premium.
+
+Use heading:
+
+"أنشئ حسابك مع لأنّك"
+
+Fields:
+
+- الاسم
+- رقم الهاتف
+- البريد الإلكتروني
+- كلمة المرور
+
+Primary CTA:
+
+"إنشاء الحساب"
+
+Also allow:
+
+"Continue with Google"
+
+"Continue with Apple"
+
+Do not overload the form.
+
+Use clear inline validation.
+
+==================================================
+3. LOGIN
+==================================================
+
+Login heading:
+
+"تسجيل الدخول"
+
+Allow login using:
+
+- phone number
+OR
+- email
+
+Then password when applicable.
+
+CTA:
+
+"دخول"
+
+Also include:
+
+"Continue with Google"
+
+"Continue with Apple"
+
+Add a small link:
+
+"نسيت كلمة المرور؟"
+
+==================================================
+4. CHECKOUT AUTH CHOICE
+==================================================
+
+IMPORTANT:
+
+When a user who is NOT logged in presses the final
+checkout / payment / continue action,
+do NOT immediately force account creation.
+
+Show a clean choice screen.
+
+Heading:
+
+"شلون ودك تكمل؟"
+
+Options:
+
+1. "تسجيل الدخول"
+2. "إنشاء حساب"
+3. "المتابعة كضيف"
+
+Then below:
+
+"Continue with Google"
+
+"Continue with Apple"
+
+Make all options feel equally clear.
+
+Do NOT make guest checkout look hidden or discouraged.
+
+==================================================
+5. GUEST CHECKOUT
+==================================================
+
+When the user chooses:
+
+"المتابعة كضيف"
+
+Ask ONLY for their phone number first.
+
+Heading:
+
+"بس نتأكد إنه أنت"
+
+Supporting text:
+
+"دخل رقمك، وبندز لك رمز التحقق."
+
+Phone input:
+
+Country code:
++965
+
+Placeholder:
+
+"رقم الهاتف"
+
+CTA:
+
+"أرسل الرمز"
+
+==================================================
+6. OTP VERIFICATION
+==================================================
+
+After the phone number is submitted,
+show OTP verification.
+
+Heading:
+
+"أرسلنا لك الرمز"
+
+Supporting copy:
+
+"دخل رمز التحقق اللي وصلك على رقمك."
+
+Use a 6-digit OTP input.
+
+CTA:
+
+"تأكيد ومتابعة"
+
+Also include:
+
+"إعادة إرسال الرمز"
+
+with an appropriate countdown if implemented.
+
+When OTP is successful,
+continue directly to the existing checkout / payment step.
+
+Do NOT force the guest to create an account afterward.
+
+==================================================
+7. PHONE VALIDATION
+==================================================
+
+For Kuwait phone numbers:
+
+- use +965
+- validate appropriate local phone number length
+- show clear errors
+- prevent invalid submissions
+
+Keep the country code integrated visually
+inside the phone field.
+
+==================================================
+8. ACCOUNT STATE
+==================================================
+
+When logged in:
+
+replace the logged-out account entry
+with the user's account state.
+
+The account area can include:
+
+- الملف الشخصي
+- اختياراتك
+- المفضلة
+- طلباتك
+- تسجيل الخروج
+
+Do not build unnecessary account features
+outside these core items.
+
+==================================================
+9. GUEST STATE
+==================================================
+
+Guest users should still be able to:
+
+- browse
+- choose gifts
+- add items to "اختياراتك"
+- continue to checkout
+- verify their phone with OTP
+- complete their order
+
+Do NOT require account creation.
+
+==================================================
+10. SESSION / DATA BEHAVIOR
+==================================================
+
+Preserve the user's current selections
+when they:
+
+- log in
+- create an account
+- continue as guest
+- complete OTP verification
+
+Do NOT clear "اختياراتك"
+during authentication.
+
+If the user already selected gifts before login,
+keep those selections after authentication.
+
+==================================================
+11. VISUAL DESIGN
+==================================================
+
+Use the existing L’ANAK design language:
+
+Espresso Brown #49372D
+Cream #FAF7F0
+Muted Champagne #CBB98B
+
+Use the SAME Arabic font already used across the website.
+
+Design style:
+
+- premium
+- minimal
+- warm
+- editorial
+- spacious
+- elegant
+
+Avoid:
+
+- generic SaaS login UI
+- blue default buttons
+- heavy cards
+- gradients
+- excessive rounded corners
+- large shadows
+- clutter
+
+==================================================
+12. FORM DESIGN
+==================================================
+
+Inputs should feel premium.
+
+Use:
+
+- clear labels
+- subtle borders
+- cream / ivory backgrounds
+- Espresso text
+- Champagne focus state
+
+No glow.
+
+Keep input height comfortable and consistent.
+
+==================================================
+13. BUTTONS
+==================================================
+
+Primary buttons:
+
+Espresso Brown background
+Cream text
+
+Hover:
+
+Muted Champagne background
+Espresso Brown text
+
+Secondary actions:
+simple outlined or text-based style.
+
+Google and Apple buttons should stay recognizable
+but visually harmonious with the L’ANAK page.
+
+==================================================
+14. ANIMATION
+==================================================
+
+Use the SAME animation language already used on the site.
+
+opacity 0 → 1
+translateY 20px → 0
+700–900ms
+
+Subtle stagger only.
+
+No bounce.
+No dramatic zoom.
+No glow.
+
+==================================================
+15. RESPONSIVE
+==================================================
+
+Desktop:
+centered authentication container
+with refined spacing.
+
+Mobile:
+single-column
+full-width inputs
+comfortable touch targets.
+
+Avoid horizontal overflow.
+
+==================================================
+16. IMPORTANT FUNCTIONAL BEHAVIOR
+==================================================
+
+The complete intended flow should be:
+
+Visitor enters website
+↓
+Browses normally without account
+↓
+Adds gifts to "اختياراتك"
+↓
+Clicks continue / checkout
+↓
+If logged in:
+continue normally
+
+If logged out:
+show:
+
+"شلون ودك تكمل؟"
+
+↓
+
+Login
+OR
+Create Account
+OR
+Continue as Guest
+OR
+Google
+OR
+Apple
+
+↓
+
+Guest:
+Phone number
+↓
+OTP
+↓
+Checkout
+
+Account:
+Login / Create Account
+↓
+Checkout
+
+Social login:
+Authenticate
+↓
+Checkout
+
+==================================================
+17. IMPORTANT
+==================================================
+
+Do not rename "اختياراتك".
+
+Do not use:
+"السلة"
+"الشنطة"
+"الحقيبة"
+"cart"
+"bag"
+
+in the customer-facing checkout/authentication copy.
+
+Do not modify unrelated pages.
+
+Do not change the existing gifting logic.
+
+Do not clear existing selections during authentication.
+
+Build this as an extension of the existing L’ANAK experience,
+not as a generic ecommerce login system.
