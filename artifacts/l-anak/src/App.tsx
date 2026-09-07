@@ -85,7 +85,7 @@ function App() {
   useEffect(() => { document.documentElement.dir = isAr ? 'rtl' : 'ltr'; document.documentElement.lang = lang; }, [isAr, lang]);
   useEffect(() => { if (!toast) return; const timer = window.setTimeout(() => setToast(''), 2500); return () => window.clearTimeout(timer); }, [toast]);
 
-  const addToBag = (product: Product) => { setBag((items) => [...items, product]); setToast(isAr ? 'انضافت للشنطة' : 'Added to your gift bag'); };
+  const addToBag = (product: Product) => { setBag((items) => [...items, product]); setToast('تمت إضافته لاختياراتك ✓'); };
   const toggleFavorite = (id: string) => {
     if (!isSignedIn) {
       setToast(isAr ? 'سجّل دخولك عشان نحفظ اختياراتك لك.' : 'Sign in to save your favorites.');
