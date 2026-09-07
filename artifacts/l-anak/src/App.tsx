@@ -1202,43 +1202,123 @@ function Account({ lang }: { lang: Lang }) {
 function BagPage({ lang, bag, setBag, setToast }: { lang: Lang; bag: Product[]; setBag: (items: Product[]) => void; setToast: (message: string) => void }) {
   const isAr = lang === 'ar';
   const total = bag.reduce((sum, item) => sum + item.price, 0);
-  return (
-    <main className="mx-auto min-h-[65vh] max-w-[1000px] px-5 py-16 md:px-10 md:py-24">
-      <div className="border-t border-[#49372D]/20 pt-8">
-        <h1 className={`text-6xl font-light md:text-8xl ${isAr ? 'font-arabic leading-[1.15]' : 'font-display'}`}>{isAr ? 'شنطة الهدايا' : 'Gift bag'}</h1>
-        {bag.length === 0 ? (
-          <div className="py-24 text-center">
-            <div className="relative mx-auto h-[58px] w-[48px]" aria-hidden="true">
-              <svg viewBox="0 0 48 58" className="h-full w-full text-[#49372D]" fill="none">
-                <path d="M8.5 18.5H39.5L42 54H6L8.5 18.5Z" stroke="currentColor" strokeWidth="1.15" strokeLinejoin="round" />
-                <path d="M15 20V14.5C15 9.25 19.03 5 24 5C28.97 5 33 9.25 33 14.5V20" stroke="currentColor" strokeWidth="1.15" strokeLinecap="round" />
-              </svg>
-              <img
-                src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`}
-                alt=""
-                className="pointer-events-none absolute left-1/2 top-[34px] h-[13px] w-[13px] -translate-x-1/2 -translate-y-1/2 object-contain"
-              />
-            </div>
-            <p className={`mt-6 text-2xl ${isAr ? 'font-arabic' : 'font-display'}`}>{isAr ? 'الشنطة فاضية.' : 'It’s quiet in here.'}</p>
-            <Link href="/#gift-start" className="line-draw mt-8 inline-block text-xs font-bold">{isAr ? 'ابدأ هدية' : 'Start a gift'}</Link>
-          </div>
-        ) : (
-          <div className="mt-12">
-            <div className="divide-y divide-[#49372D]/15 border-y border-[#49372D]/20">
-              {bag.map((item, index) => (
-                <div className="flex items-center gap-4 py-5" key={`${item.id}-${index}`}>
-                  <div className="flex h-20 w-16 items-center justify-center bg-[#E8D59E]"><span className="font-display text-2xl">L’</span></div>
-                  <div className="flex flex-1 items-center justify-between gap-4">
-                    <div><p className={`text-sm font-bold ${isAr ? 'font-arabic' : ''}`}>{isAr ? item.ar : item.name}</p><p className="mt-1 text-[11px] opacity-55">{item.price} KD</p></div>
-                    <button onClick={() => setBag(bag.filter((_, itemIndex) => itemIndex !== index))} className="text-[11px] underline opacity-60">{isAr ? 'حذف' : 'Remove'}</button>
+  const visibleItems = bag.slice(0, 3);
+
+  const bagVisual = (
+    <div className="relative mx-auto h-[280px] w-[250px] sm:h-[310px] sm:w-[280px]" aria-hidden="true">
+      <svg viewBox="0 0 280 310" className="absolute inset-0 z-0 h-full w-full text-[#49372D]" fill="none">
+        <path d="M76 105V70C76 31 105 13 140 13C175 13 204 31 204 70V105" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+        <path d="M91 105V72C91 43 112 29 140 29C168 29 189 43 189 72V105" stroke="#CBB98B" strokeWidth="1.25" strokeLinecap="round" />
+      </svg>
+
+      {bag.length > 0 && (
+        <div className="absolute inset-x-[35px] top-[48px] z-10 flex h-[100px] items-end justify-center gap-2 overflow-hidden">
+          {visibleItems.map((item, index) => {
+            const itemImage = (item as FeaturedGift).image;
+            return (
+              <div
+                key={`${item.id}-bag-visual-${index}`}
+                className={`relative h-[82px] w-[54px] overflow-hidden border border-[#49372D]/20 bg-[#F5F0E8] transition-all duration-700 ${
+                  index === 0 ? '-rotate-6 translate-y-3' : index === 2 ? 'rotate-6 translate-y-4' : 'z-10 h-[96px] w-[62px]'
+                }`}
+              >
+                {itemImage ? (
+                  <img src={itemImage} alt="" className="h-full w-full object-cover opacity-75" />
+                ) : (
+                  <div className="flex h-full flex-col items-center justify-center px-1 text-center text-[#49372D]">
+                    <span className="font-display text-lg text-[#CBB98B]">{item.mark}</span>
+                    <span className={`mt-1 text-[8px] leading-tight ${isAr ? 'font-arabic' : ''}`}>{isAr ? item.ar : item.name}</span>
                   </div>
-                </div>
-              ))}
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      <div className="absolute inset-x-[20px] bottom-[8px] z-20 h-[222px] overflow-hidden border border-[#49372D]/45 bg-[#F5F0E8]">
+        <div className="h-[5px] border-b border-[#CBB98B]/75 bg-[#CBB98B]/20" />
+        <div className="absolute inset-x-0 top-[76px] flex flex-col items-center">
+          <img
+            src={`${import.meta.env.BASE_URL}brand/l-anak-monogram.png`}
+            alt=""
+            className="h-[48px] w-[48px] object-contain"
+          />
+          <span className="mt-3 font-display text-[11px] tracking-[0.28em] text-[#49372D]/55">L’ANAK</span>
+        </div>
+        <span className="absolute bottom-5 left-1/2 -translate-x-1/2 text-[7px] tracking-[0.28em] text-[#CBB98B]">KUWAIT · 2026</span>
+      </div>
+    </div>
+  );
+
+  return (
+    <main className="mx-auto min-h-[65vh] max-w-[1000px] px-5 py-14 md:px-10 md:py-20">
+      <div className="border-t border-[#49372D]/20 pt-10 text-center">
+        <Reveal>
+          <h1 className={`text-4xl font-light text-[#49372D] sm:text-5xl md:text-6xl ${isAr ? 'font-arabic leading-[1.3]' : 'font-display'}`}>
+            {isAr ? 'اختياراتك مع لأنّك' : 'Your L’ANAK selections'}
+          </h1>
+        </Reveal>
+
+        <div key={bag.length === 0 ? 'empty-bag' : 'filled-bag'} className="transition-all duration-700">
+          <Reveal delay={120}>
+            <div className="mt-10 md:mt-12">{bagVisual}</div>
+          </Reveal>
+
+          {bag.length === 0 ? (
+            <div className="text-center">
+              <Reveal delay={240}>
+                <p className={`mt-5 text-2xl text-[#49372D] ${isAr ? 'font-arabic' : 'font-display'}`}>
+                  {isAr ? 'ما ضفت شي ليلحين.' : 'Nothing added yet.'}
+                </p>
+              </Reveal>
+              <Reveal delay={360}>
+                <Link
+                  href="/#gift-start"
+                  className="group mt-7 inline-flex items-center gap-3 bg-[#49372D] px-8 py-3.5 text-[#F5F0E8] transition-colors duration-300 hover:bg-[#CBB98B] hover:text-[#49372D]"
+                >
+                  <span className={`text-sm font-medium ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'يالله نختار' : 'Let’s choose'}</span>
+                  <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </Link>
+              </Reveal>
             </div>
-            <div className="mt-8 flex items-center justify-between text-sm font-bold"><span>{isAr ? 'المجموع' : 'Total'}</span><span>{total} KD</span></div>
-            <button onClick={() => setToast(isAr ? 'قريباً — بنكمّلها معاك' : 'Almost there — checkout is coming soon')} className="mt-6 flex w-full items-center justify-center gap-3 bg-[#49372D] py-4 text-xs font-bold text-[#FAF7F0]">{isAr ? 'كمل الهدية' : 'Continue the gift'}<ArrowUpRight size={15} /></button>
+          ) : (
+            <div className="mx-auto mt-7 max-w-[560px]">
+              <Reveal delay={240}>
+                <div className="border-y border-[#49372D]/15">
+                  {bag.map((item, index) => (
+                    <div className="flex items-center justify-between gap-5 border-b border-[#49372D]/10 py-3.5 last:border-b-0" key={`${item.id}-${index}`}>
+                      <div className={isAr ? 'text-right' : 'text-left'}>
+                        <p className={`text-sm text-[#49372D] ${isAr ? 'font-arabic' : ''}`}>{isAr ? item.ar : item.name}</p>
+                        <p className="mt-1 text-[10px] tracking-[0.12em] text-[#49372D]/55">{item.price} KD</p>
+                      </div>
+                      <button
+                        onClick={() => setBag(bag.filter((_, itemIndex) => itemIndex !== index))}
+                        className={`text-[11px] text-[#49372D]/55 underline decoration-[#CBB98B] underline-offset-4 transition-colors hover:text-[#49372D] ${isAr ? 'font-arabic' : ''}`}
+                      >
+                        {isAr ? 'حذف' : 'Remove'}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <div className={`mt-4 flex items-center justify-between text-sm text-[#49372D] ${isAr ? 'font-arabic' : ''}`}>
+                  <span>{isAr ? 'المجموع' : 'Total'}</span>
+                  <span dir="ltr">{total} KD</span>
+                </div>
+              </Reveal>
+
+              <Reveal delay={360}>
+                <Link
+                  href="/#gift-start"
+                  className="group mt-7 inline-flex items-center gap-3 bg-[#49372D] px-10 py-3.5 text-[#F5F0E8] transition-colors duration-300 hover:bg-[#CBB98B] hover:text-[#49372D]"
+                >
+                  <span className={`text-sm font-medium ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'نكمل' : 'Continue'}</span>
+                  <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </Link>
+              </Reveal>
           </div>
-        )}
+          )}
+        </div>
       </div>
     </main>
   );

@@ -1,0 +1,378 @@
+Refine ONLY the bag/cart page and empty/filled bag states.
+
+Do NOT modify:
+- Navbar
+- Footer
+- Homepage
+- About page
+- Gift Card page
+- Curated Picks
+- gifting workflow
+- global colors
+- global typography
+- any other page
+
+This page should no longer feel like a generic ecommerce cart.
+
+The page name and experience should be based on:
+
+"اختياراتك"
+
+==================================================
+1. PAGE TITLE
+==================================================
+
+Use this EXACT title:
+
+"اختياراتك مع لأنّك"
+
+Use the SAME Arabic font family already used throughout the website.
+
+Do NOT introduce a new font.
+
+Match the same:
+- font weight
+- line height
+- spacing rhythm
+- elegant editorial feel
+
+The title should be prominent,
+but not oversized.
+
+Use Espresso Brown #49372D.
+
+==================================================
+2. EMPTY STATE COPY
+==================================================
+
+When the user has NOT added anything yet,
+show:
+
+"ما ضفت شي ليلحين."
+
+Then show the CTA:
+
+"يالله نختار"
+
+Do NOT use:
+- شنطة الهدايا
+- الشنطة فاضية
+- ابدأ هدية
+- السلة فارغة
+- cart
+- empty cart
+
+Keep the language warm, simple and Kuwaiti.
+
+==================================================
+3. EMPTY BAG VISUAL
+==================================================
+
+For the empty state,
+show a premium L’ANAK gift bag illustration / visual.
+
+IMPORTANT:
+
+This must NOT look like a generic shopping-bag icon.
+
+It should look like a real branded L’ANAK bag.
+
+Use the EXISTING L’ANAK logo asset already available in the project.
+
+Do NOT recreate the logo.
+
+Place the existing logo clearly and elegantly
+on the front of the bag.
+
+Bag visual direction:
+
+- premium
+- minimal
+- elegant
+- structured paper bag
+- warm neutral / Espresso / Cream palette
+- subtle Champagne detail
+- clearly EMPTY
+
+Do NOT add products inside the empty-state bag.
+
+Do NOT use a small line icon.
+
+The bag should have enough visual presence
+to become the main visual of the empty state.
+
+No cartoon style.
+No colorful illustration.
+No generic ecommerce icon.
+
+==================================================
+4. EMPTY STATE LAYOUT
+==================================================
+
+Create a refined central composition:
+
+اختياراتك مع لأنّك
+
+↓
+
+empty L’ANAK bag visual
+
+↓
+
+ما ضفت شي ليلحين.
+
+↓
+
+يالله نختار
+
+Keep generous but controlled negative space.
+
+Do not make the page unnecessarily tall.
+
+==================================================
+5. “يالله نختار” BUTTON
+==================================================
+
+Make:
+
+"يالله نختار"
+
+a clear premium CTA.
+
+Use:
+
+Espresso Brown #49372D background
+Warm Cream text
+
+On hover:
+
+background → Muted Champagne #CBB98B
+text → Espresso Brown
+
+Use a subtle arrow movement if appropriate.
+
+Do not use glow.
+Do not bounce.
+
+The button should lead the user back
+to the gifting / selection experience.
+
+Use the existing relevant route or section.
+
+Do NOT create a duplicate page.
+
+==================================================
+6. FILLED STATE
+==================================================
+
+When the user HAS added one or more items,
+keep the SAME page title:
+
+"اختياراتك مع لأنّك"
+
+But change the visual state.
+
+Show the same premium L’ANAK branded bag,
+now containing the user’s selected items.
+
+IMPORTANT:
+
+The bag should visually feel fuller,
+but remain elegant and uncluttered.
+
+Use actual selected item imagery/data
+when available.
+
+Do NOT insert random products.
+
+Do NOT use stock images.
+
+If selected product imagery is not available,
+use subtle structured placeholders
+until the final assets are added.
+
+==================================================
+7. FILLED BAG CONTENT
+==================================================
+
+The filled bag visual should communicate:
+
+"These are the things you selected."
+
+Do not overcrowd the bag.
+
+Use only enough visible product elements
+to clearly communicate that it is filled.
+
+Keep the L’ANAK logo visible on the bag.
+
+==================================================
+8. FILLED STATE CTA
+==================================================
+
+When items exist,
+replace the empty-state CTA with:
+
+"نكمل"
+
+Make it the primary CTA.
+
+Use:
+
+Espresso Brown background
+Warm Cream text
+
+Hover:
+
+Muted Champagne background
+Espresso Brown text
+
+The button should move the user forward
+to the next step in the gifting flow.
+
+Do NOT show:
+
+"يالله نختار"
+
+when items are already present.
+
+==================================================
+9. OPTIONAL ITEM SUMMARY
+==================================================
+
+When the bag contains items,
+show a clean lightweight summary below or beside the bag.
+
+Include only what is useful:
+
+- selected item / gift name
+- quantity if relevant
+- value / price if relevant
+- remove action
+
+Keep it minimal.
+
+Do NOT create heavy ecommerce cart cards.
+
+Do NOT clutter the page.
+
+==================================================
+10. REMOVE INTERACTION
+==================================================
+
+If the user removes the final remaining item,
+transition back to the EMPTY state automatically:
+
+empty L’ANAK bag
+
+"ما ضفت شي ليلحين."
+
+"يالله نختار"
+
+Do not require a page refresh.
+
+==================================================
+11. ANIMATION LANGUAGE
+==================================================
+
+Use the SAME animation style already established
+throughout the L’ANAK website.
+
+On page load / viewport entry:
+
+1. title reveals
+2. bag visual reveals
+3. state message reveals
+4. CTA reveals
+
+Use:
+
+opacity 0 → 1
+translateY 20–30px → 0
+
+Duration:
+700–900ms
+
+Subtle stagger.
+
+For empty → filled state transition:
+
+use a subtle crossfade or soft scale transition.
+
+No:
+- bounce
+- dramatic zoom
+- spinning
+- floating animation
+- glow
+
+Respect prefers-reduced-motion.
+
+==================================================
+12. VISUAL CONSISTENCY
+==================================================
+
+Match the rest of the website exactly.
+
+Use:
+
+Espresso Brown #49372D
+Warm Cream / Ivory
+Muted Champagne #CBB98B
+
+Use the SAME existing Arabic font.
+
+Use the SAME button style,
+hover language,
+spacing rhythm and animation style
+already used elsewhere on the site.
+
+==================================================
+13. RESPONSIVE
+==================================================
+
+Desktop:
+large centered / editorial composition.
+
+Mobile:
+stack naturally:
+
+اختياراتك مع لأنّك
+bag visual
+state message
+CTA
+
+The bag visual should scale responsively.
+
+Do not allow horizontal overflow.
+
+==================================================
+FINAL RESULT
+==================================================
+
+EMPTY STATE:
+
+اختياراتك مع لأنّك
+
+[premium EMPTY L’ANAK branded bag]
+
+ما ضفت شي ليلحين.
+
+يالله نختار
+
+------------------------------
+
+FILLED STATE:
+
+اختياراتك مع لأنّك
+
+[premium L’ANAK bag containing selected items]
+
+selected items summary if needed
+
+نكمل
+
+The page should feel like part of the L’ANAK gifting experience,
+not a generic ecommerce cart.
+
+Do not modify anything outside this page.
