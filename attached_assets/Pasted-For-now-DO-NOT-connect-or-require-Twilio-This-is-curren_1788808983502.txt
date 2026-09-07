@@ -1,0 +1,236 @@
+For now, DO NOT connect or require Twilio.
+
+This is currently a Coded prototype/demo, so I do not want to upgrade or pay for Twilio yet.
+
+Refine ONLY the Guest Checkout OTP flow.
+
+IMPORTANT:
+Do NOT modify:
+- Clerk authentication
+- Sign Up
+- Log In
+- Google authentication
+- Apple authentication
+- account functionality
+- existing checkout design
+- Navbar
+- "اختياراتك"
+- gifting flow
+- any other page or component
+
+Keep the existing L’ANAK design exactly as it is.
+
+==================================================
+GUEST CHECKOUT
+==================================================
+
+When a logged-out user reaches checkout,
+keep the existing authentication choices:
+
+- تسجيل الدخول
+- إنشاء حساب
+- المتابعة كضيف
+- Continue with Google
+- Continue with Apple
+
+When the user chooses:
+
+"المتابعة كضيف"
+
+show:
+
+"بس نتأكد إنه أنت"
+
+Supporting text:
+
+"دخل رقمك، وبندز لك رمز التحقق."
+
+Phone field:
+
++965 | رقم الهاتف
+
+CTA:
+
+"أرسل الرمز"
+
+==================================================
+KUWAIT PHONE VALIDATION
+==================================================
+
+Accept Kuwait mobile numbers only.
+
+The interface should display:
+
++965
+
+separately from the user's entered number.
+
+The user should enter only the local 8-digit number.
+
+Validate the number before continuing.
+
+If invalid, show a subtle Arabic inline error.
+
+==================================================
+DEMO OTP
+==================================================
+
+Since Twilio is NOT being used yet,
+implement a clearly isolated DEMO OTP verification flow.
+
+Do NOT make any external SMS API calls.
+
+For development/demo purposes only,
+use this OTP:
+
+123456
+
+After the user enters a valid Kuwait phone number,
+move to the OTP screen.
+
+Show:
+
+"أرسلنا لك الرمز"
+
+and:
+
+"دخل رمز التحقق للمتابعة."
+
+Display a 6-digit OTP input.
+
+For the prototype, show a small subtle developer/demo note:
+
+"للتجربة: 123456"
+
+This note is temporary and must be easy to remove
+when real SMS verification is connected later.
+
+CTA:
+
+"تأكيد ومتابعة"
+
+==================================================
+OTP BEHAVIOR
+==================================================
+
+If the user enters:
+
+123456
+
+mark the guest phone verification as successful
+and continue to the existing checkout.
+
+If the OTP is incorrect,
+show:
+
+"الرمز غير صحيح، حاول مرة ثانية."
+
+Do NOT continue to checkout with an incorrect OTP.
+
+==================================================
+SUCCESS
+==================================================
+
+After successful verification,
+show a very brief confirmation:
+
+"تم التحقق ✓"
+
+Then automatically continue to the existing checkout.
+
+Do NOT create an account for the guest.
+
+Do NOT force Sign Up after verification.
+
+==================================================
+IMPORTANT ARCHITECTURE
+==================================================
+
+Keep the demo OTP logic isolated in its own
+verification function/service.
+
+Add a clear developer comment that this demo verifier
+must be replaced by a real server-side provider such as
+Twilio Verify before production.
+
+Do NOT store the OTP as real authentication security.
+
+Do NOT describe this demo flow as production-ready.
+
+The architecture should make it easy to replace:
+
+Demo OTP
+↓
+Real Twilio Verify
+
+later without redesigning the UI.
+
+==================================================
+SELECTIONS
+==================================================
+
+IMPORTANT:
+
+Do NOT clear the user's "اختياراتك"
+when they choose guest checkout.
+
+Their selected gifts must remain intact through:
+
+Guest
+→ Phone
+→ OTP
+→ Checkout
+
+==================================================
+DESIGN
+==================================================
+
+Use the SAME existing L’ANAK:
+
+- Arabic font
+- typography
+- spacing
+- colors
+- buttons
+- form styling
+- animations
+
+Colors:
+
+Espresso Brown #49372D
+Cream #FAF7F0
+Muted Champagne #CBB98B
+
+Do NOT redesign the authentication experience.
+
+Do NOT add generic authentication UI.
+
+==================================================
+FINAL FLOW
+==================================================
+
+User browses normally
+↓
+Adds something to "اختياراتك"
+↓
+نكمل
+↓
+Not logged in
+↓
+شلون ودك تكمل؟
+↓
+المتابعة كضيف
+↓
++965 | رقم الهاتف
+↓
+أرسل الرمز
+↓
+6-digit OTP
+↓
+Demo code: 123456
+↓
+تم التحقق ✓
+↓
+Existing checkout
+
+Do not change anything else.

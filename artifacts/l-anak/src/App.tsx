@@ -2,6 +2,8 @@ import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Link, Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
 import { ArrowUpRight, Check, Heart, Mail, Menu, Plus, ShoppingBag, User, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ClerkProvider, SignIn, SignUp, useClerk, useUser } from '@clerk/react';
+import { publishableKeyFromHost } from '@clerk/react/internal';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -10,6 +12,9 @@ import '@/index.css';
 import heroCampaignImage from '@/assets/lanak-hero-campaign.png';
 
 const queryClient = new QueryClient();
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, '');
+const clerkPubKey = publishableKeyFromHost(window.location.hostname, import.meta.env.VITE_CLERK_PUBLISHABLE_KEY);
+const clerkProxyUrl = import.meta.env.VITE_CLERK_PROXY_URL;
 
 type Lang = 'en' | 'ar';
 type Product = { id: string; name: string; ar: string; note: string; price: number; category: string; mark: string };
@@ -64,7 +69,7 @@ const copy = {
   },
 };
 
-function App() {
+function AppContent() {
   const [lang, setLang] = useState<Lang>('ar');
   const [bag, setBag] = useState<Product[]>([]);
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -78,7 +83,7 @@ function App() {
     recipientInformation: { name: '', phone: '', deliveryDate: '', deliveryMethod: '' },
     personalMessage: '',
   });
-  const isSignedIn = false;
+  const { isSignedIn = false } = useUser();
   const isAr = lang === 'ar';
   const t = copy[lang];
 
@@ -114,6 +119,9 @@ function App() {
                 <Route path="/gift-card"><GiftCards lang={lang} setToast={setToast} /></Route>
                 <Route path="/favorites"><Favorites lang={lang} favorites={favorites} addToBag={addToBag} toggleFavorite={toggleFavorite} /></Route>
                 <Route path="/account"><Account lang={lang} /></Route>
+                <Route path="/sign-in/*?"><AuthPage mode="sign-in" /></Route>
+                <Route path="/sign-up/*?"><AuthPage mode="sign-up" /></Route>
+                <Route path="/checkout-entry"><CheckoutEntry lang={lang} isSignedIn={isSignedIn} /></Route>
                 <Route path="/bag"><BagPage lang={lang} bag={bag} setBag={setBag} setToast={setToast} /></Route>
                 <Route component={NotFound} />
               </Switch>
@@ -124,6 +132,41 @@ function App() {
         <Toaster />
       </TooltipProvider>
     </QueryClientProvider>
+  );
+}
+
+function App() {
+  return (
+    <ClerkProvider
+      publishableKey={clerkPubKey}
+      proxyUrl={clerkProxyUrl}
+      routerPush={(to) => window.history.pushState(null, '', to)}
+      routerReplace={(to) => window.history.replaceState(null, '', to)}
+      appearance={{
+        variables: {
+          colorPrimary: '#49372D',
+          colorForeground: '#49372D',
+          colorMutedForeground: '#796B62',
+          colorBackground: '#FAF7F0',
+          colorInput: '#FAF7F0',
+          colorInputForeground: '#49372D',
+          colorNeutral: '#CBB98B',
+          fontFamily: '"IBM Plex Sans Arabic", sans-serif',
+          borderRadius: '2px',
+        },
+        elements: {
+          rootBox: 'w-full flex justify-center',
+          cardBox: 'bg-[#FAF7F0] w-[460px] max-w-full overflow-hidden',
+          card: '!shadow-none !border-0 !bg-transparent !rounded-none',
+          footer: '!shadow-none !border-0 !bg-transparent !rounded-none',
+          formButtonPrimary: '!bg-[#49372D] hover:!bg-[#CBB98B] hover:!text-[#49372D]',
+          formFieldInput: '!border-[#49372D]/25 focus:!border-[#CBB98B] !shadow-none',
+          socialButtonsBlockButton: '!border-[#49372D]/25 !shadow-none',
+        },
+      }}
+    >
+      <AppContent />
+    </ClerkProvider>
   );
 }
 
@@ -1189,12 +1232,120 @@ function Favorites({ lang, favorites, addToBag, toggleFavorite }: { lang: Lang; 
 
 function Account({ lang }: { lang: Lang }) {
   const isAr = lang === 'ar';
+  const { isSignedIn, user } = useUser();
+  const { signOut } = useClerk();
+
+  if (!isSignedIn) {
+    return (
+      <main className="mx-auto min-h-[65vh] max-w-[620px] px-5 py-16 text-center md:py-24">
+        <Reveal><h1 className="font-arabic text-4xl font-light text-[#49372D] md:text-5xl">هلا فيك في لأنّك</h1></Reveal>
+        <Reveal delay={120}><p className="mt-5 font-arabic text-sm leading-7 text-[#49372D]/65">سجّل دخولك أو أنشئ حسابك وكمل تجربتك معنا.</p></Reveal>
+        <Reveal delay={240}>
+          <div className="mt-9 grid gap-3 sm:grid-cols-2">
+            <Link href="/sign-in" className="bg-[#49372D] px-6 py-4 font-arabic text-sm text-[#FAF7F0] transition-colors hover:bg-[#CBB98B] hover:text-[#49372D]">تسجيل الدخول</Link>
+            <Link href="/sign-up" className="border border-[#49372D]/35 px-6 py-4 font-arabic text-sm text-[#49372D] transition-colors hover:border-[#CBB98B]">إنشاء حساب</Link>
+          </div>
+        </Reveal>
+      </main>
+    );
+  }
+
   return (
     <main className="mx-auto min-h-[65vh] max-w-[1440px] px-5 py-16 md:px-10 md:py-24">
       <div className="border-t border-[#49372D]/20 pt-8">
-        <h1 className={`text-6xl font-light md:text-8xl ${isAr ? 'font-arabic leading-[1.15]' : 'font-display'}`}>{isAr ? 'الحساب' : 'Account'}</h1>
-        <p className={`mt-6 max-w-md text-sm leading-7 opacity-65 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'من هني تقدر تتابع هداياك وتحفظ اختياراتك. تسجيل الدخول بيتوفر قريباً.' : 'This is where you’ll manage gifts and saved picks. Sign-in is coming soon.'}</p>
+        <h1 className={`text-5xl font-light md:text-7xl ${isAr ? 'font-arabic leading-[1.15]' : 'font-display'}`}>{isAr ? 'حسابك مع لأنّك' : 'Your L’ANAK account'}</h1>
+        <p className={`mt-5 text-sm opacity-65 ${isAr ? 'font-arabic' : ''}`}>{user?.fullName || user?.primaryEmailAddress?.emailAddress}</p>
+        <div className={`mt-10 grid max-w-xl gap-3 text-sm sm:grid-cols-2 ${isAr ? 'font-arabic' : ''}`}>
+          {['الملف الشخصي', 'اختياراتك', 'المفضلة', 'طلباتك'].map((label) => <div key={label} className="border-b border-[#49372D]/20 py-4">{label}</div>)}
+        </div>
+        <button onClick={() => signOut({ redirectUrl: basePath || '/' })} className={`mt-10 text-sm underline decoration-[#CBB98B] underline-offset-4 ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'تسجيل الخروج' : 'Sign out'}</button>
       </div>
+    </main>
+  );
+}
+
+function AuthPage({ mode }: { mode: 'sign-in' | 'sign-up' }) {
+  const isSignIn = mode === 'sign-in';
+  return (
+    <main className="mx-auto min-h-[70vh] max-w-[620px] px-5 py-14 text-center md:py-20">
+      <Reveal>
+        <h1 className="font-arabic text-4xl font-light text-[#49372D] md:text-5xl">{isSignIn ? 'تسجيل الدخول' : 'أنشئ حسابك مع لأنّك'}</h1>
+      </Reveal>
+      <Reveal delay={120}>
+        <p className="mt-4 font-arabic text-sm text-[#49372D]/65">{isSignIn ? 'هلا برجعتك.' : 'خطوة بسيطة، وتكمل تجربتك معنا.'}</p>
+      </Reveal>
+      <Reveal delay={220}>
+        <div className="mt-8">
+          {isSignIn ? (
+            <SignIn routing="path" path={`${basePath}/sign-in`} signUpUrl={`${basePath}/sign-up`} />
+          ) : (
+            <SignUp routing="path" path={`${basePath}/sign-up`} signInUrl={`${basePath}/sign-in`} />
+          )}
+        </div>
+      </Reveal>
+    </main>
+  );
+}
+
+const DEMO_GUEST_OTP = '123456';
+
+// Prototype-only verifier. Replace with a server-side provider such as Twilio Verify before production.
+function verifyDemoGuestOtp(code: string) {
+  return code === DEMO_GUEST_OTP;
+}
+
+function CheckoutEntry({ lang, isSignedIn }: { lang: Lang; isSignedIn: boolean }) {
+  const isAr = lang === 'ar';
+  const [stage, setStage] = useState<'choice' | 'phone' | 'otp' | 'verified' | 'ready'>(isSignedIn ? 'ready' : 'choice');
+  const [phone, setPhone] = useState('');
+  const [otp, setOtp] = useState('');
+  const [error, setError] = useState('');
+
+  const sendCode = () => {
+    if (!/^\d{8}$/.test(phone)) {
+      setError('دخل رقم كويتي صحيح من ٨ أرقام.');
+      return;
+    }
+    setError('');
+    setStage('otp');
+  };
+
+  const confirmCode = () => {
+    if (!verifyDemoGuestOtp(otp)) {
+      setError('الرمز غير صحيح، حاول مرة ثانية.');
+      return;
+    }
+    setError('');
+    setStage('verified');
+    window.setTimeout(() => setStage('ready'), 900);
+  };
+
+  const shell = 'mx-auto min-h-[68vh] max-w-[580px] px-5 py-16 text-center md:py-24';
+  const primary = 'w-full bg-[#49372D] px-6 py-4 font-arabic text-sm text-[#FAF7F0] transition-colors hover:bg-[#CBB98B] hover:text-[#49372D]';
+  const secondary = 'w-full border border-[#49372D]/30 px-6 py-4 font-arabic text-sm text-[#49372D] transition-colors hover:border-[#CBB98B]';
+
+  if (stage === 'ready') return <main className={shell}><h1 className="font-arabic text-4xl text-[#49372D]">{isAr ? 'جاهزين نكمل.' : 'Ready to continue.'}</h1><p className="mt-5 font-arabic text-sm text-[#49372D]/65">{isAr ? 'خطوة الدفع بتكون هني.' : 'The payment step will continue here.'}</p></main>;
+  if (stage === 'verified') return <main className={shell}><p className="font-arabic text-2xl text-[#49372D]">تم التحقق <span className="text-[#CBB98B]">✓</span></p></main>;
+  if (stage === 'phone' || stage === 'otp') return (
+    <main className={shell}>
+      <Reveal><h1 className="font-arabic text-4xl font-light text-[#49372D]">{stage === 'phone' ? 'بس نتأكد إنه أنت' : 'أرسلنا لك الرمز'}</h1></Reveal>
+      <p className="mt-4 font-arabic text-sm text-[#49372D]/65">{stage === 'phone' ? 'دخل رقمك، وبندز لك رمز التحقق.' : 'دخل رمز التحقق للمتابعة.'}</p>
+      <div className="mt-9">
+        {stage === 'phone' ? (
+          <div className="flex h-14 border border-[#49372D]/25 bg-[#FAF7F0] focus-within:border-[#CBB98B]" dir="ltr"><span className="flex items-center border-r border-[#49372D]/15 px-4">+965</span><input value={phone} onChange={(e) => { setPhone(e.target.value.replace(/\D/g, '').slice(0, 8)); setError(''); }} placeholder="رقم الهاتف" className="min-w-0 flex-1 bg-transparent px-4 text-right font-arabic outline-none" /></div>
+        ) : <><input value={otp} onChange={(e) => { setOtp(e.target.value.replace(/\D/g, '').slice(0, 6)); setError(''); }} inputMode="numeric" maxLength={6} className="h-14 w-full border border-[#49372D]/25 bg-[#FAF7F0] text-center text-2xl tracking-[.5em] outline-none focus:border-[#CBB98B]" /><p className="mt-3 font-arabic text-[11px] text-[#49372D]/45">للتجربة: 123456</p></>}
+        {error && <p className="mt-3 text-right font-arabic text-xs text-[#963c32]">{error}</p>}
+        <button onClick={stage === 'phone' ? sendCode : confirmCode} className={`${primary} mt-5`}>{stage === 'phone' ? 'أرسل الرمز' : 'تأكيد ومتابعة'}</button>
+        {stage === 'otp' && <button className="mt-5 font-arabic text-xs underline decoration-[#CBB98B] underline-offset-4">إعادة إرسال الرمز</button>}
+      </div>
+    </main>
+  );
+  return (
+    <main className={shell}>
+      <Reveal><h1 className="font-arabic text-4xl font-light text-[#49372D] md:text-5xl">شلون ودك تكمل؟</h1></Reveal>
+      <Reveal delay={140}><div className="mt-9 space-y-3"><Link href="/sign-in" className={`${primary} block`}>تسجيل الدخول</Link><Link href="/sign-up" className={`${secondary} block`}>إنشاء حساب</Link><button onClick={() => setStage('phone')} className={secondary}>المتابعة كضيف</button></div></Reveal>
+      <p className="mt-8 font-arabic text-xs text-[#49372D]/50">أو كمل باستخدام</p>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2"><Link href="/sign-in" className={`${secondary} block`} dir="ltr">Continue with Google</Link><Link href="/sign-in" className={`${secondary} block`} dir="ltr">Continue with Apple</Link></div>
     </main>
   );
 }
@@ -1309,7 +1460,7 @@ function BagPage({ lang, bag, setBag, setToast }: { lang: Lang; bag: Product[]; 
 
               <Reveal delay={360}>
                 <Link
-                  href="/#gift-start"
+                  href="/checkout-entry"
                   className="group mt-7 inline-flex items-center gap-3 bg-[#49372D] px-10 py-3.5 text-[#F5F0E8] transition-colors duration-300 hover:bg-[#CBB98B] hover:text-[#49372D]"
                 >
                   <span className={`text-sm font-medium ${isAr ? 'font-arabic' : ''}`}>{isAr ? 'نكمل' : 'Continue'}</span>
