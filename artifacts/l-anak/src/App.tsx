@@ -629,6 +629,7 @@ function GiftCards({ lang, setToast }: { lang: Lang; setToast: (message: string)
 
     setErrors({});
     setSent(true);
+    window.location.href = 'https://buy.stripe.com/test_6oU28rgtA5xv7F45pz00000';
   };
 
   return (
